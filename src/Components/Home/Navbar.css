@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Aligns child elements (logo and nav items) on opposite sides */
+    align-items: center; /* Vertically centers the content */
+    padding: 8px 16px;
+    background: white; 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+  
+.my-studies-logo {
+    height: 80px; 
+}
+
+.ekpa-logo{
+    height: 60px; 
+}
+
+  
