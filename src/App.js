@@ -1,10 +1,17 @@
-import Home from './Components/Home/Home'; // Adjust the path according to your project structure
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from './Components/Home/Home'; 
+import Login from './Components/Login/Login'; 
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
