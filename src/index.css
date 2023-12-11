@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+:root {
+  --home-color: #4E90C9;
+  --student-color: #0D8BD9;
+  --professors: #004E7F;
+  --green: #1AB17A;
+  --orange: #F67E0E;
+  --red: #F42929;   
+  --grey: #EAEAEA;
+}

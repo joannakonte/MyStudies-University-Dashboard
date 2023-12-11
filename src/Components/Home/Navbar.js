@@ -1,5 +1,7 @@
 import React from 'react';
 import './Navbar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 function Navbar() {
   const ekpaLogo = '/ekpa-logo.png';
@@ -15,10 +17,12 @@ function Navbar() {
           </a>
         </div>
         <div className="nav-links">
-          <a href="#home">Αρχική</a>
+          <a href="#home" className="nav-item" >Αρχική</a>
           {/* First Dropdown */}
           <div className="dropdown">
-            <button className="dropbtn">Υπηρεσίες</button>
+            <button className="dropbtn">
+              Υπηρεσίες <FontAwesomeIcon icon={faChevronDown} />
+            </button>
             <div className="dropdown-content">
               <a href="#students">Φοιτητές</a>
               <a href="#instructors">Διδάσκοντες</a>
@@ -27,13 +31,15 @@ function Navbar() {
           </div>
           {/* Second Dropdown */}
           <div className="dropdown">
-            <button className="dropbtn">Τμήματα</button>
+            <button className="dropbtn">
+              Τμήματα <FontAwesomeIcon icon={faChevronDown} />
+            </button>
             <div className="dropdown-content">
               <a href="#studyProgram">Πρόγραμμα Σπούδων</a>
               <a href="#contact">Επικοινωνία</a>
             </div>
           </div>
-          <a href="#otherServices">Άλλες Υπηρεσίες ΕΚΠΑ</a>
+          <a href="#otherServices" className="nav-item" >Άλλες Υπηρεσίες ΕΚΠΑ</a>
         </div>
       </div>
     </nav>
