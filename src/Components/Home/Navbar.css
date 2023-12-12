@@ -13,23 +13,37 @@
     align-items: flex-start; /* Align items to the left */
 }
 
-.logo-container, .logo-container a {
-    display: flex;
-    align-items: center;
+/* .logo-container, .logo-container a {
+  display: flex;
+  align-items: center;
 }
 
 .my-studies-logo, .ekpa-logo {
-    width: 20%;
-    height: auto;
-    margin-right: 10px; 
-}
+  width: 20%;
+  height: auto;
+  margin-right: 10px; 
+  display: flex;
+} */
 
 .ekpa-logo {
-    width: 40%; 
+  width: 50%; 
+}
+
+.my-studies-logo {
+  width: 20%; 
+}
+
+.logo-container {
+  list-style: none; /* Remove bullets from the list */
+  display: flex; /* Make the list items flex containers */
+}
+
+.logo-container li {
+  margin-right: 10px; /* Adjust the spacing between list items as needed */
 }
 
 .nav-links {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .nav-item {
@@ -44,35 +58,53 @@
   border-radius: 5px;
 }
 
-/* ================== | Dropdowns |================== */
+/* ================ | Login button |================ */
+.login-btn {
+  background-color: var(--home-color); 
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0 4px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.login-btn .fa-sign-in-alt {
+  margin-right: 8px;
+}
+
+/* ================= | Dropdowns |================== */
 /* Dropdown Button */
 .dropbtn {
-    background-color: white;
-    color: var(--home-color);
-    padding: 8px 16px;
-    font-size: 16px;
-    margin: 0 4px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  /* The container <div> - needed to position the dropdown content */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Dropdown Content (Hidden by Default) */
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #2F80C1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 5px;
-  }
+  background-color: white;
+  color: var(--home-color);
+  padding: 8px 16px;
+  font-size: 16px;
+  margin: 0 4px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  display: block; /* Make button take the full width of its parent */
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #2F80C1;
+  width: 100%; /* Match the width of the parent */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
   
   /* Links inside the dropdown */
   .dropdown-content a {
@@ -94,7 +126,7 @@
   
 /* Hover effect */
 .dropdown:hover .dropbtn, 
-.nav-links a:hover {
+.nav-links a:not(.login-btn):hover {
   background-color: rgba(47, 128, 193, 0.2); 
 }
   

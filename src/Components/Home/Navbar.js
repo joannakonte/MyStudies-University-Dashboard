@@ -1,7 +1,8 @@
 import React from 'react';
 import './Navbar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 function Navbar() {
   const ekpaLogo = '/ekpa-logo.png';
@@ -10,12 +11,31 @@ function Navbar() {
   return (
     <nav className="navbar">
       <div className="main-container">
-        <div className="logo-container">
+        {/* <div className="logo-container">
           <img src={myStudiesLogo} alt="MyStudies Logo" className="my-studies-logo"/>
+          <a href="/">
+            <img src={myStudiesLogo} alt="MyStudies Logo" className="my-studies-logo" />
+          </a>
           <a href="https://www.uoa.gr">
             <img src={ekpaLogo} alt="EKPA Logo" className="ekpa-logo" />
           </a>
-        </div>
+        </div> */}
+
+        <ul className="logo-container">
+          <li>
+            <a href="/">
+              <img src={myStudiesLogo} alt="MyStudies Logo" className="my-studies-logo" />
+            </a>
+          </li>
+          <li>
+            <a href="https://www.uoa.gr">
+              <img src={ekpaLogo} alt="EKPA Logo" className="ekpa-logo" />
+            </a>
+          </li>
+        </ul>
+
+
+
         <div className="nav-links">
           <a href="#home" className="nav-item" >Αρχική</a>
           {/* First Dropdown */}
@@ -40,6 +60,9 @@ function Navbar() {
             </div>
           </div>
           <a href="#otherServices" className="nav-item" >Άλλες Υπηρεσίες ΕΚΠΑ</a>
+          <a href="/login" className="login-btn">
+            Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className="fa-sign-in-alt"/> 
+          </a>
         </div>
       </div>
     </nav>
