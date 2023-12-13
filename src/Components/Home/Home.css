@@ -1,0 +1,120 @@
+/* ================ | Header |================ */
+.Header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(239, 250, 252, 1);
+    height: 400px;
+}
+
+p{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--home-color);
+    font-size: 28px;
+}
+
+
+.text-and-button{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+h1, h2 {
+    color: var(--home-color);
+}
+
+
+.Header .text-and-button .login-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+/* ================ | Επικοινωνία |================ */
+.contact{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-items h2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: black;
+}
+
+
+/* ================ | Sections |================ */
+
+.section {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+/* ================ | Υπηρεσίες |================ */
+
+/* Υπηρεσίες */
+.container {
+    display: flex;
+    padding: 50px;
+}
+  
+.box {
+    flex: 1;
+    border: 1px solid #ffffff; 
+    padding: 10px; 
+    margin-right: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; 
+
+}
+
+.box-text {
+    color: black;
+    font-size: 22px;
+}
+
+.box-image {
+    max-width: 100px; 
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+    margin-top: -60px;
+}
+
+/* ================ | Αλλες υπηρεσίες ΕΚΠΑ |================ */
+
+.eclass-logo {
+    max-width: 120px; 
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.ekpa-logo {
+    max-width: 70px; 
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.OpenDelos-logo {
+    max-width: 150px; 
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}
+
+.eudoxus-logo {
+    max-width: 150px; 
+    height: auto;
+    display: block;
+    margin: 0 auto 10px;
+}

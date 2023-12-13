@@ -10,17 +10,7 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <div className="main-container">
-        {/* <div className="logo-container">
-          <img src={myStudiesLogo} alt="MyStudies Logo" className="my-studies-logo"/>
-          <a href="/">
-            <img src={myStudiesLogo} alt="MyStudies Logo" className="my-studies-logo" />
-          </a>
-          <a href="https://www.uoa.gr">
-            <img src={ekpaLogo} alt="EKPA Logo" className="ekpa-logo" />
-          </a>
-        </div> */}
-
+      <div className="logo-and-nav">
         <ul className="logo-container">
           <li>
             <a href="/">
@@ -33,8 +23,6 @@ function Navbar() {
             </a>
           </li>
         </ul>
-
-
 
         <div className="nav-links">
           <a href="#home" className="nav-item" >Αρχική</a>

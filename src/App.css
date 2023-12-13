@@ -7,7 +7,7 @@
   pointer-events: none;
 }
 
-body, div {
+body, div, .dropdown button, .dropdown-content a {
   font-family: 'Manrope', sans-serif;
 }
 
