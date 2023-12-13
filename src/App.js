@@ -1,11 +1,15 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from './Components/Home/Home'; 
-import Login from './Components/Login/Login'; 
+// App.js
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Sidebar from './Components/Sidebar/Sidebar'; 
+import Home from './Components/Home/Home';
+import Login from './Components/Login/Login';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
+      <Sidebar />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
