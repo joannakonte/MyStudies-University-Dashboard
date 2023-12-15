@@ -1,0 +1,51 @@
+[
+    {
+        "title": "Προφίλ",
+        "icon": "HiOutlineUserCircle",
+        "path": "/profile",
+        "childrens": [
+            {
+                "title": "Στοιχεία Φοιτητή",
+                "path": "/general-student"
+            },
+            {
+                "title": "Προσωπικά Στοιχεια",
+                "path": "/personal-student"
+            },
+            {
+                "title": "Ιστορικό Επισκέψεων",
+                "path": "/history-visits"
+            }
+        ]
+    },
+    {
+        "title": "Μαθήματα",
+        "icon": "HiBookOpen",
+        "path": "/classes"
+    },
+    {
+        "title": "Δηλώσεις",
+        "icon": "HiDocumentText",
+        "path": "/history-applications",
+        "childrens": [
+            {
+                "title": "Ιστορικό Δηλώσεων",
+                "path": "/history-applications"
+            },
+            {
+                "title": "Νέα Δήλωση",
+                "path": "/new-application"
+            }
+        ]
+    },
+    {
+    "title": "Βαθμολογίες",
+    "icon": "HiMiniDocumentChartBar",
+    "path": "/certificates"
+    },
+    {
+        "title": "Πιστοποιητικά",
+        "icon": "HiClipboardDocumentList",
+        "path": "/certificates"
+    }
+]

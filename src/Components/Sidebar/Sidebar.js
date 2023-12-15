@@ -1,40 +1,27 @@
-// Sidebar.js
-import React from 'react';
-import './Sidebar.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { useState } from "react";
+import SidebarItem from "./SidebarItem"
+import items from "../../data/sidebarStudents.json"
+import {  HiHome, HiQuestionMarkCircle, HiArrowRightOnRectangle    } from "react-icons/hi2";
 
-const Sidebar = () => {
-  return (
-    <div className="sidebar">
-      <h3>Menu</h3>
-      <div className="basics">
-        <div className="dropdown-sidebar">
-          <button className="dropbtn_profil">Προφίλ <FontAwesomeIcon icon={faChevronDown} /></button>
-          <div className="dropdown-content-sidebar">
-            <a href="/general-student">Στοιχεία Φοιτητή</a>
-            <a href="/personal-student">Προσωπικά Στοιχεια</a>
-            <a href="/history-visits">Ιστορικό Επισκέψεων</a>
-          </div>
+
+export default function Sidebar(){
+  const [style, setStyle] = useState("light");
+ 
+  const changeStyle = () => {
+      console.log("you just clicked");
+      if (style !== "light") setStyle("light");
+      else setStyle("dark");
+  };
+    return (
+        <div className="sidebar">
+          { items.map((item, index) => <SidebarItem key={index} item={item} />) }
+        
+        <div className="rest">
+          <button><HiHome/> Αρχική</button>
+          <button><HiQuestionMarkCircle />Συχνές Ερωτήσεις</button>
+          <button><HiArrowRightOnRectangle />Αποσύνδεση</button>
         </div>
-        <button>Μαθήματα</button>
-        <div className="dropdown-sidebar">
-          <button className="dropbtn_profil">Δηλώσεις <FontAwesomeIcon icon={faChevronDown} /></button>
-          <div className="dropdown-content-sidebar">
-            <a href="/history-applications">Ιστορικό Δηλώσεων</a>
-            <a href="/new-application">Νέα Δήλωση</a>
-          </div>
         </div>
-        <button>Πιστοποιητικά</button>
-      </div>
 
-      <div className="rest">
-        <button>Αρχική</button>
-        <button>Συχνές Ερωτήσεις</button>
-        <button>Αποσύνδεση</button>
-      </div>
-    </div>
-  );
-};
-
-export default Sidebar;
+    )
+}

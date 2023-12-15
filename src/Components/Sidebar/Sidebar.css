@@ -1,102 +1,122 @@
-/* Sidebar.css */
-.sidebar {
-    position: fixed;
+.sidebar{
+  position: fixed;
     top: 15%;
-    width: 250px;
+    width: 15%;
     height: calc(100% - 15%);
     background-color: rgba(13, 139, 217, 0.6);
     transition: left 0.3s ease;
     padding-top: 60px;
-  }
-  
-  .sidebar.open {
-    left: 0;
-  }
-  
-  .basics, .dropbtn_profil {
-    margin-bottom: 10px;
-    position: relative;
-    padding: 7px;
-  }
-  
-  .basics button, .dropbtn_profil {
-    display: block;
-    width: 100%;
-    text-align: center;
-    font-size: 100%;
-    margin-bottom: 10px;
-    padding: 7px;
-    border-radius: 5px;
-    background-color: transparent;
-    border: none;
-    height: 40%; 
-  }
-  
-  .basics button:hover, .dropbtn_profil:hover {
-    background-color: #2F80C1;
-    border: 1px solid #2F80C1;
-    color: #FFFFFF;
-  }
-  
-  .rest {
-    padding: 10px;
-    position: absolute;
-    bottom: 8%;
-    width: 90%;
-  }
-  
-  .rest button {
-    display: block;
-    width: 100%;
-    text-align: center;
-    margin-bottom: 10px;
-    border: 1px solid #000000;
-    padding: 4px;
-    border-radius: 5px;
-    background-color: transparent;
-    cursor: pointer;
-    color: #000000;
-  }
-  
-  .rest button:hover {
-    border: 1px solid #FFFFFF;
-    color: white;
-  }
-  
-  /* Dropdowns */
-  .dropdown-sidebar {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-  }
-  
-  .dropdown-content-sidebar {
-    display: none;
-    position: absolute;
-    background-color: #2F80C1;
-    width: 100%; /* Match the width of the parent button */
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    border-radius: 5px;
-  }
-  
-  .dropdown-content-sidebar a {
-    color: black;
-    padding: 12px ;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .dropdown-content-sidebar a:hover {
-    color: white;
-  }
-  
-  .dropdown-sidebar:hover .dropdown-content-sidebar {
-    display: block;
-  }
-  
-  .dropdown-sidebar:hover .dropbtn_profil,
-  .nav-links a:not(.login-btn):hover {
-    background-color: rgba(47, 128, 193, 0.2);
-  }
-  
+    font-size: 90%;    
+}
+
+.sidebar-item{
+  padding: .75em 1em;
+  display: block;
+  transition: background-color .15s;
+  text-align: left;
+}
+.sidebar-item:hover{
+  background-color: #2F80C1;
+  color: #FFFFFF;
+  border-radius: 5px;
+}
+
+.sidebar-title{
+  display: flex;
+  justify-content: space-between;
+}
+.sidebar-title span i{
+  display: inline-block;
+  width: 1.5em;
+}
+.sidebar-title .toggle-btn{
+  cursor: pointer;
+  transition: transform .3s;
+}
+.sidebar-item.open > .sidebar-title .toggle-btn{
+  transform: rotate(180deg);
+
+}
+.sidebar-item.open > .sidebar-title{
+  padding: 6px;
+  border-radius: 5px;
+}
+.sidebar-item.open {
+  background-color: #2F80C1;
+  color: #FFFFFF;
+}
+
+.sidebar-content{
+  padding-top: .25em;
+  height: 0;
+  overflow: hidden;
+}
+
+
+
+.sidebar-item.open > .sidebar-content{
+  height: auto;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  /* border: 2px solid #2F80C1; */
+}
+
+.sidebar-item.plain{
+  color: #000;
+  text-decoration: none;
+}
+.sidebar-item.plain:hover{
+  color: #FFFFFF;
+}
+
+.sidebar-item.plain i{
+  display: inline-block;
+  width: 1.7em;
+}
+
+/* Add buttom options */
+.rest {
+  padding: 10px;
+  position: absolute;
+  bottom: 8%;
+  width: 90%;
+}
+
+.rest button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+  border: 1px solid #000000;
+  padding: 4px;
+  border-radius: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  color: #000000;
+}
+
+.rest button:hover {
+  border: 1px solid #FFFFFF;
+  color: white;
+}
+
+.rest.style button {
+  color: red;
+ 
+}
+.dark {
+  color: lightgreen;
+  background-color: gray;
+}
+
+/* SidebarItem.css */
+
+/* Default styles for the sidebar item */
+.sidebar-item {
+  /* Your default styles here */
+}
+
+/* Styles for the clicked sidebar item */
+.sidebar-item.clicked {
+  background-color: #000;
+}
