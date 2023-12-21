@@ -4,7 +4,24 @@
         "name": "Γραμμική Άλγεβρα",
         "ECTS": "6",
         "category": "Υποχρεωτικό(ΥΜ)",
-        "semester": "1"
+        "semester": "1",
+        "details": [
+            {
+                "semester": "1",
+                "ECTS": "6",
+                "hours": "10",
+                "category": "Υποχρεωτικό(ΥΜ)",
+                "specialty": "-"
+            }
+        ],
+        "professor": [
+            {
+                "name": "Ράπτης",
+                "department": "Πληροφορικής και τηλεπικοινωνιών",
+                "grade":"Eπίκουρος Καθηγητής",
+                "email": "lala"
+            }
+        ]
     },
     {
         "id": "K09",

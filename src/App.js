@@ -1,23 +1,37 @@
-// App.js
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-// import Sidebar from './Components/Sidebar/Sidebar'; 
-import Home from './Components/Home/Home';
-import Login from './Components/Login/Login';
-import './App.css';
+// // App.js
+// import React from 'react';
+// import { BrowserRouter, Route, Routes } from 'react-router-dom';
+// // import Sidebar from './Components/Sidebar/Sidebar'; 
+// import Home from './Components/Home/Home';
+// import Login from './Components/Login/Login';
+// import './App.css';
 
-function App() {
+// function App() {
+//   return (
+//     <div className="App">
+//       {/* <Sidebar /> */}
+//       <BrowserRouter>
+//         <Routes>
+//           <Route path="/" element={<Home />} />
+//           <Route path="/login" element={<Login />} />
+//         </Routes>
+//       </BrowserRouter>
+//     </div>
+//   );
+// }
+
+// // export default App;
+
+import React from 'react';
+import TableComponent from './Components/DataTable/DataTable';
+
+const App = () => {
   return (
-    <div className="App">
-      {/* <Sidebar /> */}
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </BrowserRouter>
+    <div>
+
+      <TableComponent />
     </div>
   );
-}
+};
 
 export default App;

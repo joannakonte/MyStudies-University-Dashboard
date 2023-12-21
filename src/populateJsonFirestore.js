@@ -1,11 +1,11 @@
 const admin = require('firebase-admin');
 const serviceAccount = require('./adminFirebase.json');
 const fs = require('fs');
-const { resolve } = require('path'); // Add this line
+const { resolve } = require('path'); 
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'mystudieseamproject.firebaseapp.com', // replace with your databaseURL
+  databaseURL: 'mystudieseamproject.firebaseapp.com', 
 });
 
 class PopulateJsonFirestore {
