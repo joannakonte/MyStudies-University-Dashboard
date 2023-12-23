@@ -24,12 +24,13 @@
 
 import React from 'react';
 import TableComponent from './Components/DataTable/DataTable';
+import Sidebar from './Components/Sidebar/Sidebar'; 
 
 const App = () => {
   return (
     <div>
-
-      <TableComponent />
+      <Sidebar />
+      <TableComponent showOptionColumn={true} />
     </div>
   );
 };

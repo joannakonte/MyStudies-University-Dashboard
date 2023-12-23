@@ -1,12 +1,11 @@
-
 .table-container {
-    margin: 10% 20%; 
+    margin: 10% 20%;
 }
 
 table {
     border-collapse: collapse;
-    border-radius: 5px; 
-    overflow: hidden; 
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 .table-header {
@@ -27,4 +26,49 @@ table {
     text-align: center;
     padding: 12px;
     border: 1px solid #ddd;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform .3s;
 }
+
+.checkbox {
+    text-align: center;
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+.checkbox input {
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    appearance: none; 
+    border: 1px solid rgba(13, 139, 217, 0.9);
+    border-radius: 4px; 
+    outline: none; 
+    position: relative;
+}
+
+.checkbox input::before {
+    content: '\2713';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff; 
+    opacity: 0; 
+}
+
+.checkbox input:checked::before {
+    opacity: 1; 
+}
+
+.checkbox input:checked {
+    background-color: rgba(13, 139, 217, 0.9); 
+    border-color: rgba(13, 139, 217, 0.9); 
+    color: #fff; 
+}
+
+
+
+
+ 
