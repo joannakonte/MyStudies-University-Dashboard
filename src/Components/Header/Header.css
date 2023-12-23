@@ -1,0 +1,17 @@
+.logo-container {
+    list-style-type: none; /* Removes bullet points from UL */
+    padding: 0; /* Removes default padding */
+    margin: 0; /* Aligns to the left edge */
+    display: block; /* Stacks LI elements vertically */
+}
+
+.logo-container li {
+    display: block; /* Ensures each LI is on a new line */
+    margin-bottom: 10px; /* Optional: Adds space between logos */
+}
+
+.my-studies-logo, .ekpa-logo {
+    width: 15%; /* Example width, adjust as needed */
+    height: auto; /* Maintains aspect ratio */
+}
+

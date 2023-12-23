@@ -1,8 +1,8 @@
 .sidebar{
   position: fixed;
-    top: 15%;
+    top: 18%;
     width: 15%;
-    height: calc(100% - 15%);
+    height: calc(100% - 18%);
     background-color: rgba(13, 139, 217, 0.6);
     transition: left 0.3s ease;
     padding-top: 60px;
