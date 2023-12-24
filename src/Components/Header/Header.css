@@ -1,17 +1,112 @@
 .logo-container {
-    list-style-type: none; /* Removes bullet points from UL */
-    padding: 0; /* Removes default padding */
-    margin: 0; /* Aligns to the left edge */
-    display: block; /* Stacks LI elements vertically */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-right: 2px solid var(--grey); 
+    width: 15%; 
+    height: auto;
 }
 
 .logo-container li {
-    display: block; /* Ensures each LI is on a new line */
-    margin-bottom: 10px; /* Optional: Adds space between logos */
+    display: block;      /* Ensures each LI is on a new line */
 }
 
 .my-studies-logo, .ekpa-logo {
-    width: 15%; /* Example width, adjust as needed */
-    height: auto; /* Maintains aspect ratio */
+    width: 100%; 
 }
 
+/* =========== | Dropdown Button |  =========== */
+.Header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.dropdown {
+    margin-right: 10px;
+    margin-top: 10px;
+    position: relative;
+}
+
+.circle {
+    background-color: white;
+    width: 30px; /* Adjust size as needed */
+    height: 30px; /* Same as width for a perfect circle */
+    border-radius: 50%; /* Make it round */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px; /* Space between the circle and the text */
+    font-size: 16px; /* Adjust text size inside the circle */
+}
+
+
+.button-text {
+    display: flex;
+    flex-direction: column;   /* Stack the text lines vertically */
+    margin-right: 20px;        /* Spacing between icon and text */
+}
+
+.button-text span{
+    font-size: 16px;
+}
+
+.button-text .id{
+    color: rgba(0, 0, 0, 0.50);
+}
+
+.menu-icon {
+    color: #222222;
+    width: 18px;  /* Or any size you prefer */
+    height: auto; /* Maintain the aspect ratio */
+}
+
+.dropdown-toggle {
+    background-color: rgba(110, 185, 232, 0.30);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center; /* Align icon and text container */
+    justify-content: center;
+    padding: 10px;
+    width: 300px;
+}
+
+.dropdown-content {
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--grey);
+    width: 180px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content .profile {
+    border-radius: 5px 5px 0 0;
+}
+
+.dropdown-content .logout {
+    border-radius: 0;
+}
+
+.dropdown-content .home-page {
+    border-radius: 0 0 5px 5px;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
