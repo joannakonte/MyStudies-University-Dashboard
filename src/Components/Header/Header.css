@@ -4,7 +4,7 @@
     padding: 0;
     margin: 0;
     list-style: none;
-    border-right: 2px solid var(--grey); 
+    border-right: 1px solid var(--grey); 
     width: 15%; 
     height: auto;
 }
@@ -22,6 +22,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
 }
 
 .dropdown {
@@ -32,14 +33,15 @@
 
 .circle {
     background-color: white;
-    width: 30px; /* Adjust size as needed */
-    height: 30px; /* Same as width for a perfect circle */
+    width: 30px;        /* Adjust size as needed */
+    height: 30px;       /* Same as width for a perfect circle */
     border-radius: 50%; /* Make it round */
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 10px; /* Space between the circle and the text */
-    font-size: 16px; /* Adjust text size inside the circle */
+    font-size: 16px;    
+    font-weight: 600; 
 }
 
 
@@ -110,3 +112,14 @@
 .dropdown-content a:hover {
     background-color: #f1f1f1;
 }
+
+.horizontal-line {
+    margin-left: 254px;
+    position: absolute;
+    bottom: 80px; /* Increase to move the line up, decrease to move it down */
+    left: 0;
+    width: 1440px;
+    height: 1px;
+    background-color: var(--grey);
+}
+

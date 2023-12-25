@@ -14,6 +14,7 @@ function Header() {
     };
 
     return (
+
         <div className='Header'>
             <ul className="logo-container">
                 <li>
@@ -27,6 +28,7 @@ function Header() {
                     </a>
                 </li>
             </ul>
+            <div className="horizontal-line"></div>
             <div className="dropdown">
                 <button onClick={toggleDropdown} className="dropdown-toggle">
                 <div className="circle">AK</div>
@@ -37,14 +39,15 @@ function Header() {
                     <FontAwesomeIcon icon={faBars} className="menu-icon"/>
                 </button>
                 {dropdownOpen && (
-                  <div className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}>
+                <div className={`dropdown-content ${dropdownOpen ? 'show' : ''}`}>
                     <a className='profile' href="/"><HiUserCircle/> Προφίλ</a>
                     <a className='logout' href="/"><HiArrowRightOnRectangle/>Αποσύνδεση</a>
                     <a className='home-page' href="/"><HiHome/>Αρχική</a>
-                  </div>
+                </div>
                 )}
             </div>
         </div>
+
     );
 }
 
