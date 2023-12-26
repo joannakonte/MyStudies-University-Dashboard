@@ -90,29 +90,29 @@ table {
 .search-bar {
     position: relative;
     margin-bottom: 20px;
-  }
+}
   
-  .search-icon-container {
-    position: absolute;
-    left: 10px; 
-    top: 50%;
-    transform: translateY(-50%);
-  }
+.search-icon-container {
+position: absolute;
+left: 10px; 
+top: 50%;
+transform: translateY(-50%);
+}
   
-  .search-input {
-    padding: 8px 8px 8px 30px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 12px;
-    font-style: italic;
-    width: 300px; 
-  }
+.search-input {
+padding: 8px 8px 8px 30px;
+border: 1px solid #ddd;
+border-radius: 4px;
+font-size: 12px;
+font-style: italic;
+width: 300px; 
+}
   
-  .search-input:focus {
-    border-color: rgba(13, 139, 217, 1);
-    box-shadow: 0 0 5px rgba(13, 139, 217, 0.4); 
-    outline: none;
-  }
+.search-input:focus {
+border-color: rgba(13, 139, 217, 1);
+box-shadow: 0 0 5px rgba(13, 139, 217, 0.4); 
+outline: none;
+}
   
 
 

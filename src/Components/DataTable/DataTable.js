@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
-import './DataTable.css';
+import styles from './DataTable.module.css';
 import { HiOutlineEye, HiArrowsUpDown, HiMagnifyingGlass } from 'react-icons/hi2';
 import PopUp from './PopUp';
 
@@ -79,46 +79,46 @@ const TableComponent = ({ showOptionColumn }) => {
   };
 
   return (
-    <div className="table-container">
-    <div className="search-bar">
-      <div className="search-icon-container">
-        <HiMagnifyingGlass className="search-icon" />
+    <div className={styles['table-container']}>
+    <div className={styles['search-bar']}>
+      <div className={styles['search-icon-container']}>
+        <HiMagnifyingGlass className={styles['search-icon']}/>
       </div>
       <input
         type="text"
-        className="search-input"
+        className={styles['search-input']}
         placeholder="Αναζήτησε Μάθημα, Εξάμηνο, Κατηγορία ή ECTS"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
     </div>
-      <table className="table">
+      <table className={styles.table}>
         <thead>
-          <tr className="table-header">
-            {showOptionColumn && <th className="table-cell">Επιλογή</th>}
-            <th className="table-cell class" onClick={() => toggleSortOrder('name')}>
-              Μαθήμα <HiArrowsUpDown className="icon" />
+          <tr className={styles['table-header']}>
+            {showOptionColumn && <th className={styles['table-cell']}>Επιλογή</th>}
+            <th className={`${styles['table-cell']} ${styles.class}`} onClick={() => toggleSortOrder('name')}>
+              Μαθήμα <HiArrowsUpDown className={styles.icon} />
             </th>
-            <th className="table-cell icon" onClick={() => toggleSortOrder('ECTS')}>
-              ECTS <HiArrowsUpDown className="icon" />
+            <th className={`${styles['table-cell']} ${styles.icon}`} onClick={() => toggleSortOrder('ECTS')}>
+              ECTS <HiArrowsUpDown className={styles.icon} />
             </th>
-            <th className="table-cell icon" onClick={() => toggleSortOrder('category')}>
-              Κατηγορία <HiArrowsUpDown className="icon" />
+            <th className={`${styles['table-cell']} ${styles.icon}`} onClick={() => toggleSortOrder('category')}>
+              Κατηγορία <HiArrowsUpDown className={styles.icon} />
             </th>
-            <th className="table-cell icon" onClick={() => toggleSortOrder('id')}>
-              Κωδικός <HiArrowsUpDown className="icon" />
+            <th className={`${styles['table-cell']} ${styles.icon}`} onClick={() => toggleSortOrder('id')}>
+              Κωδικός <HiArrowsUpDown className={styles.icon} />
             </th>
-            <th className="table-cell icon" onClick={() => toggleSortOrder('semester')}>
-              Εξάμηνο <HiArrowsUpDown className="icon" />
+            <th className={`${styles['table-cell']} ${styles.icon}`} onClick={() => toggleSortOrder('semester')}>
+              Εξάμηνο <HiArrowsUpDown className={styles.icon}/>
             </th>
-            <th className="table-cell">Λεπτομέρειες</th>
+            <th className={styles['table-cell']}>Λεπτομέρειες</th>
           </tr>
         </thead>
         <tbody>
           {filterAndSortData().map((classes, index) => (
-            <tr key={index} className="table-row">
+            <tr key={index} className={styles['table-row']}>
               {showOptionColumn && (
-                <td className="checkbox">
+                <td className={styles.checkbox}>
                   <input
                     type="checkbox"
                     checked={checkboxes[classes.id] || false}
@@ -126,12 +126,12 @@ const TableComponent = ({ showOptionColumn }) => {
                   />
                 </td>
               )}
-              <td className="table-cell class">{classes.name}</td>
-              <td className="table-cell">{classes.ECTS}</td>
-              <td className="table-cell">{classes.category}</td>
-              <td className="table-cell">{classes.id}</td>
-              <td className="table-cell">{classes.semester}</td>
-              <td className="eye" onClick={() => openPopup(classes)}>
+              <td className={`${styles['table-cell']} ${styles.class}`}>{classes.name}</td>
+              <td className={styles['table-cell']}>{classes.ECTS}</td>
+              <td className={styles['table-cell']}>{classes.category}</td>
+              <td className={styles['table-cell']}>{classes.id}</td>
+              <td className={styles['table-cell']}>{classes.semester}</td>
+              <td className={styles.eye} onClick={() => openPopup(classes)}>
                 <HiOutlineEye />
               </td>
             </tr>

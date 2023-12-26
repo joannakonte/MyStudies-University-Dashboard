@@ -10,43 +10,43 @@ import ekpa_logo from "../../images/ekpa_logo.jpg"
 import eclass_logo from "../../images/eclass_logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faPhone, faEnvelope, faClock, faLocationDot, faGlobe } from '@fortawesome/free-solid-svg-icons';
-import './Home.css';
+import styles from './Home.module.css';
 
 function Home() {
   return (
     <div>
       <Navbar />
-      <div className="Header">
-        <div className="text-and-button" >
+      <div className={styles.Header}>
+        <div className={styles['text-and-button']} >
           <p>Επισκέψου τη γραμματεία του τμηματος σου<br />από οπουδήποτε και οποιαδήποτε στιγμή!</p>
-          <a href="/login" className="login-btn">
-            Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className="fa-sign-in-alt"/> 
+          <a href="/login" className={styles['login-btn']}>
+            Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']}/> 
           </a>
         </div>
           <img src={book} alt="books"/>
       </div>
 
       {/* Υπηρεσίες */}
-      <div className="section">
+      <div className={styles.section}>
           <h1>Υπηρεσίες</h1>
 
-          <div className="container">
-            <div className="box">
-              <img src={student_icon} alt="Student" className="box-image" />
+          <div className={styles.container}>
+            <div className={styles.box}>
+              <img src={student_icon} alt="Student" className={styles['box-image']} />
               <h2>Φοιτητές</h2>
-              <p className="box-text">text</p>
+              <p className={styles['box-text']}>text</p>
             </div>
 
-            <div className="box">
-            <img src={professors_icon} alt="Professors" className="box-image" />
+            <div className={styles.box}>
+            <img src={professors_icon} alt="Professors" className={styles['box-image']} />
               <h2>Διδάσκοντες</h2>
-              <p className="box-text">text</p>
+              <p className={styles['box-text']}>text</p>
             </div>
 
-            <div className="box">
-              <img src={secretariat_icon} alt="Secretariat" className="box-image" />
+            <div className={styles.box}>
+              <img src={secretariat_icon} alt="Secretary" className={styles['box-image']} />
               <h2>Γραμματεία</h2>
-              <p className="box-text">text</p>
+              <p className={styles['box-text']}>text</p>
             </div>
           </div>
       </div>
@@ -54,11 +54,11 @@ function Home() {
 
       {/* Επικοινωνία */}
         
-      <div className="section_contact" style={{ backgroundColor: '#yourBackgroundColor' }}>
+      <div className={styles['section_contact']} style={{ backgroundColor: '#yourBackgroundColor' }}>
         <h1>Επικοινωνία</h1>
 
-        <div className="container">
-          <div className="box-contact">
+        <div className={styles.container}>
+          <div className={styles['box-contact']}>
             <h2> Τμήμα Πληροφορικής και Τηλεπικοινωνιών </h2>
             <h3>
               <FontAwesomeIcon icon={faPhone} style={{ marginRight: '10px', fontSize: '24px' }} />
@@ -100,7 +100,7 @@ function Home() {
             </h3>
           </div>
 
-          <div className="map-background">
+          <div className={styles['map-background']}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50339.40851970168!2d23.67287967504338!3d37.94881151792357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a197e10ffd248b%3A0x9e1a1dd511c44165!2zzqTOvM6uzrzOsSDOoM67zrfPgc6_z4bOv8-BzrnOus6uz4IgzrrOsc65IM6kzrfOu861z4DOuc66zr_Ouc69z4nOvc65z47OvQ!5e0!3m2!1sel!2sgr!4v1703430376620!5m2!1sel!2sgr"
               width="476px"
@@ -116,28 +116,28 @@ function Home() {
 
 
       {/* Αλλες υπηρεσίες ΕΚΠΑ */}
-      <div className="section">
+      <div className={styles.section}>
           <h1>Αλλες Υπηρεσίες ΕΚΠΑ</h1>
 
-          <div className="container">
-            <div className="box">
-              <img src={eclass_logo} alt="Eclass" className="eclass-logo" />
-              <p className="box-text">ή-Τάξη</p>
+          <div className={styles.container}>
+            <div className={styles.box}>
+              <img src={eclass_logo} alt="Eclass" className={styles['eclass-logo']} />
+              <p className={styles['box-text']}>ή-Τάξη</p>
             </div>
 
-            <div className="box">
-            <img src={ekpa_logo} alt="EKPA" className="ekpa-logo" />
-              <p className="box-text">ΕΚΠΑ</p>
+            <div className={styles.box}>
+            <img src={ekpa_logo} alt="EKPA" className={styles['ekpa-logo']} />
+              <p className={styles['box-text']}>ΕΚΠΑ</p>
             </div>
 
-            <div className="box">
-              <img src={OpenDelos_logo} alt="OpenDelos" className="OpenDelos-logo" />
-              <p className="box-text">Δήλος</p>
+            <div className={styles.box}>
+              <img src={OpenDelos_logo} alt="OpenDelos" className={styles['OpenDelos-logo']} />
+              <p className={styles['box-text']}>Δήλος</p>
             </div>
 
-            <div className="box">
-              <img src={eudoxus_logo} alt="Eudoxus" className="eudoxus-logo" />
-              <p className="box-text">Εύδοξος</p>
+            <div className={styles.box}>
+              <img src={eudoxus_logo} alt="Eudoxus" className={styles['eudoxus-logo']} />
+              <p className={styles['box-text']}>Εύδοξος</p>
             </div>
           </div>
       </div>
