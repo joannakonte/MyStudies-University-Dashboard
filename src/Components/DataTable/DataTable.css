@@ -1,5 +1,6 @@
 .table-container {
-    margin: 10% 20%;
+    /* gia na allaksei i thesi tou pinaka allakse auto */
+    margin: 15% 10% 15% 20%;
 }
 
 table {
@@ -10,6 +11,7 @@ table {
 
 .table-header {
     background-color: rgb(13, 139, 217, 0.1);
+    
 }
 
 .table-row {
@@ -21,7 +23,18 @@ table {
     border: 1px solid #ddd;
     text-align: left;
 }
+.table-cell.icon
+{
+    padding: 12px;
+    border: 1px solid #ddd;
+    color: black;
+    margin-left: 1px;
+}
 
+.table-cell.class
+{
+    width: 300px; 
+}
 .eye {
     text-align: center;
     padding: 12px;
@@ -68,7 +81,39 @@ table {
     color: #fff; 
 }
 
+.icon {
+    color: grey; 
+    margin-left: 3px; 
+    cursor: pointer;
+}
 
+.search-bar {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  
+  .search-icon-container {
+    position: absolute;
+    left: 10px; 
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .search-input {
+    padding: 8px 8px 8px 30px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 12px;
+    font-style: italic;
+    width: 300px; 
+  }
+  
+  .search-input:focus {
+    border-color: rgba(13, 139, 217, 1);
+    box-shadow: 0 0 5px rgba(13, 139, 217, 0.4); 
+    outline: none;
+  }
+  
 
 
  
