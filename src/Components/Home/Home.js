@@ -8,7 +8,6 @@ import eudoxus_logo from "../../images/eudoxus_logo.png"
 import OpenDelos_logo from "../../images/OpenDelos_logo.jpg"
 import ekpa_logo from "../../images/ekpa_logo.jpg"
 import eclass_logo from "../../images/eclass_logo.png"
-import map from "../../images/map.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faPhone, faEnvelope, faClock, faLocationDot, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
@@ -19,7 +18,7 @@ function Home() {
       <Navbar />
       <div className="Header">
         <div className="text-and-button" >
-          <p>Επισκέψου τη γραμματεία του τμηματος σου από οπουδήποτε και οποιαδήποτε στιγμή!</p>
+          <p>Επισκέψου τη γραμματεία του τμηματος σου<br />από οπουδήποτε και οποιαδήποτε στιγμή!</p>
           <a href="/login" className="login-btn">
             Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className="fa-sign-in-alt"/> 
           </a>
@@ -55,19 +54,63 @@ function Home() {
 
       {/* Επικοινωνία */}
         
-      <div className="section">
+      <div className="section_contact" style={{ backgroundColor: '#yourBackgroundColor' }}>
         <h1>Επικοινωνία</h1>
-        <div className="left-items">
-          <h2> Τμήμα Πληροφορικής και Τηλεπικοινωνιών </h2>
-          <h2> <FontAwesomeIcon icon={faPhone} /> +30 210 727 5173</h2>
-          <h2> <FontAwesomeIcon icon={faPhone} /> +30 210 727 5192</h2>
-          <h2> <FontAwesomeIcon icon={faEnvelope} /> secret@di.uoa.gr</h2>
-          <h2> <FontAwesomeIcon icon={faClock} /> Καθημερινά 11:00-13:00 & Δευτέρα – Τρίτη - Τετάρτη 16:00-18:00</h2>
-          <h2> <FontAwesomeIcon icon={faLocationDot} /> Ζωγράφου 161 22</h2>
-          <h2> <FontAwesomeIcon icon={faGlobe} /> www.di.uoa.gr</h2>
-        </div>
-        <div className="map-background">
-          <img src={map} alt="map" className="map" />
+
+        <div className="container">
+          <div className="box-contact">
+            <h2> Τμήμα Πληροφορικής και Τηλεπικοινωνιών </h2>
+            <h3>
+              <FontAwesomeIcon icon={faPhone} style={{ marginRight: '10px', fontSize: '24px' }} />
+              <a href="tel:+302107275173" style={{ textDecoration: 'none', color: 'inherit' }}>+30 210 727 5173</a>
+            </h3>
+            <h3>
+              <FontAwesomeIcon icon={faPhone} style={{ marginRight: '10px', fontSize: '24px' }} />
+              <a href="tel:+302107275192" style={{ textDecoration: 'none', color: 'inherit' }}>+30 210 727 5192</a>
+            </h3>
+            <h3>
+              <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '10px', fontSize: '24px' }} />
+              <a href="mailto:secret@di.uoa.gr" style={{ textDecoration: 'none', color: 'inherit' }}>secret@di.uoa.gr</a>
+            </h3>
+            <h3>
+              <FontAwesomeIcon icon={faClock} style={{ marginRight: '10px', fontSize: '24px' }}/>
+              Καθημερινά 11:00-13:00 <br/> Δευτέρα – Τρίτη - Τετάρτη 16:00-18:00
+            </h3>
+            <h3>
+              <FontAwesomeIcon icon={faLocationDot} style={{ marginRight: '15px', fontSize: '24px' }} />
+              <a
+                href="https://www.google.com/maps/place/%CE%A4%CE%BC%CE%AE%CE%BC%CE%B1+%CE%A0%CE%BB%CE%B7%CF%81%CE%BF%CF%86%CE%BF%CF%81%CE%B9%CE%BA%CE%AE%CF%82+%CE%BA%CE%B1%CE%B9+%CE%A4%CE%B7%CE%BB%CE%B5%CF%80%CE%B9%CE%BA%CE%BF%CE%B9%CE%BD%CF%89%CE%BD%CE%B9%CF%8E%CE%BD/@37.9690297,23.7615575,15.75z/data=!4m6!3m5!1s0x14a197e10ffd248b:0x9e1a1dd511c44165!8m2!3d37.9681368!4d23.7665108!16s%2Fg%2F1262c8hsn?entry=ttu"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ζωγράφου 161 22
+              </a>
+            </h3>
+            <h3>
+              <FontAwesomeIcon icon={faGlobe} style={{ marginRight: '10px', fontSize: '24px' }} />
+              <a
+                href="www.di.uoa.gr"
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+              www.di.uoa.gr
+              </a>
+            </h3>
+          </div>
+
+          <div className="map-background">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50339.40851970168!2d23.67287967504338!3d37.94881151792357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a197e10ffd248b%3A0x9e1a1dd511c44165!2zzqTOvM6uzrzOsSDOoM67zrfPgc6_z4bOv8-BzrnOus6uz4IgzrrOsc65IM6kzrfOu861z4DOuc66zr_Ouc69z4nOvc65z47OvQ!5e0!3m2!1sel!2sgr!4v1703430376620!5m2!1sel!2sgr"
+              width="476px"
+              height="605px"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </div>
 
