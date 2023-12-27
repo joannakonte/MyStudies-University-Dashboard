@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { HiUserCircle, HiHome, HiArrowRightOnRectangle } from "react-icons/hi2";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import styles from './Header.module.css'; // Updated import statement
+import styles from './Header.module.css'; 
 
 function Header() {
     const ekpaLogo = '/ekpa-logo.png';

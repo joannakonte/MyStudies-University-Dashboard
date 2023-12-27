@@ -120,24 +120,32 @@ function Home() {
           <h1>Αλλες Υπηρεσίες ΕΚΠΑ</h1>
 
           <div className={styles.container}>
-            <div className={styles.box}>
-              <img src={eclass_logo} alt="Eclass" className={styles['eclass-logo']} />
-              <p className={styles['box-text']}>ή-Τάξη</p>
+            <div className={styles['box-2']}>
+              <a href="https://www.uoa.gr/" target="_blank" rel="noopener noreferrer">
+                <img src={ekpa_logo} alt="EKPA" className={styles['ekpa-logo']} />
+                <p className={styles['box-text']}>ΕΚΠΑ</p>
+              </a>
             </div>
 
-            <div className={styles.box}>
-            <img src={ekpa_logo} alt="EKPA" className={styles['ekpa-logo']} />
-              <p className={styles['box-text']}>ΕΚΠΑ</p>
+            <div className={styles['box-2']}>
+              <a href="https://eclass.uoa.gr/" target="_blank" rel="noopener noreferrer">
+                <img src={eclass_logo} alt="Eclass" className={styles['eclass-logo']} />
+                <p className={styles['box-text']}>ή-Τάξη</p>
+              </a>
             </div>
 
-            <div className={styles.box}>
-              <img src={OpenDelos_logo} alt="OpenDelos" className={styles['OpenDelos-logo']} />
-              <p className={styles['box-text']}>Δήλος</p>
+            <div className={styles['box-2']}>
+              <a href="https://delos.uoa.gr/opendelos/" target="_blank" rel="noopener noreferrer">
+                <img src={OpenDelos_logo} alt="OpenDelos" className={styles['OpenDelos-logo']} />
+                <p className={styles['box-text']}>Δήλος</p>
+              </a>
             </div>
 
-            <div className={styles.box}>
-              <img src={eudoxus_logo} alt="Eudoxus" className={styles['eudoxus-logo']} />
-              <p className={styles['box-text']}>Εύδοξος</p>
+            <div className={styles['box-2']}>
+              <a href="https://eudoxus.gr/" target="_blank" rel="noopener noreferrer">
+                <img src={eudoxus_logo} alt="Eudoxus" className={styles['eudoxus-logo']} />
+                <p className={styles['box-text']}>Εύδοξος</p>
+              </a>
             </div>
           </div>
       </div>
