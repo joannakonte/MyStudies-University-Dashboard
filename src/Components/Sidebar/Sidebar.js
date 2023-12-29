@@ -1,27 +1,34 @@
-import { useState } from "react";
+// import { useState } from "react";
 import SidebarItem from "./SidebarItem"
 import items from "../../data/sidebarStudents.json"
 import {  HiHome, HiQuestionMarkCircle, HiArrowRightOnRectangle    } from "react-icons/hi2";
+export default function Sidebar() {
 
+  // const getPath = (item) => {
+  //   if (item.childrens) {
+  //     // Return the path of the first child (assuming children share the same path)
+  //     return getPath(item.childrens[0]);
+  //   } else {
+  //     return item.path || "#";
+  //   }
+  // };
 
-export default function Sidebar(){
-  const [style, setStyle] = useState("light");
- 
-  const changeStyle = () => {
-      console.log("you just clicked");
-      if (style !== "light") setStyle("light");
-      else setStyle("dark");
-  };
-    return (
-        <div className="sidebar">
-          { items.map((item, index) => <SidebarItem key={index} item={item} />) }
-        
-        <div className="rest">
-          <button><HiHome/> Αρχική</button>
-          <button><HiQuestionMarkCircle />Συχνές Ερωτήσεις</button>
-          <button><HiArrowRightOnRectangle />Αποσύνδεση</button>
-        </div>
-        </div>
+  return (
+    <div className="sidebar">
+      {items.map((item, index) => (
+        <SidebarItem
+          key={index}
+          item={item}
+          isActive={item.path === window.location.pathname}
+          isChildActive={item.childrens ? item.childrens.some(child => child.path === window.location.pathname) : false}
+        />
+      ))}
 
-    )
+      <div className="rest">
+        <button><HiHome/> Αρχική</button>
+        <button><HiQuestionMarkCircle />Συχνές Ερωτήσεις</button>
+        <button><HiArrowRightOnRectangle />Αποσύνδεση</button>
+      </div>
+    </div>
+  );
 }

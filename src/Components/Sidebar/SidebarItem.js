@@ -7,42 +7,56 @@ const iconMap = {
     HiDocumentText: <HiDocumentText  />,
     HiMiniDocumentChartBar: <HiMiniDocumentChartBar  />,
     HiClipboardDocumentList: <HiClipboardDocumentList  />,
-    // Add more icons as needed
   };
-  
-export default function SidebarItem({ item }) {
-    const [open, setOpen] = useState(false);
-    // const [pressed, setOpen] = useState(false);
-  
-    if (item.childrens) {
-      return (
-        <div className={open ? "sidebar-item open" : "sidebar-item"}>
-          <div className="sidebar-title">
-            <span>
-              {iconMap[item.icon]} {/* Use the icon directly */}
-              {item.title}
-            </span>
-            <i
-            className="toggle-btn"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <HiChevronUp /> : <HiChevronDown />} {/* Adjusted this line */}
+
+
+export default function SidebarItem({ item, onClick, isActive, isChildActive }) {
+  const [open, setOpen] = useState(false);
+
+  const handleItemClick = () => {
+    setOpen(!open);
+    onClick && onClick();
+  };
+
+  const itemClass = open
+    ? "sidebar-item open" + ((isActive || isChildActive) ? " clicked" : "")
+    : "sidebar-item" + ((isActive || isChildActive) ? " clicked" : "");
+
+  if (item.childrens) {
+    return (
+      <div className={itemClass}>
+        <div className="sidebar-title">
+          <span>
+            {iconMap[item.icon]}
+            {item.title}
+          </span>
+          <i className="toggle-btn" onClick={handleItemClick}>
+            {open ? <HiChevronUp /> : <HiChevronDown />}
           </i>
-          </div>
-          <div className="sidebar-content">
-            {item.childrens.map((child, index) => (
-              <SidebarItem key={index} item={child} />
-            ))}
-          </div>
         </div>
-      );
-    } else {
-      return (
-        <a href={item.path || "#"} className="sidebar-item plain">
-          {iconMap[item.icon]} {/* Use the icon directly */}
-          {item.title}
-        </a>
-      );
-    }
+        <div className="sidebar-content">
+          {item.childrens.map((child, index) => (
+            <SidebarItem
+              key={index}
+              item={child}
+              onClick={onClick}
+              isActive={isActive}
+              isChildActive={isChildActive}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <a
+        href={item.path || "#"}
+        className={`sidebar-item plain${(isActive || isChildActive) ? " clicked" : ""}`}
+        onClick={handleItemClick}
+      >
+        {iconMap[item.icon]}
+        {item.title}
+      </a>
+    );
   }
-  
+}

@@ -1,0 +1,33 @@
+.semestertable {  
+    margin: 5% 10% 15% 16%;
+    padding: 2%;
+    background-color: rgba(13, 139, 217, 0.15);
+    width: 8%; 
+    border-collapse: collapse;
+}
+  
+.semestertable tr {
+    height: 60%; 
+}
+  
+.semestertable td {
+    font-size: 90%;
+    padding: 10%;
+    text-align: center; 
+}
+
+.semestertable td:hover {
+    background-color: rgba(13, 139, 217, 0.6);
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+  
+.semestertable .clickedSemester {
+    background-color: rgba(13, 139, 217, 0.6);
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+}
+  

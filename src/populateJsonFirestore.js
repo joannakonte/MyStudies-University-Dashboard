@@ -91,3 +91,7 @@ class PopulateJsonFirestore {
 
 const populateFirestore = new PopulateJsonFirestore();
 populateFirestore.populate();
+
+//add sets new custom keys (better to use this one)
+// how to run  node src/populateJsonFirestore.js src/data/{name from json} add {collection name}  
+// how to run  node src/populateJsonFirestore.js src/data/{name from json} set {collection name}  

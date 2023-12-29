@@ -1,3 +1,5 @@
+// TableComponent.js
+
 import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
@@ -5,7 +7,7 @@ import styles from './DataTable.module.css';
 import { HiOutlineEye, HiArrowsUpDown, HiMagnifyingGlass } from 'react-icons/hi2';
 import PopUp from './PopUp';
 
-const TableComponent = ({ showOptionColumn }) => {
+const TableComponent = ({ showOptionColumn, selectedSemester}) => {
   const [info, setInfo] = useState([]);
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedClass, setSelectedClass] = useState(null);
@@ -69,29 +71,33 @@ const TableComponent = ({ showOptionColumn }) => {
     return getSortedData().filter((classes) => {
       const { name, ECTS, semester, category } = classes;
       const normalizedQuery = searchQuery.toLowerCase();
+
+      const semesterMatch = selectedSemester.toString() === null || semester.toString() === selectedSemester.toString();
+
       return (
-        name.toLowerCase().includes(normalizedQuery) ||
-        ECTS.toString().includes(normalizedQuery) ||
-        semester.toString().includes(normalizedQuery) ||
-        category.toLowerCase().includes(normalizedQuery)
+        semesterMatch &&
+        (name.toLowerCase().includes(normalizedQuery) ||
+          ECTS.toString().includes(normalizedQuery) ||
+          semester.toString().includes(normalizedQuery) ||
+          category.toLowerCase().includes(normalizedQuery))
       );
     });
   };
 
   return (
     <div className={styles['table-container']}>
-    <div className={styles['search-bar']}>
-      <div className={styles['search-icon-container']}>
-        <HiMagnifyingGlass className={styles['search-icon']}/>
+      <div className={styles['search-bar']}>
+        <div className={styles['search-icon-container']}>
+          <HiMagnifyingGlass className={styles['search-icon']} />
+        </div>
+        <input
+          type="text"
+          className={styles['search-input']}
+          placeholder="Αναζήτησε Μάθημα, Εξάμηνο, Κατηγορία ή ECTS"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
       </div>
-      <input
-        type="text"
-        className={styles['search-input']}
-        placeholder="Αναζήτησε Μάθημα, Εξάμηνο, Κατηγορία ή ECTS"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-      />
-    </div>
       <table className={styles.table}>
         <thead>
           <tr className={styles['table-header']}>
@@ -109,14 +115,18 @@ const TableComponent = ({ showOptionColumn }) => {
               Κωδικός <HiArrowsUpDown className={styles.icon} />
             </th>
             <th className={`${styles['table-cell']} ${styles.icon}`} onClick={() => toggleSortOrder('semester')}>
-              Εξάμηνο <HiArrowsUpDown className={styles.icon}/>
+              Εξάμηνο <HiArrowsUpDown className={styles.icon} />
             </th>
             <th className={styles['table-cell']}>Λεπτομέρειες</th>
           </tr>
         </thead>
         <tbody>
           {filterAndSortData().map((classes, index) => (
-            <tr key={index} className={styles['table-row']}>
+            <tr
+              key={index}
+              className={`${styles['table-row']} ${selectedClass === classes ? 'clicked' : ''}`}
+              onClick={() => openPopup(classes)}
+            >
               {showOptionColumn && (
                 <td className={styles.checkbox}>
                   <input
@@ -131,7 +141,7 @@ const TableComponent = ({ showOptionColumn }) => {
               <td className={styles['table-cell']}>{classes.category}</td>
               <td className={styles['table-cell']}>{classes.id}</td>
               <td className={styles['table-cell']}>{classes.semester}</td>
-              <td className={styles.eye} onClick={() => openPopup(classes)}>
+              <td className={styles.eye}>
                 <HiOutlineEye />
               </td>
             </tr>

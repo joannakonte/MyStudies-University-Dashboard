@@ -74,6 +74,11 @@
   width: 1.7em;
 }
 
+.sidebar-item.clicked {
+  background-color: #2F80C1;
+  color: white;
+  border-radius: 5px; 
+}
 /* Add buttom options */
 .rest {
   padding: 10px;
@@ -100,23 +105,7 @@
   color: white;
 }
 
-.rest.style button {
-  color: red;
- 
-}
-.dark {
-  color: lightgreen;
-  background-color: gray;
-}
 
-/* SidebarItem.css */
 
-/* Default styles for the sidebar item */
-.sidebar-item {
-  /* Your default styles here */
-}
 
-/* Styles for the clicked sidebar item */
-.sidebar-item.clicked {
-  background-color: #000;
-}
+
