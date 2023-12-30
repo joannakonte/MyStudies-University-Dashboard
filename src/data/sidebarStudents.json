@@ -2,50 +2,50 @@
     {
         "title": "Προφίλ",
         "icon": "HiOutlineUserCircle",
-        "path": "/profile",
+        "path": "/home/profile",
         "childrens": [
             {
                 "title": "Στοιχεία Φοιτητή",
-                "path": "/general-student"
+                "path": "/home/profile/general-student"
             },
             {
                 "title": "Προσωπικά Στοιχεια",
-                "path": "/personal-student"
+                "path": "/home/profile/personal-student"
             },
             {
                 "title": "Ιστορικό Επισκέψεων",
-                "path": "/history-visits"
+                "path": "/home/profile/history-visits"
             }
         ]
     },
     {
         "title": "Μαθήματα",
         "icon": "HiBookOpen",
-        "path": "/classes"
+        "path": "/home/classes"
     },
     {
         "title": "Δηλώσεις",
         "icon": "HiDocumentText",
-        "path": "/history-applications",
+        "path": "/home/history-applications",
         "childrens": [
             {
                 "title": "Ιστορικό Δηλώσεων",
-                "path": "/history-applications"
+                "path": "/home/history-applications"
             },
             {
                 "title": "Νέα Δήλωση",
-                "path": "/new-application"
+                "path": "/home/new-application"
             }
         ]
     },
     {
     "title": "Βαθμολογίες",
     "icon": "HiMiniDocumentChartBar",
-    "path": "/grades"
+    "path": "/home/grades"
     },
     {
         "title": "Πιστοποιητικά",
         "icon": "HiClipboardDocumentList",
-        "path": "/certificates"
+        "path": "/home/certificates"
     }
 ]

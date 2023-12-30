@@ -1,0 +1,47 @@
+[
+    {
+        "title": "Προφίλ",
+        "path": "/home/profile"
+    },
+    {
+        "title": "Στοιχεία Φοιτητή",
+        "path": "/home/profile/general-student"
+    },
+    {
+        "title": "Προσωπικά Στοιχεια",
+        "path": "/home/profile/personal-student"
+    },
+    {
+        "title": "Ιστορικό Επισκέψεων",
+        "path": "/home/profile/history-visits"
+    },
+    {
+        "title": "Μαθήματα",
+        "path": "/home/classes"
+    },
+    {
+        "title": "Δηλώσεις",
+        "path": "/home/history-applications"
+    },
+    {
+        "title": "Ιστορικό Δηλώσεων",
+        "path": "/home/history-applications"
+    },
+    {
+        "title": "Νέα Δήλωση",
+        "path": "/home/new-application"
+    },
+    {
+        "title": "Βαθμολογίες",
+        "icon": "HiMiniDocumentChartBar",
+        "path": "/home/grades"
+    },
+    {
+        "title": "Πιστοποιητικά",
+        "path": "/home/certificates"
+    },
+    {
+        "title": "Αρχική",
+        "path": "/home"
+    }
+]
