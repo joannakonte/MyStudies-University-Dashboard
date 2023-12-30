@@ -1,0 +1,27 @@
+[
+    {
+        "type": "student",
+        "firstname": "Άννα",
+        "lastname": "Κοσμίδη",
+        "email": "anna@mail.com",
+        "department": "Πληροφορικής και Τηλεπικοινωνιών",
+        "AM": "1115232321",
+        "sdi": "sdi2000093",
+        "fathername": "Δημήτρης",
+        "mothername": "Ελένη",
+        "birthday": "30-12-2002",
+        "maritalstatus": "Άγαμη",
+        "gender": "Θήλυ",
+        "birthplace": "Βόλος",
+        "AT": "ΑΜ2222222",
+        "AMKA": "11111111",
+        "address": "Αθήνας 12",
+        "phone": "6912121212",
+        "registrationsemester": "1ο",
+        "registrationdate": "30-09-2020",
+        "currentsemester": "7ο",
+        "ects": 180,
+        "classes":[]
+        
+    }
+]
