@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import TableComponent from '../../DataTable/DataTable';
-import Sidebar from '../../Sidebar/Sidebar';
 import Header from '../../Header/Header';
+import Sidebar from '../../Sidebar/Sidebar';
 import SemesterTable from './SemesterTable';
+import TableComponent from '../../DataTable/DataTable';
 
 function Classes() {
   const [selectedSemester, setSelectedSemester] = useState(1); 

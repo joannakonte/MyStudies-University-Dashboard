@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
+import Login from '../Login/Login';
+import SemesterTable from '../Students/Classes/SemesterTable';
+import TableComponent from '../DataTable/DataTable';
 import book from "../../images/books.png"
 import professors_icon from "../../images/professors_icon.png"
 import secretariat_icon from "../../images/secretariat_icon.png"
@@ -13,49 +17,100 @@ import { faSignInAlt, faPhone, faEnvelope, faClock, faLocationDot, faGlobe } fro
 import styles from './Home.module.css';
 
 function Home() {
+  const [selectedSemester, setSelectedSemester] = useState(1); 
+
+  // For Login Pop Up 
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+
+  const openLogin = () => {
+    setIsLoginOpen(true);
+  };
+
+  const closeLogin = () => {
+    setIsLoginOpen(false);
+  };
+
   return (
     <div>
+      {/* Header  */}
       <Navbar />
-      <div className={styles.Header}>
+
+      {/* Slider */}
+      <div className={styles.Header} id="home">
         <div className={styles['text-and-button']} >
           <p>Επισκέψου τη γραμματεία του τμηματος σου<br />από οπουδήποτε και οποιαδήποτε στιγμή!</p>
-          <a href="/login" className={styles['login-btn']}>
+          {/* <a href="/login" className={styles['login-btn']}>
+            Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']}/> 
+          </a> */}
+
+          
+          <a href="#" className={styles['login-btn']} onClick={openLogin}>
             Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']}/> 
           </a>
+          {isLoginOpen && <Login onClose={closeLogin} />}
+          
+
+          {/* <div>
+            <button onClick={openLogin}>Open Login</button>
+
+            {isLoginOpen && <Login onClose={closeLogin} />}
+          </div> */}
+
         </div>
           <img src={book} alt="books"/>
       </div>
 
       {/* Υπηρεσίες */}
-      <div className={styles.section}>
-          <h1>Υπηρεσίες</h1>
+      <div className={styles.section}  id="services">
+        <h1>Υπηρεσίες</h1>
 
-          <div className={styles.container}>
-            <div className={styles.box}>
-              <img src={student_icon} alt="Student" className={styles['box-image']} />
-              <h2>Φοιτητές</h2>
-              <p className={styles['box-text']}>text</p>
-            </div>
-
-            <div className={styles.box}>
-            <img src={professors_icon} alt="Professors" className={styles['box-image']} />
-              <h2>Διδάσκοντες</h2>
-              <p className={styles['box-text']}>text</p>
-            </div>
-
-            <div className={styles.box}>
-              <img src={secretariat_icon} alt="Secretary" className={styles['box-image']} />
-              <h2>Γραμματεία</h2>
-              <p className={styles['box-text']}>text</p>
-            </div>
+        <div className={styles.container}>
+          <div className={styles.box} id="students">
+            <img src={student_icon} alt="Student" className={styles['box-image']} />
+            <h2>Φοιτητές</h2>
+            <p className={styles['box-text']}>text</p>
           </div>
+
+          <div className={styles.box} id="instructors">
+          <img src={professors_icon} alt="Professors" className={styles['box-image']} />
+            <h2>Διδάσκοντες</h2>
+            <p className={styles['box-text']}>text</p>
+          </div>
+
+          <div className={styles.box} id="secretary">
+            <img src={secretariat_icon} alt="Secretary" className={styles['box-image']} />
+            <h2>Γραμματεία</h2>
+            <p className={styles['box-text']}>text</p>
+          </div>
+        </div>
       </div>
 
 
-      {/* Επικοινωνία */}
-        
-      <div className={styles['section_contact']} style={{ backgroundColor: '#yourBackgroundColor' }}>
-        <h1>Επικοινωνία</h1>
+      {/* Τμήμα */}
+      <div className={styles['section-department']} id="department">
+        <h1>Τμήμα</h1>
+
+        {/* Πρόγραμμα Σπούδων */}
+        <div>
+          <h2 id="studyProgram">Πρόγραμμα Σπούδων</h2>
+          {/* <SemesterTable onSelectSemester={setSelectedSemester} className={styles.table1} />
+          <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} className={styles.table2}/> */}
+        </div>
+
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+
+        {/* Επικοινωνία */}
+        <h2 id="contact">Επικοινωνία</h2>
 
         <div className={styles.container}>
           <div className={styles['box-contact']}>
@@ -116,7 +171,7 @@ function Home() {
 
 
       {/* Αλλες υπηρεσίες ΕΚΠΑ */}
-      <div className={styles.section}>
+      <div className={styles.section} id="otherServices">
           <h1>Αλλες Υπηρεσίες ΕΚΠΑ</h1>
 
           <div className={styles.container}>
@@ -150,6 +205,8 @@ function Home() {
           </div>
       </div>
 
+      {/* Footer  */}
+      <Footer />
 
     </div>
   );

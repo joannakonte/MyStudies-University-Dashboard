@@ -1,0 +1,92 @@
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    width: 100%;
+}
+  
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+  
+.my-studies-logo{
+    max-width: 200px; 
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+  
+.closeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+  
+.formGroup {
+    margin-bottom: 15px;
+}
+  
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+  
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 3px;
+    box-sizing: border-box;
+}
+  
+/* Login button */
+.loginButton {
+    font-size: 18px;
+    background-color: var(--home-color); 
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0 4px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    display: flex;
+    align-items: left;
+    justify-content: flex-start;
+    margin-left: 275px;
+    margin-top: 50px;
+}
+
+.loginButton:visited {
+    text-decoration: none;
+    color: white; 
+    transition: color 0.3s ease; 
+}
+
+.loginButton:hover {
+    color: var(--grey); 
+}
+
+.fa-sign-in-alt {
+    margin-left: 8px;
+}
+
+  
+
+  

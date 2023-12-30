@@ -17,7 +17,7 @@ function Navbar() {
             </a>
           </li>
           <li>
-            <a href="https://www.uoa.gr">
+            <a href="https://www.uoa.gr" target="_blank" rel="noopener noreferrer">
               <img src={ekpaLogo} alt="EKPA Logo" className={styles['ekpa-logo']} />
             </a>
           </li>
@@ -39,7 +39,7 @@ function Navbar() {
           {/* Second Dropdown */}
           <div className={styles.dropdown}>
             <button className={styles.dropbtn}>
-              Τμήματα <FontAwesomeIcon icon={faChevronDown} />
+              Τμήμα <FontAwesomeIcon icon={faChevronDown} />
             </button>
             <div className={styles['dropdown-content']}>
               <a href="#studyProgram">Πρόγραμμα Σπούδων</a>

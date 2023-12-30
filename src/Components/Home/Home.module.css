@@ -64,10 +64,21 @@ h1, h2 {
     justify-content: center;
     
 }
+
+/* ================ | Πρόγραμμα Σπούδων |================ */
+/* .table1 {  
+    padding-top: -500px;
+}
+
+.table2 {  
+    padding-top: -500px;
+    padding-bottom: 500px;
+} */
+
 /* ================ | Επικοινωνία |================ */
 
-.section_contact {
-    background-color: var(--grey-home); 
+.section-department {
+    background-color: var(--grey); 
     padding-top: 50px;
     padding-bottom: 50px;
 }
