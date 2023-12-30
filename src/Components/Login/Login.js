@@ -19,6 +19,12 @@ const Login = ({ onClose }) => {
     onClose();
   };
 
+  const placeholderStyle = {
+    fontStyle: 'italic',
+    color: '#888',
+    fontFamily: 'Manrope', 
+  };
+
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
@@ -35,24 +41,41 @@ const Login = ({ onClose }) => {
 
         {/* Form */}
         <form>
+          {/* Username */}
           <div className={styles.formGroup}>
             <label>
-              Όνομα Χρήστη:
-              <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+              Όνομα Χρήστη
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Εισάγετε το Όνομα Χρήστη σας"
+                style={placeholderStyle}
+              />
             </label>
           </div>
+          {/* Password */}
           <div className={styles.formGroup}>
             <label>
-              Κώδικός:
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+              Κώδικός
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Εισάγετε τον Κώδικό σας"
+                style={placeholderStyle}
+              />
             </label>
           </div>
+          {/* Login button */}
           <div className={styles.formGroup}>
             <button type="button" onClick={handleLogin} className={styles.loginButton}>
               Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']}/> 
             </button>
           </div>
         </form>
+
+
       </div>
     </div>
   );

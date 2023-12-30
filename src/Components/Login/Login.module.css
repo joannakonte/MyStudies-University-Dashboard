@@ -44,7 +44,8 @@
   
 label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    text-align: left;
 }
   
 input {
@@ -52,6 +53,7 @@ input {
     padding: 8px;
     margin-top: 3px;
     box-sizing: border-box;
+    border-radius: 40px;
 }
   
 /* Login button */
