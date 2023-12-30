@@ -20,6 +20,10 @@
         "path": "/home/classes"
     },
     {
+        "title": "Συχνές Ερωτήσεις",
+        "path": "/home/faq"
+    },
+    {
         "title": "Δηλώσεις",
         "path": "/home/history-applications"
     },

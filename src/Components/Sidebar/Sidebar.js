@@ -1,8 +1,9 @@
-// import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import SidebarItem from "./SidebarItem"
 import items from "../../data/sidebarStudents.json"
 import {  HiHome, HiQuestionMarkCircle, HiArrowRightOnRectangle    } from "react-icons/hi2";
 export default function Sidebar() {
+  const navigate = useNavigate();
 
   // const getPath = (item) => {
   //   if (item.childrens) {
@@ -26,7 +27,7 @@ export default function Sidebar() {
 
       <div className="rest">
         <button><HiHome/> Αρχική</button>
-        <button><HiQuestionMarkCircle />Συχνές Ερωτήσεις</button>
+        <button onClick={() => navigate('/home/faq')}><HiQuestionMarkCircle />Συχνές Ερωτήσεις</button>
         <button><HiArrowRightOnRectangle />Αποσύνδεση</button>
       </div>
     </div>
