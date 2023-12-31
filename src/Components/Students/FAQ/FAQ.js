@@ -3,27 +3,35 @@ import Sidebar from '../../Sidebar/Sidebar';
 import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import styles from './FAQ.module.css'; 
 
 function FAQ() {
-    const [setSelectedSemester] = useState(1); 
-    const [activeIndex, setActiveIndex] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+      setDropdownOpen(!dropdownOpen);
+  };
+  const [setSelectedSemester] = useState(1); 
+  const [activeIndex, setActiveIndex] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState('Όλες');
+  const categories = ['Όλες', 'Δηλώσεις', 'Πιστοποιητικά'];
 
-    const faqData = [
-      {
-        question: 'Πώς μπορώ να αλλάξω το e-mail μου;',
-        answer: 'Κάντε κλικ στη λέξη ρυθμίσεις.'
-      },
-      {
-        question: 'Question 2',
-        answer: 'Κάντε κλικ στη λέξη ρυθμίσεις.'
-      },
-    ];
+  const faqData = [
+    {
+      question: 'Πώς μπορώ να δηλώσω μάθημα;',
+      answer: 'Κάντε κλικ στη λέξη ρυθμίσεις.',
+      category: 'Δηλώσεις'
+    },
+    {
+      question: 'Πώς μπορώ να δω τα πιστοποιητικά που έχω ζητήσει;',
+      answer: 'Κάντε κλικ στη λέξη ρυθμίσεις.',
+      category: 'Πιστοποιητικά'
+    },
+  ];
 
-    const toggle = (index) => {
-      setActiveIndex(activeIndex === index ? null : index);
-    };
+  const toggle = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
   
     return (
       <div>
@@ -31,8 +39,30 @@ function FAQ() {
         <Breadcrumb />
         <Sidebar setSelectedSemester={setSelectedSemester} />
         <h2>Συχνές Ερωτήσεις</h2>
-        <h3>Ερώτηση Σχετικά με:</h3>
-        {faqData.map((faq, index) => (
+        
+        <div className={styles.dropdown}>
+          <h2>Ερώτηση Σχετικά με:</h2>
+          <button onClick={toggleDropdown} className={styles['dropdown-toggle']}>
+            {selectedCategory}
+            <FontAwesomeIcon icon={faAngleDown} className={styles['down-arrow']}/>
+          </button>
+          {dropdownOpen && (
+            <div className={`${styles['dropdown-content']} ${dropdownOpen ? styles.show : ''}`}>
+              {categories.map(category => (
+                <button key={category} onClick={() => {
+                  setSelectedCategory(category);
+                  toggleDropdown(); 
+                }}>                  
+                {category}
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {faqData
+          .filter(faq => selectedCategory === 'Όλες' || faq.category === selectedCategory)
+          .map((faq, index) => (
             <div key={index} className={styles.faqItem}>
               <button
                   className={`${styles.faqButton} ${activeIndex === index ? styles.faqButtonOpen : ''}`}

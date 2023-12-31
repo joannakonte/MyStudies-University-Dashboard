@@ -33,7 +33,7 @@
 }
 
 
-/* ======== | Text | ======== */
+/* =========== | FAQs Text | =========== */
 .faqQuestionText {
     font-weight: bold; 
     font-size: 16px; 
@@ -43,4 +43,46 @@
     font-size: 14px; 
 }
 
-  
+/* ======== | Dropdown button | ======== */
+.dropdown{
+    position: relative;
+    display: flex;
+    align-items: center;            /* Vertically aligns items in the middle */
+    justify-content: flex-start;    /* Align items to the start of the container */
+    gap: 10px;                      /* Add some space between items */
+}
+
+.dropdown h2{
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+}
+
+.dropdown-toggle{
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #DCDCDC;
+    background: white;
+}
+
+/* ======== | Dropdown content | ======== */
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ddd;
+    z-index: 1000;
+    display: flex; /* Using flexbox */
+    flex-direction: column; /* Align children vertically */
+}
+
+.dropdown-content button {
+    width: 100%; /* Ensure buttons take full width */
+    text-align: left; /* Align text to the left */
+    padding: 10px; /* Padding for button */
+    border: none; /* Optional: removes border */
+    background-color: transparent; /* Optional: transparent background */
+    cursor: pointer;
+}
