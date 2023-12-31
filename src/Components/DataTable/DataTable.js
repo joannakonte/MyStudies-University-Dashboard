@@ -7,7 +7,7 @@ import styles from './DataTable.module.css';
 import { HiOutlineEye, HiArrowsUpDown, HiMagnifyingGlass } from 'react-icons/hi2';
 import PopUp from './PopUp';
 
-const TableComponent = ({ showOptionColumn, selectedSemester}) => {
+const TableComponent = ({ showOptionColumn, selectedSemester }) => {
   const [info, setInfo] = useState([]);
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedClass, setSelectedClass] = useState(null);
@@ -31,11 +31,18 @@ const TableComponent = ({ showOptionColumn, selectedSemester}) => {
   };
 
   const handleCheckboxChange = (id, isChecked) => {
-    setCheckboxes((prevCheckboxes) => ({
-      ...prevCheckboxes,
-      [id]: isChecked,
-    }));
+    setCheckboxes((prevCheckboxes) => {
+      const updatedCheckboxes = {
+        ...prevCheckboxes,
+        [id]: isChecked,
+      };
+  
+      console.log('Updated Checkboxes:', updatedCheckboxes);
+  
+      return updatedCheckboxes;
+    });
   };
+
 
   const openPopup = (classes) => {
     setSelectedClass(classes);
@@ -72,7 +79,7 @@ const TableComponent = ({ showOptionColumn, selectedSemester}) => {
       const { name, ECTS, semester, category } = classes;
       const normalizedQuery = searchQuery.toLowerCase();
 
-      const semesterMatch = selectedSemester.toString() === null || semester.toString() === selectedSemester.toString();
+      const semesterMatch = selectedSemester.toString() === '' || semester.toString() === selectedSemester.toString();
 
       return (
         semesterMatch &&
@@ -125,7 +132,6 @@ const TableComponent = ({ showOptionColumn, selectedSemester}) => {
             <tr
               key={index}
               className={`${styles['table-row']} ${selectedClass === classes ? 'clicked' : ''}`}
-              onClick={() => openPopup(classes)}
             >
               {showOptionColumn && (
                 <td className={styles.checkbox}>
@@ -141,7 +147,7 @@ const TableComponent = ({ showOptionColumn, selectedSemester}) => {
               <td className={styles['table-cell']}>{classes.category}</td>
               <td className={styles['table-cell']}>{classes.id}</td>
               <td className={styles['table-cell']}>{classes.semester}</td>
-              <td className={styles.eye}>
+              <td className={styles.eye} onClick={() => openPopup(classes)}>
                 <HiOutlineEye />
               </td>
             </tr>
@@ -149,6 +155,16 @@ const TableComponent = ({ showOptionColumn, selectedSemester}) => {
         </tbody>
       </table>
       <PopUp isOpen={!!selectedClass} onClose={closePopup} selectedClass={selectedClass} />
+    {/* Display selected class details below the table */}
+    {selectedClass && (
+        <div className={styles['selected-class-details']}>
+          <h3>Selected Class Details</h3>
+          <p>Name: {selectedClass.name}</p>
+          <p>ECTS: {selectedClass.ECTS}</p>
+          <p>Category: {selectedClass.category}</p>
+          {/* Add more details as needed */}
+        </div>
+      )}
     </div>
   );
 };

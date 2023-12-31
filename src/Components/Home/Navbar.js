@@ -47,7 +47,7 @@ function Navbar() {
             </div>
           </div>
           <a href="#otherServices" className={styles['nav-item']}>Άλλες Υπηρεσίες ΕΚΠΑ</a>
-          <a href="/login" className={styles['login-btn']}>
+          <a href="/home/login" className={styles['login-btn']}>
             Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']} /> 
           </a>
         </div>

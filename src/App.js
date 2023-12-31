@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Classes from './Components/Students/Classes/Classes';
 import Certificates from './Components/Students/Certificates/Certificates';
 import GeneralStudent from './Components/Students/Profile/GeneralStudent/GeneralStudent';
+import NewClassesApplication from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication';
 import Grades from './Components/Students/Grades/Grades';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
@@ -20,6 +21,7 @@ function App() {
           <Route path="/home/certificates" element={<Certificates />}/>
           <Route path="/home/grades" element={<Grades />}/>
           <Route path="/home/profile/general-student" element={<GeneralStudent />}/>
+          <Route path="/home/history-applications/new-application" element={<NewClassesApplication />}/>
         </Routes>
       </BrowserRouter>
     </div>

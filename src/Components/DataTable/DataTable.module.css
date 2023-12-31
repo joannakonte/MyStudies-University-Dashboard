@@ -94,6 +94,7 @@ table {
     position: absolute;
     margin-top: -5%;
     top: 33%;
+    right: 20%;
 }
   
 .search-icon-container {
@@ -119,5 +120,8 @@ outline: none;
 }
   
 
-
+.selected-class-details{
+    margin-top: 20px;
+    clear: both;
+}
  
