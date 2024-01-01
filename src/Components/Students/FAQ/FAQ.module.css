@@ -48,7 +48,6 @@
     position: relative;
     display: flex;
     align-items: center;            /* Vertically aligns items in the middle */
-    justify-content: flex-start;    /* Align items to the start of the container */
     gap: 10px;                      /* Add some space between items */
 }
 
@@ -73,8 +72,8 @@
     width: 100%;
     background-color: white;
     border: 1px solid #ddd;
-    z-index: 1000;
-    display: flex; /* Using flexbox */
+    border: none;
+    display: flex;          /* Using flexbox */
     flex-direction: column; /* Align children vertically */
 }
 
@@ -85,4 +84,8 @@
     border: none; /* Optional: removes border */
     background-color: transparent; /* Optional: transparent background */
     cursor: pointer;
+}
+
+.withDropdownOpen {
+    margin-top: 110px; 
 }

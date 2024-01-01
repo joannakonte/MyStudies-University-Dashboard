@@ -59,25 +59,27 @@ function FAQ() {
             </div>
           )}
         </div>
-
-        {faqData
-          .filter(faq => selectedCategory === 'Όλες' || faq.category === selectedCategory)
-          .map((faq, index) => (
-            <div key={index} className={styles.faqItem}>
-              <button
-                  className={`${styles.faqButton} ${activeIndex === index ? styles.faqButtonOpen : ''}`}
-                  onClick={() => toggle(index)}
-              >
-                  <span className={styles.faqQuestionText}>{faq.question}</span>
-                  <FontAwesomeIcon icon={activeIndex === index ? faMinus : faPlus} />
-              </button>
-              <div className={activeIndex === index ? styles.faqAnswerOpen : styles.faqAnswer}>
-                  <span className={styles.faqAnswerText}>{faq.answer}</span>
-              </div>
-          </div>
-        ))}
+        
+        <div className={dropdownOpen ? styles.withDropdownOpen : ''}>
+          {faqData
+            .filter(faq => selectedCategory === 'Όλες' || faq.category === selectedCategory)
+            .map((faq, index) => (
+              <div key={index} className={styles.faqItem}>
+                <button
+                    className={`${styles.faqButton} ${activeIndex === index ? styles.faqButtonOpen : ''}`}
+                    onClick={() => toggle(index)}
+                >
+                    <span className={styles.faqQuestionText}>{faq.question}</span>
+                    <FontAwesomeIcon icon={activeIndex === index ? faMinus : faPlus} />
+                </button>
+                <div className={activeIndex === index ? styles.faqAnswerOpen : styles.faqAnswer}>
+                    <span className={styles.faqAnswerText}>{faq.answer}</span>
+                </div>
+            </div>
+          ))}
+        </div>
       </div>
     );
-  }
+}
   
   export default FAQ;
