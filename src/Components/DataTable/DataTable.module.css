@@ -1,8 +1,8 @@
-.table-container {
+/* .table-container { */
     /* gia na allaksei i thesi tou pinaka allakse auto */
-    margin: 5% 50% 15% 25%;
+    /* margin: 5% 50% 15% 25%;
 
-}
+} */
 
 table {
     border-collapse: collapse;
@@ -90,34 +90,7 @@ table {
     cursor: pointer;
 }
 
-.search-bar {
-    position: absolute;
-    margin-top: -5%;
-    top: 33%;
-    right: 20%;
-}
-  
-.search-icon-container {
-position: absolute;
-left: 3%; 
-top: 25%;
-/* transform: translateY(-50%); */
-}
-  
-.search-input {
-padding: 4% 4% 4% 16%;
-border: 1px solid #ddd;
-border-radius: 5px;
-font-size: 12px;
-font-style: italic;
-width: 300px; 
-}
-  
-.search-input:focus {
-border-color: rgba(13, 139, 217, 1);
-box-shadow: 0 0 5px rgba(13, 139, 217, 0.4); 
-outline: none;
-}
+
   
 
 .selected-class-details{

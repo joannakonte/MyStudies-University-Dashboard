@@ -4,6 +4,7 @@ import Sidebar from '../../Sidebar/Sidebar';
 import SemesterTable from './SemesterTable';
 import TableComponent from '../../DataTable/DataTable';
 import Breadcrumb from '../../Breadcrumb/Breadcrumb';
+import defaultstyle from '../../DataTable/DefaultTable.module.css';
 
 function Classes() {
   const [selectedSemester, setSelectedSemester] = useState(1); 
@@ -14,7 +15,7 @@ function Classes() {
       <Breadcrumb />
       <Sidebar setSelectedSemester={setSelectedSemester} />
       <SemesterTable onSelectSemester={setSelectedSemester} />
-      <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} />
+      <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} pageStyle={defaultstyle} />
     </div>
   );
 }

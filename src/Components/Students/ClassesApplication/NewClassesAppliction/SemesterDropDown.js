@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './NewClassesApplication.module.css';
+import styles from './NewClassesApplication2/NewClassesApplication2.module.css';
 
 const SemesterTable = ({ onSelectSemester }) => {
   const [selectedSemester, setSelectedSemester] = useState(1);

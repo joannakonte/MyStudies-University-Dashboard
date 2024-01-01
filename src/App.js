@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Classes from './Components/Students/Classes/Classes';
 import Certificates from './Components/Students/Certificates/Certificates';
 import GeneralStudent from './Components/Students/Profile/GeneralStudent/GeneralStudent';
-import NewClassesApplication from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication';
+import NewClassesApplication from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication2/NewClassesApplication2';
 import Grades from './Components/Students/Grades/Grades';
 import FAQ from './Components/Students/FAQ/FAQ';
 import Home from './Components/Home/Home';

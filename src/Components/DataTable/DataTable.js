@@ -1,5 +1,3 @@
-// TableComponent.js
-
 import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
@@ -7,7 +5,7 @@ import styles from './DataTable.module.css';
 import { HiOutlineEye, HiArrowsUpDown, HiMagnifyingGlass } from 'react-icons/hi2';
 import PopUp from './PopUp';
 
-const TableComponent = ({ showOptionColumn, selectedSemester }) => {
+const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle }) => {
   const [info, setInfo] = useState([]);
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedClass, setSelectedClass] = useState(null);
@@ -92,14 +90,14 @@ const TableComponent = ({ showOptionColumn, selectedSemester }) => {
   };
 
   return (
-    <div className={styles['table-container']}>
-      <div className={styles['search-bar']}>
-        <div className={styles['search-icon-container']}>
-          <HiMagnifyingGlass className={styles['search-icon']} />
+    <div className={`${styles['table-container']} ${pageStyle.tablecontainer}`}>
+      <div className={`${styles['search-bar']} ${pageStyle.searchbar}`}>
+        <div className={`${styles['searchiconcontainer']} ${pageStyle.searchiconcontainer}`}>
+          <HiMagnifyingGlass className={`${styles['searchicon']} ${pageStyle.searchicon}`} />
         </div>
         <input
           type="text"
-          className={styles['search-input']}
+          className={ `${styles['searchinput']} ${pageStyle.searchinput}`}
           placeholder="Αναζήτησε Μάθημα, Εξάμηνο, Κατηγορία ή ECTS"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -155,14 +153,12 @@ const TableComponent = ({ showOptionColumn, selectedSemester }) => {
         </tbody>
       </table>
       <PopUp isOpen={!!selectedClass} onClose={closePopup} selectedClass={selectedClass} />
-    {/* Display selected class details below the table */}
     {selectedClass && (
         <div className={styles['selected-class-details']}>
           <h3>Selected Class Details</h3>
           <p>Name: {selectedClass.name}</p>
           <p>ECTS: {selectedClass.ECTS}</p>
           <p>Category: {selectedClass.category}</p>
-          {/* Add more details as needed */}
         </div>
       )}
     </div>
