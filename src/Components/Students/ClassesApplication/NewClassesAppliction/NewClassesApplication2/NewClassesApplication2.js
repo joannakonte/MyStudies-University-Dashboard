@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Breadcrumb from '../../../../Breadcrumb/Breadcrumb';
 import Sidebar from '../../../../Sidebar/Sidebar';
 import Header from '../../../../Header/Header';
-// import SemesterTable from '../../Classes/SemesterTable';
 import SemesterDropDown from '../SemesterDropDown';
 import TableComponent from '../../../../DataTable/DataTable';
-import appstyle from './NewClassesApplication2.module.css';
-import {HiChevronRight} from "react-icons/hi2";
+import appstyle from '../NewClassesApplication.module.css';
+import { HiChevronRight, HiChevronLeft } from 'react-icons/hi2';
 
-
-function NewClassesApplication() {
+function NewClassesApplication2() {
   const [selectedSemester, setSelectedSemester] = useState(1);
 
   const shoot = (a) => {
     alert(a);
   };
+
+  // Log the content of local storage on component mount
+  useEffect(() => {
+    const localStorageContent = localStorage.getItem('objectGreeting');
+    console.log('Local Storage Content:', localStorageContent);
+  }, []);
 
   return (
     <div>
@@ -22,13 +26,15 @@ function NewClassesApplication() {
       <Breadcrumb />
       <Sidebar />
       <SemesterDropDown onSelectSemester={setSelectedSemester} />
-      {/* <SemesterTable onSelectSemester={setSelectedSemester} /> */}
-      <TableComponent showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle} />
-      <button className={appstyle['next-page']} onClick={() => shoot('Goal!')}>
-       Επόμενο <HiChevronRight  />
-      </button>
+      <TableComponent showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle}  />
+      <a href="/home/history-applications/new-application3" className={appstyle['next-page']}>
+        Επόμενο <HiChevronRight />
+      </a>
+      <a href="/home/history-applications/new-application1" className={appstyle['previous-page']}>
+        <HiChevronLeft /> Προηγούμενο
+      </a>
     </div>
   );
 }
 
-export default NewClassesApplication;
+export default NewClassesApplication2;

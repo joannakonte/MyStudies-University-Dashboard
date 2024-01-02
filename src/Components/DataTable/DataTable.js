@@ -15,6 +15,13 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle }) => {
 
   useEffect(() => {
     fetchData();
+
+    // Check local storage for saved checkboxes
+    const localStorageContent = localStorage.getItem('objectGreeting');
+    if (localStorageContent) {
+      const parsedCheckboxes = JSON.parse(localStorageContent);
+      setCheckboxes(parsedCheckboxes);
+    }
   }, []);
 
   const fetchData = async () => {
@@ -34,13 +41,13 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle }) => {
         ...prevCheckboxes,
         [id]: isChecked,
       };
-  
+
       console.log('Updated Checkboxes:', updatedCheckboxes);
-  
+      const myObjectString = JSON.stringify(updatedCheckboxes);
+      localStorage.setItem('objectGreeting', myObjectString);
       return updatedCheckboxes;
     });
   };
-
 
   const openPopup = (classes) => {
     setSelectedClass(classes);
