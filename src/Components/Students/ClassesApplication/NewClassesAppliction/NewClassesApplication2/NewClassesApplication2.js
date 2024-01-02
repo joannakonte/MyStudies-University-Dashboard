@@ -10,11 +10,6 @@ import { HiChevronRight, HiChevronLeft } from 'react-icons/hi2';
 function NewClassesApplication2() {
   const [selectedSemester, setSelectedSemester] = useState(1);
 
-  const shoot = (a) => {
-    alert(a);
-  };
-
-  // Log the content of local storage on component mount
   useEffect(() => {
     const localStorageContent = localStorage.getItem('objectGreeting');
     console.log('Local Storage Content:', localStorageContent);

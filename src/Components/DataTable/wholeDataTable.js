@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import styles from './DataTable.module.css';
-import { HiOutlineEye, HiArrowsUpDown } from 'react-icons/hi2';
+import { HiOutlineEye, HiArrowsUpDown, HiMagnifyingGlass } from 'react-icons/hi2';
 import PopUp from './PopUp';
-import SearchBar from './SearchBar';
-import filterAndSortData from './DataTableUtils';
 
 const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submission }) => {
   const [info, setInfo] = useState([]);
@@ -15,13 +13,10 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
   const [sortOrder, setSortOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const filteredAndSortedData = filterAndSortData(
-    info, submission, selectedSemester, checkboxes,
-    sortColumn, sortOrder, searchQuery);
-
   useEffect(() => {
     fetchData();
 
+    // Check local storage for saved checkboxes
     const localStorageContent = localStorage.getItem('objectGreeting');
     if (localStorageContent) {
       const parsedCheckboxes = JSON.parse(localStorageContent);
@@ -46,22 +41,14 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
         ...prevCheckboxes,
         [id]: isChecked,
       };
-  
+
       console.log('Updated Checkboxes:', updatedCheckboxes);
-  
-      // Use the correct local storage key based on the submission value
-      const localStorageKey = submission ? 'markedClasses' : 'objectGreeting';
-  
       const myObjectString = JSON.stringify(updatedCheckboxes);
-      localStorage.setItem(localStorageKey, myObjectString);
-  
-      console.log('Local Storage Content:', localStorage.getItem(localStorageKey)); // Log local storage content
-  
+      localStorage.setItem('objectGreeting', myObjectString);
       return updatedCheckboxes;
     });
   };
-  
-  
+
   const openPopup = (classes) => {
     setSelectedClass(classes);
   };
@@ -75,9 +62,93 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
 
+  const getSortedData = () => {
+    if (sortColumn) {
+      return [...info].sort((a, b) => {
+        const columnA = a[sortColumn];
+        const columnB = b[sortColumn];
+
+        if (typeof columnA === 'string') {
+          return sortOrder === 'asc' ? columnA.localeCompare(columnB) : columnB.localeCompare(columnA);
+        } else {
+          return sortOrder === 'asc' ? columnA - columnB : columnB - columnA;
+        }
+      });
+    } else {
+      return info;
+    }
+  };
+
+const filterAndSortData = () => {
+  const filteredData = info.filter((classes) => {
+    const { name, ECTS, semester, category } = classes;
+    const normalizedQuery = searchQuery.toLowerCase();
+
+    if (submission) {
+      // If submission is true, include all classes without checking semester
+      return (
+        name.toLowerCase().includes(normalizedQuery) ||
+        ECTS.toString().includes(normalizedQuery) ||
+        category.toLowerCase().includes(normalizedQuery)
+      );
+    } else {
+      // If submission is false, filter based on the selected semester
+      const semesterMatch = selectedSemester.toString() === '' || semester.toString() === selectedSemester.toString();
+      return (
+        semesterMatch &&
+        (name.toLowerCase().includes(normalizedQuery) ||
+          ECTS.toString().includes(normalizedQuery) ||
+          category.toLowerCase().includes(normalizedQuery))
+      );
+    }
+  });
+
+  // If submission is true, filter the data to include only classes with marked checkboxes
+  if (submission) {
+    const markedClasses = filteredData.filter((classes) => checkboxes[classes.id]);
+
+    // Sort the marked classes based on the selected column and order
+    return markedClasses.sort((a, b) => {
+      const columnA = a[sortColumn];
+      const columnB = b[sortColumn];
+
+      if (typeof columnA === 'string') {
+        return sortOrder === 'asc' ? columnA.localeCompare(columnB) : columnB.localeCompare(columnA);
+      } else {
+        return sortOrder === 'asc' ? columnA - columnB : columnB - columnA;
+      }
+    });
+  } else {
+    // If submission is false, return all classes sorted based on the selected column and order
+    return filteredData.sort((a, b) => {
+      const columnA = a[sortColumn];
+      const columnB = b[sortColumn];
+
+      if (typeof columnA === 'string') {
+        return sortOrder === 'asc' ? columnA.localeCompare(columnB) : columnB.localeCompare(columnA);
+      } else {
+        return sortOrder === 'asc' ? columnA - columnB : columnB - columnA;
+      }
+    });
+  }
+};
+
+
+
   return (
     <div className={`${styles['table-container']} ${pageStyle.tablecontainer}`}>
-      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} />
+      <div className={`${styles['search-bar']} ${pageStyle.searchbar}`}>
+        <div className={`${styles['searchiconcontainer']} ${pageStyle.searchiconcontainer}`}>
+          <HiMagnifyingGlass className={`${styles['searchicon']} ${pageStyle.searchicon}`} />
+        </div>
+        <input
+          type="text"
+          className={`${styles['searchinput']} ${pageStyle.searchinput}`}
+          placeholder="Αναζήτησε Μάθημα, Εξάμηνο, Κατηγορία ή ECTS"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
       <table className={styles.table}>
         <thead>
           <tr className={styles['table-header']}>
@@ -101,7 +172,7 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
           </tr>
         </thead>
         <tbody>
-        {filteredAndSortedData.map((classes, index) => (
+          {filterAndSortData().map((classes, index) => (
             <tr key={index} className={`${styles['table-row']} ${selectedClass === classes ? 'clicked' : ''}`}>
               {showOptionColumn && (
                 <td className={styles.checkbox}>

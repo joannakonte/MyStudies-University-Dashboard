@@ -1,0 +1,31 @@
+.submit {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    padding: 0.7%;
+    background-color: rgb(26,177,122,0.8);
+    color: white;
+    border: 0.5px solid rgb(26,177,122,0.8);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 100%;
+    font-weight: bold;
+    width: 12%;
+    text-decoration:none;
+  }
+
+  .save {
+    position: fixed;
+    bottom: 5%;
+    right: 20%;
+    padding: 0.7%;
+    background-color: white;
+    color: black;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 100%;
+    font-weight: bold;
+    width: 15%;
+    text-decoration:none;
+  }
