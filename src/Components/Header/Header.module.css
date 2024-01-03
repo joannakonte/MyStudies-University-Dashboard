@@ -1,3 +1,116 @@
+/* ================ | CSS Grid |================ */
+.grid_container {
+    display: grid;
+    grid-template-areas:
+      'logo_mystudies breadcrumb breadcrumb breadcrumb breadcrumb profile'
+      'logo_ekpa page_title page_title page_title page_title page_title ';
+    grid-template-columns: 15% 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 10px;
+    /* background-color: #2196F3; */
+    /* position: relative; */
+}
+  
+.grid_container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: left;
+    /* padding: 20px 0; */
+    /* font-size: 30px; */
+}
+
+/* Vertically line */
+.grid_container::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 15%;
+    height: 21%;
+    width: 2px;
+    background-color: #C8CBD9;
+}
+
+.item1 { 
+    grid-area: logo_mystudies; 
+    background-color: #ffffff;
+    /* border-right: 10px solid #ff0000; */
+}
+
+.item2 { 
+    grid-area: logo_ekpa;
+    background-color: #ffffff; 
+    /* border-right: 10px solid #ff0000; */
+}
+
+.item3 { 
+    grid-area: breadcrumb; 
+}
+
+.item4 { 
+    right: 10%;
+    grid-area: profile; 
+}
+
+.item5 { 
+    grid-area: page_title; 
+    /* top: 50%;
+    top: 50%; */
+    /* transform: translateX(50%) translateY(50%); */
+}
+
+
+
+/* ================ | Logos |================ */
+.my-studies-logo {
+    display: block;
+    width: 80%; 
+    margin-left: 10%;
+    margin-top: 8%;
+}
+
+.ekpa-logo {
+    display: block;
+    width: 80%; 
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+/* ================ | Breadcrumb |================ */
+.breadcrumb {
+    margin-left: 1%;
+    margin-top: 2%;
+    font-size: 150%;
+    transform: translateY(100%) translateX(-17.5%);
+}
+
+/* ================ | Page Title |================ */
+.page_title {
+    transform: translateY(50%);
+    margin-left: 1%;
+    display: flex;
+    align-items: center;
+}
+
+.icon {
+    font-size: 170%; 
+    margin-right: 5px; 
+    color: var(--student-color);
+    font-weight: bold;
+}
+
+.title {
+    font-size: 170%;
+    color: var(--student-color);
+    font-weight: 700;
+}
+
+
+/* ================ | Profile |================ */
+.profile {
+    transform: translateX(10%) translateY(-5%);
+}
+
+
+
 .logo-container {
     flex-direction: column;
     align-items: flex-start;
@@ -13,9 +126,6 @@
     display: block;      /* Ensures each LI is on a new line */
 }
 
-.my-studies-logo, .ekpa-logo {
-    width: 100%; 
-}
 
 /* =========== | Dropdown Button |  =========== */
 .Header {
