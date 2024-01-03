@@ -6,23 +6,23 @@ import Header from '../../../../Header/Header';
 import SemesterDropDown from '../SemesterDropDown';
 import TableComponent from '../../../../DataTable/DataTable';
 import appstyle from '../NewClassesApplication.module.css';
-import {HiChevronRight, HiChevronLeft} from "react-icons/hi2";
-
+import {HiChevronRight, HiDocumentPlus} from "react-icons/hi2";
+import ProcessBar from '../ProcessBar/ProcessBar'
 
 function NewClassesApplication1() {
   const [selectedSemester, setSelectedSemester] = useState(1);
+  const stages = ['Επιλογή Εξαμήνου', 'Επιλογή Μαθημάτων', 'Υποβολή Δήλωσης'];
 
-  const shoot = (a) => {
-    alert(a);
-  };
 
   return (
     <div>
       <Header />
       <Breadcrumb />
       <Sidebar />
+      <ProcessBar stages={stages} currentStage={0} /> 
       <SemesterDropDown onSelectSemester={setSelectedSemester} />
       {/* <SemesterTable onSelectSemester={setSelectedSemester} /> */}
+      <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1>
       <TableComponent showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle}  />
       <a href="/home/history-applications/new-application2" className={appstyle['next-page']}>
        Επόμενο <HiChevronRight  /> 

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Classes from './Components/Students/Classes/Classes';
 import Certificates from './Components/Students/Certificates/Certificates';
 import GeneralStudent from './Components/Students/Profile/GeneralStudent/GeneralStudent';
+import HistoryApplications from './Components/Students/ClassesApplication/HistoryApplications/HistoryApplications';
 import NewClassesApplication1 from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication1/NewClassesApplication1';
 import NewClassesApplication2 from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication2/NewClassesApplication2';
 import NewClassesApplication3 from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication3/NewClassesApplication3';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/home/certificates" element={<Certificates />}/>
           <Route path="/home/grades" element={<Grades />}/>
           <Route path="/home/profile/general-student" element={<GeneralStudent />}/>
+          <Route path="/home/history-applications" element={<HistoryApplications />}/>
           <Route path="/home/history-applications/new-application1" element={<NewClassesApplication1 />}/>
           <Route path="/home/history-applications/new-application2" element={<NewClassesApplication2 />}/>
           <Route path="/home/history-applications/new-application3" element={<NewClassesApplication3 />}/>

@@ -1,0 +1,47 @@
+.process-bar {
+  display: flex;
+  align-items: center;
+  margin-top: 0%;
+  margin-left: 25%;
+  position: absolute;
+  background-color: rgba(13, 139, 217, 0.1);
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  padding: 15px;
+  width: 60%;
+}
+
+.process-stages-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.process-stage {
+  flex: 1; 
+  padding: 12px;
+  text-align: center;
+  border-radius: 5px;
+  box-sizing: border-box; 
+  position: relative;
+  text-decoration:none;
+  color: black;
+}
+
+.process-stage.active {
+  color: rgba(13, 139, 217, 0.6);
+  font-weight: bold;
+}
+
+.stage-number {
+  font-size: 1.5em; 
+  position: absolute;
+  top: 50%; 
+  left: 15%; 
+  transform: translate(-50%, -50%); 
+}
+
+.arrow {
+  font-size: 150%; 
+  color: rgba(13, 139, 217, 0.6); 
+}

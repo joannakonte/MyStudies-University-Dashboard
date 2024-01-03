@@ -10,8 +10,13 @@
     cursor: pointer;
     font-size: 100%;
     font-weight: bold;
-    width: 12%;
+    width: 14%;
     text-decoration:none;
+  }
+  .submit:hover {
+    background-color: rgb(26,177,122,1);
+    color: white;
+    border: 0.5px solid rgb(26,177,122,1);
   }
 
   .save {
