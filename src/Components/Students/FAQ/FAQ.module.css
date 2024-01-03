@@ -1,3 +1,12 @@
+.faqContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Adjust width as needed */
+    margin: auto; /* For horizontal centering */
+}
+
 .faqItem {
     margin-bottom: 10px;
   }
@@ -9,7 +18,7 @@
     background-color: rgba(13, 139, 217, 0.40);
     border-radius: 5px;
     padding: 10px;
-    width: 100%;
+    width: 1120px;
     cursor: pointer;
     border: none;
 }
@@ -67,25 +76,31 @@
 /* ======== | Dropdown content | ======== */
 .dropdown-content {
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
+    top: 100%; /* Positions directly below the toggle button */
+    left: 15%; /* Adjust to horizontally center or set a specific value */
+    transform: translateX(-50%); /* Center align the dropdown */
+    width: 50%; 
     background-color: white;
     border: 1px solid #ddd;
-    border: none;
-    display: flex;          /* Using flexbox */
-    flex-direction: column; /* Align children vertically */
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000; /* To ensure it's above other content */
 }
 
 .dropdown-content button {
-    width: 100%; /* Ensure buttons take full width */
-    text-align: left; /* Align text to the left */
-    padding: 10px; /* Padding for button */
-    border: none; /* Optional: removes border */
+    font-size: 16px;
+    width: 100%;                   /* Ensure buttons take full width */
+    text-align: left;              /* Align text to the left */
+    padding: 10px;                 /* Padding for button */
+    border: none;                  /* Optional: removes border */
     background-color: transparent; /* Optional: transparent background */
     cursor: pointer;
 }
 
+.dropdown-content button:hover {
+    background-color: #f1f1f1;
+}
 .withDropdownOpen {
-    margin-top: 110px; 
+    margin-top: 120px; 
 }

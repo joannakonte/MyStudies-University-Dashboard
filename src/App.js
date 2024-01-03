@@ -2,8 +2,6 @@ import React from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Classes from './Components/Students/Classes/Classes';
 import Certificates from './Components/Students/Certificates/Certificates';
-import GeneralStudent from './Components/Students/Profile/GeneralStudent/GeneralStudent';
-import HistoryApplications from './Components/Students/ClassesApplication/HistoryApplications/HistoryApplications';
 import NewClassesApplication1 from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication1/NewClassesApplication1';
 import NewClassesApplication2 from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication2/NewClassesApplication2';
 import NewClassesApplication3 from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication3/NewClassesApplication3';
@@ -11,6 +9,7 @@ import Grades from './Components/Students/Grades/Grades';
 import FAQ from './Components/Students/FAQ/FAQ';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
+import StudentDetails from './Components/Students/Profile/StudentDetails/StudentDetails';
 import './App.css';
 
 function App() {
@@ -25,8 +24,7 @@ function App() {
           <Route path="/home/faq" element={<FAQ/>}/>
           <Route path="/home/certificates" element={<Certificates />}/>
           <Route path="/home/grades" element={<Grades />}/>
-          <Route path="/home/profile/general-student" element={<GeneralStudent />}/>
-          <Route path="/home/history-applications" element={<HistoryApplications />}/>
+          <Route path="/home/profile/student-details" element={<StudentDetails />}/>
           <Route path="/home/history-applications/new-application1" element={<NewClassesApplication1 />}/>
           <Route path="/home/history-applications/new-application2" element={<NewClassesApplication2 />}/>
           <Route path="/home/history-applications/new-application3" element={<NewClassesApplication3 />}/>
