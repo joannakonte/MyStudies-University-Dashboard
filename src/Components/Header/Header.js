@@ -7,6 +7,7 @@ import { HiUserCircle, HiHome, HiArrowRightOnRectangle } from "react-icons/hi2";
 import { BiSolidUserCircle } from "react-icons/bi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { HiBookOpen, HiDocumentText, HiMiniDocumentChartBar, HiClipboardDocumentList, HiChevronDown, HiChevronUp   } from "react-icons/hi2";
 
 function Header() {
     const myStudiesLogo = '/mystudies-logo.png';
@@ -20,6 +21,14 @@ function Header() {
     const location = useLocation();
     const currentPath = location.pathname;
     const currentPage = items.find(item => currentPath.includes(item.path))
+
+    const iconMap = {
+        HiOutlineUserCircle: <HiUserCircle  />,
+        HiBookOpen: <HiBookOpen  />,
+        HiDocumentText: <HiDocumentText  />,
+        HiMiniDocumentChartBar: <HiMiniDocumentChartBar  />,
+        HiClipboardDocumentList: <HiClipboardDocumentList  />,
+      };
 
     return(
         <div className={styles.grid_container}>
@@ -70,8 +79,12 @@ function Header() {
             {/* Page Title */}
             <div className={styles.item5}>
                 <div className={styles.page_title}>
-                    <BiSolidUserCircle className={styles.icon} />
+                    {/* Title */}
+                    <span className={styles.icon}>
+                        {iconMap[currentPage.icon]}
+                    </span>
 
+                    {/* Icon */}
                     <span className={styles.title}>
                         {currentPage ? currentPage.title : 'Default Title'}
                     </span>
