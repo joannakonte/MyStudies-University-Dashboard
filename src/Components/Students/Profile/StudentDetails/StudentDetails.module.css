@@ -1,44 +1,29 @@
+.main {
+    transform: translateX(23.5%);
+    width: 75%;
+    height: 100%;
+}
+
+/* ================ | CSS Grid |================ */
 .grid_container {
     display: grid;
     grid-template-areas:
-      'header header header header header header'
-      'menu main main main main main'
-      'menu main main main main main';
-    /* gap: 10px; */
-    grid-template-columns: 19% 17.5% 17.5% 17.5% 17.5% 11%;
-    grid-template-rows: 25% 75%;
-    /* background-color: #2196F3; */
-    /* padding: 10px; */
-    /* border: 2px solid #000; */
+      'column1 column2'
+      'column1 column2 ';
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+    background-color: #2196F3;
 }
   
 .grid_container > div {
-    /* background-color: rgba(255, 255, 255, 0.8); */
-    text-align: center;
-    /* padding: 20px 0; */
-    font-size: 30px;
-    /* border: 1px solid #000; */
+    text-align: left;
+    border: 2px solid #ff0000;
 }
 
-/* .item1::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: calc(100% + 5px); 
-    width: 10px;
-    background-color: #ff0000; 
-  } */
-
 .item1 { 
-    grid-area: header; 
+    grid-area: column1; 
 }
 
 .item2 { 
-    grid-area: menu; 
-    /* background-color: #f626b8; */
-}
-
-.item3 { 
-    grid-area: main; 
+    grid-area: column2;
 }
