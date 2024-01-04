@@ -16,6 +16,9 @@ export default function Sidebar() {
 
   return (
     <div className="sidebar">
+      <h1>Τμήμα Πληροφορικής</h1>
+      <h1>και Τηλεπικοινωνιών</h1>
+      
       {items.map((item, index) => (
         <SidebarItem
           key={index}

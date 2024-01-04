@@ -4,40 +4,41 @@
     grid-template-areas:
       'logo_mystudies breadcrumb breadcrumb breadcrumb breadcrumb profile'
       'logo_ekpa page_title page_title page_title page_title page_title ';
-    grid-template-columns: 15% 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: 10px;
+    grid-template-columns: 15% 21.5% 17.5% 17.5% 17.5% 11%;
+    grid-template-rows: 50% 50%;
+    /* gap: 10px; */
     /* background-color: #2196F3; */
     /* position: relative; */
 }
   
 .grid_container > div {
-    background-color: rgba(255, 255, 255, 0.8);
+    /* background-color: rgba(255, 255, 255, 0.8); */
     text-align: left;
+    /* border: 1px solid #ff0000; */
     /* padding: 20px 0; */
     /* font-size: 30px; */
 }
 
 /* Vertically line */
-.grid_container::before {
+/* .grid_container::before {
     content: '';
     display: block;
     position: absolute;
-    left: 15%;
-    height: 21%;
+    left: 18.9%;
+    height: 50%;
     width: 2px;
     background-color: #C8CBD9;
-}
+} */
 
 .item1 { 
     grid-area: logo_mystudies; 
-    background-color: #ffffff;
+    /* background-color: #ffffff; */
     /* border-right: 10px solid #ff0000; */
 }
 
 .item2 { 
     grid-area: logo_ekpa;
-    background-color: #ffffff; 
+    /* background-color: #ffffff;  */
     /* border-right: 10px solid #ff0000; */
 }
 
@@ -58,34 +59,47 @@
 }
 
 
+/* ================ | Lines |================ */
+.horizontalLine {
+    border: px solid #C8CBD9; 
+    width: 700%;
+    transform: translateY(-4500%) translateX(14.5%);
+}
+
+/* .verticalLine {
+    border-top: 10px solid #C8CBD9; 
+    height: 100%; 
+    transform: translateX(20%);
+} */
+
 
 /* ================ | Logos |================ */
 .my-studies-logo {
     display: block;
-    width: 80%; 
-    margin-left: 10%;
-    margin-top: 8%;
+    width: 85%; 
+    margin-left: 7%;
+    margin-top: 6%;
 }
 
 .ekpa-logo {
     display: block;
-    width: 80%; 
-    margin-left: 10%;
-    margin-top: 5%;
+    width: 90%; 
+    margin-left: 5%;
+    margin-top: 2%;
 }
 
 /* ================ | Breadcrumb |================ */
 .breadcrumb {
-    margin-left: 1%;
+    margin-left: 3%;
     margin-top: 2%;
-    font-size: 150%;
+    font-size: 170%;
     transform: translateY(100%) translateX(-17.5%);
 }
 
 /* ================ | Page Title |================ */
 .page_title {
-    transform: translateY(50%);
-    margin-left: 1%;
+    /* transform: translateY(50%); */
+    margin-left: 3%;
     display: flex;
     align-items: center;
 }
@@ -93,12 +107,14 @@
 .icon {
     font-size: 170%; 
     margin-right: 5px; 
+    margin-top: 2%; 
     color: var(--student-color);
     font-weight: bold;
 }
 
 .title {
     font-size: 170%;
+    margin-top: 1.5%; 
     color: var(--student-color);
     font-weight: 700;
 }
@@ -106,8 +122,26 @@
 
 /* ================ | Profile |================ */
 .profile {
-    transform: translateX(10%) translateY(-5%);
+    transform: translateX(-30%) translateY(0);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

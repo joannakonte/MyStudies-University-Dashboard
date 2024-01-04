@@ -1,12 +1,12 @@
 .sidebar{
   position: fixed;
-    top: 18%;
+    /* top: 18%; */
     width: 15%;
     height: calc(100% - 18%);
     background-color: rgba(13, 139, 217, 0.6);
     transition: left 0.3s ease;
-    padding-top: 60px;
-    font-size: 90%;    
+    /* padding-top: 60px; */
+    font-size: 100%;    
 }
 
 .sidebar-item{
@@ -58,7 +58,6 @@
   height: auto;
   background-color: #FFFFFF;
   border-radius: 5px;
-  /* border: 2px solid #2F80C1; */
 }
 
 .sidebar-item.plain{
@@ -79,7 +78,12 @@
   color: white;
   border-radius: 5px; 
 }
-/* Add buttom options */
+
+.sidebar h1 {
+  font-size: 120%;
+  color: #FFFFFF;
+}
+
 .rest {
   padding: 10px;
   position: absolute;
@@ -103,7 +107,9 @@
 .rest button:hover {
   border: 1px solid #FFFFFF;
   color: white;
-}
+} 
+
+
 
 
 

@@ -11,7 +11,7 @@ function Grades(){
     return(
         <div>
         <Header/>
-        <Breadcrumb />
+        {/* <Breadcrumb /> */}
         <Sidebar />
         <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} pageStyle={defaultstyle}/>
         </div>

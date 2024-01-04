@@ -4,16 +4,20 @@
       'header header header header header header'
       'menu main main main main main'
       'menu main main main main main';
-    gap: 10px;
-    background-color: #2196F3;
-    padding: 10px;
+    /* gap: 10px; */
+    grid-template-columns: 19% 17.5% 17.5% 17.5% 17.5% 11%;
+    grid-template-rows: 25% 75%;
+    /* background-color: #2196F3; */
+    /* padding: 10px; */
+    /* border: 2px solid #000; */
 }
   
 .grid_container > div {
-    background-color: rgba(255, 255, 255, 0.8);
+    /* background-color: rgba(255, 255, 255, 0.8); */
     text-align: center;
-    padding: 20px 0;
+    /* padding: 20px 0; */
     font-size: 30px;
+    /* border: 1px solid #000; */
 }
 
 /* .item1::after {
@@ -32,7 +36,7 @@
 
 .item2 { 
     grid-area: menu; 
-    /* border-right: 10px solid #ff0000; */
+    /* background-color: #f626b8; */
 }
 
 .item3 { 

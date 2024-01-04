@@ -28,10 +28,16 @@ function Header() {
         HiDocumentText: <HiDocumentText  />,
         HiMiniDocumentChartBar: <HiMiniDocumentChartBar  />,
         HiClipboardDocumentList: <HiClipboardDocumentList  />,
-      };
+    };
 
     return(
         <div className={styles.grid_container}>
+            <div>
+                {/* The 2 lines */}
+                <hr className={styles.horizontalLine} />
+                {/* <hr className={styles.verticalLine } /> */}
+            </div>
+
             {/* Logo My-Studies */}
             <div className={styles.item1}>
                 <a href="/">
@@ -51,6 +57,8 @@ function Header() {
                 <div className={styles.breadcrumb}>
                     <Breadcrumb />
                 </div>
+                {/* <hr className={styles.horizontalLine} />
+                <hr className={styles.verticalLine } /> */}
             </div>  
 
             {/* Profile */}
