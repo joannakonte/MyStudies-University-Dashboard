@@ -55,8 +55,6 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
       const myObjectString = JSON.stringify(updatedCheckboxes);
       localStorage.setItem(localStorageKey, myObjectString);
   
-      console.log('Local Storage Content:', localStorage.getItem(localStorageKey)); // Log local storage content
-  
       return updatedCheckboxes;
     });
   };

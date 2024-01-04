@@ -32,8 +32,16 @@
         "path": "/home/history-applications"
     },
     {
-        "title": "Νέα Δήλωση",
-        "path": "/home/history-applications/new-application"
+        "title": "Νέα Δήλωση-Bήμα1",
+        "path": "/home/history-applications/new-application1"
+    },
+    {
+        "title": "Νέα Δήλωση-Bήμα2",
+        "path": "/home/history-applications/new-application2"
+    },
+    {
+        "title": "Νέα Δήλωση-Bήμα3",
+        "path": "/home/history-applications/new-application3"
     },
     {
         "title": "Βαθμολογίες",

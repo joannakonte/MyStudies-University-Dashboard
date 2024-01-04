@@ -1,71 +1,80 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../../../../firebase';
-import { collection, updateDoc, doc } from 'firebase/firestore';
-import { addDoc } from 'firebase/firestore';
-import { useLocation } from 'react-router-dom'; 
+import { collection, updateDoc, doc, addDoc } from 'firebase/firestore';
+import { useLocation } from 'react-router-dom';
 import Header from '../../../../Header/Header';
 import Breadcrumb from '../../../../Breadcrumb/Breadcrumb';
 import Sidebar from '../../../../Sidebar/Sidebar';
 import TableComponent from '../../../../DataTable/DataTable';
 import appstyle from '../NewClassesApplication.module.css';
 import style from './NewClassesApplication3.module.css';
-import { HiCheck, HiChevronLeft } from 'react-icons/hi2';
+import { HiCheck, HiChevronLeft, HiDocumentPlus } from 'react-icons/hi2';
+import ProcessBar from '../ProcessBar/ProcessBar'
 
 function NewClassesApplication3() {
   const [selectedSemester] = useState(1);
   const [markedClasses, setMarkedClasses] = useState([]);
-  const { state } = useLocation(); 
+  const stages = ['Επιλογή Εξαμήνου', 'Επιλογή Μαθημάτων', 'Υποβολή Δήλωσης'];
 
-  // Fetch marked classes from local storage or state
+  const { state } = useLocation();
+
   useEffect(() => {
-    const storedClasses = state && state.markedClasses ? state.markedClasses : localStorage.getItem('markedClasses');
-    console.log(storedClasses);
-    if (storedClasses) {
-      const parsedClasses = JSON.parse(storedClasses);
-      setMarkedClasses(Array.isArray(parsedClasses) ? parsedClasses : []);
-    }
+    const storedClasses = state && state.markedClasses ? state.markedClasses : JSON.parse(localStorage.getItem('objectGreeting')) || [];
+    setMarkedClasses(storedClasses);
   }, [state]);
 
-  // Handle submission
   const handleSubmission = async () => {
     try {
+      console.log('Marked Classes to Submit:', markedClasses);
+  
+      const studentId = '2a5iiuGDHgvDPwBkVoAk';
+  
       // Assuming you have a collection named 'applications'
       const applicationsCollection = collection(db, 'applications');
-
+  
+      // Filter classes with true flag
+      const selectedClasses = Object.keys(markedClasses).filter(className => markedClasses[className]);
+  
       // Create an application object
       const applicationData = {
-        studentId: '2a5iiuGDHgvDPwBkVoAk', // Replace with the actual student ID
+        studentId,
         submit: true,
-        allclasses: markedClasses,
+        allclasses: selectedClasses.reduce((acc, className) => {
+          acc[className] = true;
+          return acc;
+        }, {}),
       };
-
+  
       // Add the application to the 'applications' collection
-      await addDoc(applicationsCollection, applicationData);
-
+      const applicationRef = await addDoc(applicationsCollection, applicationData);
+  
       // Update the 'submit' field in the student document
-      const studentDocRef = doc(db, 'students', '2a5iiuGDHgvDPwBkVoAk');
-      await updateDoc(studentDocRef, { submit: true });
-
+      const studentDocRef = doc(db, 'students', studentId);
+      await updateDoc(studentDocRef, { submit: true, applicationId: applicationRef.id });
+  
       console.log('Application submitted successfully!');
     } catch (error) {
       console.error('Error submitting application:', error);
     }
   };
+  
 
   return (
     <div>
       <Header />
       <Breadcrumb />
       <Sidebar />
+      <ProcessBar stages={stages} currentStage={2} />
       <a href="/home/history-applications/new-application2" className={appstyle['previous-page']}>
         <HiChevronLeft /> Προηγούμενο
       </a>
+      <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1>
       <TableComponent
         showOptionColumn={true}
         selectedSemester={selectedSemester}
         pageStyle={appstyle}
         submission={true}
-        markedClasses={markedClasses} // Pass markedClasses to TableComponent
+        markedClasses={markedClasses}
       />
       <a href="/home/history-applications/submission" className={style['save']}>
         Προσωρινή Αποθήκευση
