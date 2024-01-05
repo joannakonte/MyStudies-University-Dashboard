@@ -3,7 +3,7 @@ import { db } from '../../../../../firebase';
 import { collection, updateDoc, doc, addDoc } from 'firebase/firestore';
 import { useLocation } from 'react-router-dom';
 import Header from '../../../../Header/Header';
-import Breadcrumb from '../../../../Breadcrumb/Breadcrumb';
+// import Breadcrumb from '../../../../Breadcrumb/Breadcrumb';
 import Sidebar from '../../../../Sidebar/Sidebar';
 import TableComponent from '../../../../DataTable/DataTable';
 import appstyle from '../NewClassesApplication.module.css';
@@ -62,13 +62,13 @@ function NewClassesApplication3() {
   return (
     <div>
       <Header />
-      <Breadcrumb />
+      {/* <Breadcrumb /> */}
       <Sidebar />
       <ProcessBar stages={stages} currentStage={2} />
       <a href="/home/history-applications/new-application2" className={appstyle['previous-page']}>
         <HiChevronLeft /> Προηγούμενο
       </a>
-      <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1>
+      {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
       <TableComponent
         showOptionColumn={true}
         selectedSemester={selectedSemester}

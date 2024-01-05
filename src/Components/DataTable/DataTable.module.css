@@ -8,13 +8,14 @@ table {
     border-collapse: collapse;
     border-radius: 5px;
     overflow: hidden;
-    position: absolute;
+    /* position: absolute; */
 }
 
 .table-header {
     background-color: rgb(13, 139, 217, 0.1);
     
 }
+
 
 .table-row {
     background-color: rgb(255, 255, 255, 0.2);
@@ -36,7 +37,7 @@ table {
 
 .table-cell.class
 {
-    width: 300px; 
+    /* width: 0%;  */
 }
 .eye {
     text-align: center;

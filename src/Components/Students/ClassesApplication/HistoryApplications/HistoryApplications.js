@@ -22,7 +22,7 @@ return (
     <Header />
     <Breadcrumb />
     <Sidebar />
-    <h1 className={style['page-title']}><HiDocumentText className={style['doc-icon']} />Ιστορικό Δηλώσεων</h1>
+    {/* <h1 className={style['page-title']}><HiDocumentText className={style['doc-icon']} />Ιστορικό Δηλώσεων</h1> */}
     <TableComponent showOptionColumn={false} selectedSemester={selectedSemester}
      pageStyle={appstyle} submission={false} showAllData={true} />
     <a href="/home/history-applications/new-application1" className={style['new-app']}>

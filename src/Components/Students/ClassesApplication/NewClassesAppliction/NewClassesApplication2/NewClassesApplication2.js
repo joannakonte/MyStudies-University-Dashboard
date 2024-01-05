@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Breadcrumb from '../../../../Breadcrumb/Breadcrumb';
+// import Breadcrumb from '../../../../Breadcrumb/Breadcrumb';
 import Sidebar from '../../../../Sidebar/Sidebar';
 import Header from '../../../../Header/Header';
 import SemesterDropDown from '../SemesterDropDown';
@@ -20,11 +20,11 @@ function NewClassesApplication2() {
   return (
     <div>
       <Header />
-      <Breadcrumb />
+      {/* <Breadcrumb /> */}
       <Sidebar />
       <ProcessBar stages={stages} currentStage={1} />
       <SemesterDropDown onSelectSemester={setSelectedSemester} />
-      <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1>
+      {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
       <TableComponent showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle} />
       <a href="/home/history-applications/new-application3" className={appstyle['next-page']}>
         Επόμενο <HiChevronRight />

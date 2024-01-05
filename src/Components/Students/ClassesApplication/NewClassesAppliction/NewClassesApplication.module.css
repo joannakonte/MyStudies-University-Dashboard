@@ -1,105 +1,91 @@
 .semesterDropdownContainer {
-    position: absolute;
-    left: 25%;
-    top: 35%;
-  }
-  
-  .next-page {
-    position: fixed;
-    bottom: 5%;
-    right: 5%;
-    padding: 0.7%;
-    background-color: white;
-    color: black;
-    border: 0.5px solid rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 105%;
-    font-weight: bold;
-    width: 10%;
-    text-decoration:none;
-  }
+  position: relative;
+  width: 8%;
+  left: 25%;
+  top: 41%;
+  z-index: 1;
+  margin-bottom: -11.5%;
+  margin-top: 12%;
+}
 
-  .previous-page {
-    position: fixed;
-    bottom: 5%;
-    left: 25%;
-    padding: 0.7%;
-    background-color: white;
-    color: black;
-    border: 0.5px solid rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 105%;
-    font-weight: bold;
-    width: 10%;
-    text-decoration:none;
-  }
-  
-  .semesterDropdown {
-    position: absolute;
-    padding: 8%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 105%;
-    width: 150px;
-   
-  }
-  
-  .semesterDropdown option:checked {
-    background-color: rgba(13, 139, 217, 0.1);
-  }
-  
-  .tablecontainer {
-    /* gia na allaksei i thesi tou pinaka allakse auto */
-    margin: 10% 50% 15% 25%;
-  
-  }
-  
-  
-  .searchbar {
-    position: absolute;
-    margin-top: -3.5%;
-    /* top: 35%; */
-    right: 20%;
-  }
-  
-  .searchiconcontainer {
-    position: absolute;
-    left: 5%; 
-    top: 30%;
-    /* transform: translateY(-50%); */
-    }
-      
-  .searchinput {
-    padding: 4% 4% 4% 16%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 12px;
-    font-style: italic;
-    width: 300px; 
-  }
-    
-  .searchinput:focus {
-    border-color: rgba(13, 139, 217, 1);
-    box-shadow: 0 0 5px rgba(13, 139, 217, 0.4); 
-    outline: none;
-    /* top: 8%; */
-  
-  }
+.semesterDropdown {
+  padding: 8%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 105%;
+  width: 120%;
+}
 
-  .page-title{
-    text-align: left; 
-  margin-left: 20%; 
-  margin-top: -4%; 
-  position:absolute;
-  }
+.next-page {
+  position: relative;
+  bottom: 5%;
+  top:550px;
+  /* height: max-content; */
+  right: -40%;
+  padding: 0.7%;
+  background-color: white;
+  color: black;
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 105%;
+  font-weight: bold;
+  width: 10%;
+  text-decoration: none;
+}
 
-  .doc-icon {
-    font-size: 150%; 
-  }
+.previous-page {
+  position: relative;
+  top:550px;
+  right: 25%;
+  padding: 0.7%;
+  background-color: white;
+  color: black;
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 105%;
+  font-weight: bold;
+  width: 10%;
+  text-decoration: none;
+}
 
-  
-  
-  
-  
+.tablecontainer {
+  margin: 10% 25% 5% 25%; /* Updated margin to create space between the table and buttons */
+  width: 100%;
+  position: absolute;
+}
+
+.searchbar {
+  position: relative;
+  top: 25%;
+  left: 40%;
+  width: 20%;
+  margin-bottom: 1%;
+  margin-top: -1%;
+}
+
+.searchiconcontainer {
+  position: absolute;
+  left: 5%;
+  top: 25%;
+}
+
+.searchinput {
+  padding: 4% 4% 4% 16%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 12px;
+  font-style: italic;
+  width: 300px;
+}
+
+.searchinput:focus {
+  border-color: rgba(13, 139, 217, 1);
+  box-shadow: 0 0 5px rgba(13, 139, 217, 0.4);
+  outline: none;
+}
+
+.doc-icon {
+  font-size: 150%;
+}
