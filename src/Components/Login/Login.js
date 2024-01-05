@@ -1,29 +1,56 @@
 import React, { useState } from 'react';
-// import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-// import { auth } from '../../firebase';
 import styles from './Login.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const Login = ({ onClose }) => {
-  const [username, setUsername] = useState('');
+  const [sdi, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const myStudiesLogo = '/mystudies-logo.png';
 
-  const handleLogin = () => {
-    // Handle login logic here
-    // You can add authentication logic or call an authentication API
-    console.log('Logging in with:', username, password);
-    // Close the login pop-up after successful login
-    onClose();
-  };
+  async function handleLogin(e) {
+    e.preventDefault();
 
+    try {
+      console.log('Attempting login with sdi:', sdi);
+
+      if (!db) {
+        console.error('Firestore database instance is not available.');
+        return;
+      }
+
+      const q = query(collection(db, 'students'), where('sdi', '==', sdi));
+      const querySnapshot = await getDocs(q);
+      if (!querySnapshot.empty) {
+        const docSnapshot = querySnapshot.docs[0];
+
+        if (docSnapshot.data().password === password) {
+          const user_role = docSnapshot.data().role;
+          const user_sdi = docSnapshot.data().sdi;
+
+
+          localStorage.setItem('role', user_role);
+          localStorage.setItem('sdi', user_sdi);
+
+          window.location.href = './classes';
+          console.log('Found User:', docSnapshot.data());
+        } else {
+          console.log('Incorrect password!');
+        }
+      } else {
+        console.log('No such document with the given sdi:', sdi);
+      }
+    } catch (error) {
+      console.error('Login error:', error.message);
+    }
+  }
   const placeholderStyle = {
     fontStyle: 'italic',
     color: '#888',
-    fontFamily: 'Manrope', 
+    fontFamily: 'Manrope',
   };
 
   return (
@@ -48,7 +75,7 @@ const Login = ({ onClose }) => {
               Όνομα Χρήστη
               <input
                 type="text"
-                value={username}
+                value={sdi}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Εισάγετε το Όνομα Χρήστη σας"
                 style={placeholderStyle}
@@ -71,61 +98,13 @@ const Login = ({ onClose }) => {
           {/* Login button */}
           <div className={styles.formGroup}>
             <button type="button" onClick={handleLogin} className={styles.loginButton}>
-              Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']}/> 
+              Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']} />
             </button>
           </div>
         </form>
-
-
       </div>
     </div>
   );
 };
 
 export default Login;
-
-
-
-
-
-
-
-
-
-
-
-// const Login = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [error, setError] = useState(null);
-
-//   const auth = getAuth(); 
-
-//   const handleLogin = async () => {
-//     try {
-//       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-//       console.log('User logged in:', userCredential.user.uid);
-//       setError(null);
-//     } catch (error) {
-//       console.error('Login error:', error);
-//       setError(error.message);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Login</h2>
-//       <label>Email:</label>
-//       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-
-//       <label>Password:</label>
-//       <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-
-//       <button onClick={handleLogin}>Login</button>
-
-//       {error && <p style={{ color: 'red' }}>{error}</p>}
-//     </div>
-//   );
-// };
-
-// export default Login;

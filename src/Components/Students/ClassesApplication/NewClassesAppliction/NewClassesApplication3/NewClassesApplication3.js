@@ -29,13 +29,10 @@ function NewClassesApplication3() {
   
       const studentId = '2a5iiuGDHgvDPwBkVoAk';
   
-      // Assuming you have a collection named 'applications'
       const applicationsCollection = collection(db, 'applications');
   
-      // Filter classes with true flag
       const selectedClasses = Object.keys(markedClasses).filter(className => markedClasses[className]);
   
-      // Create an application object
       const applicationData = {
         studentId,
         submit: true,
@@ -45,10 +42,9 @@ function NewClassesApplication3() {
         }, {}),
       };
   
-      // Add the application to the 'applications' collection
+
       const applicationRef = await addDoc(applicationsCollection, applicationData);
   
-      // Update the 'submit' field in the student document
       const studentDocRef = doc(db, 'students', studentId);
       await updateDoc(studentDocRef, { submit: true, applicationId: applicationRef.id });
   
