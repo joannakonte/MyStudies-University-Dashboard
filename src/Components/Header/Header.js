@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './Header.module.css'; 
-import items from "../../data/sidebarStudents.json"
+import items from "../../data/allPages.json"
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import { useLocation } from 'react-router-dom';
 import { HiUserCircle, HiHome, HiArrowRightOnRectangle } from "react-icons/hi2";
@@ -20,7 +20,7 @@ function Header() {
 
     const location = useLocation();
     const currentPath = location.pathname;
-    const currentPage = items.find(item => currentPath.includes(item.path))
+    const currentPage = items.find(item => currentPath.includes(item.path));
 
     const iconMap = {
         HiOutlineUserCircle: <HiUserCircle  />,

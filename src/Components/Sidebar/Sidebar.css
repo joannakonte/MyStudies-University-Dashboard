@@ -1,12 +1,12 @@
 .sidebar{
   position: fixed;
-    /* top: 18%; */
-    width: 15%;
-    height: calc(100% - 18%);
-    background-color: rgba(13, 139, 217, 0.6);
-    transition: left 0.3s ease;
-    /* padding-top: 60px; */
-    font-size: 100%;    
+  /* top: 18%; */
+  width: 15%;
+  height: calc(100% - 18%);
+  background-color: rgba(13, 139, 217, 0.6);
+  transition: left 0.3s ease;
+  /* padding-top: 60px; */
+  font-size: 100%;    
 }
 
 .sidebar-item{
@@ -80,8 +80,9 @@
 }
 
 .sidebar h1 {
-  font-size: 120%;
+  font-size: 90%;
   color: #FFFFFF;
+  /* padding-top: 5%; */
 }
 
 .rest {

@@ -1,30 +1,30 @@
 import React, { useState } from 'react';
-import styles from './StudentDetails.module.css'; 
+import styles from './StudentDetails.module.css';
 import Sidebar from '../../../Sidebar/Sidebar';
 import Header from '../../../Header/Header'
 
+import SemesterTable from '../../Classes/SemesterTable';
+import TableComponent from '../../../DataTable/DataTable';
+
 function StudentDetails(){
-    const [setSelectedSemester] = useState(1); 
+    const [selectedSemester, setSelectedSemester] = useState(1); 
 
     return (
-        <div>
-            <Header />
-            <Sidebar setSelectedSemester={setSelectedSemester} />
+        <div className={styles.grid_container}>
+            <div className={styles.item1}>
+                <Header />
+            </div>
 
-            <div className={styles.main}>
-                <div className={styles.grid_container}>
-                    {/* Column 1 */}
-                    <div className={styles.item1}>
-                        column1
-                    </div> 
+            <div className={styles.item2}>
+                <Sidebar setSelectedSemester={setSelectedSemester} />
+            </div>
 
-                    {/* Column 2 */}
-                    <div className={styles.item2}>
-                        column2
-                    </div>  
-                </div>
+            <div className={styles.item3}>
+                <SemesterTable onSelectSemester={setSelectedSemester} />
+            </div>
 
-
+            <div className={styles.item4}>
+                <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} pageStyle={styles}  />
             </div>
         </div>
     );

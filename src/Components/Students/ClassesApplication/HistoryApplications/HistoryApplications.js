@@ -1,7 +1,6 @@
 
 
 import React, { useState, useEffect } from 'react';
-import Breadcrumb from '../../../Breadcrumb/Breadcrumb';
 import Sidebar from '../../../Sidebar/Sidebar';
 import Header from '../../../Header/Header';
 import TableComponent from '../../../DataTable/DataTable';
@@ -20,7 +19,6 @@ useEffect(() => {
 return (
     <div>
     <Header />
-    <Breadcrumb />
     <Sidebar />
     {/* <h1 className={style['page-title']}><HiDocumentText className={style['doc-icon']} />Ιστορικό Δηλώσεων</h1> */}
     <TableComponent showOptionColumn={false} selectedSemester={selectedSemester}

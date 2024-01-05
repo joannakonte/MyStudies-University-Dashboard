@@ -1,11 +1,13 @@
 [
     {
         "title": "Προφίλ",
+        "icon": "HiOutlineUserCircle",
         "path": "/home/profile"
     },
     {
         "title": "Στοιχεία Φοιτητή",
-        "path": "/home/profile/general-student"
+        "icon": "HiOutlineUserCircle",
+        "path": "/home/profile/student-details"
     },
     {
         "title": "Προσωπικά Στοιχεια",
@@ -29,6 +31,7 @@
     },
     {
         "title": "Ιστορικό Δηλώσεων",
+        "icon": "HiDocumentText",
         "path": "/home/history-applications"
     },
     {

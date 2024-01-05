@@ -3,7 +3,6 @@ import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
 import SemesterTable from './SemesterTable';
 import TableComponent from '../../DataTable/DataTable';
-// import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import defaultstyle from '../../DataTable/DefaultTable.module.css';
 
 function Classes() {

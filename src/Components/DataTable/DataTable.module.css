@@ -27,18 +27,18 @@ table {
     text-align: left;
     font-size: 90%;
 }
-.table-cell.icon
-{
+
+.table-cell.icon {
     padding: 12px;
     border: 1px solid #ddd;
     color: black;
     margin-left: 1px;
 }
 
-.table-cell.class
-{
+.table-cell.class {
     /* width: 0%;  */
 }
+
 .eye {
     text-align: center;
     padding: 12px;

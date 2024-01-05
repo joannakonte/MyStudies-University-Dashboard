@@ -1,9 +1,10 @@
 .semestertable {  
-    margin: 5% 10% 15% 16%;
-    padding: 2%;
+    /* margin: 5% 10% 15% 16%; */
+    /* padding: 2%; */
     background-color: rgba(13, 139, 217, 0.15);
-    width: 8%; 
+    width: 80%; 
     border-collapse: collapse;
+    margin-left: 20%;
 }
   
 .semestertable tr {
