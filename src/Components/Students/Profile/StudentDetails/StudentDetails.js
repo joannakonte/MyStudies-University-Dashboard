@@ -25,20 +25,42 @@ function StudentDetails(){
 
             <div className={styles.item4}>
                 <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} pageStyle={styles}  />
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
-                <p>HELLO</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
+                <p>hello</p>
             </div>
-            {/* <br></br> */}
+
         </div>
     );
 }
