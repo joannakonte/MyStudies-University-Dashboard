@@ -11,6 +11,9 @@ import FAQ from './Components/Students/FAQ/FAQ';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
 import StudentDetails from './Components/Students/Profile/StudentDetails/StudentDetails';
+
+import Profile from './Components/Professors/Profile/Profile';
+
 import './App.css';
 
 function App() {
@@ -30,6 +33,9 @@ function App() {
           <Route path="/home/history-applications/new-application1" element={<NewClassesApplication1 />}/>
           <Route path="/home/history-applications/new-application2" element={<NewClassesApplication2 />}/>
           <Route path="/home/history-applications/new-application3" element={<NewClassesApplication3 />}/>
+
+
+          <Route path="/professors/προφίλ" element={<Profile />}/>
         </Routes>
       </BrowserRouter>
     </div>
