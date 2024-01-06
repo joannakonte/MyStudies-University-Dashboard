@@ -1,5 +1,5 @@
 /* ================ | CSS Grid |================ */
-.grid_container {
+.gridContainer {
     display: grid;
     grid-template-areas:
       'header header header header header'
@@ -12,7 +12,7 @@
     /* padding-bottom: 15%; */
 }
   
-.grid_container > div {
+.gridContainer > div {
     /* background-color: rgba(255, 255, 255, 0.8); */
     /* text-align: left; */
     border: 1px solid #ff0000;
@@ -20,14 +20,16 @@
     /* font-size: 30px; */
 }
 
-.item1 { 
+.header { 
     grid-area: header; 
     /* background-color: #ffffff; */
-    position: sticky;
+    /* position: sticky; */
+    /* position: fixed; */
+
     /* border-right: 10px solid #ff0000; */
 }
 
-.item2 { 
+.sidebar { 
     grid-area: sidebar;
 
     /* background-color: #ffffff;  */

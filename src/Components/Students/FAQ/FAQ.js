@@ -34,35 +34,34 @@ function FAQ() {
   };
   
     return (
-      <div>
-        <Header />
-        <Breadcrumb />
-        <Sidebar setSelectedSemester={setSelectedSemester} />
+      <div className={styles.gridContainer}>
+        <div className={styles.header}>
+          <Header />
+        </div>
+
+        <div className={styles.sidebar}>
+          <Sidebar setSelectedSemester={setSelectedSemester} />
+        </div>
 
         <div className={styles.faqContainer}>
-          <h2>Συχνές Ερωτήσεις</h2>
           
-          <div className={styles.dropdown}>
+        <div className={styles.dropdown}>
             <h2>Ερώτηση Σχετικά με:</h2>
-            <button onClick={toggleDropdown} className={styles['dropdown-toggle']}>
-              {selectedCategory}
-              <FontAwesomeIcon icon={faAngleDown} className={styles['down-arrow']}/>
-            </button>
-            {dropdownOpen && (
-              <div className={`${styles['dropdown-content']} ${dropdownOpen ? styles.show : ''}`}>
+            <select 
+                value={selectedCategory} 
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className={styles['dropdown-select']}
+            >
                 {categories.map(category => (
-                  <button key={category} onClick={() => {
-                    setSelectedCategory(category);
-                    toggleDropdown(); 
-                  }}>                  
-                  {category}
-                  </button>
+                    <option key={category} value={category}>
+                        {category}
+                    </option>
                 ))}
-              </div>
-            )}
-          </div>
+            </select>
+        </div>
+
           
-          <div className={dropdownOpen ? styles.withDropdownOpen : ''}>
+        <div className={dropdownOpen ? styles.withDropdownOpen : ''}>
             {faqData
               .filter(faq => selectedCategory === 'Όλες' || faq.category === selectedCategory)
               .map((faq, index) => (
@@ -80,7 +79,7 @@ function FAQ() {
               </div>
             ))}
           </div>
-        </div>
+        </div>  
     </div>
     );
 }
