@@ -71,6 +71,7 @@ function NewClassesApplication3() {
         pageStyle={appstyle}
         submission={true}
         markedClasses={markedClasses}
+        collectionName={'classes'}
       />
       <a href="/home/history-applications/submission" className={style['save']}>
         Προσωρινή Αποθήκευση

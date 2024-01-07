@@ -1,0 +1,23 @@
+[
+    {
+        "title": "Είδος Πιστοποιητικού",
+        "collectionfield": "cert_type"
+    },
+    {
+        "title": "Ημερομηνία Αίτησης",
+        "collectionfield": "request_date"
+    },
+    {
+        "title": "Αριθμός Αντιτύπων",
+        "collectionfield": "copies_num"
+    },
+    {
+        "title": "Κατάσταση",
+        "collectionfield": "status"
+    },
+    {
+        "title": "Λήψη",
+        "collectionfield": "download"
+    }
+
+]

@@ -6,8 +6,9 @@ import { HiOutlineEye, HiArrowsUpDown } from 'react-icons/hi2';
 import PopUp from './PopUp';
 import SearchBar from './SearchBar';
 import filterAndSortData from './DataTableUtils';
+import items from "../../data/dataTableHeaderClasses.json"
 
-const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submission }) => {
+const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submission, collectionName }) => {
   const [info, setInfo] = useState([]);
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedClass, setSelectedClass] = useState(null);
@@ -31,7 +32,7 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
 
   const fetchData = async () => {
     try {
-      const classesCollection = collection(db, 'classes');
+      const classesCollection = collection(db, collectionName);
       const querySnapshot = await getDocs(classesCollection);
       const classesData = querySnapshot.docs.map((doc) => doc.data());
       setInfo(classesData);
@@ -60,8 +61,8 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
   };
   
   
-  const openPopup = (classes) => {
-    setSelectedClass(classes);
+  const openPopup = (collectionName) => {
+    setSelectedClass(collectionName);
   };
 
   const closePopup = () => {
@@ -80,46 +81,60 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
         <thead>
           <tr className={styles['table-header']}>
             {showOptionColumn && <th className={styles['table-cell']}>Επιλογή</th>}
-            <th className={`${styles['table-cell']} ${styles.class}`} onClick={() => toggleSortOrder('name')}>
-              Μαθήμα <HiArrowsUpDown className={styles.icon} />
-            </th>
-            <th className={`${styles['table-cell']} ${styles.icon}`} onClick={() => toggleSortOrder('ECTS')}>
-              ECTS <HiArrowsUpDown className={styles.icon} />
-            </th>
-            <th className={`${styles['table-cell']} ${styles.icon}`} onClick={() => toggleSortOrder('category')}>
-              Κατηγορία <HiArrowsUpDown className={styles.icon} />
-            </th>
-            <th className={`${styles['table-cell']} ${styles.icon}`} onClick={() => toggleSortOrder('id')}>
-              Κωδικός <HiArrowsUpDown className={styles.icon} />
-            </th>
-            <th className={`${styles['table-cell']} ${styles.icon}`} onClick={() => toggleSortOrder('semester')}>
-              Εξάμηνο <HiArrowsUpDown className={styles.icon} />
-            </th>
-            <th className={styles['table-cell']}>Λεπτομέρειες</th>
+            {items.map((field, index) => (
+              <th key={index} className={`${styles['table-cell']} ${field.collectionfield === 'checkbox' ? styles.checkbox : ''}`} onClick={() => field.collectionfield !== 'checkbox' && toggleSortOrder(field.collectionfield)}>
+                {field.title} {field.collectionfield !== 'checkbox' && <HiArrowsUpDown className={styles.icon} />}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
-        {filteredAndSortedData.map((classes, index) => (
-            <tr key={index} className={`${styles['table-row']} ${selectedClass === classes ? 'clicked' : ''}`}>
+        {/* {filteredAndSortedData.map((collectionName, index) => (
+            <tr key={index} className={`${styles['table-row']} ${selectedClass === collectionName ? 'clicked' : ''}`}>
               {showOptionColumn && (
                 <td className={styles.checkbox}>
                   <input
                     type="checkbox"
-                    checked={checkboxes[classes.id] || false}
-                    onChange={(e) => handleCheckboxChange(classes.id, e.target.checked)}
+                    checked={checkboxes[collectionName.id] || false}
+                    onChange={(e) => handleCheckboxChange(collectionName.id, e.target.checked)}
                   />
                 </td>
               )}
-              <td className={`${styles['table-cell']} ${styles.class}`}>{classes.name}</td>
-              <td className={styles['table-cell']}>{classes.ECTS}</td>
-              <td className={styles['table-cell']}>{classes.category}</td>
-              <td className={styles['table-cell']}>{classes.id}</td>
-              <td className={styles['table-cell']}>{classes.semester}</td>
-              <td className={styles.eye} onClick={() => openPopup(classes)}>
-                <HiOutlineEye />
+              <td className={`${styles['table-cell']} ${styles.class}`}>{collectionName.name}</td>
+              <td className={styles['table-cell']}>{collectionName.ECTS}</td>
+              <td className={styles['table-cell']}>{collectionName.category}</td>
+              <td className={styles['table-cell']}>{collectionName.id}</td>
+              <td className={styles['table-cell']}>{collectionName.semester}</td>
+              <td className={styles.eye} onClick={() => openPopup(collectionName)}>
+              <HiOutlineEye />
               </td>
             </tr>
-          ))}
+          ))} */}
+          {collectionName === 'classes' && filteredAndSortedData.map((collectionName, index) => (
+  <tr key={index} className={`${styles['table-row']} ${selectedClass === collectionName ? 'clicked' : ''}`}>
+    {showOptionColumn && (
+      <td className={styles.checkbox}>
+        <input
+          type="checkbox"
+          checked={checkboxes[collectionName.id] || false}
+          onChange={(e) => handleCheckboxChange(collectionName.id, e.target.checked)}
+        />
+      </td>
+    )}
+    {items.map((field, fieldIndex) => (
+      <td key={fieldIndex} className={`${styles['table-cell']} ${styles[field.collectionfield]}`}>
+        {field.collectionfield === 'details' ? (
+          <div className={styles.eye} onClick={() => openPopup(collectionName)}>
+            <HiOutlineEye />
+          </div>
+        ) : (
+          String(collectionName[field.collectionfield])
+        )}
+      </td>
+    ))}
+  </tr>
+))}
+
         </tbody>
       </table>
       <PopUp isOpen={!!selectedClass} onClose={closePopup} selectedClass={selectedClass} />

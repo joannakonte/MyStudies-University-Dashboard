@@ -14,7 +14,7 @@ function Classes() {
       {/* <Breadcrumb /> */}
       <Sidebar setSelectedSemester={setSelectedSemester} />
       <SemesterTable onSelectSemester={setSelectedSemester} />
-      <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} pageStyle={defaultstyle} />
+      <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} pageStyle={defaultstyle} collectionName={'classes'} />
     </div>
   );
 }
