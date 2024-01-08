@@ -4,10 +4,46 @@
 
 } */
 
+.searchbar {
+    /* position: relative; */
+    /* left:0% */
+    margin-left: 80%;
+}
+
+.searchicon {
+    position: absolute;
+    /* right: 45%;*/
+    top: 30%; 
+}
+
+.searchinput {
+    padding: 1% 2% 1% 2%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 12px;
+    font-style: italic;
+    width: 30%;
+  }
+  
+  .searchinput:focus {
+    /* border-color: rgba(13, 139, 217, 1); */
+    /* box-shadow: 0 0 5px rgba(13, 139, 217, 0.4); */
+    outline: none;
+  }
+
+
+.tablecontainer {
+    /* margin: 10% 25% 5% 25%;  */
+    width: 100%;
+    position: absolute;
+}
+
+
 table {
     border-collapse: collapse;
     border-radius: 5px;
     overflow: hidden;
+    margin-top: 1.8%;
     /* position: absolute; */
 }
 

@@ -22,7 +22,7 @@ return (
     <Sidebar />
     {/* <h1 className={style['page-title']}><HiDocumentText className={style['doc-icon']} />Ιστορικό Δηλώσεων</h1> */}
     <TableComponent showOptionColumn={false} selectedSemester={selectedSemester}
-     pageStyle={appstyle} submission={false} showAllData={true} />
+     pageStyle={appstyle} submission={false} showAllData={true} collectionName={'classes'}  />
     <a href="/home/history-applications/new-application1" className={style['new-app']}>
     <HiMiniPlus /> Nέα Δήλωση
     </a>

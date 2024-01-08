@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Μάθημα",
+        "collectionfield": "name"
+    },
+    {
+        "title": "ECTS",
+        "collectionfield": "ECTS"
+    },
+    {
+        "title": "Κατηγορία",
+        "collectionfield": "category"
+    },
+    {
+        "title": "Κωδικός",
+        "collectionfield": "id"
+    },
+    {
+        "title": "Εξάμηνο",
+        "collectionfield": "semester"
+    },
+    {
+        "title": "Βαθμολογία",
+        "collectionfield": "grade"
+    }
+
+]

@@ -209,3 +209,178 @@ const filterAndSortData = () => {
 };
 
 export default TableComponent;
+
+import React, { useState, useEffect } from 'react';
+import { db } from '../../firebase';
+import { collection, getDocs } from 'firebase/firestore';
+import styles from './DataTable.module.css';
+import { HiOutlineEye, HiArrowsUpDown } from 'react-icons/hi2';
+import PopUp from './PopUp';
+import SearchBar from './SearchBar';
+import filterAndSortData from './DataTableUtils';
+
+const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submission }) => {
+  const [info, setInfo] = useState([]);
+  const [checkboxes, setCheckboxes] = useState({});
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [sortColumn, setSortColumn] = useState(null);
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const tableFields = [
+    {
+      "title": "Επιλογή",
+      "collectionfield": "checkbox"
+    },
+    {
+      "title": "Μαθήμα",
+      "collectionfield": "name"
+    },
+    {
+      "title": "ECTS",
+      "collectionfield": "ECTS"
+    },
+    {
+      "title": "Κατηγορία",
+      "collectionfield": "category"
+    },
+    {
+      "title": "Κωδικός",
+      "collectionfield": "id"
+    },
+    {
+      "title": "Εξάμηνο",
+      "collectionfield": "semester"
+    },
+    {
+      "title": "Λέπτομέρειες",
+      "collectionfield": "details"
+    },
+  ];
+
+  const filteredAndSortedData = filterAndSortData(
+    info, submission, selectedSemester, checkboxes,
+    sortColumn, sortOrder, searchQuery);
+
+  useEffect(() => {
+    fetchData();
+
+    const localStorageContent = localStorage.getItem('objectGreeting');
+    if (localStorageContent) {
+      const parsedCheckboxes = JSON.parse(localStorageContent);
+      setCheckboxes(parsedCheckboxes);
+    }
+  }, [submission]);
+
+  const fetchData = async () => {
+    try {
+      const classesCollection = collection(db, 'classes');
+      const querySnapshot = await getDocs(classesCollection);
+      const classesData = querySnapshot.docs.map((doc) => doc.data());
+      setInfo(classesData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const handleCheckboxChange = (id, isChecked) => {
+    setCheckboxes((prevCheckboxes) => {
+      const updatedCheckboxes = {
+        ...prevCheckboxes,
+        [id]: isChecked,
+      };
+
+      console.log('Updated Checkboxes:', updatedCheckboxes);
+
+      const localStorageKey = submission ? 'markedClasses' : 'objectGreeting';
+
+      const myObjectString = JSON.stringify(updatedCheckboxes);
+      localStorage.setItem(localStorageKey, myObjectString);
+
+      return updatedCheckboxes;
+    });
+  };
+
+  const openPopup = (classes) => {
+    setSelectedClass(classes);
+  };
+
+  const closePopup = () => {
+    setSelectedClass(null);
+  };
+
+  const toggleSortOrder = (column) => {
+    setSortColumn(column);
+    setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
+  };
+
+  return (
+    <div className={`${styles['table-container']} `}>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} />
+      <table className={styles.table}>
+        <thead>
+          <tr className={styles['table-header']}>
+            {showOptionColumn && (
+              <th className={`${styles['table-cell']} ${styles.checkbox}`} onClick={() => toggleSortOrder('checkbox')}>
+                Επιλογή {<HiArrowsUpDown className={styles.icon} />}
+              </th>
+            )}
+            {tableFields.map((field, index) => (
+              <th key={index} className={`${styles['table-cell']} ${field.collectionfield === 'checkbox' ? styles.checkbox : ''}`} onClick={() => field.collectionfield !== 'checkbox' && toggleSortOrder(field.collectionfield)}>
+                {field.title} {field.collectionfield !== 'checkbox' && <HiArrowsUpDown className={styles.icon} />}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {filteredAndSortedData.map((classes, index) => (
+            <tr key={index} className={`${styles['table-row']} ${selectedClass === classes ? 'clicked' : ''}`}>
+              {showOptionColumn && (
+                <td className={`${styles['table-cell']} ${styles.checkbox}`}>
+                  <input
+                    type="checkbox"
+                    checked={checkboxes[classes.id] || false}
+                    onChange={(e) => handleCheckboxChange(classes.id, e.target.checked)}
+                  />
+                </td>
+              )}
+              {tableFields.map((field, fieldIndex) => (
+                <td key={fieldIndex} className={`${styles['table-cell']} ${field.collectionfield === 'checkbox' ? styles.checkbox : ''}`}>
+                  {field.collectionfield === 'checkbox' ? (
+                    <input
+                      type="checkbox"
+                      checked={checkboxes[classes.id] || false}
+                      onChange={(e) => handleCheckboxChange(classes.id, e.target.checked)}
+                    />
+                  ) : (
+                    field.collectionfield === 'details' ? (
+                      <div className={styles.eye} onClick={() => openPopup(classes)}>
+                        <HiOutlineEye />
+                      </div>
+                    ) : (
+                      String(classes[field.collectionfield]) // Convert to string or render properties individually
+                    )
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {showOptionColumn && (
+        <PopUp isOpen={!!selectedClass} onClose={closePopup} selectedClass={selectedClass} />
+      )}
+      {selectedClass && (
+        <div className={styles['selected-class-details']}>
+          <h3>Selected Class Details</h3>
+          {tableFields.map((field, index) => (
+            <p key={index}>{field.title}: {field.collectionfield === 'details' ? '' : selectedClass[field.collectionfield]}</p>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+
+

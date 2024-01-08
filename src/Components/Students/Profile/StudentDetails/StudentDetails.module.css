@@ -1,5 +1,5 @@
 /* ================ | CSS Grid |================ */
-.grid_container {
+.gridContainer {
     display: grid;
     grid-template-areas:
       'header header header header header'
@@ -8,11 +8,11 @@
     /* grid-template-rows: 20% 20% 60%; */
     /* gap: 10px; */
     /* background-color: #2196F3; */
-    position: fixed;
+    /* position: fixed; */
     /* padding-bottom: 15%; */
 }
   
-.grid_container > div {
+.gridContainer > div {
     /* background-color: rgba(255, 255, 255, 0.8); */
     /* text-align: left; */
     border: 1px solid #ff0000;
@@ -20,13 +20,16 @@
     /* font-size: 30px; */
 }
 
-.item1 { 
+.header { 
     grid-area: header; 
     /* background-color: #ffffff; */
+    /* position: sticky; */
+    /* position: fixed; */
+
     /* border-right: 10px solid #ff0000; */
 }
 
-.item2 { 
+.sidebar { 
     grid-area: sidebar;
 
     /* background-color: #ffffff;  */
@@ -35,7 +38,7 @@
 
 .item3 { 
     grid-area: semestertable; 
-    padding-top: 20%;
+    padding-top: 35%;
 }
 
 .item4 { 
@@ -45,81 +48,4 @@
 
 
 
-.tablecontainer {
-    /* margin: 10% 25% 5% 25%;  */
-    width: 100%;
-    position: absolute;
-}
 
-
-.searchbar {
-    position: relative;
-    top: 25%;
-    left: 40%;
-    width: 20%;
-    margin-bottom: 1%;
-    margin-top: -1%;
-  }
-  
-  .searchiconcontainer {
-    position: absolute;
-    left: 5%;
-    top: 25%;
-  }
-  
-  .searchinput {
-    padding: 4% 4% 4% 16%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 12px;
-    font-style: italic;
-    width: 300px;
-  }
-  
-  .searchinput:focus {
-    border-color: rgba(13, 139, 217, 1);
-    box-shadow: 0 0 5px rgba(13, 139, 217, 0.4);
-    outline: none;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .main {
-    transform: translateX(23.5%);
-    width: 75%;
-    height: 100%;
-} */
-
-/* ================ | CSS Grid |================ */
-/* .grid_container {
-    display: grid;
-    grid-template-areas:
-      'column1 column2'
-      'column1 column2 ';
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
-    background-color: #2196F3;
-}
-  
-.grid_container > div {
-    text-align: left;
-    border: 2px solid #ff0000;
-}
-
-.item1 { 
-    grid-area: column1; 
-}
-
-.item2 { 
-    grid-area: column2;
-} */

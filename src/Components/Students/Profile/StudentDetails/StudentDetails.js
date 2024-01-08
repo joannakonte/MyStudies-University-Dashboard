@@ -10,12 +10,12 @@ function StudentDetails(){
     const [selectedSemester, setSelectedSemester] = useState(1); 
 
     return (
-        <div className={styles.grid_container}>
-            <div className={styles.item1}>
+        <div className={styles.gridContainer}>
+            <div className={styles.header}>
                 <Header />
             </div>
 
-            <div className={styles.item2}>
+            <div className={styles.sidebar}>
                 <Sidebar setSelectedSemester={setSelectedSemester} />
             </div>
 
