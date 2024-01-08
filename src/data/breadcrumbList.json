@@ -1,0 +1,16 @@
+[
+    {
+        "title": "Προφίλ Καθηγητή",
+        "path": "/professors/profile",
+        "breadcrumb": [
+            {
+              "title": "Καθηγητές",
+              "path": "/professors"
+            },
+            {
+                "title": "Προφίλ Καθηγητή",
+                "path": "/professors/profile"
+            }
+        ]
+    }
+]

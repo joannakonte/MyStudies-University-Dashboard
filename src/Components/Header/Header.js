@@ -4,10 +4,9 @@ import items from "../../data/allPages.json"
 import Breadcrumb from '../Breadcrumb/Breadcrumb';
 import { useLocation } from 'react-router-dom';
 import { HiUserCircle, HiHome, HiArrowRightOnRectangle } from "react-icons/hi2";
-import { BiSolidUserCircle } from "react-icons/bi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { HiBookOpen, HiDocumentText, HiMiniDocumentChartBar, HiClipboardDocumentList, HiChevronDown, HiChevronUp   } from "react-icons/hi2";
+import { HiBookOpen, HiDocumentText, HiMiniDocumentChartBar, HiClipboardDocumentList } from "react-icons/hi2";
 
 function Header() {
     const myStudiesLogo = '/mystudies-logo.png';

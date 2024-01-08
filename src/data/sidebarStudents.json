@@ -19,6 +19,17 @@
         ]
     },
     {
+        "title": "Καθηγητής",
+        "icon": "HiOutlineUserCircle",
+        "path": "/professors",
+        "childrens": [
+          {
+            "title": "Προφίλ",
+            "path": "/professors/profile"
+          }
+        ]
+    },
+    {
         "title": "Μαθήματα",
         "icon": "HiBookOpen",
         "path": "/home/classes"
@@ -34,6 +45,7 @@
             },
             {
                 "title": "Νέα Δήλωση",
+                "icon": "HiDocumentPlus",
                 "path": "/home/history-applications/new-application1"
             }
         ]

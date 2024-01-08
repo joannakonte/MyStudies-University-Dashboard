@@ -35,7 +35,7 @@ function App() {
           <Route path="/home/history-applications/new-application3" element={<NewClassesApplication3 />}/>
 
 
-          <Route path="/professors/προφίλ" element={<Profile />}/>
+          <Route path="/professors/profile" element={<Profile />}/>
         </Routes>
       </BrowserRouter>
     </div>

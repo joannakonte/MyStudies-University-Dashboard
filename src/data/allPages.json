@@ -1,5 +1,10 @@
 [
     {
+        "title": "Αρχική",
+        "icon": "HiMiniDocumentChartBar",
+        "path": "/home"
+    },
+    {
         "title": "Προφίλ",
         "icon": "HiOutlineUserCircle",
         "path": "/home/profile"
@@ -11,22 +16,27 @@
     },
     {
         "title": "Προσωπικά Στοιχεια",
+        "icon": "HiMiniDocumentChartBar",
         "path": "/home/profile/personal-student"
     },
     {
         "title": "Ιστορικό Επισκέψεων",
+        "icon": "HiMiniDocumentChartBar",
         "path": "/home/profile/history-visits"
     },
     {
         "title": "Μαθήματα",
+        "icon": "HiMiniDocumentChartBar",
         "path": "/home/classes"
     },
     {
         "title": "Συχνές Ερωτήσεις",
+        "icon": "HiMiniDocumentChartBar",
         "path": "/home/faq"
     },
     {
         "title": "Δηλώσεις",
+        "icon": "HiMiniDocumentChartBar",
         "path": "/home/history-applications"
     },
     {
@@ -36,14 +46,17 @@
     },
     {
         "title": "Νέα Δήλωση-Bήμα1",
+        "icon": "HiMiniDocumentChartBar",
         "path": "/home/history-applications/new-application1"
     },
     {
         "title": "Νέα Δήλωση-Bήμα2",
+        "icon": "HiMiniDocumentChartBar",
         "path": "/home/history-applications/new-application2"
     },
     {
         "title": "Νέα Δήλωση-Bήμα3",
+        "icon": "HiMiniDocumentChartBar",
         "path": "/home/history-applications/new-application3"
     },
     {
@@ -53,10 +66,12 @@
     },
     {
         "title": "Πιστοποιητικά",
+        "icon": "HiMiniDocumentChartBar",
         "path": "/home/certificates"
     },
     {
-        "title": "Αρχική",
-        "path": "/home"
+        "title": "Προφίλ Καθηγητή",
+        "icon": "HiMiniDocumentChartBar",
+        "path": "/professors/profile"
     }
 ]
