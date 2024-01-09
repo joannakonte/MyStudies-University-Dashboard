@@ -56,8 +56,8 @@
 .faqAnswerOpen {
     display: block;
     background-color: rgba(13, 139, 217, 0.15);
+    text-align: left;
 }
-
 
 /* =========== | FAQs Text | =========== */
 .faqQuestionText {

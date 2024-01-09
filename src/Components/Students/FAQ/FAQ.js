@@ -1,32 +1,52 @@
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
-import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import styles from './FAQ.module.css'; 
 
 function FAQ() {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const toggleDropdown = () => {
-      setDropdownOpen(!dropdownOpen);
-  };
+  const [dropdownOpen] = useState(false);
   const [setSelectedSemester] = useState(1); 
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Όλες');
-  const categories = ['Όλες', 'Δηλώσεις', 'Πιστοποιητικά'];
+  const categories = ['Όλες', 'Δηλώσεις', 'Πιστοποιητικά', 'Βαθμολογία', "Προσωπικά Στοιχεία"];
 
   const faqData = [
     {
+      question: 'Πώς μπορώ να επεξεργαστώ τα προσωπικά μου στοιχεία;',
+      answer: [ 
+            'Πηγαίνετε στη σελίδα "Προφίλ".',
+            'Στο χώρο που αναγράφεται "Προσωπικά Στοιχεία" επιλέξετε την επιλογή επεξεργασία.',
+        ],
+      category: 'Προσωπικά Στοιχεία'
+    },
+    {
       question: 'Πώς μπορώ να δηλώσω μάθημα;',
-      answer: 'Κάντε κλικ στη λέξη ρυθμίσεις.',
+      answer: [ 
+            'Πηγαίνετε στη σελίδα "Δηλώσεις".',
+            'Επιλέξτε "Νέα Δήλωση".',
+            'Ακολουθείστε τα βήματα που εμφανίζονται στην οθόνη.',
+            'Επιλέξτε "Προσωρινή Αποθήκευση" ή "Οριστική Υποβολή".'
+        ],
       category: 'Δηλώσεις'
     },
     {
       question: 'Πώς μπορώ να δω τα πιστοποιητικά που έχω ζητήσει;',
-      answer: 'Κάντε κλικ στη λέξη ρυθμίσεις.',
+      answer: [ 
+        'Πηγαίνετε στη σελίδα "Πιστοποιητικά".',
+        'Εκεί εμφανίζονται τα πιστοποιητικά που εκκρεμούν, εγκρίθηκαν ή απορίφθηκαν.'
+      ],
       category: 'Πιστοποιητικά'
     },
+    {
+      question: 'Πώς μπορώ να δω τις βαθμολογίες μου;',
+      answer: [ 
+        'Πηγαίνετε στη σελίδα "Βαθμολογίες".',
+        'Εκεί εμφανίζονται οι βαθμολογίες ανα εξεταστική περίοδο.'
+      ],
+      category: 'Βαθμολογία'
+    }
   ];
 
   const toggle = (index) => {
@@ -73,9 +93,15 @@ function FAQ() {
                       <span className={styles.faqQuestionText}>{faq.question}</span>
                       <FontAwesomeIcon icon={activeIndex === index ? faMinus : faPlus} />
                   </button>
-                  <div className={activeIndex === index ? styles.faqAnswerOpen : styles.faqAnswer}>
-                      <span className={styles.faqAnswerText}>{faq.answer}</span>
-                  </div>
+                  {activeIndex === index && (
+                      <div className={styles.faqAnswerOpen}>
+                          <ol>
+                              {faq.answer.map((item, idx) => (
+                                  <li key={idx}>{item}</li>
+                              ))}
+                          </ol>
+                      </div>
+                  )}
               </div>
             ))}
           </div>
