@@ -1,15 +1,15 @@
 [
     {
         "title": "Είδος Πιστοποιητικού",
-        "collectionfield": "cert_type"
+        "collectionfield": "certtype"
     },
     {
         "title": "Ημερομηνία Αίτησης",
-        "collectionfield": "request_date"
+        "collectionfield": "reqdate"
     },
     {
         "title": "Αριθμός Αντιτύπων",
-        "collectionfield": "copies_num"
+        "collectionfield": "number"
     },
     {
         "title": "Κατάσταση",

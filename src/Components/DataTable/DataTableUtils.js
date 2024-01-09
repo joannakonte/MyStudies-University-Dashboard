@@ -77,3 +77,36 @@ export const filterAndSortData2 = (info, submission, checkboxes, sortColumn, sor
     }
   });
 };
+
+export const filterAndSortDataNew = (data, sortColumn, sortOrder, searchQuery) => {
+  const filteredData = data.filter((item) => {
+    try {
+      const { certtype, reqdate, number, status, download } = item;
+      const normalizedQuery = searchQuery.toLowerCase();
+
+      return (
+        (!certtype || certtype.toLowerCase().includes(normalizedQuery)) &&
+        (!reqdate || String(reqdate).toLowerCase().includes(normalizedQuery)) &&
+        (!number || number.toString().includes(normalizedQuery)) &&
+        (!status || status.toLowerCase().includes(normalizedQuery)) &&
+        (!download || download.toLowerCase().includes(normalizedQuery))
+      );
+    } catch (error) {
+      console.error('Error in filterAndSortDataNew:', error);
+      console.log('Problematic item:', item);
+      return false;
+    }
+  });
+
+  return filteredData.sort((a, b) => {
+    const columnA = a[sortColumn];
+    const columnB = b[sortColumn];
+
+    if (typeof columnA === 'string' && typeof columnB === 'string') {
+      return sortOrder === 'asc' ? columnA.localeCompare(columnB) : columnB.localeCompare(columnA);
+    } else {
+      // Add additional checks if the columns are not strings
+      return sortOrder === 'asc' ? columnA - columnB : columnB - columnA;
+    }
+  });
+};
