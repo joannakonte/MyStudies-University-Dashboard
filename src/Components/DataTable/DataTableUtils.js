@@ -1,17 +1,15 @@
-const filterAndSortData = (info, submission, selectedSemester, checkboxes, sortColumn, sortOrder, searchQuery) => {
+export const filterAndSortData = (info, submission, selectedSemester, checkboxes, sortColumn, sortOrder, searchQuery) => {
     const filteredData = info.filter((classes) => {
       const { name, ECTS, semester, category } = classes;
       const normalizedQuery = searchQuery.toLowerCase();
   
       if (submission) {
-        // If submission is true, include all classes without checking semester
         return (
           name.toLowerCase().includes(normalizedQuery) ||
           ECTS.toString().includes(normalizedQuery) ||
           category.toLowerCase().includes(normalizedQuery)
         );
       } else {
-        // If submission is false, filter based on the selected semester
         const semesterMatch = selectedSemester.toString() === '' || semester.toString() === selectedSemester.toString();
         return (
           semesterMatch &&
@@ -48,6 +46,34 @@ const filterAndSortData = (info, submission, selectedSemester, checkboxes, sortC
       });
     }
   };
-  
-  export default filterAndSortData;
-  
+export const filterAndSortData2 = (info, submission, checkboxes, sortColumn, sortOrder, searchQuery) => {
+  const filteredData = info.filter((item) => {
+    const { name = '', ECTS = '', category = '' } = item;
+    const normalizedQuery = searchQuery.toLowerCase();
+
+    if (submission) {
+      return (
+        name.toLowerCase().includes(normalizedQuery) ||
+        ECTS.toString().includes(normalizedQuery) ||
+        category.toLowerCase().includes(normalizedQuery)
+      );
+    } else {
+      return (
+        name.toLowerCase().includes(normalizedQuery) ||
+        ECTS.toString().includes(normalizedQuery) ||
+        category.toLowerCase().includes(normalizedQuery)
+      );
+    }
+  });
+
+  return filteredData.sort((a, b) => {
+    const columnA = a[sortColumn] || '';
+    const columnB = b[sortColumn] || '';
+
+    if (typeof columnA === 'string') {
+      return sortOrder === 'asc' ? columnA.localeCompare(columnB) : columnB.localeCompare(columnA);
+    } else {
+      return sortOrder === 'asc' ? columnA - columnB : columnB - columnA;
+    }
+  });
+};

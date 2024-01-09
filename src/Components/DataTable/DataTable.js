@@ -5,7 +5,7 @@ import styles from './DataTable.module.css';
 import { HiOutlineEye, HiArrowsUpDown } from 'react-icons/hi2';
 import PopUp from './PopUp';
 import SearchBar from './SearchBar';
-import filterAndSortData from './DataTableUtils';
+import {filterAndSortData} from './DataTableUtils';
 import items from "../../data/dataTableHeaderClasses.json"
 
 const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submission, collectionName }) => {
@@ -50,7 +50,6 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
   
       console.log('Updated Checkboxes:', updatedCheckboxes);
   
-      // Use the correct local storage key based on the submission value
       const localStorageKey = submission ? 'markedClasses' : 'objectGreeting';
   
       const myObjectString = JSON.stringify(updatedCheckboxes);
@@ -89,27 +88,6 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
           </tr>
         </thead>
         <tbody>
-        {/* {filteredAndSortedData.map((collectionName, index) => (
-            <tr key={index} className={`${styles['table-row']} ${selectedClass === collectionName ? 'clicked' : ''}`}>
-              {showOptionColumn && (
-                <td className={styles.checkbox}>
-                  <input
-                    type="checkbox"
-                    checked={checkboxes[collectionName.id] || false}
-                    onChange={(e) => handleCheckboxChange(collectionName.id, e.target.checked)}
-                  />
-                </td>
-              )}
-              <td className={`${styles['table-cell']} ${styles.class}`}>{collectionName.name}</td>
-              <td className={styles['table-cell']}>{collectionName.ECTS}</td>
-              <td className={styles['table-cell']}>{collectionName.category}</td>
-              <td className={styles['table-cell']}>{collectionName.id}</td>
-              <td className={styles['table-cell']}>{collectionName.semester}</td>
-              <td className={styles.eye} onClick={() => openPopup(collectionName)}>
-              <HiOutlineEye />
-              </td>
-            </tr>
-          ))} */}
           {collectionName === 'classes' && filteredAndSortedData.map((collectionName, index) => (
   <tr key={index} className={`${styles['table-row']} ${selectedClass === collectionName ? 'clicked' : ''}`}>
     {showOptionColumn && (

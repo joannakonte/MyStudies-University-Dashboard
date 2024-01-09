@@ -23,7 +23,7 @@ function NewClassesApplication3() {
     setMarkedClasses(storedClasses);
   }, [state]);
 
-  const handleSubmission = async () => {
+  const handleSubmission = async (isTemporary) => {
     try {
       console.log('Marked Classes to Submit:', markedClasses);
   
@@ -35,22 +35,28 @@ function NewClassesApplication3() {
   
       const applicationData = {
         studentId,
-        submit: true,
-        allclasses: selectedClasses.reduce((acc, className) => {
-          acc[className] = true;
-          return acc;
-        }, {}),
+        submit: !isTemporary, 
+        allclasses: selectedClasses.map(className => ({
+          class_id: className,
+          grade: '-'
+        })),
       };
   
-
       const applicationRef = await addDoc(applicationsCollection, applicationData);
   
       const studentDocRef = doc(db, 'students', studentId);
-      await updateDoc(studentDocRef, { submit: true, applicationId: applicationRef.id });
+      await updateDoc(studentDocRef, { submit: !isTemporary, applicationId: applicationRef.id });
   
-      console.log('Application submitted successfully!');
+      console.log('Application ' + (isTemporary ? 'temporarily ' : '') + 'saved successfully!');
+  
+      if (isTemporary) {
+        window.location.href = '/home/history-applications';
+      } else {
+        window.alert('Η δήλωση σας οριστικοποιήθηκε επιτυχώς!');
+        window.location.href = '/home/history-applications';
+      }
     } catch (error) {
-      console.error('Error submitting application:', error);
+      console.error('Error saving application:', error);
     }
   };
   
@@ -73,12 +79,12 @@ function NewClassesApplication3() {
         markedClasses={markedClasses}
         collectionName={'classes'}
       />
-      <a href="/home/history-applications/submission" className={style['save']}>
-        Προσωρινή Αποθήκευση
-      </a>
-      <button className={style['submit']} onClick={handleSubmission}>
-        <HiCheck /> Οριστική υποβολή
-      </button>
+<button href="/home/history-applications" className={style['save']} onClick={() => handleSubmission(true)}>
+  Προσωρινή Αποθήκευση
+</button>
+<button className={style['submit']} onClick={() => handleSubmission(false)}>
+  <HiCheck /> Οριστική υποβολή
+</button>
     </div>
   );
 }

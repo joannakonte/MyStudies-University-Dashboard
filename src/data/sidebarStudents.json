@@ -19,17 +19,6 @@
         ]
     },
     {
-        "title": "Καθηγητής",
-        "icon": "HiOutlineUserCircle",
-        "path": "/professors",
-        "childrens": [
-          {
-            "title": "Προφίλ",
-            "path": "/professors/profile"
-          }
-        ]
-    },
-    {
         "title": "Μαθήματα",
         "icon": "HiBookOpen",
         "path": "/home/classes"
