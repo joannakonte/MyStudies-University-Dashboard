@@ -46,21 +46,21 @@ function FAQ() {
         <div className={styles.faqContainer}>
           
         <div className={styles.dropdown}>
-            <h2>Ερώτηση Σχετικά με:</h2>
-            <select 
-                value={selectedCategory} 
-                onChange={(e) => setSelectedCategory(e.target.value)}
-                className={styles['dropdown-select']}
-            >
-                {categories.map(category => (
-                    <option key={category} value={category}>
-                        {category}
-                    </option>
-                ))}
-            </select>
+          <h2>Ερώτηση Σχετικά με:</h2>
+          <div className={styles.selectWrapper}>
+              <select 
+                  value={selectedCategory} 
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className={styles['dropdown-select']}
+              >
+                  {categories.map(category => (
+                      <option key={category} value={category}>{category}</option>
+                  ))}
+              </select>
+              <FontAwesomeIcon icon={faAngleDown} className={styles['select-arrow']}/>
+          </div>
         </div>
 
-          
         <div className={dropdownOpen ? styles.withDropdownOpen : ''}>
             {faqData
               .filter(faq => selectedCategory === 'Όλες' || faq.category === selectedCategory)

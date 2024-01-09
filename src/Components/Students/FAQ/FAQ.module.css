@@ -70,6 +70,11 @@
 }
 
 /* ======== | Select button | ======== */
+.selectWrapper {
+    position: relative;
+    display: inline-block;
+}
+
 .dropdown{
     position: relative;
     display: flex;
@@ -84,7 +89,7 @@
 }
 
 .dropdown-select{
-    width: 15%; 
+    width: 100%; 
     padding: 8px 12px;
     border: 1px solid #ccc; 
     border-radius: 4px; /* Slightly rounded corners */
@@ -95,6 +100,7 @@
     -moz-appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
+    padding-right: 30px;
 }
 
 .dropdown-select option {
@@ -105,4 +111,12 @@
 
 .dropdown-select:focus {
     outline: none;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 10px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* This ensures clicks on the icon will focus the select */
 }
