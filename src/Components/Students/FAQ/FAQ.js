@@ -1,9 +1,10 @@
-import Header from '../../Header/Header';
-import Sidebar from '../../Sidebar/Sidebar';
 import React, { useState } from 'react';
+import styles from './FAQ.module.css'; 
+import Header from '../Header/Header';
+import Sidebar from '../Sidebar/Sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import styles from './FAQ.module.css'; 
+import { useLocation } from 'react-router-dom';
 
 function FAQ() {
   const [dropdownOpen] = useState(false);
@@ -52,19 +53,24 @@ function FAQ() {
   const toggle = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
-  
-    return (
-      <div className={styles.gridContainer}>
-        <div className={styles.header}>
-          <Header />
-        </div>
 
-        <div className={styles.sidebar}>
-          <Sidebar setSelectedSemester={setSelectedSemester} />
-        </div>
+  const location = useLocation();
 
-        <div className={styles.faqContainer}>
-          
+  return (
+    <div className={styles.wrapper}>
+      <div className={styles.header}>
+        {/* Header */}
+        <Header />
+      </div>
+
+      <div className={styles.sidebar}>
+        {/* Sidebar */}
+        {/* <Sidebar setSelectedSemester={setSelectedSemester} /> */}
+        {/* <Sidebar items={sidebarStudents} /> */}
+        <Sidebar currentPath={location.pathname} />
+      </div>
+
+      <div className={styles.main}>
         <div className={styles.dropdown}>
           <h2>Ερώτηση Σχετικά με:</h2>
           <div className={styles.selectWrapper}>
@@ -105,9 +111,9 @@ function FAQ() {
               </div>
             ))}
           </div>
-        </div>  
+      </div>
     </div>
-    );
+  );
 }
   
 export default FAQ;

@@ -4,7 +4,7 @@ import RegisterProfessor from './RegisterProfessor';
 import styles from './Register.module.css'; 
 
 function Register() {
-    const [selectedForm, setSelectedForm] = useState('student'); // Default to student form
+    const [selectedForm, setSelectedForm] = useState('student');
 
     const handleFormChange = (formType) => {
         setSelectedForm(formType);

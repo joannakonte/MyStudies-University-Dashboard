@@ -74,7 +74,7 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
   };
 
   return (
-    <div className={`${styles['table-container']} `}>
+    <div className={`${styles['table-container']} ${pageStyle.tablecontainer}`} >
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} />
       <table className={styles.table}>
         <thead>

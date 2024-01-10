@@ -1,0 +1,186 @@
+/* ================ | CSS Grid |================ */
+.grid_container {
+    display: grid;
+    grid-template-areas:
+      'logos breadcrumb profile'
+      'logos page_title page_title ';
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: 50% 50%;
+    /* row-gap: 5px; */
+    /* gap: 10px; */
+    background-color: white;
+    /* position: fixed; */
+    /* padding-bottom: 15%; */
+}
+  
+.grid_container > div {
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    text-align: left;
+    /* border: 1px solid #000000; */
+    /* padding: 20px 0; */
+    /* font-size: 30px; */
+}
+
+.item1 { 
+    grid-area: logos; 
+    background-color: #ffffff;
+    border-right: 1px solid #000000;
+}
+
+.item2 { 
+    grid-area: breadcrumb; 
+    background-color: #ffffff; 
+}
+
+.item3 { 
+    grid-area: profile; 
+    background-color: #ffffff; 
+    background-color: bisque
+}
+
+.item4 { 
+    grid-area: page_title; 
+    background-color: #ffffff; 
+    border-top: 1px solid #000000;
+}
+
+
+/* ================ | Logos |================ */
+.my-studies-logo {
+    display: block;
+    width: 90%; 
+    margin-left: 5%;
+    margin-bottom: 6%;
+    margin-top: 4%;
+}
+
+.ekpa-logo {
+    display: block;
+    width: 90%; 
+    margin-left: 5%;
+    padding-bottom: 5%;
+}
+
+/* ================ | Breadcrumb |================ */
+.breadcrumb {
+    /* margin-left: 3.5%; */
+    /* margin-top: 5%; */
+    font-size: 110%;
+    /* transform: translateY(100%) translateX(-17.5%); */
+}
+
+/* ================ | Page Title |================ */
+.page_title {
+    margin-left: 2%;
+    margin-top: 1%;
+    display: flex;
+}
+
+.icon {
+    font-size: 180%; 
+    margin-right: 5px; 
+    color: var(--student-color);
+    font-weight: bold;
+}
+
+.title {
+    font-size: 180%;
+    color: var(--student-color);
+    font-weight: 700;
+}
+
+
+/* ================ | Profile |================ */
+.profile {
+    /* transform: translateX(20%); */
+}
+
+.dropdown {
+    /* margin-right: 10px;
+    margin-top: 10px; */
+    position: relative;
+}
+
+.circle {
+    background-color: white;
+    width: 30px;       
+    height: 30px;      
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px; 
+    font-size: 16px;    
+    font-weight: 600; 
+}
+
+.button-text {
+    display: flex;
+    flex-direction: column; 
+    margin-right: 20px;      
+}
+
+.button-text span{
+    font-size: 16px;
+}
+
+.button-text .id{
+    color: rgba(0, 0, 0, 0.50);
+}
+
+.menu-icon {
+    color: #222222;
+    width: 18px; 
+    height: auto;
+}
+
+.dropdown-toggle {
+    background-color: rgba(110, 185, 232, 0.30);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 200px;
+}
+
+.dropdown-content {
+    border-radius: 5px;
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: var(--grey);
+    width: 200px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content .profile {
+    border-radius: 5px 5px 0 0;
+}
+
+.dropdown-content .logout {
+    border-radius: 0;
+}
+
+.dropdown-content .home-page {
+    border-radius: 0 0 5px 5px;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+

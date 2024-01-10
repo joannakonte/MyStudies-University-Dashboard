@@ -47,7 +47,7 @@ const TableComponent3 = ({ collectionName }) => {
   };
 
   return (
-    <div className={`${styles['table-container']} `}>
+    <div className={`${styles['table-container']} ${styles['certif']}`}>
       <table className={styles.table}>
         <thead>
           <tr className={styles['table-header']}>

@@ -4,7 +4,7 @@ const SearchBar = ({ searchQuery, setSearchQuery, pageStyle }) => {
     return (
       <div className={`${styles['search-bar']} `}>
         {/* <div className={`${styles['searchiconcontainer']}`}> */}
-          <HiMagnifyingGlass className={`${styles['searchicon']}`} />
+          {/* <HiMagnifyingGlass className={`${styles['searchicon']}`} /> */}
           <input
             type="text"
             className={`${styles['searchinput']} `}

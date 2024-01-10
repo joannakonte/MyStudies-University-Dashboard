@@ -1,28 +1,57 @@
-.gridContainer {
+.wrapper {
     display: grid;
     grid-template-areas:
-    'header header header header header'
-    'sidebar main main main main';
-    grid-template-columns: 15% 80% 5%;
+        'header header'
+        'sidebar main';
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 15% 85% ;
+    position: static;
+}
+  
+.header {
+    grid-area: header;
+    /* grid-column: 1 / 4;
+    grid-row: 1; */
+    /* border: 2px solid blue; */
+    /* background-color: rgba(0, 0, 255, 0.3); */
+    /* background-color: blue; */
+    background-color: white;
+  
+    position: fixed;
+    /* width: 100%; */
+    /* height:  15%; */
+    z-index: 2;
+}
+  
+.sidebar {
+    grid-area: sidebar;
+    /* grid-column: 1;
+    grid-row: 2 / 4; */
+    /* border: 2px solid #ff0000; */
+    background-color: #6EB9E8;
+    /* background-color: rgba(255, 0, 0, 0.3); */
+  
+    position: fixed;
+    height: 100%;
+    width: 15%;
+    top: 16%;
+    z-index: 1;
+}
+  
+.main {
+    grid-area: main;
+    padding-top: 8%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    /* grid-column: 2 / 4;
+    grid-row: 2 / 4; */
+    /* border: 2px solid green; */
+    /* background-color: green; */
+    /* background-color: rgba(0, 255, 55, 0.3); */
 }
 
-.gridContainer > div {
-    border: 1px solid #ff0000;
-}
-
-.header { 
-    grid-area: header; 
-    position: sticky;
-}
-
-.sidebar { 
-    grid-column: 1;
-}
-
-.faqContainer{
-    transform: translateX(4%);    
-    grid-column: 2;
-}
+/* =========== | FAQs Text | =========== */
 
 .faqItem {
     margin-bottom: 10px;
@@ -78,8 +107,8 @@
 .dropdown{
     position: relative;
     display: flex;
-    align-items: center;            /* Vertically aligns items in the middle */
-    gap: 10px;                      /* Add some space between items */
+    align-items: center;           
+    gap: 10px;                    
 }
 
 .dropdown h2{
@@ -92,11 +121,11 @@
     width: 100%; 
     padding: 8px 12px;
     border: 1px solid #ccc; 
-    border-radius: 4px; /* Slightly rounded corners */
+    border-radius: 5px; 
     background-color: white;
-    color: #333; /* Dark text for readability */
+    color: #333; 
     font-size: 16px; 
-    appearance: none; /* Removes default browser styling */
+    appearance: none; 
     -moz-appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
@@ -104,9 +133,9 @@
 }
 
 .dropdown-select option {
-    color: #333; /* Text color */
-    background-color: white; /* Background color */
-    padding: 5px; /* Padding (may not be applied in all browsers) */
+    color: #333; 
+    background-color: white; 
+    padding: 5px; 
 }
 
 .dropdown-select:focus {
@@ -115,8 +144,8 @@
 
 .select-arrow {
     position: absolute;
-    right: 10px; /* Adjust as needed */
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    pointer-events: none; /* This ensures clicks on the icon will focus the select */
+    pointer-events: none; 
 }
