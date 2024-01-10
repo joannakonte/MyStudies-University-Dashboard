@@ -10,6 +10,7 @@ import Grades from './Components/Students/Grades/Grades';
 import FAQ from './Components/Students/FAQ/FAQ';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
+import Register from './Components/Register/Register';
 import StudentDetails from './Components/Students/Profile/StudentDetails/StudentDetails';
 
 import Profile from './Components/Professors/Profile/Profile';
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
           <Route path="/home/login" element={<Login />} />
+          <Route path="/home/register" element={<Register />} />
           <Route path="/home/classes" element={<Classes />}/>
           <Route path="/home/faq" element={<FAQ/>}/>
           <Route path="/home/certificates" element={<Certificates />}/>

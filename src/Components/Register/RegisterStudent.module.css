@@ -1,0 +1,10 @@
+.formContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns of equal width */
+    gap: 10px; /* Space between columns */
+}
+
+.column1, .column2 {
+    display: inline-block;
+    vertical-align: top;
+}
