@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './RegisterStudent.module.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { HiEye, HiEyeOff } from 'react-icons/hi';
 
 const PasswordErrorMessage = () => { 
     return ( 
@@ -16,6 +17,12 @@ function RegisterStudent() {
         value: "", 
         isTouched: false, 
     }); 
+
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <div> 
@@ -142,7 +149,7 @@ function RegisterStudent() {
 
                     {/* Κωδικός Πρόσβασης */}
                     <div className={styles.passwordContainer}>
-                        <h2 className={styles.title}>Κωδικός Πρόσβασης</h2>
+                        {/* <h2 className={styles.title}>Κωδικός Πρόσβασης</h2>
                         <label> 
                             <div className={styles.labelText}>
                                 Κωδικός <sup>*</sup> 
@@ -162,7 +169,34 @@ function RegisterStudent() {
                         /> 
                         {password.isTouched && password.value.length < 8 ? ( 
                             <PasswordErrorMessage /> 
+                        ) : null}  */}
+
+                        <h2 className={styles.title}>Κωδικός Πρόσβασης</h2>
+                        <label>
+                            <div className={styles.labelText}>
+                            Κωδικός <sup>*</sup>
+                            </div>
+                        </label>
+                        <input
+                            className={styles.inputField}
+                            value={password.value}
+                            type={showPassword ? 'text' : 'password'}
+                            onChange={(e) => {
+                                setPassword({ ...password, value: e.target.value });
+                            }}
+                            onBlur={() => {
+                                setPassword({ ...password, isTouched: true });
+                            }}
+                            placeholder="Κωδικός"
+                        />
+                        <div className={styles.eyeIcon} onClick={togglePasswordVisibility}>
+                            {showPassword ? <HiEye /> : <HiEyeOff />}
+                        </div>
+                        {password.isTouched && password.value.length < 8 ? ( 
+                            <PasswordErrorMessage /> 
                         ) : null} 
+
+
 
                         <label> 
                             <div className={styles.labelText}>
@@ -172,15 +206,18 @@ function RegisterStudent() {
                         <input 
                             className={styles.inputField}
                             value={password.value} 
-                            type="password" 
+                            type={showPassword ? 'text' : 'password'}
                             onChange={(e) => { 
-                            setPassword({ ...password, value: e.target.value }); 
+                                setPassword({ ...password, value: e.target.value }); 
                             }} 
                             onBlur={() => { 
-                            setPassword({ ...password, isTouched: true }); 
+                                setPassword({ ...password, isTouched: true }); 
                             }} 
                             placeholder="Επαλήθευση Κωδικού" 
                         /> 
+                        <div className={styles.eyeIcon} onClick={togglePasswordVisibility}>
+                            {showPassword ? <HiEye /> : <HiEyeOff />}
+                        </div>
                         {password.isTouched && password.value.length < 8 ? ( 
                             <PasswordErrorMessage /> 
                         ) : null} 

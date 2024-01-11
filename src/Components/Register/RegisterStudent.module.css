@@ -85,3 +85,16 @@
     transform: translateY(-50%); 
     pointer-events: none; 
 }
+
+/* =========== | Password | =========== */
+.eyeIcon {
+    position: absolute;
+    margin-top: -27px;
+    right: 28%;
+    /* margin-left: 500px; */
+    /* transform: translateX(200%); */
+    cursor: pointer;
+}
+
+
+
