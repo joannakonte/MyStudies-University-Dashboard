@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styles from './Grades.module.css'; 
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-
 import { useLocation } from 'react-router-dom';
 import { db } from '../../../firebase';
 import { collectionGroup, getDocs } from 'firebase/firestore';

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import styles from './NewClassesApplication3.module.css'; 
+import Header from '../../../Header/Header';
+import Sidebar from '../../../Sidebar/Sidebar';
+import { useLocation } from 'react-router-dom';
+
 import { db } from '../../../../../firebase';
 import { collection, updateDoc, doc, addDoc } from 'firebase/firestore';
-import { useLocation } from 'react-router-dom';
-import Header from '../../../../Header/Header';
-// import Breadcrumb from '../../../../Breadcrumb/Breadcrumb';
-import Sidebar from '../../../../Sidebar/Sidebar';
 import TableComponent from '../../../../DataTable/DataTable';
 import appstyle from '../NewClassesApplication.module.css';
 import style from './NewClassesApplication3.module.css';
@@ -59,34 +60,70 @@ function NewClassesApplication3() {
       console.error('Error saving application:', error);
     }
   };
-  
 
-  return (
-    <div>
-      <Header />
-      {/* <Breadcrumb /> */}
-      <Sidebar />
-      <ProcessBar stages={stages} currentStage={2} />
-      <a href="/home/history-applications/new-application2" className={appstyle['previous-page']}>
-        <HiChevronLeft /> Προηγούμενο
-      </a>
-      {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
-      <TableComponent
-        showOptionColumn={true}
-        selectedSemester={selectedSemester}
-        pageStyle={appstyle}
-        submission={true}
-        markedClasses={markedClasses}
-        collectionName={'classes'}
-      />
-<button href="/home/history-applications" className={style['save']} onClick={() => handleSubmission(true)}>
-  Προσωρινή Αποθήκευση
-</button>
-<button className={style['submit']} onClick={() => handleSubmission(false)}>
-  <HiCheck /> Οριστική υποβολή
-</button>
+  const location = useLocation();
+
+  return(
+    <div className={styles.wrapper}>
+        <div className={styles.header}>
+          <Header />
+        </div>
+
+        <div className={styles.sidebar}>
+          <Sidebar currentPath={location.pathname} />
+        </div>
+
+        <div className={styles.main}>
+          <ProcessBar stages={stages} currentStage={2} />
+          <a href="/home/history-applications/new-application2" className={appstyle['previous-page']}>
+            <HiChevronLeft /> Προηγούμενο
+          </a>
+          {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
+          <TableComponent
+            showOptionColumn={true}
+            selectedSemester={selectedSemester}
+            pageStyle={appstyle}
+            submission={true}
+            markedClasses={markedClasses}
+            collectionName={'classes'}
+          />
+          <button href="/home/history-applications" className={style['save']} onClick={() => handleSubmission(true)}>
+            Προσωρινή Αποθήκευση
+          </button>
+          <button className={style['submit']} onClick={() => handleSubmission(false)}>
+            <HiCheck /> Οριστική υποβολή
+          </button>
+        </div>
     </div>
   );
+  
+
+//   return (
+//     <div>
+//       <Header />
+//       {/* <Breadcrumb /> */}
+//       <Sidebar />
+//       <ProcessBar stages={stages} currentStage={2} />
+//       <a href="/home/history-applications/new-application2" className={appstyle['previous-page']}>
+//         <HiChevronLeft /> Προηγούμενο
+//       </a>
+//       {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
+//       <TableComponent
+//         showOptionColumn={true}
+//         selectedSemester={selectedSemester}
+//         pageStyle={appstyle}
+//         submission={true}
+//         markedClasses={markedClasses}
+//         collectionName={'classes'}
+//       />
+// <button href="/home/history-applications" className={style['save']} onClick={() => handleSubmission(true)}>
+//   Προσωρινή Αποθήκευση
+// </button>
+// <button className={style['submit']} onClick={() => handleSubmission(false)}>
+//   <HiCheck /> Οριστική υποβολή
+// </button>
+//     </div>
+//   );
 }
 
 export default NewClassesApplication3;
