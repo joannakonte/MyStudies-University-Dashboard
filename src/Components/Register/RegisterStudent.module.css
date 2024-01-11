@@ -1,14 +1,9 @@
-.formContainer{
-    /* width: 100%;
-    padding: 30px;
-    border-radius: 5px; 
-    background-color: #F8F8F8; */
-}
-
-.box {
+.personalDetailsContainer, .studentDetailsContainer, .passwordContainer {
     background-color: #F8F8F8;
+    border-radius: 5px; 
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 10px;
 }
 
 .title {
@@ -28,7 +23,6 @@
     margin-bottom: 10px; 
 }
 
-
 /* =========== | Input fields | =========== */
 
 .labelText {
@@ -37,7 +31,7 @@
 }
 
 
-.inputField{
+.inputField, .departmentField{
     padding: 8px 12px;
     border: 1px solid black; 
     border-radius: 5px; 

@@ -3,15 +3,25 @@ import styles from './RegisterStudent.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
+const PasswordErrorMessage = () => { 
+    return ( 
+      <h className={styles.passwordError}>Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.</h> 
+    ); 
+}; 
+
 function RegisterStudent() {
     const [maritalStatus, setMaritalStatus] = useState("role"); 
     const [gender, setGender] = useState("gender"); 
+    const [password, setPassword] = useState({ 
+        value: "", 
+        isTouched: false, 
+    }); 
 
     return (
         <div> 
             <form>
                 <div className={styles.formContainer}>
-                    <div className={styles.box}>
+                    <div className={styles.personalDetailsContainer}>
                         <h2 className={styles.title}>Προσωπικά Στοιχεία</h2>
 
                         <div className={styles.columns}>
@@ -98,7 +108,83 @@ function RegisterStudent() {
                             <input type="text" name="phonenumber" placeholder="Τήλέφωνο Επικοινωνίας" className={styles.inputPhoneNumber}/>
                         </label>
                     </div>
-                
+
+                    {/* Στοιχεία Φοιτητή */}
+                    <div className={styles.studentDetailsContainer}>
+                        <h2 className={styles.title} >Στοιχεία Φοιτητή</h2>
+                        <label>
+                            <div className={styles.labelText}>Τμήμα:</div>
+                            <input name="department" value="Τμήμα Πληροφορικής και Τηλεποικοινωνιών" className={styles.departmentField} readonly/>
+                        </label>
+
+                        <label>
+                            <div className={styles.labelText}>Ηλεκτρονικό Ταχυδρομείο:</div>
+                            <input type="email" name="email" placeholder="Ηλεκτρονικό Ταχυδρομείο" className={styles.inputField}/>
+                        </label>
+
+                        <div className={styles.columns}>
+                            {/* Column 1 */}
+                            <div className={styles.column1}>
+                                <label>
+                                    <div className={styles.labelText}>Αριθμός Μητρώου</div>
+                                    <input type="text" name="name" placeholder="Αριθμός Μητρώου" className={styles.inputField}/>
+                                </label>
+                            </div>
+
+                            <div className={styles.column2}>  
+                                <label>
+                                    <div className={styles.labelText}>Ημερομηνία Εγγραφής</div>
+                                    <input type="date" name="signupDate" className={styles.inputField}/>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Κωδικός Πρόσβασης */}
+                    <div className={styles.passwordContainer}>
+                        <h2 className={styles.title}>Κωδικός Πρόσβασης</h2>
+                        <label> 
+                            <div className={styles.labelText}>
+                                Κωδικός <sup>*</sup> 
+                            </div>
+                        </label> 
+                        <input 
+                            className={styles.inputField}
+                            value={password.value} 
+                            type="password" 
+                            onChange={(e) => { 
+                            setPassword({ ...password, value: e.target.value }); 
+                            }} 
+                            onBlur={() => { 
+                            setPassword({ ...password, isTouched: true }); 
+                            }} 
+                            placeholder="Κωδικός" 
+                        /> 
+                        {password.isTouched && password.value.length < 8 ? ( 
+                            <PasswordErrorMessage /> 
+                        ) : null} 
+
+                        <label> 
+                            <div className={styles.labelText}>
+                                Επαλήθευση Κωδικού <sup>*</sup> 
+                            </div>
+                        </label> 
+                        <input 
+                            className={styles.inputField}
+                            value={password.value} 
+                            type="password" 
+                            onChange={(e) => { 
+                            setPassword({ ...password, value: e.target.value }); 
+                            }} 
+                            onBlur={() => { 
+                            setPassword({ ...password, isTouched: true }); 
+                            }} 
+                            placeholder="Επαλήθευση Κωδικού" 
+                        /> 
+                        {password.isTouched && password.value.length < 8 ? ( 
+                            <PasswordErrorMessage /> 
+                        ) : null} 
+                    </div>
                 </div>
             </form>
         </div>
