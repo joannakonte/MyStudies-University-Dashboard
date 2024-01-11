@@ -1,86 +1,35 @@
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import styles from './RegisterProfessor.module.css'; 
 
-function RegisterProfessor() {
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [role, setRole] = useState("role"); 
-    const handleDateChange = (date) => {
-    setSelectedDate(date);
-    };
+function RegisterProfessor() {    
+
     return (
     <div> 
         <form>
-        <h2>Προσωπικά Στοιχεία</h2>
-        {/* Column 1 */}
-        <div classeName="column1">  
+            <h2>Στοιχεία Φοιτητή</h2>
             <label>
-                Όνομα:
-                <input type="text" name="name" />
+                <div className={styles.labelText}>Τμήμα:</div>
+                <input name="department" value="Τμήμα Πληροφορικής και Τηλεποικοινωνιών" className={styles.departmentField} readonly/>
             </label>
 
             <label>
-                Όνομα Πατέρα:
-                <input type="text" name="fathername" />
+                <div className={styles.labelText}>Ηλεκτρονικό Ταχυδρομείο:</div>
+                <input type="email" name="email" placeholder="Ηλεκτρονικό Ταχυδρομείο" className={styles.inputField}/>
             </label>
-
-            {/* Datepicker */}
-            <label>
-              Ημερομηνία Γέννησης:
-              <DatePicker selected={selectedDate} onChange={handleDateChange} />
-            </label>
-
-            <div className="marital-status">
-                <label> 
-                    Οικογενειακή Κατάσταση:
-                </label> 
-                <select value={role} onChange={(e) => setRole(e.target.value)}> 
-                    <option value="role">Role</option> 
-                    <option value="individual">Individual</option> 
-                    <option value="business">Business</option> 
-                </select>
-           </div>
-
-            <label>
-              Αριθμός Ταυτότητας:
-              <input type="text" name="idnumber" />
-            </label>
-        </div>
-
-        {/* Column 2 */}
-        <div className="column2">
-            <label>
-                Επώνυμο:
-                <input type="text" name="surname" />
-            </label>
-
-            <label>
-                Όνομα Μητέρας:
-                <input type="text" name="mothername" />
-            </label>
-
-            <div className="gender">
-                <label> 
-                    Φύλο:
-                </label> 
-                <select value={role} onChange={(e) => setRole(e.target.value)}> 
-                    <option value="female">Θηλύ</option> 
-                    <option value="male">Άρρεν</option> 
-                    <option value="other">Άλλο</option> 
-                </select>
-           </div>
-
-           <label>
-                Πόλη - Τόπος Γέννησης:
-                <input type="text" name="birthplace" />
-            </label>
-
-            <label>
-                ΑΜΚΑ:
-                <input type="text" name="amka" />
-            </label>
-        </div>
-
+            <div className={styles.formContainer}>
+                <div className={styles.column1}>  
+                    <label>
+                        <div className={styles.labelText}>Αριθμός Μητρώου</div>
+                        <input type="text" name="name" placeholder="Αριθμός Μητρώου" className={styles.inputField}/>
+                    </label>
+                </div>
+                <div className={styles.column2}>  
+                    <label>
+                        <div className={styles.labelText}>Ημερομηνία Εγγραφής</div>
+                        <input type="date" name="signupDate" className={styles.inputField}/>
+                    </label>
+                </div>
+            </div>
         </form>
     </div>
     );

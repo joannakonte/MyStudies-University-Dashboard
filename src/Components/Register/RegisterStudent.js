@@ -1,18 +1,12 @@
 import React, { useState } from 'react';
 import styles from './RegisterStudent.module.css'; 
-import DatePicker from 'react-datepicker';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 
 function RegisterStudent() {
-    const [selectedDate, setSelectedDate] = useState(null);
     const [maritalStatus, setMaritalStatus] = useState("role"); 
     const [gender, setGender] = useState("gender"); 
-
-    const handleDateChange = (date) => {
-        setSelectedDate(date);
-    };
 
     return (
         <div> 
@@ -24,12 +18,12 @@ function RegisterStudent() {
                     <div className={styles.column1}>  
                         <label>
                             <div className={styles.labelText}>Όνομα:</div>
-                            <input type="text" name="name" className={styles.inputField}/>
+                            <input type="text" name="name" placeholder="Όνομα" className={styles.inputField}/>
                         </label>
 
                         <label>
                             <div className={styles.labelText}>Όνομα Πατέρα:</div>
-                            <input type="text" name="fathername" className={styles.inputField} />
+                            <input type="text" name="fathername" placeholder="Όνομα Πατέρα" className={styles.inputField} />
                         </label>
 
                         {/* Datepicker */}
@@ -54,20 +48,25 @@ function RegisterStudent() {
 
                         <label>
                             <div className={styles.labelText}>Αριθμός Ταυτότητας:</div>
-                            <input type="text" name="idnumber" className={styles.inputField}/>
+                            <input type="text" name="idnumber" placeholder="Αριθμός Ταυτότητας" className={styles.inputField}/>
                         </label>
                     </div>
 
                     {/* Column 2 */}
                     <div className={styles.column2}>
                         <label>
-                            <div className={styles.labelText}>Επώνυμο:</div>
-                            <input type="text" name="surname " className={styles.inputField} />
+                            <div className={styles.labelText}>Επώνυμο: </div>
+                            <input type="text" name="surname " placeholder="Επώνυμο"className={styles.inputField} />
                         </label>
 
                         <label>
                             <div className={styles.labelText}>Όνομα Μητέρας:</div>
-                            <input type="text" name="mothername" className={styles.inputField} />
+                            <input type="text" name="mothername" placeholder="Όνομα Μητέρας" className={styles.inputField} />
+                        </label>
+
+                        <label>                           
+                            <div className={styles.labelText}>Πόλη - Τόπος Γέννησης:</div>
+                            <input type="text" name="birthplace" placeholder="Πόλη - Τόπος Γέννησης" className={styles.inputField}/>
                         </label>
 
                         <div className={styles.gender}>
@@ -85,24 +84,19 @@ function RegisterStudent() {
                             </div>
                         </div>
 
-                        <label>                           
-                            <div className={styles.labelText}>Πόλη - Τόπος Γέννησης:</div>
-                            <input type="text" name="birthplace" className={styles.inputField}/>
-                        </label>
-
                         <label>
                             <div className={styles.labelText}>ΑΜΚΑ:</div>
-                            <input type="text" name="amka" className={styles.inputField}/>
+                            <input type="text" name="amka" placeholder="ΑΜΚΑ" className={styles.inputField}/>
                         </label>
                     </div>
                 </div>
                 <label>          
                     <div className={styles.labelText}>Διεύθυνση (Οδός, Νούμερο, Πόλη):</div>
-                    <input type="text" name="address" className={styles.inputField}/>
+                    <input type="text" name="address" placeholder="Διεύθυνση" className={styles.inputField}/>
                 </label>
                 <label>
                     <div className={styles.labelText}>Τήλέφωνο Επικοινωνίας:</div>
-                    <input type="text" name="phonenumber" className={styles.inputField}/>
+                    <input type="text" name="phonenumber" placeholder="Τήλέφωνο Επικοινωνίας" className={styles.inputPhoneNumber}/>
                 </label>
             </form>
         </div>
