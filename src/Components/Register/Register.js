@@ -28,8 +28,8 @@ function Register() {
                 </button>
             </div>
 
-            {selectedForm === 'student' && <RegisterStudent />}
-            {selectedForm === 'professor' && <RegisterProfessor />}
+            {selectedForm === 'student' && <RegisterStudent/>}
+            {selectedForm === 'professor' && <RegisterProfessor/>}
         </div>
     );
 }
