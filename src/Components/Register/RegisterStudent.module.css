@@ -1,3 +1,17 @@
+.formContainer{
+    padding-bottom: 30px; 
+}
+
+.formContainer .title{
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.formContainer .titleSeparator{
+    margin-top: 0;
+    margin-bottom: 20px; 
+}
+
 .personalDetailsContainer, .studentDetailsContainer, .passwordContainer {
     background-color: #F8F8F8;
     border-radius: 5px; 
@@ -13,7 +27,7 @@
 .columns {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Creates two columns */
-    gap: 20px; /* Adjust as needed */
+    gap: 20px; 
 }
 
 
@@ -25,14 +39,23 @@
 
 /* =========== | Input fields | =========== */
 
+input::placeholder {
+    font-size: 14px;
+}
+
 .labelText {
     font-weight: bold;
     margin-bottom: 5px; /* Adds space between label text and the input */
 }
 
+.dateField{
+    border: 1px solid black; 
+    border-radius: 5px; 
+    width: 100%;
+}
 
 .inputField, .departmentField{
-    padding: 8px 12px;
+    padding: 10px 12px;
     border: 1px solid black; 
     border-radius: 5px; 
     width: 100%;
@@ -45,7 +68,7 @@
     width: 50%;
 }
 
-.inputField:focus, .inputPhoneNumber:focus{
+.inputField:focus, .inputPhoneNumber:focus, .departmentField:focus{
     outline: none;
 }
 
@@ -66,6 +89,7 @@
     -moz-appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 
 .dropdown-select option {
@@ -82,19 +106,46 @@
     position: absolute;
     right: 10px; /* Adjust as needed */
     top: 50%; /* Center vertically */
-    transform: translateY(-50%); 
+    transform: translateY(-60%); 
     pointer-events: none; 
 }
 
 /* =========== | Password | =========== */
 .eyeIcon {
     position: absolute;
-    margin-top: -27px;
-    right: 28%;
-    /* margin-left: 500px; */
-    /* transform: translateX(200%); */
+    right: 27%;
+    transform: translateY(-120%); 
     cursor: pointer;
 }
 
 
+/* =========== | Register Form Buttons | =========== */
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    gap: 10px;                 /* Adds space between buttons */
+    padding: 10px 0;           /* Optional: Adds some vertical padding */
+}
+
+.cancelButton{
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+    border: 1px solid black; 
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.registerButton{
+    font-size: 16px;
+    padding: 5px 10px 5px 10px;
+    background-color: #48C195;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
 

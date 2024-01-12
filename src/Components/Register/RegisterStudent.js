@@ -3,6 +3,8 @@ import styles from './RegisterStudent.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const PasswordErrorMessage = () => { 
     return ( 
@@ -10,19 +12,74 @@ const PasswordErrorMessage = () => {
     ); 
 }; 
 
+
 function RegisterStudent() {
-    const [maritalStatus, setMaritalStatus] = useState("role"); 
-    const [gender, setGender] = useState("gender"); 
+    const [firstname, setFirstName] = useState(""); 
+    const [fathername, setFatherName] = useState(""); 
+    const [birthday, setBirthday] = useState(""); 
+    const [maritalstatus, setMaritalStatus] = useState("maritalstatus"); 
+    const [AT, setAT] = useState(""); 
+    const [lastname, setLastName] = useState("");
+    const [mothername, setMotherName] = useState(""); 
+    const [birthplace, setBirthplace] = useState(""); 
+    const [gender, setGender] = useState("gender");
+    const [AMKA, setAMKA] = useState("");    
+    const [address, setAddress] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState(""); 
+    const [AM, setAM] = useState(""); 
+    const [registrationdate, setRegistrationDate] = useState(""); 
     const [password, setPassword] = useState({ 
         value: "", 
         isTouched: false, 
     }); 
-
     const [showPassword, setShowPassword] = useState(false);
-
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
+    
+    async function handleRegister(e){
+        e.preventDefault();
+
+        // This object represents the user's form that it will be saved in our database.
+        const docUser = {
+            type: "student",
+            firstname: firstname,
+            lastname: lastname,
+            department: "Τμήμα Πληροφορικής και Τηλεποικοινωνιών",
+            AM: AM,
+            fathername: fathername,
+            mothername: mothername,
+            birthday: birthday,
+            maritalstatus: maritalstatus,
+            gender: gender,
+            birthplace: birthplace,
+            AT: AT,
+            AMKA: AMKA,
+            address: address,
+            phone: phone,
+            registrationdate: registrationdate,
+            email: email,
+            password: password
+        };
+
+        try{
+            console.log('Attempting register student:', firstname);
+            if (!db) {
+                console.error('Firestore database instance is not available.');
+                return;
+            }
+
+            const ref_user = doc(db, "students", email)
+            const res_user = await setDoc(ref_user, docUser); // Push the 'student object' 
+
+            // Redirect to login route
+            window.location.href = '/home/login'
+
+        } catch (error) {
+            console.error('Registration error:', error.message);
+        }
+    }
 
     return (
         <div> 
@@ -30,23 +87,50 @@ function RegisterStudent() {
                 <div className={styles.formContainer}>
                     <div className={styles.personalDetailsContainer}>
                         <h2 className={styles.title}>Προσωπικά Στοιχεία</h2>
+                        <hr className={styles.titleSeparator} />
 
                         <div className={styles.columns}>
                             {/* Column 1 */}
                             <div className={styles.column1}>  
                                 <label>
                                     <div className={styles.labelText}>Όνομα:</div>
-                                    <input type="text" name="name" placeholder="Όνομα" className={styles.inputField}/>
+                                    <input 
+                                        value={firstname} 
+                                        onChange={(e) => { 
+                                            setFirstName(e.target.value); 
+                                        }}
+                                        type="text" 
+                                        name="firstname" 
+                                        placeholder="Όνομα" 
+                                        className={styles.inputField}
+                                    />
                                 </label>
 
                                 <label>
                                     <div className={styles.labelText}>Όνομα Πατέρα:</div>
-                                    <input type="text" name="fathername" placeholder="Όνομα Πατέρα" className={styles.inputField} />
+                                    <input 
+                                        value={fathername} 
+                                        onChange={(e) => { 
+                                            setFatherName(e.target.value); 
+                                        }}
+                                        type="text" 
+                                        name="fathername" 
+                                        placeholder="Όνομα Πατέρα" 
+                                        className={styles.inputField} 
+                                    />
                                 </label>
 
                                 <label>
                                     <div className={styles.labelText}>Ημερομηνία Γέννησης:</div>
-                                    <input type="date" name="birthdate" className={styles.inputField} />
+                                    <input 
+                                        value={birthday} 
+                                        onChange={(e) => { 
+                                            setBirthday(e.target.value); 
+                                        }}
+                                        type="date" 
+                                        name="birthday" 
+                                        className={styles.dateField} 
+                                    />
                                 </label>
 
                                 <div className={styles.maritalStatus}>
@@ -54,7 +138,7 @@ function RegisterStudent() {
                                         <div className={styles.labelText}>Οικογενειακή Κατάσταση:</div>
                                     </label> 
                                     <div className={styles.selectWrapper}>
-                                        <select value={maritalStatus} className={styles['dropdown-select']} onChange={(e) => setMaritalStatus(e.target.value)}> 
+                                        <select value={maritalstatus} className={styles['dropdown-select']} onChange={(e) => setMaritalStatus(e.target.value)}> 
                                             <option value="role">Οικογενειακή Κατάσταση</option> 
                                             <option value="individual">Άγαμος-η</option> 
                                             <option value="business">Παντρεμένος-η</option> 
@@ -65,7 +149,16 @@ function RegisterStudent() {
 
                                 <label>
                                     <div className={styles.labelText}>Αριθμός Ταυτότητας:</div>
-                                    <input type="text" name="idnumber" placeholder="Αριθμός Ταυτότητας" className={styles.inputField}/>
+                                    <input 
+                                        value={AT} 
+                                        onChange={(e) => { 
+                                            setAT(e.target.value); 
+                                        }}
+                                        type="text" 
+                                        name="AT" 
+                                        placeholder="Αριθμός Ταυτότητας" 
+                                        className={styles.inputField}
+                                    />
                                 </label>
                             </div>
 
@@ -73,17 +166,44 @@ function RegisterStudent() {
                             <div className={styles.column2}>
                                 <label>
                                     <div className={styles.labelText}>Επώνυμο: </div>
-                                    <input type="text" name="surname " placeholder="Επώνυμο"className={styles.inputField} />
+                                    <input 
+                                        value={lastname} 
+                                        onChange={(e) => { 
+                                            setLastName(e.target.value); 
+                                        }}
+                                        type="text" 
+                                        name="lastname" 
+                                        placeholder="Επώνυμο"
+                                        className={styles.inputField} 
+                                    />
                                 </label>
 
                                 <label>
                                     <div className={styles.labelText}>Όνομα Μητέρας:</div>
-                                    <input type="text" name="mothername" placeholder="Όνομα Μητέρας" className={styles.inputField} />
+                                    <input 
+                                        value={mothername} 
+                                        onChange={(e) => { 
+                                            setMotherName(e.target.value); 
+                                        }}
+                                        type="text" 
+                                        name="mothername" 
+                                        placeholder="Όνομα Μητέρας" 
+                                        className={styles.inputField} 
+                                    />
                                 </label>
 
                                 <label>                           
                                     <div className={styles.labelText}>Πόλη - Τόπος Γέννησης:</div>
-                                    <input type="text" name="birthplace" placeholder="Πόλη - Τόπος Γέννησης" className={styles.inputField}/>
+                                    <input 
+                                        value={birthplace} 
+                                        onChange={(e) => { 
+                                            setBirthplace(e.target.value); 
+                                        }}
+                                        type="text" 
+                                        name="birthplace" 
+                                        placeholder="Πόλη - Τόπος Γέννησης" 
+                                        className={styles.inputField}
+                                    />
                                 </label>
 
                                 <div className={styles.gender}>
@@ -102,31 +222,74 @@ function RegisterStudent() {
                                 </div>
                                 <label>
                                     <div className={styles.labelText}>ΑΜΚΑ:</div>
-                                    <input type="text" name="amka" placeholder="ΑΜΚΑ" className={styles.inputField}/>
+                                    <input 
+                                        value={AMKA} 
+                                        onChange={(e) => { 
+                                            setAMKA(e.target.value); 
+                                        }}
+                                        type="text" 
+                                        name="AMKA" 
+                                        placeholder="ΑΜΚΑ" 
+                                        className={styles.inputField}
+                                    />
                                 </label>
                             </div>
                         </div>
                         <label>          
                             <div className={styles.labelText}>Διεύθυνση (Οδός, Νούμερο, Πόλη):</div>
-                            <input type="text" name="address" placeholder="Διεύθυνση" className={styles.inputField}/>
+                            <input 
+                                value={address} 
+                                onChange={(e) => { 
+                                    setAddress(e.target.value); 
+                                }}
+                                type="text" 
+                                name="address" 
+                                placeholder="Διεύθυνση" 
+                                className={styles.inputField}
+                            />
                         </label>
                         <label>
                             <div className={styles.labelText}>Τήλέφωνο Επικοινωνίας:</div>
-                            <input type="text" name="phonenumber" placeholder="Τήλέφωνο Επικοινωνίας" className={styles.inputPhoneNumber}/>
+                            <input 
+                                value={phone} 
+                                onChange={(e) => { 
+                                    setPhone(e.target.value); 
+                                }}
+                                type="text" 
+                                name="phone" 
+                                placeholder="Τήλέφωνο Επικοινωνίας" 
+                                className={styles.inputPhoneNumber}
+                            />
                         </label>
                     </div>
 
                     {/* Στοιχεία Φοιτητή */}
                     <div className={styles.studentDetailsContainer}>
-                        <h2 className={styles.title} >Στοιχεία Φοιτητή</h2>
+                        <h2 className={styles.title}>Στοιχεία Φοιτητή</h2>
+                        <hr className={styles.titleSeparator} />
+
                         <label>
                             <div className={styles.labelText}>Τμήμα:</div>
-                            <input name="department" value="Τμήμα Πληροφορικής και Τηλεποικοινωνιών" className={styles.departmentField} readonly/>
+                            <input 
+                                name="department" 
+                                value="Τμήμα Πληροφορικής και Τηλεποικοινωνιών"
+                                className={styles.departmentField} 
+                                readonly
+                            />
                         </label>
 
                         <label>
                             <div className={styles.labelText}>Ηλεκτρονικό Ταχυδρομείο:</div>
-                            <input type="email" name="email" placeholder="Ηλεκτρονικό Ταχυδρομείο" className={styles.inputField}/>
+                            <input 
+                                value={email} 
+                                onChange={(e) => { 
+                                    setEmail(e.target.value); 
+                                }}
+                                type="email" 
+                                name="email" 
+                                placeholder="Ηλεκτρονικό Ταχυδρομείο" 
+                                className={styles.inputField}
+                            />
                         </label>
 
                         <div className={styles.columns}>
@@ -134,14 +297,31 @@ function RegisterStudent() {
                             <div className={styles.column1}>
                                 <label>
                                     <div className={styles.labelText}>Αριθμός Μητρώου</div>
-                                    <input type="text" name="name" placeholder="Αριθμός Μητρώου" className={styles.inputField}/>
+                                    <input 
+                                        value={AM} 
+                                        onChange={(e) => { 
+                                            setAM(e.target.value); 
+                                        }}
+                                        type="text" 
+                                        name="AM" 
+                                        placeholder="Αριθμός Μητρώου" 
+                                        className={styles.inputField}
+                                    />
                                 </label>
                             </div>
 
                             <div className={styles.column2}>  
                                 <label>
                                     <div className={styles.labelText}>Ημερομηνία Εγγραφής</div>
-                                    <input type="date" name="signupDate" className={styles.inputField}/>
+                                    <input 
+                                        value={registrationdate} 
+                                        onChange={(e) => { 
+                                            setRegistrationDate(e.target.value); 
+                                        }}
+                                        type="date" 
+                                        name="registrationdate" 
+                                        className={styles.dateField}
+                                    />
                                 </label>
                             </div>
                         </div>
@@ -149,29 +329,9 @@ function RegisterStudent() {
 
                     {/* Κωδικός Πρόσβασης */}
                     <div className={styles.passwordContainer}>
-                        {/* <h2 className={styles.title}>Κωδικός Πρόσβασης</h2>
-                        <label> 
-                            <div className={styles.labelText}>
-                                Κωδικός <sup>*</sup> 
-                            </div>
-                        </label> 
-                        <input 
-                            className={styles.inputField}
-                            value={password.value} 
-                            type="password" 
-                            onChange={(e) => { 
-                            setPassword({ ...password, value: e.target.value }); 
-                            }} 
-                            onBlur={() => { 
-                            setPassword({ ...password, isTouched: true }); 
-                            }} 
-                            placeholder="Κωδικός" 
-                        /> 
-                        {password.isTouched && password.value.length < 8 ? ( 
-                            <PasswordErrorMessage /> 
-                        ) : null}  */}
-
                         <h2 className={styles.title}>Κωδικός Πρόσβασης</h2>
+                        <hr className={styles.titleSeparator} />
+
                         <label>
                             <div className={styles.labelText}>
                             Κωδικός <sup>*</sup>
@@ -221,6 +381,14 @@ function RegisterStudent() {
                         {password.isTouched && password.value.length < 8 ? ( 
                             <PasswordErrorMessage /> 
                         ) : null} 
+                    </div>
+                    <div className={styles.buttonContainer}>
+                        <button className={styles.cancelButton}>
+                            Ακύρωση
+                        </button>
+                        <button type="submit" onClick={handleRegister} className={styles.registerButton}> 
+                            Εγγραφή 
+                        </button>
                     </div>
                 </div>
             </form>

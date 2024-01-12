@@ -38,9 +38,8 @@ function Register() {
                 {selectedForm === 'student' && <RegisterStudent/>}
                 {selectedForm === 'professor' && <RegisterProfessor/>}
             </div>
-            <div className={styles.Footer}>
-                <Footer />
-            </div>
+
+            <Footer />
             
         </div>
     );
