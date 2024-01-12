@@ -43,6 +43,15 @@ input::placeholder {
     font-size: 14px;
 }
 
+sup {
+    color: red;
+    top: -2px;
+    font-size: 95%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
 .labelText {
     font-weight: bold;
     margin-bottom: 5px; /* Adds space between label text and the input */
@@ -52,9 +61,11 @@ input::placeholder {
     border: 1px solid black; 
     border-radius: 5px; 
     width: 100%;
+    font-size: 16px;
 }
 
 .inputField, .departmentField{
+    font-size: 16px;
     padding: 10px 12px;
     border: 1px solid black; 
     border-radius: 5px; 
@@ -62,7 +73,7 @@ input::placeholder {
 }
 
 .inputPhoneNumber{
-    padding: 8px 12px;
+    padding: 10px 12px;
     border: 1px solid black; 
     border-radius: 5px; 
     width: 50%;
@@ -114,7 +125,7 @@ input::placeholder {
 .eyeIcon {
     position: absolute;
     right: 27%;
-    transform: translateY(-120%); 
+    transform: translateY(-140%); 
     cursor: pointer;
 }
 

@@ -3,12 +3,18 @@ import styles from './RegisterStudent.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
-import { doc, setDoc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 const PasswordErrorMessage = () => { 
     return ( 
       <h className={styles.passwordError}>Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.</h> 
+    ); 
+}; 
+
+const FormErrorMessage = () => { 
+    return ( 
+      alert("Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία.")
     ); 
 }; 
 
@@ -28,6 +34,7 @@ function RegisterStudent() {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState(""); 
     const [AM, setAM] = useState(""); 
+    const sdiValue = "sdi" + AM.slice(-7);
     const [registrationdate, setRegistrationDate] = useState(""); 
     const [password, setPassword] = useState({ 
         value: "", 
@@ -36,6 +43,16 @@ function RegisterStudent() {
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
+    };
+
+    const[formError, setFormError] = useState(false);
+    const isFormValid = () => { 
+        const isValid = firstname && lastname && fathername && mothername && AM && password.value.length >= 8;
+    
+        // Set form error state
+        setFormError(!isValid);
+    
+        return isValid;
     };
     
     async function handleRegister(e){
@@ -55,6 +72,7 @@ function RegisterStudent() {
             gender: gender,
             birthplace: birthplace,
             AT: AT,
+            sdi: sdiValue,
             AMKA: AMKA,
             address: address,
             phone: phone,
@@ -70,8 +88,8 @@ function RegisterStudent() {
                 return;
             }
 
-            const ref_user = doc(db, "students", email)
-            const res_user = await setDoc(ref_user, docUser); // Push the 'student object' 
+            const col_ref = collection(db, "students");
+            const res_user = await addDoc(col_ref, docUser); 
 
             // Redirect to login route
             window.location.href = '/home/login'
@@ -93,7 +111,7 @@ function RegisterStudent() {
                             {/* Column 1 */}
                             <div className={styles.column1}>  
                                 <label>
-                                    <div className={styles.labelText}>Όνομα:</div>
+                                    <div className={styles.labelText}>Όνομα: <sup>*</sup></div>
                                     <input 
                                         value={firstname} 
                                         onChange={(e) => { 
@@ -107,7 +125,7 @@ function RegisterStudent() {
                                 </label>
 
                                 <label>
-                                    <div className={styles.labelText}>Όνομα Πατέρα:</div>
+                                    <div className={styles.labelText}>Όνομα Πατέρα: <sup>*</sup></div>
                                     <input 
                                         value={fathername} 
                                         onChange={(e) => { 
@@ -121,7 +139,7 @@ function RegisterStudent() {
                                 </label>
 
                                 <label>
-                                    <div className={styles.labelText}>Ημερομηνία Γέννησης:</div>
+                                    <div className={styles.labelText}>Ημερομηνία Γέννησης: <sup>*</sup></div>
                                     <input 
                                         value={birthday} 
                                         onChange={(e) => { 
@@ -165,7 +183,7 @@ function RegisterStudent() {
                             {/* Column 2 */}
                             <div className={styles.column2}>
                                 <label>
-                                    <div className={styles.labelText}>Επώνυμο: </div>
+                                    <div className={styles.labelText}>Επώνυμο: <sup>*</sup></div>
                                     <input 
                                         value={lastname} 
                                         onChange={(e) => { 
@@ -179,7 +197,7 @@ function RegisterStudent() {
                                 </label>
 
                                 <label>
-                                    <div className={styles.labelText}>Όνομα Μητέρας:</div>
+                                    <div className={styles.labelText}>Όνομα Μητέρας: <sup>*</sup></div>
                                     <input 
                                         value={mothername} 
                                         onChange={(e) => { 
@@ -212,10 +230,10 @@ function RegisterStudent() {
                                     </label> 
                                     <div className={styles.selectWrapper}>
                                         <select value={gender} className={styles['dropdown-select']} onChange={(e) => setGender(e.target.value)}> 
-                                            <option value="gender">Φύλο</option> 
-                                            <option value="female">Θηλύ</option> 
-                                            <option value="male">Άρρεν</option> 
-                                            <option value="other">Άλλο</option> 
+                                            <option value="Φύλο">Φύλο</option> 
+                                            <option value="Θηλύ">Θηλύ</option> 
+                                            <option value="Άρρεν">Άρρεν</option> 
+                                            <option value="Άλλο">Άλλο</option> 
                                         </select>
                                         <FontAwesomeIcon icon={faAngleDown} className={styles['select-arrow']}/>
                                     </div>
@@ -296,7 +314,7 @@ function RegisterStudent() {
                             {/* Column 1 */}
                             <div className={styles.column1}>
                                 <label>
-                                    <div className={styles.labelText}>Αριθμός Μητρώου</div>
+                                    <div className={styles.labelText}>Αριθμός Μητρώου <sup>*</sup></div>
                                     <input 
                                         value={AM} 
                                         onChange={(e) => { 
@@ -386,9 +404,19 @@ function RegisterStudent() {
                         <button className={styles.cancelButton}>
                             Ακύρωση
                         </button>
-                        <button type="submit" onClick={handleRegister} className={styles.registerButton}> 
-                            Εγγραφή 
+                        <button
+                            type="submit"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (isFormValid()) {
+                                    handleRegister(e);
+                                }
+                            }}
+                            className={styles.registerButton}
+                        >
+                            Εγγραφή
                         </button>
+                        {formError && <FormErrorMessage />}
                     </div>
                 </div>
             </form>
