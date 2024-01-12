@@ -11,6 +11,19 @@ import defaultstyle from '../../DataTable/DefaultTable.module.css';
 function Grades(){
   const [applications, setApplications] = useState([]);
 
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    // Retrieve data from local storage
+    const storedUserDataJSON = localStorage.getItem('userData');
+
+    // Parse the JSON string to get the original object
+    const storedUserData = JSON.parse(storedUserDataJSON);
+
+    // Set the data to the state
+    setUserData(storedUserData);
+  }, []);
+
   useEffect(() => {
     const fetchData = async () => {
       try {

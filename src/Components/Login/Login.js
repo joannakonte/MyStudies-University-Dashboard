@@ -31,12 +31,17 @@ const Login = ({ onClose }) => {
           const user_role = docSnapshot.data().role;
           const user_sdi = docSnapshot.data().sdi;
 
-
           localStorage.setItem('role', user_role);
           localStorage.setItem('sdi', user_sdi);
 
           window.location.href = './classes';
           console.log('Found User:', docSnapshot.data());
+
+          // Convert data to JSON string
+          const userDataJSON = JSON.stringify(docSnapshot.data());
+
+          // Store the JSON string in local storage
+          localStorage.setItem('userData', userDataJSON);
         } else {
           console.log('Incorrect password!');
         }

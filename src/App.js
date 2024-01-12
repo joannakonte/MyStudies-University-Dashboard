@@ -12,6 +12,7 @@ import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import StudentDetails from './Components/Students/Profile/StudentDetails/StudentDetails';
+import ProfileStudent from './Components/Students/Profile/ProfileStudent';
 
 import Profile from './Components/Professors/Profile/Profile';
 
@@ -30,6 +31,7 @@ function App() {
           <Route path="/home/faq" element={<FAQ/>}/>
           <Route path="/home/certificates" element={<Certificates />}/>
           <Route path="/home/grades" element={<Grades />}/>
+          <Route path="/home/profile" element={<ProfileStudent />}/>
           <Route path="/home/profile/student-details" element={<StudentDetails />}/>
           <Route path="/home/history-applications" element={<HistoryApplications />}/>
           <Route path="/home/history-applications/new-application1" element={<NewClassesApplication1 />}/>
