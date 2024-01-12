@@ -9,7 +9,7 @@ import { filterAndSortData2 } from './DataTableUtils';
 import item_classes from '../../data/dataTableHeaderClasses.json';
 import item_grades from '../../data/dataTableHeaderGrades.json';
 
-const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, applicationId }) => {
+const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, applicationId, appStep1  }) => {
   const [info, setInfo] = useState([]);
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedClass, setSelectedClass] = useState(null);
@@ -43,15 +43,28 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
             const classesData = classesSnapshot.docs.map(doc => doc.data());
 
-            const matchingDocuments = classesData
+            let matchingDocuments = classesData
               .filter(item => classIdsToCheck.includes(item.id))
               .map(item => ({
                 ...item,
-                grade: applicationData.allclasses.find(cls => cls.class_id === item.id)?.grade || -1,
+                grade: applicationData.allclasses.find(cls => cls.class_id === item.id)?.grade || '-',
               }));
+
+            if (appStep1) {
+              // Filter classes with grade less than 4 or equal to "-"
+              matchingDocuments = matchingDocuments.filter(item =>
+                item.grade == '-' || (parseInt(item.grade, 10) < 4)
+              );
+            }
 
             console.log('Matching Documents:', matchingDocuments);
             setInfo(matchingDocuments);
+
+            // Retrieve checkbox state from local storage
+            const storedCheckboxes = localStorage.getItem(submission ? 'markedClasses' : 'objectGreeting');
+            if (storedCheckboxes) {
+              setCheckboxes(JSON.parse(storedCheckboxes));
+            }
           } else {
             console.log('Student ID does not match. No documents printed.');
           }
@@ -64,7 +77,8 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
     };
 
     fetchData();
-  }, []); 
+  }, [applicationId, submission, appStep1]);
+
 
   const handleCheckboxChange = (id, isChecked) => {
     setCheckboxes((prevCheckboxes) => {

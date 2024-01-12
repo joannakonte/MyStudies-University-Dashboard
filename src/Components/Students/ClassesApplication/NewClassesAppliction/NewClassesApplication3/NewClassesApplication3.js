@@ -5,7 +5,7 @@ import Sidebar from '../../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 
 import { db } from '../../../../../firebase';
-import { collection, updateDoc, doc, addDoc } from 'firebase/firestore';
+import { collection, updateDoc, doc, addDoc, serverTimestamp   } from 'firebase/firestore';
 import TableComponent from '../../../../DataTable/DataTable';
 import appstyle from '../NewClassesApplication.module.css';
 import style from './NewClassesApplication3.module.css';
@@ -37,6 +37,7 @@ function NewClassesApplication3() {
       const applicationData = {
         studentId,
         submit: !isTemporary, 
+        date: serverTimestamp(),
         allclasses: selectedClasses.map(className => ({
           class_id: className,
           grade: '-'
