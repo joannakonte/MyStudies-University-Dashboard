@@ -5,7 +5,7 @@ import styles from './DataTable.module.css';
 import { HiArrowsUpDown } from 'react-icons/hi2';
 import PopUp from './PopUp';
 import SearchBar from './SearchBar';
-import { filterAndSortData2 } from './DataTableUtils';
+import { filterAndSortData2, findStudentById } from './DataTableUtils';
 import item_classes from '../../data/dataTableHeaderClasses.json';
 import item_grades from '../../data/dataTableHeaderGrades.json';
 
@@ -33,8 +33,8 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
         if (applicationDoc.exists()) {
           const applicationData = applicationDoc.data();
-
-          if (applicationData.studentId === '2a5iiuGDHgvDPwBkVoAk') {
+          const studentId = await findStudentById();
+          if (applicationData.studentId === studentId) {
             const classIdsToCheck = applicationData.allclasses.map(cls => cls.class_id);
             console.log('Check for:', classIdsToCheck);
 
@@ -51,7 +51,6 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
               }));
 
             if (appStep1) {
-              // Filter classes with grade less than 4 or equal to "-"
               matchingDocuments = matchingDocuments.filter(item =>
                 item.grade == '-' || (parseInt(item.grade, 10) < 4)
               );
@@ -60,7 +59,6 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
             console.log('Matching Documents:', matchingDocuments);
             setInfo(matchingDocuments);
 
-            // Retrieve checkbox state from local storage
             const storedCheckboxes = localStorage.getItem(submission ? 'markedClasses' : 'objectGreeting');
             if (storedCheckboxes) {
               setCheckboxes(JSON.parse(storedCheckboxes));

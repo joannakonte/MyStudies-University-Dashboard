@@ -5,7 +5,7 @@ import styles from './DataTable.module.css';
 import { HiArrowDownTray , HiArrowsUpDown } from 'react-icons/hi2';
 import PopUp from './PopUp';
 import SearchBar from './SearchBar';
-import { filterAndSortDataNew } from './DataTableUtils';
+import { filterAndSortDataNew, findStudentById } from './DataTableUtils';
 import items from "../../data/dataTableHeaderCert.json"
 
 const TableComponent3 = ({ collectionName }) => {
@@ -31,9 +31,16 @@ const TableComponent3 = ({ collectionName }) => {
 
   const fetchData = async () => {
     try {
+      // Retrieve studentId from the imported function
+      const studentId = await findStudentById();
+
+      // Use studentId to filter the certificates
       const certificatesCollection = collection(db, collectionName);
       const querySnapshot = await getDocs(certificatesCollection);
-      const certificatesData = querySnapshot.docs.map((doc) => doc.data());
+      const certificatesData = querySnapshot.docs
+        .map((doc) => doc.data())
+        .filter((certificate) => certificate.studentId === studentId);
+
       setInfo(certificatesData);
       console.log('Data:', certificatesData);
     } catch (error) {

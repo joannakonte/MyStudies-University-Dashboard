@@ -1,3 +1,6 @@
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { db } from '../../firebase'
+
 export const filterAndSortData = (info, submission, selectedSemester, checkboxes, sortColumn, sortOrder, searchQuery) => {
     const filteredData = info.filter((classes) => {
       const { name, ECTS, semester, category } = classes;
@@ -109,4 +112,25 @@ export const filterAndSortDataNew = (data, sortColumn, sortOrder, searchQuery) =
       return sortOrder === 'asc' ? columnA - columnB : columnB - columnA;
     }
   });
+};
+
+export const findStudentById = async () => {
+  try {
+    const studentsCollection = collection(db, 'students');
+    const sdi = localStorage.getItem('sdi');
+    const q = query(studentsCollection, where('sdi', '==', sdi));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const studentId = querySnapshot.docs[0].id;
+      console.log('Student found with ID:', studentId);
+      return studentId;
+    } else {
+      console.log('No student found with this sdi:', sdi);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error finding student:', error);
+    return null;
+  }
 };
