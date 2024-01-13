@@ -4,7 +4,6 @@ import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import { useLocation } from 'react-router-dom';
 
 function FAQ() {
   const [dropdownOpen] = useState(false);
@@ -54,8 +53,6 @@ function FAQ() {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
-  const location = useLocation();
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -67,7 +64,7 @@ function FAQ() {
         {/* Sidebar */}
         {/* <Sidebar setSelectedSemester={setSelectedSemester} /> */}
         {/* <Sidebar items={sidebarStudents} /> */}
-        <Sidebar currentPath={location.pathname} />
+        <Sidebar/>
       </div>
 
       <div className={styles.main}>
@@ -87,7 +84,7 @@ function FAQ() {
           </div>
         </div>
 
-        <div className={dropdownOpen ? styles.withDropdownOpen : ''}>
+        <div>
             {faqData
               .filter(faq => selectedCategory === 'Όλες' || faq.category === selectedCategory)
               .map((faq, index) => (
