@@ -7,7 +7,7 @@ import { db } from '../../../../firebase';
 import { collectionGroup, getDocs } from 'firebase/firestore';
 import TableComponent2 from '../../../DataTable/DataTable2';
 import appstyle from '../NewClassesAppliction/NewClassesApplication.module.css';
-import { HiMiniPlus, HiDocumentText } from 'react-icons/hi2';
+import { HiMiniPlus } from 'react-icons/hi2';
 
 function HistoryApplications() {
   const [applications, setApplications] = useState([]);

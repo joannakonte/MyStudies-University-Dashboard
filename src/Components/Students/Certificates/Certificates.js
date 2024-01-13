@@ -4,7 +4,7 @@ import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import TableComponent3 from '../../DataTable/DataTable3';
 import { useLocation } from 'react-router-dom';
-
+import { HiMiniPlus, HiDocumentText } from 'react-icons/hi2';
 
 function Certificates(){
 
@@ -27,6 +27,10 @@ function Certificates(){
         <div className={styles.main}>
             <TableComponent3 collectionName={'certificates'}/>
         </div>
+
+        <a href="/home/history-applications/new-application1" className={styles['new-app']}>
+          <HiMiniPlus /> Nέο Πιστοποιητικό
+        </a>
         </div>
     );
 }
