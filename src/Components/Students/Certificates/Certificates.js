@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import styles from './Certificates.module.css';
+import CertificatePopUp from './CertificatePopUp';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import Popup from 'reactjs-popup';
 import TableComponent3 from '../../DataTable/DataTable3';
 import { useLocation } from 'react-router-dom';
-import { HiMiniPlus, HiDocumentText } from 'react-icons/hi2';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../../firebase';
 
 function Certificates(){
-    const [certificateType, setCertificateType] = useState("certificateType"); 
+    const [certificateType, setCertificateType] = useState("Αναλυτική Βαθμολογία"); 
     const [certificateNumber, setCertificateNumber] = useState(""); 
     const location = useLocation();
 
@@ -57,54 +56,14 @@ function Certificates(){
             <TableComponent3 collectionName={'certificates'}/>
         </div>
 
-        <Popup
-                trigger={<button className={styles['new-app']}><HiMiniPlus /> Nέο Πιστοποιητικό</button>}
-                modal
-                nested
-            >
-                {close => (
-                    <div className="modal">
-                        <button className="close" onClick={close}>
-                            &times;
-                        </button>
-                        <div className="header"> Αίτηση για Νέο Πιστοποιητικό </div>
-                        <div className="content">
-                            <form onSubmit={handleCertificateSubmit}>
-                                    <label>
-                                        Επιλογή πιστοποιητικού:
-                                        <input
-                                            type="text"
-                                            value={certificateType}
-                                            onChange={e => setCertificateType(e.target.value)}
-                                            required
-                                        />
-                                    </label>
-                                    <label>
-                                        Αριθμός αντιτύπων:
-                                        <input
-                                            type="number"
-                                            value={certificateNumber}
-                                            onChange={e => setCertificateNumber(e.target.value)}
-                                            required
-                                        />
-                                    </label>
-                                    <button type="submit">Υποβολή αιτήματος</button>
-                                </form>
-                        </div>
-                        <div className="actions">
-                          <button
-                              className="button"
-                              onClick={() => {
-                                  console.log('modal closed ');
-                                  close();
-                              }}
-                          >
-                            Υποβολή αιτήματος
-                          </button>
-                        </div>
-                    </div>
-                )}
-            </Popup>
+        <CertificatePopUp
+            certificateType={certificateType}
+            setCertificateType={setCertificateType}
+            certificateNumber={certificateNumber}
+            setCertificateNumber={setCertificateNumber}
+            handleCertificateSubmit={handleCertificateSubmit}
+        />
+
         </div>
     );
 }

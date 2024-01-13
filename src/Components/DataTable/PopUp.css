@@ -19,8 +19,7 @@
     right: 0;
     height: 20%;
     align-items: flex-end;
-    box-shadow: 0 0 5px 0 black;
-    border-radius: 8px;
+    border-radius: 8px 8px 0px 0px;
 }
 
 .pop > .header * {
@@ -46,7 +45,7 @@
     margin-top: 60px; 
 }
 
-.close-button {
+.closeButton {
     position: absolute;
     top: 3px;
     right: 3px;
@@ -65,7 +64,7 @@
     border: 0px solid;
 }
 
-.close-button:hover {
+.closeButton:hover {
     background-color: red; 
     color: white;
 }

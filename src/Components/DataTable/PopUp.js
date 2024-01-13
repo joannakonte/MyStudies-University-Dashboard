@@ -23,7 +23,7 @@ const PopUp = ({ isOpen, onClose, selectedClass }) => {
                         </>
                     )}
                 </div>
-                <button className="close-button" onClick={onClose}>
+                <button className="closeButton" onClick={onClose}>
                     &times;
                 </button>
             </div>

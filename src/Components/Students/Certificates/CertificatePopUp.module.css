@@ -1,0 +1,161 @@
+/* =========== | Button for PopUp | =========== */
+
+.new-app {
+    position: fixed;
+    top: 15%;
+    right: 5%;
+    padding: 0.7%;
+    background-color:rgba(13, 139, 217, 0.1);
+    color: black;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 100%;
+    font-weight: bold;
+    width: 10%;
+    text-decoration:none;
+  }
+
+.new-app:hover {
+    background-color:rgba(13, 139, 217, 0.6);
+    border: 0.5px solid rgba(13, 139, 217, 0.6);
+}
+
+/* =========== | PopUp | =========== */
+
+.closeButton {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    color: rgba(13, 139, 217, 0.6); 
+    transition: background-color 0.3s ease;
+    border: 0px solid;
+    z-index: 10;
+}
+
+.closeButton:hover {
+    background-color: red; 
+    color: white;
+}
+
+.modal {
+    width: 500px;
+    height: 300px;
+    padding: 20px;
+    padding-top: 0; /* Remove padding at the top */
+    border-radius: 8px;
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+  
+.header {
+    background-color: rgba(13, 139, 217, 0.7);
+    width: 100%; 
+    margin: 0;
+    padding: 20px; 
+    border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
+    font-weight: bold;
+    color: white;
+    width: calc(100% + 40px); 
+    margin-left: -20px; 
+    box-sizing: border-box;
+}
+
+.content {
+    margin-top: 10%; 
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========== | Κουμπί Υποβολής | =========== */
+
+.submitButtonWrapper {
+    display: flex;
+    justify-content: flex-end; /* Aligns the child (submit button) to the right */
+    margin-top: auto; /* Optional, ensures it sticks to the bottom */
+}
+
+.submitButton {
+    font-size: 16px;
+    padding: 5px 10px 5px 10px;
+    background-color: #48C195;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: auto; /* Aligns the button to the right */
+}
+
+/* =========== | Number of certificates field | =========== */
+
+.labelText {
+    font-weight: bold;
+    margin-bottom: 5px; /* Adds space between label text and the input */
+}
+
+.inputField:focus{
+    outline: none;
+}
+
+.inputField{
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid #D9D9D9; 
+    border-radius: 5px; 
+    width: 100%;
+}
+
+/* =========== | Select field | =========== */
+.selectWrapper {
+    position: relative;
+}
+
+.dropdown-select{
+    width: 100%; 
+    padding: 8px 12px;
+    border: 1px solid #D9D9D9; 
+    border-radius: 5px; 
+    background-color: white;
+    color: black; 
+    font-size: 16px; 
+    appearance: none; 
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.dropdown-select option {
+    color: #333; 
+    background-color: white; 
+    padding: 5px; 
+}
+
+.dropdown-select:focus {
+    outline: none;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 10px; /* Adjust as needed */
+    top: 50%; /* Center vertically */
+    transform: translateY(-60%); 
+    pointer-events: none; 
+}
