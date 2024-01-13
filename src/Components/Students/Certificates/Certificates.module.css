@@ -73,3 +73,23 @@
     border: 0.5px solid rgba(13, 139, 217, 0.6);
    
   }
+
+
+  /* =========== | Pop up window | =========== */
+
+.content{
+    background-color: white;
+}
+  
+.modal .header {
+    background-color: rgba(13, 139, 217, 0.6);
+    position: fixed;
+    display: flex;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 20%;
+    align-items: flex-end;
+    box-shadow: 0 0 5px 0 black;
+    border-radius: 8px;
+}

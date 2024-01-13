@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { db } from '../../firebase'
 
 const PasswordErrorMessage = () => { 
     return ( 
