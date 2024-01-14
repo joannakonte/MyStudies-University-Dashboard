@@ -40,29 +40,25 @@ function Certificates(){
     }
     return (
         <div className={styles.wrapper}>
-        <div className={styles.header}>
-            {/* Header */}
-            <Header />
-        </div>
+            <div className={styles.header}>
+                <Header />
+            </div>
 
-        <div className={styles.sidebar}>
-            {/* Sidebar */}
-            {/* <Sidebar setSelectedSemester={setSelectedSemester} /> */}
-            {/* <Sidebar items={sidebarStudents} /> */}
-            <Sidebar currentPath={location.pathname} />
-        </div>
+            <div className={styles.sidebar}>
+                <Sidebar currentPath={location.pathname} />
+            </div>
 
-        <div className={styles.main}>
-            <TableComponent3 collectionName={'certificates'}/>
-        </div>
+            <div className={styles.main}>
+                <TableComponent3 collectionName={'certificates'}/>
+            </div>
 
-        <CertificatePopUp
-            certificateType={certificateType}
-            setCertificateType={setCertificateType}
-            certificateNumber={certificateNumber}
-            setCertificateNumber={setCertificateNumber}
-            handleCertificateSubmit={handleCertificateSubmit}
-        />
+            <CertificatePopUp
+                certificateType={certificateType}
+                setCertificateType={setCertificateType}
+                certificateNumber={certificateNumber}
+                setCertificateNumber={setCertificateNumber}
+                handleCertificateSubmit={handleCertificateSubmit}
+            />
 
         </div>
     );

@@ -40,10 +40,11 @@
 
 .main {
   grid-area: main;
-  padding-top: 8%;
+  padding-top: 3%;
   padding-left: 2%;
   padding-right: 2%;
-  padding-bottom: 2%;
+  margin-bottom: 20%;
+  /* padding-bottom: 2%; */
   /* grid-column: 2 / 4;
   grid-row: 2 / 4; */
   /* border: 2px solid green; */
@@ -54,7 +55,7 @@
 /* =========== | HistoryApplications | =========== */
 .new-app {
     position: fixed;
-    top: 15%;
+    /* top: 15%; */
     right: 5%;
     padding: 0.7%;
     background-color:rgba(13, 139, 217, 0.1);

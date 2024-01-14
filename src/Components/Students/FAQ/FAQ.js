@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './FAQ.module.css'; 
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
+import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -53,6 +54,8 @@ function FAQ() {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  const location = useLocation();
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -61,10 +64,7 @@ function FAQ() {
       </div>
 
       <div className={styles.sidebar}>
-        {/* Sidebar */}
-        {/* <Sidebar setSelectedSemester={setSelectedSemester} /> */}
-        {/* <Sidebar items={sidebarStudents} /> */}
-        <Sidebar/>
+        <Sidebar currentPath={location.pathname} />
       </div>
 
       <div className={styles.main}>

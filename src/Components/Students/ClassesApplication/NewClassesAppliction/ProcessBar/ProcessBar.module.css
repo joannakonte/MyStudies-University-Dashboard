@@ -1,8 +1,6 @@
 .process-bar {
   display: flex;
   align-items: center;
-  margin-top: 0%;
-  margin-left: 25%;
   position: absolute;
   background-color: rgba(13, 139, 217, 0.1);
   border: 0.5px solid rgba(0, 0, 0, 0.5);

@@ -1,9 +1,3 @@
-/* .table-container { */
-    /* gia na allaksei i thesi tou pinaka allakse auto */
-    /* margin: 5% 50% 15% 25%;
-
-} */
-
 .searchbar {
     position: relative;
     
@@ -33,6 +27,7 @@
     width: 100%;
     position: absolute;
 }
+
 
 
 table {

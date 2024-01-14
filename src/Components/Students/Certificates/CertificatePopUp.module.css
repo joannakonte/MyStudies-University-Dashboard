@@ -2,7 +2,7 @@
 
 .new-app {
     position: fixed;
-    top: 15%;
+    top: 20%;
     right: 5%;
     padding: 0.7%;
     background-color:rgba(13, 139, 217, 0.1);
@@ -12,7 +12,7 @@
     cursor: pointer;
     font-size: 100%;
     font-weight: bold;
-    width: 10%;
+    width: 15%;
     text-decoration:none;
   }
 

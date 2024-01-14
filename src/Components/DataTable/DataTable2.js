@@ -102,7 +102,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
   };
 
   return (
-    <div className={`${styles['table-container']} `}>
+    <div className={`${styles['table-container']}  `}>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} />
       <table className={styles.table}>
         <thead>

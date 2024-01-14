@@ -121,4 +121,19 @@
     margin-right: 10px; 
     margin-left: 10px; 
 }
+
+.button button.selectedButton {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #000000; 
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 4px;
+    border: 1px solid #000000;
+}
+
+.button button.selectedButton:hover {
+    background-color: #ffffff; 
+    color: #2F80C1; 
+    border: 1px solid #fff;
+  }
   

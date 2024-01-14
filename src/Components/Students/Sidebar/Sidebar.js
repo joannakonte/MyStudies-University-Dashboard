@@ -29,12 +29,12 @@ const Sidebar = ({ currentPath  }) => {
                     >
                     <HiBookOpen /> Μαθήματα
                 </a>
-                <a
-                    href="/home/history-applications"
-                    className={currentPath  === '/home/history-applications' ? style.selected : ''}
+                    <Link
+                        to="/home/history-applications"
+                        className={currentPath.startsWith('/home/history-applications') ? style.selected : ''}
                     >
                     <HiDocumentText /> Δηλώσεις
-                </a>
+                </Link>
                 <a
                     href="/home/grades"
                     className={currentPath  === '/home/grades' ? style.selected : ''}
@@ -51,7 +51,7 @@ const Sidebar = ({ currentPath  }) => {
                     href="/home/history"
                     className={currentPath  === '/home/history' ? style.selected : ''}
                     >
-                    <FaSearch /> Ιστορικό Επισκέψεων
+                    <FaSearch /> Ιστορικό 
                 </a>
             </div>
         </div>
@@ -61,7 +61,7 @@ const Sidebar = ({ currentPath  }) => {
                 <button><HiHome/> Αρχική</button>
 
                 <Link to="/home/faq">
-                    <button>
+                    <button className={currentPath === '/home/faq' ? style.selectedButton : ''}>
                         <HiQuestionMarkCircle /> Συχνές Ερωτήσεις
                     </button>
                 </Link>
