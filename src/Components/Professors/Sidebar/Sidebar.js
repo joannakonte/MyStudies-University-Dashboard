@@ -18,41 +18,23 @@ const Sidebar = ({ currentPath  }) => {
         <div className={style.menu}>
             <div id="mySidenav" className={style.sidenav}>
                 <a
-                    href="/home/profile"
-                    className={currentPath  === '/home/profile' ? style.selected : ''}
+                    href="/home/professor-profile"
+                    className={currentPath  === '/home/professor-profile' ? style.selected : ''}
                     >
                     <HiOutlineUserCircle /> Προφίλ
                 </a>
                 <a
-                    href="/home/profile"
-                    className={currentPath  === '/home/classes' ? style.selected : ''}
+                    href="/home/professor-classes"
+                    className={currentPath  === '/home/professor-classes' ? style.selected : ''}
                     >
                     <HiBookOpen /> Μαθήματα
                 </a>
-                <a
-                    href="/home/profile"
-                    className={currentPath  === '/home/history-applications' ? style.selected : ''}
-                    >
-                    <HiDocumentText /> Δηλώσεις
-                </a>
-                <a
-                    href="/home/profile"
-                    className={currentPath  === '/home/grades' ? style.selected : ''}
-                    >
-                    <HiAcademicCap /> Βαθμολογίες
-                </a>
-                <a
-                    href="/home/profile"
-                    className={currentPath  === '/professors/certificates' ? style.selected : ''}
-                    >
-                    <FaRegWindowRestore  /> Πιστοποιητικά
-                </a>
-                <a
-                    href="/home/profile"
-                    className={currentPath  === '/professors/history' ? style.selected : ''}
-                    >
-                    <FaSearch /> Ιστορικό Επισκέψεων
-                </a>
+                <Link
+                    to="/home/professor-grades"
+                    className={currentPath.startsWith('/home/professor-grades') ? style.selected : ''}
+                >
+                    <HiAcademicCap /> Βαθμολόγιο
+                </Link>
             </div>
         </div>
 
@@ -60,8 +42,8 @@ const Sidebar = ({ currentPath  }) => {
             <div className={style.button}>
                 <button><HiHome/> Αρχική</button>
 
-                <Link to="/home/faq">
-                    <button>
+                <Link to="/home/professor-faq">
+                    <button className={currentPath === '/home/professor-faq' ? style.selectedButton : ''}>
                         <HiQuestionMarkCircle /> Συχνές Ερωτήσεις
                     </button>
                 </Link>

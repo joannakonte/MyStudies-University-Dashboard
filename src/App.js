@@ -16,7 +16,13 @@ import Certificates from './Components/Students/Certificates/Certificates';
 import VisitHistory from './Components/Students/VisitHistory/VisitHistory';
 import FAQ from './Components/Students/FAQ/FAQ';
 
-// import Profile from './Components/Profile/Profile';
+import ProfileProfessor from './Components/Professors/Profile/ProfileProfessor';
+import ClassesProfessor from './Components/Professors/Classes/ClassesProfessor';
+import GradesProfessor from './Components/Professors/Grades/GradesProfessor';
+import FAQProfessor from './Components/Professors/FAQ/FAQProfessor';
+import NewGrades1 from './Components/Professors/Grades/NewGrades1/NewGrades1';
+import NewGrades2 from './Components/Professors/Grades/NewGrades2/NewGrades2';
+import NewGrades3 from './Components/Professors/Grades/NewGrades3/NewGrades3';
 
 import './App.css';
 
@@ -43,7 +49,13 @@ function App() {
           <Route path="/home/faq" element={<FAQ/>}/>
 
           {/* Paths for Professors */}
-          {/* <Route path="/professors/profile" element={<Profile />}/> */}
+          <Route path="/home/professor-profile" element={<ProfileProfessor />}/>
+          <Route path="/home/professor-classes" element={<ClassesProfessor />}/>
+          <Route path="/home/professor-grades" element={<GradesProfessor />}/>
+          <Route path="/home/professor-grades/new-grade1" element={<NewGrades1 />}/>
+          <Route path="/home/professor-grades/new-grade2" element={<NewGrades2 />}/>
+          <Route path="/home/professor-grades/new-grade3" element={<NewGrades3 />}/>
+          <Route path="/home/professor-faq" element={<FAQProfessor />}/>
 
 
         </Routes>

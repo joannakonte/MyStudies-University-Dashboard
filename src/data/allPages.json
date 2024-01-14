@@ -5,6 +5,7 @@
         "path": "/home"
     },
     
+    
     {
         "title": "Προφίλ",
         "icon": "HiOutlineUserCircle",
@@ -26,17 +27,17 @@
         "path": "/home/history-applications"
     },
     {
-        "title": "Νέα Δήλωση-Bήμα1",
+        "title": "Νέα Δήλωση Bήμα 1",
         "icon": "HiDocumentText",
         "path": "/home/history-applications/new-application1"
     },
     {
-        "title": "Νέα Δήλωση-Bήμα2",
+        "title": "Νέα Δήλωση Bήμα 2",
         "icon": "HiDocumentText",
         "path": "/home/history-applications/new-application2"
     },
     {
-        "title": "Νέα Δήλωση-Bήμα3",
+        "title": "Νέα Δήλωση Bήμα 3",
         "icon": "HiDocumentText",
         "path": "/home/history-applications/new-application3"
     },
@@ -62,12 +63,39 @@
     },
 
 
-
-
-
     {
-        "title": "Προφίλ Καθηγητή",
-        "icon": "HiMiniDocumentChartBar",
-        "path": "/professors/profile"
+        "title": "Προφίλ",
+        "icon": "HiOutlineUserCircle",
+        "path": "/home/professor-profile"
+    },
+    {
+        "title": "Μαθήματα",
+        "icon": "HiBookOpen",
+        "path": "/home/professor-classes"
+    },
+    {
+        "title": "Βαθμολόγιο",
+        "icon": "HiAcademicCap",
+        "path": "/home/professor-grades"
+    },
+    {
+        "title": "Νέο Βαθμολόγιο Bήμα 1",
+        "icon": "HiAcademicCap",
+        "path": "/home/professor-grades/new-grade1"
+    },
+    {
+        "title": "Νέο Βαθμολόγιο Bήμα 2",
+        "icon": "HiAcademicCap",
+        "path": "/home/professor-grades/new-grade2"
+    },
+    {
+        "title": "Νέο Βαθμολόγιο Bήμα 3",
+        "icon": "HiAcademicCap",
+        "path": "/home/professor-grades/new-grade3"
+    },
+    {
+        "title": "Συχνές Ερωτήσεις",
+        "icon": "HiQuestionMarkCircle",
+        "path": "/home/professor-faq"
     }
 ]
