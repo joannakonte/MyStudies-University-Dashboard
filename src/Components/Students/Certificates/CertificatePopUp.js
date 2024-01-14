@@ -51,6 +51,8 @@ const CertificatePopUp = ({ certificateType, setCertificateType, certificateNumb
                                         type="number"
                                         value={certificateNumber}
                                         onChange={e => setCertificateNumber(e.target.value)}
+                                        min="1"   // Minimum value set to 1
+                                        max="10"  // Maximum value set to 10
                                         required
                                         className={styles.inputField}
                                         />
