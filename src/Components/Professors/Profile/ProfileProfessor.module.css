@@ -50,3 +50,83 @@
     /* background-color: green; */
     /* background-color: rgba(0, 255, 55, 0.3); */
 }
+
+/* ================ | For degree |================ */
+.grades {
+    background-color: rgba(151, 191, 224, 0.25);
+    width: 100%; 
+    height: 100%;
+    margin-top: 2%;
+    border-radius: 5px;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    padding-top: 0.1%;
+}
+
+/* ================ | Personal Information |================ */
+.info {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    gap: 4%;
+}
+
+.columns {
+    width: 100%; 
+    height: 100%;
+}
+
+.personal_info {
+    background-color: rgba(151, 191, 224, 0.25);
+    width: 100%; 
+    height: 100%;
+    border-radius: 5px;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    padding-top: 0.1%;
+}
+  
+.uni_info {
+    background-color: rgba(151, 191, 224, 0.25);
+    width: 100%; 
+    height: 100%;
+    border-radius: 5px;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-bottom: 3%;
+    padding-top: 0.1%;
+}
+
+.table_title {
+    text-align: left;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+
+}
+
+td {
+    padding: 4px;
+    text-align: left;   
+}
+
+.morebold {
+    font-weight: bold;
+}
+
+
+.ects {
+    font-size: 100%;
+    font-weight: bold;
+    color: black;
+}

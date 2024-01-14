@@ -5,10 +5,10 @@ import items from "../../../data/allPages.json";
 import { useLocation } from 'react-router-dom';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faUserCircle, faArrowRight, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FaSearch, FaRegWindowRestore  } from "react-icons/fa";
-import { HiBookOpen, HiDocumentText, HiAcademicCap, HiQuestionMarkCircle  } from 'react-icons/hi'; 
-
+import { HiBookOpen, HiDocumentText, HiAcademicCap, HiQuestionMarkCircle, HiHome } from 'react-icons/hi'; 
+import { VscSignOut } from "react-icons/vsc";
 
 // Function to match paths with dynamic segments
 function matchPath(currentPath, definedPath) {
@@ -116,9 +116,9 @@ function Header() {
                         </button>
                         {dropdownOpen && (
                             <div className={`${style['dropdown-content']} ${dropdownOpen ? style.show : ''}`}>
-                                <a className={style.profile} href="/home/profile"><FontAwesomeIcon icon={faUserCircle} /> Προφίλ</a>
-                                <a className={style.logout} href="/"><FontAwesomeIcon icon={faArrowRight} /> Αποσύνδεση</a>
-                                <a className={style['home-page']} href="/home"><FontAwesomeIcon icon={faHome} /> Αρχική</a>
+                                <a className={style.profile} href="/home/profile"><HiOutlineUserCircle className={style.dropdownIcons} /> Προφίλ</a>
+                                <a className={style.logout} href="/"><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
+                                <a className={style['home-page']} href="/home"><HiHome className={style.dropdownIcons} /> Αρχική</a>
                             </div>
                         )}
                     </div>

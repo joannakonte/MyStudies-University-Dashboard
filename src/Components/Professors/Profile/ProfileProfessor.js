@@ -32,11 +32,104 @@ function ProfileProfessor() {
         </div>
 
         <div className={styles.main}>
-          {userData && (
-            <div>
-                <p>User Data:</p>
-                <pre>{JSON.stringify(userData, null, 2)}</pre>
-            </div>
+        {userData && (
+            <div className={styles.info}>
+              <div className={styles.columns}>
+                <div className={styles.personal_info}>
+                  <h2 className={styles.table_title}>Προσωπικά Στοιχεία</h2>
+
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td className={styles.morebold}>Όνομα:</td>
+                        <td>{userData.firstname}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Επώνυμο:</td>
+                        <td>{userData.lastname}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Όνομα Πατέρα:</td>
+                        <td>{userData.fathername}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Όνομα Μητέρας:</td>
+                        <td>{userData.mothername}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Ημερομηνία Γέννησης:</td>
+                        <td>{userData.birthday}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Πόλη - Τόπος Γέννησης:</td>
+                        <td>{userData.birthplace}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Οικογενειακή Κατάσταση:</td>
+                        <td>{userData.maritalstatus}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Φύλο:</td>
+                        <td>{userData.gender}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Αριθμός Ταυτότητας:</td>
+                        <td>{userData.AT}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>ΑΜΚΑ:</td>
+                        <td>{userData.AMKA}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Διεύθυνση (Οδός, Νούμερο, Πόλη):</td>
+                        <td>{userData.address}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Τήλέφωνο Επικοινωνίας:</td>
+                        <td>{userData.phone}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div className={styles.columns}>
+                <div className={styles.uni_info}>
+                  <h2 className={styles.table_title}>Στοιχεία Φοιτητή</h2>
+
+                  <table>
+                    <tbody>
+                      <tr>
+                        <td className={styles.morebold}>Τμήμα:</td>
+                        <td>{userData.department}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Ηλεκτρονικό Ταχυδρομείο:</td>
+                        <td>{userData.email}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Αριθμός Μητρώου:</td>
+                        <td>{userData.AM}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Ημερομηνία Εγγραφής:</td>
+                        <td>{userData.registrationdate}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>ECTS:</td>
+                        <td>{userData.ects}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
+
+                <div className={styles.grades}>
+                  <h2 className={styles.table_title}>Υποβληθείσες βαθμολογίες</h2>
+                </div>
+              </div>
+
+            </div>            
           )}
         </div>
     </div>
