@@ -12,14 +12,17 @@ const Breadcrumb = () => {
     url += `/${segment}`;
     const breadcrumbItem = data.find((item) => item.path === url);
 
+    const isCurrentPage = index === pathnames.length - 1;
+
     return (
       <span key={index}>
-        <Link to={url} className="breadcrumb-link">
+        <Link to={url} className={`breadcrumb-link ${isCurrentPage ? 'current-page' : ''}`}>
           {breadcrumbItem?.title || segment}
         </Link>
         {index < pathnames.length - 1 && <span className="breadcrumb-separator"> / </span>}
       </span>
     );
+
   });
 
   return <div className="breadcrumb-container">{breadcrumbLinks}</div>;

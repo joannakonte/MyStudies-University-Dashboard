@@ -1,7 +1,5 @@
 .breadcrumb-container {
   position: absolute;
-  top: 6%;
-  margin-left: 18%;
   z-index: 1000;
 }
 
@@ -10,13 +8,18 @@
   text-decoration: none;
   font-weight: lighter;
   font-size: 80%;
+  /* font-weight: 600; */
 }
 
 .breadcrumb-link:hover {
-  text-decoration: none;
+  font-weight: 500;
 }
 
 .breadcrumb-separator {
-  color: #333;
+  color: #000000;
   margin: 0 5px;
+}
+
+.current-page {
+  color: var(--student-color); 
 }

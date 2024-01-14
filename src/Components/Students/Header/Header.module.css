@@ -35,7 +35,6 @@
 .item3 { 
     grid-area: profile; 
     background-color: #ffffff; 
-    background-color: bisque
 }
 
 .item4 { 
@@ -63,10 +62,9 @@
 
 /* ================ | Breadcrumb |================ */
 .breadcrumb {
-    /* margin-left: 3.5%; */
-    /* margin-top: 5%; */
-    font-size: 110%;
-    /* transform: translateY(100%) translateX(-17.5%); */
+    padding-top: 1.5%;
+    font-size: 130%;
+    margin-left: 2.7%;
 }
 
 /* ================ | Page Title |================ */
@@ -91,14 +89,8 @@
 
 
 /* ================ | Profile |================ */
-.profile {
-    /* transform: translateX(20%); */
-}
-
 .dropdown {
-    /* margin-right: 10px;
-    margin-top: 10px; */
-    position: relative;
+    justify-content: right;
 }
 
 .circle {
@@ -121,17 +113,11 @@
 }
 
 .button-text span{
-    font-size: 16px;
+    font-size: 120%;
 }
 
 .button-text .id{
     color: rgba(0, 0, 0, 0.50);
-}
-
-.menu-icon {
-    color: #222222;
-    width: 18px; 
-    height: auto;
 }
 
 .dropdown-toggle {
@@ -143,7 +129,8 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-    width: 200px;
+    width: 90%;
+    margin-top: 1%;
 }
 
 .dropdown-content {
@@ -152,7 +139,7 @@
     position: absolute;
     right: 0;
     background-color: var(--grey);
-    width: 200px;
+    width: 220px;
     z-index: 1;
 }
 

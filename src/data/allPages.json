@@ -4,39 +4,20 @@
         "icon": "HiMiniDocumentChartBar",
         "path": "/home"
     },
+    
     {
         "title": "Προφίλ",
         "icon": "HiOutlineUserCircle",
         "path": "/home/profile"
     },
     {
-        "title": "Στοιχεία Φοιτητή",
-        "icon": "HiOutlineUserCircle",
-        "path": "/home/profile/student-details"
-    },
-    {
-        "title": "Προσωπικά Στοιχεια",
-        "icon": "HiMiniDocumentChartBar",
-        "path": "/home/profile/personal-student"
-    },
-    {
-        "title": "Ιστορικό Επισκέψεων",
-        "icon": "HiMiniDocumentChartBar",
-        "path": "/home/profile/history-visits"
-    },
-    {
         "title": "Μαθήματα",
-        "icon": "HiMiniDocumentChartBar",
+        "icon": "HiBookOpen",
         "path": "/home/classes"
     },
     {
-        "title": "Συχνές Ερωτήσεις",
-        "icon": "HiMiniDocumentChartBar",
-        "path": "/home/faq"
-    },
-    {
         "title": "Δηλώσεις",
-        "icon": "HiMiniDocumentChartBar",
+        "icon": "HiDocumentText",
         "path": "/home/history-applications"
     },
     {
@@ -46,29 +27,44 @@
     },
     {
         "title": "Νέα Δήλωση-Bήμα1",
-        "icon": "HiMiniDocumentChartBar",
+        "icon": "HiDocumentText",
         "path": "/home/history-applications/new-application1"
     },
     {
         "title": "Νέα Δήλωση-Bήμα2",
-        "icon": "HiMiniDocumentChartBar",
+        "icon": "HiDocumentText",
         "path": "/home/history-applications/new-application2"
     },
     {
         "title": "Νέα Δήλωση-Bήμα3",
-        "icon": "HiMiniDocumentChartBar",
+        "icon": "HiDocumentText",
         "path": "/home/history-applications/new-application3"
     },
     {
         "title": "Βαθμολογίες",
-        "icon": "HiMiniDocumentChartBar",
+        "icon": "HiAcademicCap",
         "path": "/home/grades"
     },
     {
         "title": "Πιστοποιητικά",
-        "icon": "HiMiniDocumentChartBar",
+        "icon": "FaRegWindowRestore",
         "path": "/home/certificates"
     },
+    {
+        "title": "Ιστορικό",
+        "icon": "FaSearch",
+        "path": "/home/visit-history"
+    },
+    {
+        "title": "Συχνές Ερωτήσεις",
+        "icon": "HiQuestionMarkCircle",
+        "path": "/home/faq"
+    },
+
+
+
+
+
     {
         "title": "Προφίλ Καθηγητή",
         "icon": "HiMiniDocumentChartBar",
