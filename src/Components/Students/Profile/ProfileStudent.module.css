@@ -59,13 +59,36 @@
 }
 
 .personal_info {
-    background-color: red;
-    width: 49%; 
+    background-color: rgba(151, 191, 224, 0.25);
+    width: 48%; 
     border-radius: 5px;
+    padding-left: 1.5%;
+    padding-bottom: 1.5%;
 }
   
 .uni_info {
-    background-color: green;
-    width: 49%; 
+    background-color: rgba(151, 191, 224, 0.25);
+    width: 48%; 
     border-radius: 5px;
+    padding-left: 1.5%;
+}
+
+.table_title {
+    text-align: left;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px; 
+}
+  
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+  
+th {
+    background-color: #f2f2f2;
 }

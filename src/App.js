@@ -41,8 +41,8 @@ function App() {
           <Route path="/home/classes" element={<Classes />}/>
           <Route path="/home/history-applications" element={<HistoryApplications />}/>
           <Route path="/home/history-applications/new-application1" element={<NewClassesApplication1 />}/>
-          <Route path="/home/history-applications/new-application2" element={<NewClassesApplication2 />}/>
-          <Route path="/home/history-applications/new-application3" element={<NewClassesApplication3 />}/>
+          <Route path="/home/history-applications/new-application1/new-application2" element={<NewClassesApplication2 />}/>
+          <Route path="/home/history-applications/new-application1/new-application2/new-application3" element={<NewClassesApplication3 />}/>
           <Route path="/home/grades" element={<Grades />}/>
           <Route path="/home/certificates" element={<Certificates />}/>
           <Route path="/home/visit-history" element={<VisitHistory/>}/>
@@ -53,8 +53,8 @@ function App() {
           <Route path="/home/professor-classes" element={<ClassesProfessor />}/>
           <Route path="/home/professor-grades" element={<GradesProfessor />}/>
           <Route path="/home/professor-grades/new-grade1" element={<NewGrades1 />}/>
-          <Route path="/home/professor-grades/new-grade2" element={<NewGrades2 />}/>
-          <Route path="/home/professor-grades/new-grade3" element={<NewGrades3 />}/>
+          <Route path="/home/professor-grades/new-grade1/new-grade2" element={<NewGrades2 />}/>
+          <Route path="/home/professor-grades/new-grade1/new-grade2/new-grade3" element={<NewGrades3 />}/>
           <Route path="/home/professor-faq" element={<FAQProfessor />}/>
 
 

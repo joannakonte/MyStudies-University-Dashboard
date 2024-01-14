@@ -34,12 +34,12 @@
     {
         "title": "Νέα Δήλωση Bήμα 2",
         "icon": "HiDocumentText",
-        "path": "/home/history-applications/new-application2"
+        "path": "/home/history-applications/new-application1/new-application2"
     },
     {
         "title": "Νέα Δήλωση Bήμα 3",
         "icon": "HiDocumentText",
-        "path": "/home/history-applications/new-application3"
+        "path": "/home/history-applications/new-application1/new-application2/new-application3"
     },
     {
         "title": "Βαθμολογίες",
@@ -86,12 +86,12 @@
     {
         "title": "Νέο Βαθμολόγιο Bήμα 2",
         "icon": "HiAcademicCap",
-        "path": "/home/professor-grades/new-grade2"
+        "path": "/home/professor-grades/new-grade1/new-grade2"
     },
     {
         "title": "Νέο Βαθμολόγιο Bήμα 3",
         "icon": "HiAcademicCap",
-        "path": "/home/professor-grades/new-grade3"
+        "path": "/home/professor-grades/new-grade1/new-grade2/new-grade3"
     },
     {
         "title": "Συχνές Ερωτήσεις",
