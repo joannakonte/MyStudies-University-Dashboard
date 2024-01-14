@@ -27,10 +27,12 @@
   
 .main {
     grid-area: main;
-    padding-top: 8%;
+    padding-top: 5%;
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 2%;
+    min-height: 500px;
+    overflow-y: auto;
 }
 
 /* =========== | FAQs Text | =========== */
