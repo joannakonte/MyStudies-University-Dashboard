@@ -95,7 +95,7 @@ function ProfileProfessor() {
 
               <div className={styles.columns}>
                 <div className={styles.uni_info}>
-                  <h2 className={styles.table_title}>Στοιχεία Φοιτητή</h2>
+                  <h2 className={styles.table_title}>Στοιχεία Καθηγητή</h2>
 
                   <table>
                     <tbody>
