@@ -13,9 +13,7 @@ function Certificates(){
     const [certificateNumber, setCertificateNumber] = useState(""); 
     const location = useLocation();
 
-    async function handleCertificateSubmit(e){
-        e.preventDefault();
-
+    async function handleCertificateSubmit(){
         const docCertificate = {
             certtype: certificateType,
             number: certificateNumber
@@ -30,9 +28,7 @@ function Certificates(){
 
             const col_ref = collection(db, "certificates");
             const res_user = await addDoc(col_ref, docCertificate); 
-
-            // Redirect to login route
-            window.location.href = '/home/certificates'
+            return true; // Indicate successful submission
 
         } catch (error) {
             console.error('Certificate error:', error.message);
