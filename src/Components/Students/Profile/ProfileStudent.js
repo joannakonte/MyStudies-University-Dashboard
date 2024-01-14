@@ -122,6 +122,10 @@ function ProfileStudent() {
                         <td className={styles.morebold}>ECTS:</td>
                         <td>{userData.ects}</td>
                       </tr>
+                      <tr>
+                        <td className={styles.morebold}>Τρέχον Εξάμηνο:</td>
+                        <td>{userData.currentsemester}</td>
+                      </tr>
                     </tbody>
                   </table>
 
