@@ -40,7 +40,12 @@ const Sidebar = ({ currentPath  }) => {
 
         <div className={style.buttons}>
             <div className={style.button}>
-                <button><HiHome/> Αρχική</button>
+
+                <Link to="/home">
+                    <button >
+                        <HiHome /> Αρχική
+                    </button>
+                </Link>
 
                 <Link to="/home/professor-faq">
                     <button className={currentPath === '/home/professor-faq' ? style.selectedButton : ''}>
@@ -48,7 +53,11 @@ const Sidebar = ({ currentPath  }) => {
                     </button>
                 </Link>
                 
-                <button><VscSignOut />Αποσύνδεση</button>
+                <Link to="/home">
+                    <button >
+                        <VscSignOut /> Αποσύνδεση
+                    </button>
+                </Link>
             </div>
         </div>
     </div>

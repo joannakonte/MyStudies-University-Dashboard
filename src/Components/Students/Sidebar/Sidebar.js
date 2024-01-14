@@ -58,15 +58,25 @@ const Sidebar = ({ currentPath  }) => {
 
         <div className={style.buttons}>
             <div className={style.button}>
-                <button><HiHome/> Αρχική</button>
+
+                <Link to="/home">
+                    <button >
+                        <HiHome /> Αρχική
+                    </button>
+                </Link>
 
                 <Link to="/home/faq">
                     <button className={currentPath === '/home/faq' ? style.selectedButton : ''}>
                         <HiQuestionMarkCircle /> Συχνές Ερωτήσεις
                     </button>
                 </Link>
+
+                <Link to="/home">
+                    <button >
+                        <VscSignOut /> Αποσύνδεση
+                    </button>
+                </Link>
                 
-                <button><VscSignOut />Αποσύνδεση</button>
             </div>
         </div>
     </div>
