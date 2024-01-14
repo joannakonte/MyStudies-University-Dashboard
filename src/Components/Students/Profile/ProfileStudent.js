@@ -32,12 +32,15 @@ function ProfileStudent() {
         </div>
 
         <div className={styles.main}>
-          {userData && (
-            <div>
-                <p>User Data:</p>
-                <pre>{JSON.stringify(userData, null, 2)}</pre>
+          <div className={styles.info}>
+            <div className={styles.personal_info}>
+              <p>hello</p>
             </div>
-          )}
+
+            <div className={styles.uni_info}>
+              <p>hello</p>
+            </div>
+          </div>
         </div>
     </div>
   );

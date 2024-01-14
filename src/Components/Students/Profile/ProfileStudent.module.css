@@ -50,3 +50,22 @@
     /* background-color: green; */
     /* background-color: rgba(0, 255, 55, 0.3); */
 }
+
+/* ================ | Personal Information |================ */
+.info {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.personal_info {
+    background-color: red;
+    width: 49%; 
+    border-radius: 5px;
+}
+  
+.uni_info {
+    background-color: green;
+    width: 49%; 
+    border-radius: 5px;
+}
