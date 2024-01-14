@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 function FAQProfessor() {
-  const [dropdownOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Όλες');
   const categories = ['Όλες', 'Μαθήματα', 'Βαθμολόγιο', "Προσωπικά Στοιχεία"];
