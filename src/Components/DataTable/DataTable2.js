@@ -19,7 +19,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
   const [sortOrder, setSortOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
   const [submissionInfo, setSubmissionInfo] = useState(null);
-
+  const [classIdsToCheck, setclassIdsToCheck] = useState([]);
   const items = grade ? item_grades : item_classes;
   const filteredItems = items.filter((field) => field.collectionfield !== 'details');
 
@@ -45,6 +45,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
           if (applicationData.studentId === studentId) {
             const classIdsToCheck = applicationData.allclasses.map(cls => cls.class_id);
             console.log('Check for:', classIdsToCheck);
+            setclassIdsToCheck(classIdsToCheck);
 
             const classesCollection = collectionGroup(db, 'classes');
             const classesSnapshot = await getDocs(classesCollection);
@@ -111,7 +112,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
   return (
     <div className={`${styles['table-container']}`}>
-      {showSubmissionInfo && submissionInfo && <SubmissionInfoBox submissionInfo={submissionInfo} />}
+      {showSubmissionInfo && submissionInfo && <SubmissionInfoBox submissionInfo={submissionInfo} classIdsToCheck={classIdsToCheck}/>}
       {showmarkedclasses && <MarkedClassesCounter markedClassesCount={Object.values(checkboxes).filter((isChecked) => isChecked).length} />}
       {/* <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} /> */}
       <table className={styles.table}>

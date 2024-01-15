@@ -1,32 +1,47 @@
+/* SubmissionInfoBox.module.css */
 .submission-info-box {
-    display: flex;
-    border: 1px solid #ccc;
-    margin-bottom: 2%;
-    margin-top: 2%;
-    /* background-color: #f8f8f8; */
-    background-color: rgb(13, 139, 217, 0.05);
+  display: flex;
+  border: 1px solid #ccc;
+  margin-bottom: 2%;
+  margin-top: 2%;
+  background-color: rgb(13, 139, 217, 0.05);
+  border-radius: 5px;
+  position: relative;
+}
 
-    border-radius: 5px;
-  }
-  
-  .submission-info-box p {
-    margin: 0;
-    padding: 1%;
-    font-size: larger;
-  }
-  
-  .submission-info-box p:first-child {
-    font-weight: bold;
-  }
-  
-  .submission-info-box p:first-child.true {
-    color: green;
-  }
-  
-  .submission-info-box p:first-child.false {
-    color: red;
-  }
+.submission-info-box p {
+  margin: 0;
+  padding: 1%;
+  font-size: larger;
+}
 
-  .submission-info-box p:not(:first-child) {
-    color: black;
-  }
+.submission-info-box p:first-child {
+  font-weight: bold;
+}
+
+.submission-info-box p:first-child.true {
+  color: green;
+}
+
+.submission-info-box p:first-child.false {
+  color: red;
+}
+
+.submission-info-box p:not(:first-child) {
+  color: black;
+}
+
+/* Add this style for the pencil icon link */
+.pencil-icon-link {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Adjust the right distance as needed */
+  transform: translateY(-50%);
+  size: 25px;
+  text-decoration: none; /* Remove underline for the link */
+  color: black; /* Inherit text color from parent */
+}
+
+.pencil-icon-link:hover {
+  font-weight: bolder;
+}
