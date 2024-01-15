@@ -3,7 +3,7 @@ import styles from './MarkedClassesCounter.module.css'; // Create a CSS file for
 import { HiExclamationTriangle  } from 'react-icons/hi2';
 
 const MarkedClassesCounter = ({ markedClassesCount }) => {
-  const isLimitReached = markedClassesCount >= 8;
+  const isLimitReached = markedClassesCount > 8;
 
   return (
     <div className={`${styles.counter} ${isLimitReached ? styles.limitReached : ''}`}>

@@ -1,0 +1,26 @@
+[
+    {
+        "type": "professor",
+        "firstname": "Mαρία",
+        "lastname": "Ρούσσου",
+        "email": "maria@mail.com",
+        "department": "Πληροφορικής και Τηλεπικοινωνιών",
+        "sdi": "mariar",
+        "password": "123456",
+        "fathername": "Δημήτρης",
+        "mothername": "Ελένη",
+        "birthday": "30-12-2002",
+        "maritalstatus": "Παντρεμένη",
+        "gender": "Θήλυ",
+        "birthplace": "Αθήνα",
+        "AT": "ΑΜ2222222",
+        "AMKA": "11111111",
+        "address": "Αθήνας 12",
+        "phone": "6912121212",
+        "position": "Διδακτικό Ερευνητικό Προσωπικό (ΔΕΠ)",
+        "rank": "Αναπληρώτρια Καθηγήτρια",
+        "division": "Υπολογιστικά συστήματα και εφαρμογές",
+        "office": "Α51"
+        
+    }
+]
