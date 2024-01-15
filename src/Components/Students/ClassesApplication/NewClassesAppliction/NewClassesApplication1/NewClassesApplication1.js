@@ -66,7 +66,7 @@ function NewClassesApplication1() {
          applicationId={mostRecentApplicationId} 
          appStep1={true} 
          showmarkedclasses={true} />
-        <a href="/home/history-applications/new-application1/new-application2" className={appstyle['next-page']}>
+        <a href="/home/history-applications/new-application1/new-application2" className={styles['next-page']}>
           Επόμενο <HiChevronRight  /> 
         </a>
       </div>

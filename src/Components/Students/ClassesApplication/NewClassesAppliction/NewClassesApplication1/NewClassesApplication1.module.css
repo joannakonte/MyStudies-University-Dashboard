@@ -50,3 +50,21 @@
     /* background-color: green; */
     /* background-color: rgba(0, 255, 55, 0.3); */
 }
+
+.next-page {
+    position: relative;
+    /* bottom: 5%; */
+    /* top:550px; */
+    /* height: max-content; */
+    /* right: -40%; */
+    padding: 0.7%;
+    background-color: white;
+    color: black;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 100%;
+    font-weight: bold;
+    width: 10%;
+    text-decoration: none;
+  }

@@ -19,7 +19,7 @@
 .next-page {
   position: relative;
   bottom: 5%;
-  top:550px;
+  /* top:550px; */
   /* height: max-content; */
   right: -40%;
   padding: 0.7%;
