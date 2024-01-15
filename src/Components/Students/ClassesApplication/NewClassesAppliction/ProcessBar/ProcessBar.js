@@ -11,7 +11,7 @@ const ProcessBar = ({ stages, currentStage }) => {
         {stages.map((stage, index) => (
           <React.Fragment key={index}>
             <a
-              href={`/home/history-applications/new-application${index + 1}`}
+              // href={`/home/history-applications/new-application${index + 1}`}
               className={`${styles['process-stage']} 
                 ${index < currentStage ? styles['previous'] : ''}
                 ${index === currentStage ? styles['active'] : ''}
