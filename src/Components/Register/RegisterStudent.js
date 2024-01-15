@@ -6,19 +6,6 @@ import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../firebase'
 
-const PasswordErrorMessage = () => { 
-    return ( 
-      <h className={styles.passwordError}>Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.</h> 
-    ); 
-}; 
-
-const FormErrorMessage = () => { 
-    return ( 
-      alert("Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία.")
-    ); 
-}; 
-
-
 function RegisterStudent() {
     const [firstname, setFirstName] = useState(""); 
     const [fathername, setFatherName] = useState(""); 
@@ -45,14 +32,14 @@ function RegisterStudent() {
         setShowPassword(!showPassword);
     };
 
-    const[formError, setFormError] = useState(false);
     const isFormValid = () => { 
-        const isValid = firstname && lastname && fathername && mothername && AM && password.value.length >= 8;
-    
-        // Set form error state
-        setFormError(!isValid);
-    
-        return isValid;
+        if (!firstname || !lastname || !fathername || !mothername || !AM) {
+            return "Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία.";
+        }
+        else if(password.value.length < 8){
+            return "Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.";
+        }
+        return ""; // No error
     };
     
     async function handleRegister(e){
@@ -370,11 +357,6 @@ function RegisterStudent() {
                         <div className={styles.eyeIcon} onClick={togglePasswordVisibility}>
                             {showPassword ? <HiEye /> : <HiEyeOff />}
                         </div>
-                        {password.isTouched && password.value.length < 8 ? ( 
-                            <PasswordErrorMessage /> 
-                        ) : null} 
-
-
 
                         <label> 
                             <div className={styles.labelText}>
@@ -396,9 +378,6 @@ function RegisterStudent() {
                         <div className={styles.eyeIcon} onClick={togglePasswordVisibility}>
                             {showPassword ? <HiEye /> : <HiEyeOff />}
                         </div>
-                        {password.isTouched && password.value.length < 8 ? ( 
-                            <PasswordErrorMessage /> 
-                        ) : null} 
                     </div>
                     <div className={styles.buttonContainer}>
                         <button className={styles.cancelButton}>
@@ -408,7 +387,10 @@ function RegisterStudent() {
                             type="submit"
                             onClick={(e) => {
                                 e.preventDefault();
-                                if (isFormValid()) {
+                                const validationResult = isFormValid();
+                                if (validationResult) {
+                                    alert(validationResult);
+                                } else {
                                     handleRegister(e);
                                 }
                             }}
@@ -416,7 +398,6 @@ function RegisterStudent() {
                         >
                             Εγγραφή
                         </button>
-                        {formError && <FormErrorMessage />}
                     </div>
                 </div>
             </form>
