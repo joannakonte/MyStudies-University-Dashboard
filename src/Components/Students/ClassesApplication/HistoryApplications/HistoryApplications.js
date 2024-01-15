@@ -47,9 +47,12 @@ function HistoryApplications() {
       </div>
 
       <div className={style.main}>
-        <a href="/home/history-applications/new-application1" className={style['new-app']}>
-          <HiMiniPlus /> Nέα Δήλωση
-        </a>
+        <div className={style['new-applic']}>
+          <a href="/home/history-applications/new-application1" className={style['new-app']}>
+            <HiMiniPlus /> Nέα Δήλωση
+          </a>
+        </div>
+
         {applications.map(application => (
           <TableComponent2
             key={application.id}

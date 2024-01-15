@@ -51,12 +51,13 @@
     /* background-color: rgba(0, 255, 55, 0.3); */
 }
 
+
+
+
+
+
 .next-page {
-    position: relative;
-    /* bottom: 5%; */
-    /* top:550px; */
-    /* height: max-content; */
-    /* right: -40%; */
+
     padding: 0.7%;
     background-color: white;
     color: black;
@@ -67,12 +68,15 @@
     font-weight: bold;
     width: 10%;
     text-decoration: none;
-  }
 
+}
 
-
-
+.next {
+    margin-top: 15px;
+    justify-content: flex-end;
+    display: flex;
+}
 
 .TableComponent2Grid {
-    margin-top: 10%;
+    margin-top: 6%;
 }

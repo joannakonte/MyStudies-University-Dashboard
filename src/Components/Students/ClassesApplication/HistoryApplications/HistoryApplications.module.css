@@ -53,35 +53,40 @@
 }
 
 /* =========== | HistoryApplications | =========== */
+.new-applic {
+  justify-content: flex-end;
+  display: flex;
+}
+
 .new-app {
-    /* position: fixed; */
-    /* top: 15%; */
-    right: 5%;
-    padding: 0.7%;
-    background-color:rgba(13, 139, 217, 0.1);
-    color: black;
-    border: 0.5px solid rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 100%;
-    font-weight: bold;
-    width: 10%;
-    text-decoration:none;
-  }
-  .new-app:hover {
-   
-    background-color:rgba(13, 139, 217, 0.6);
-    /* color: white; */
-    border: 0.5px solid rgba(13, 139, 217, 0.6);
-   
-  }
+  right: 5%;
+  padding: 0.7%;
+  background-color:rgba(13, 139, 217, 0.1);
+  color: black;
+  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 100%;
+  font-weight: bold;
+  width: 10%;
+  text-decoration:none;
+  
+}
+  
+.new-app:hover {
+  
+  background-color:rgba(13, 139, 217, 0.6);
+  /* color: white; */
+  border: 0.5px solid rgba(13, 139, 217, 0.6);
+  
+}
 
-  .page-title{
-    text-align: left; 
-  margin-left: 20%;
-  margin-top: -4%; 
-  }
+.page-title{
+  text-align: left; 
+margin-left: 20%;
+margin-top: -4%; 
+}
 
-  .doc-icon {
-    font-size: 150%; 
-  }
+.doc-icon {
+  font-size: 150%; 
+}

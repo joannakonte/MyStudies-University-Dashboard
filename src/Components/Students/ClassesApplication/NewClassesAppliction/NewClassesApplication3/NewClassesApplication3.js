@@ -81,25 +81,38 @@ function NewClassesApplication3() {
 
         <div className={styles.main}>
           <ProcessBar stages={stages} currentStage={2} />
-          <a href="/home/history-applications/new-application1/new-application2" className={appstyle['previous-page']}>
-            <HiChevronLeft /> Προηγούμενο
-          </a>
-          {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
-          <TableComponent
-            showOptionColumn={true}
-            selectedSemester={selectedSemester}
-            pageStyle={appstyle}
-            submission={true}
-            markedClasses={markedClasses}
-            collectionName={'classes'}
-            showmarkedclasses={true}
-          />
-          <button href="/home/history-applications" className={style['save']} onClick={() => handleSubmission(true)}>
-            Προσωρινή Αποθήκευση
-          </button>
-          <button className={style['submit']} onClick={() => handleSubmission(false)}>
-            <HiCheck /> Οριστική υποβολή
-          </button>
+          
+          <div className={styles.TableComponent3}>
+            <TableComponent
+              showOptionColumn={true}
+              selectedSemester={selectedSemester}
+              pageStyle={appstyle}
+              submission={true}
+              markedClasses={markedClasses}
+              collectionName={'classes'}
+              showmarkedclasses={true}
+            />
+          </div>
+
+          <div className={styles['button-container']}>
+            <div className={styles['previous']}>
+              <a href="/home/history-applications/new-application1/new-application2" className={style['previous-page']}>
+                <HiChevronLeft /> Προηγούμενο
+              </a>
+            </div>
+
+            <div className={styles['buttons2']}>
+              <button href="/home/history-applications" className={style['save']} onClick={() => handleSubmission(true)}>
+                Προσωρινή Αποθήκευση
+              </button>
+
+              <button className={style['submit']} onClick={() => handleSubmission(false)}>
+                <HiCheck /> Οριστική υποβολή
+              </button>
+            </div>
+          </div>
+
+          
         </div>
     </div>
   );

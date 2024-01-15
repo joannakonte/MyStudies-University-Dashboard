@@ -55,11 +55,11 @@ function Certificates(){
     return (
         <div className={styles.wrapper}>
             <div className={styles.header}>
-                <Header />
+              <Header />
             </div>
 
             <div className={styles.sidebar}>
-                <Sidebar currentPath={location.pathname} />
+              <Sidebar currentPath={location.pathname} />
             </div>
 
             <div className={styles.main}>
