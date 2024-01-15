@@ -19,6 +19,7 @@ const CertificatePopUp = ({ certificateType, setCertificateType, certificateNumb
     
     return (
         <>
+            
             <Popup
                 trigger={<button className={styles['new-app']}><HiMiniPlus /> Nέο Πιστοποιητικό</button>}
                 modal

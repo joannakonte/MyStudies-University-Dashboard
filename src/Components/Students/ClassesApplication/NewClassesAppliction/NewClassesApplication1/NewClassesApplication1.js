@@ -58,6 +58,7 @@ function NewClassesApplication1() {
 
       <div className={styles.main}>
         <ProcessBar stages={stages} currentStage={0} />
+
         <div className={styles.TableComponent2Grid}>
           <TableComponent2 
           showOptionColumn={true}
@@ -68,9 +69,13 @@ function NewClassesApplication1() {
           appStep1={true} 
           showmarkedclasses={true} />
         </div>
-        <a href="/home/history-applications/new-application1/new-application2" className={styles['next-page']}>
-          Επόμενο <HiChevronRight  /> 
-        </a>
+
+        <div className={styles['next']}>
+          <a href="/home/history-applications/new-application1/new-application2" className={styles['next-page']}>
+            Επόμενο <HiChevronRight  /> 
+          </a>
+        </div>
+        
       </div>
     </div>
   );

@@ -36,8 +36,14 @@ function RegisterProfessor() {
         isTouched: false,
     });  
     const [showPassword, setShowPassword] = useState(false);
+    const [showPasswordVerification, setShowPasswordVerification] = useState(false);
+
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
+    };
+
+    const togglePasswordVerificationVisibility = () => {
+        setShowPasswordVerification(!showPasswordVerification);
     };
 
     const isFormValid = () => { 
@@ -440,7 +446,7 @@ function RegisterProfessor() {
                     <input 
                         className={styles.inputField}
                         value={passwordVerification.value} 
-                        type={showPassword ? 'text' : 'password'}
+                        type={showPasswordVerification ? 'text' : 'password'}
                         onChange={(e) => { 
                             setPasswordVerification({ ...passwordVerification, value: e.target.value }); 
                         }} 
@@ -449,8 +455,8 @@ function RegisterProfessor() {
                         }} 
                         placeholder="Επαλήθευση Κωδικού" 
                     /> 
-                    <div className={styles.eyeIcon} onClick={togglePasswordVisibility}>
-                        {showPassword ? <HiEye /> : <HiEyeOff />}
+                    <div className={styles.eyeIcon} onClick={togglePasswordVerificationVisibility}>
+                        {showPasswordVerification ? <HiEye /> : <HiEyeOff />}
                     </div> 
                 </div>
                 <div className={styles.buttonContainer}>
