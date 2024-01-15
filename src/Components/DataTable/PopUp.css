@@ -2,6 +2,7 @@
     width: 500px;
     height: 300px;
     padding: 20px;
+    padding-top: 0; /* Remove padding at the top */
     border-radius: 8px;
     position: absolute;
     background-color: white;
@@ -10,19 +11,20 @@
     transform: translate(-50%, -50%);
 }
 
-.pop > .header {
-    background-color: rgba(13, 139, 217, 0.6);
-    position: fixed;
-    display: flex;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 20%;
-    align-items: flex-end;
-    border-radius: 8px 8px 0px 0px;
+.header {
+    background-color: rgba(13, 139, 217, 0.7);
+    width: 100%; 
+    margin: 0;
+    padding: 20px; 
+    border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
+    font-weight: bold;
+    color: white;
+    width: calc(100% + 40px); 
+    margin-left: -20px; 
+    box-sizing: border-box;
 }
 
-.pop > .header * {
+.header * {
     display: inline;
     margin-bottom: 10px;
     font-size: 100%;
@@ -41,8 +43,10 @@
     text-decoration: none;
 }
 
+
 .content {
-    margin-top: 60px; 
+    display: flex;
+    flex-direction: column;
 }
 
 .closeButton {
