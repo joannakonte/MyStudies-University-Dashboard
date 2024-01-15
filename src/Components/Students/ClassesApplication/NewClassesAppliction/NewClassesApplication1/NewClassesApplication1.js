@@ -59,7 +59,7 @@ function NewClassesApplication1() {
       <div className={styles.main}>
         <ProcessBar stages={stages} currentStage={0} />
         <TableComponent2 showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle} grade={false} applicationId={mostRecentApplicationId} appStep1={true} />
-        <a href="/home/history-applications/new-application2" className={appstyle['next-page']}>
+        <a href="/home/history-applications/new-application1/new-application2" className={appstyle['next-page']}>
           Επόμενο <HiChevronRight  /> 
         </a>
       </div>

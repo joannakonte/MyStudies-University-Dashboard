@@ -76,7 +76,7 @@ function NewClassesApplication3() {
 
         <div className={styles.main}>
           <ProcessBar stages={stages} currentStage={2} />
-          <a href="/home/history-applications/new-application2" className={appstyle['previous-page']}>
+          <a href="/home/history-applications/new-application1/new-application2" className={appstyle['previous-page']}>
             <HiChevronLeft /> Προηγούμενο
           </a>
           {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}

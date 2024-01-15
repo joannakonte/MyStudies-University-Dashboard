@@ -36,7 +36,7 @@ function NewClassesApplication2() {
           <SemesterDropDown onSelectSemester={setSelectedSemester} />
           {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
           <TableComponent showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle}  collectionName={'classes'} />
-          <a href="/home/history-applications/new-application3" className={appstyle['next-page']}>
+          <a href="/home/history-applications/new-application1/new-application2/new-application3" className={appstyle['next-page']}>
             Επόμενο <HiChevronRight />
           </a>
           <a href="/home/history-applications/new-application1" className={appstyle['previous-page']}>
