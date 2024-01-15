@@ -32,7 +32,7 @@ function ProfileProfessor() {
         </div>
 
         <div className={styles.main}>
-        {userData && (
+          {userData && (
             <div className={styles.info}>
               <div className={styles.columns}>
                 <div className={styles.personal_info}>

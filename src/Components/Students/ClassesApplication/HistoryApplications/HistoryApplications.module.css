@@ -54,7 +54,7 @@
 
 /* =========== | HistoryApplications | =========== */
 .new-app {
-    position: fixed;
+    /* position: fixed; */
     /* top: 15%; */
     right: 5%;
     padding: 0.7%;

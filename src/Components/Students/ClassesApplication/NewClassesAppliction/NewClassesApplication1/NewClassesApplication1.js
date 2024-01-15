@@ -58,14 +58,16 @@ function NewClassesApplication1() {
 
       <div className={styles.main}>
         <ProcessBar stages={stages} currentStage={0} />
-        <TableComponent2 
-         showOptionColumn={true}
-         selectedSemester={selectedSemester}
-         pageStyle={appstyle} 
-         grade={false} 
-         applicationId={mostRecentApplicationId} 
-         appStep1={true} 
-         showmarkedclasses={true} />
+        <div className={styles.TableComponent2Grid}>
+          <TableComponent2 
+          showOptionColumn={true}
+          selectedSemester={selectedSemester}
+          pageStyle={appstyle} 
+          grade={false} 
+          applicationId={mostRecentApplicationId} 
+          appStep1={true} 
+          showmarkedclasses={true} />
+        </div>
         <a href="/home/history-applications/new-application1/new-application2" className={styles['next-page']}>
           Επόμενο <HiChevronRight  /> 
         </a>

@@ -1,6 +1,8 @@
 .counter {
   padding: 1%;
   border: 1px solid #ccc;
+  margin-bottom: 5%;
+  margin-top: -5%;
 }
   
 .limitReached {

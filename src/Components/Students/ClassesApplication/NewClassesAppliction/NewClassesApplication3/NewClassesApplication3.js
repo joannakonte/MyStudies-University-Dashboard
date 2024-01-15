@@ -104,33 +104,6 @@ function NewClassesApplication3() {
     </div>
   );
   
-
-//   return (
-//     <div>
-//       <Header />
-//       {/* <Breadcrumb /> */}
-//       <Sidebar />
-//       <ProcessBar stages={stages} currentStage={2} />
-//       <a href="/home/history-applications/new-application2" className={appstyle['previous-page']}>
-//         <HiChevronLeft /> Προηγούμενο
-//       </a>
-//       {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
-//       <TableComponent
-//         showOptionColumn={true}
-//         selectedSemester={selectedSemester}
-//         pageStyle={appstyle}
-//         submission={true}
-//         markedClasses={markedClasses}
-//         collectionName={'classes'}
-//       />
-// <button href="/home/history-applications" className={style['save']} onClick={() => handleSubmission(true)}>
-//   Προσωρινή Αποθήκευση
-// </button>
-// <button className={style['submit']} onClick={() => handleSubmission(false)}>
-//   <HiCheck /> Οριστική υποβολή
-// </button>
-//     </div>
-//   );
 }
 
 export default NewClassesApplication3;

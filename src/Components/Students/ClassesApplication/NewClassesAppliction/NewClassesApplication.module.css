@@ -1,11 +1,11 @@
 .semesterDropdownContainer {
   position: relative;
-  width: 8%;
-  left: 25%;
-  top: 41%;
+  width: 10%;
+  /* left: 25%; */
+  /* top: 41%; */
   z-index: 1;
-  margin-bottom: -11.5%;
-  margin-top: 12%;
+  margin-bottom: -13%;
+  margin-top: 15%;
 }
 
 .semesterDropdown {
@@ -88,4 +88,8 @@
 
 .doc-icon {
   font-size: 150%;
+}
+
+.tablecontainer2 {
+  /* padding-top: 1%; */
 }
