@@ -58,6 +58,7 @@ function HistoryApplications() {
             showAllData={true}
             collectionName={'applcations'}
             grade={false}
+            showSubmissionInfo = {true}
             applicationId={application.id}
           />
         ))}

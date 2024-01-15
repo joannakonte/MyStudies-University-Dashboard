@@ -9,15 +9,16 @@ import { filterAndSortData2, findStudentById } from './DataTableUtils';
 import item_classes from '../../data/dataTableHeaderClasses.json';
 import item_grades from '../../data/dataTableHeaderGrades.json';
 import MarkedClassesCounter from './MarkedClasses/MarkedClassesCounter'; 
+import SubmissionInfoBox from './SubmissionInfoBox/SubmissionInfoBox';
 
-
-const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, applicationId, appStep1, showmarkedclasses  }) => {
+const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, applicationId, appStep1, showmarkedclasses, showSubmissionInfo  }) => {
   const [info, setInfo] = useState([]);
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedClass, setSelectedClass] = useState(null);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
   const [searchQuery, setSearchQuery] = useState('');
+  const [submissionInfo, setSubmissionInfo] = useState(null);
 
   const items = grade ? item_grades : item_classes;
   const filteredItems = items.filter((field) => field.collectionfield !== 'details');
@@ -35,6 +36,11 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
         if (applicationDoc.exists()) {
           const applicationData = applicationDoc.data();
+          setSubmissionInfo({
+            submit: applicationData.submit || false,
+            date: applicationData.date ? applicationData.date.toDate() : null,
+          });
+
           const studentId = await findStudentById();
           if (applicationData.studentId === studentId) {
             const classIdsToCheck = applicationData.allclasses.map(cls => cls.class_id);
@@ -79,7 +85,6 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
     fetchData();
   }, [applicationId, submission, appStep1]);
 
-
   const handleCheckboxChange = (id, isChecked) => {
     setCheckboxes((prevCheckboxes) => {
       const updatedCheckboxes = {
@@ -98,6 +103,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
     });
   };
 
+
   const toggleSortOrder = (column) => {
     setSortColumn(column);
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
@@ -105,6 +111,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
   return (
     <div className={`${styles['table-container']}`}>
+      {showSubmissionInfo && submissionInfo && <SubmissionInfoBox submissionInfo={submissionInfo} />}
       {showmarkedclasses && <MarkedClassesCounter markedClassesCount={Object.values(checkboxes).filter((isChecked) => isChecked).length} />}
       {/* <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} /> */}
       <table className={styles.table}>
@@ -155,3 +162,4 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 };
 
 export default TableComponent2;
+

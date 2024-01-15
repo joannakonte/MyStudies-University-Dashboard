@@ -1,0 +1,32 @@
+.submission-info-box {
+    display: flex;
+    border: 1px solid #ccc;
+    margin-bottom: 2%;
+    margin-top: 2%;
+    /* background-color: #f8f8f8; */
+    background-color: rgb(13, 139, 217, 0.05);
+
+    border-radius: 5px;
+  }
+  
+  .submission-info-box p {
+    margin: 0;
+    padding: 1%;
+    font-size: larger;
+  }
+  
+  .submission-info-box p:first-child {
+    font-weight: bold;
+  }
+  
+  .submission-info-box p:first-child.true {
+    color: green;
+  }
+  
+  .submission-info-box p:first-child.false {
+    color: red;
+  }
+
+  .submission-info-box p:not(:first-child) {
+    color: black;
+  }
