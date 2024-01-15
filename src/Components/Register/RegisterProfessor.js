@@ -31,6 +31,10 @@ function RegisterProfessor() {
         value: "", 
         isTouched: false, 
     }); 
+    const [passwordVerification, setPasswordVerification] = useState({
+        value: "", 
+        isTouched: false,
+    });  
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -43,6 +47,9 @@ function RegisterProfessor() {
         else if(password.value.length < 8){
             return "Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.";
         }
+        else if(password.value !== passwordVerification.value){
+            return "Οι κωδικοί πρόσβασης δεν ταιριάζουν.";
+            }
         return ""; // No error
     };
     
@@ -432,13 +439,13 @@ function RegisterProfessor() {
                     </label> 
                     <input 
                         className={styles.inputField}
-                        value={password.value} 
+                        value={passwordVerification.value} 
                         type={showPassword ? 'text' : 'password'}
                         onChange={(e) => { 
-                            setPassword({ ...password, value: e.target.value }); 
+                            setPasswordVerification({ ...passwordVerification, value: e.target.value }); 
                         }} 
                         onBlur={() => { 
-                            setPassword({ ...password, isTouched: true }); 
+                            setPassword({ ...passwordVerification, isTouched: true }); 
                         }} 
                         placeholder="Επαλήθευση Κωδικού" 
                     /> 
