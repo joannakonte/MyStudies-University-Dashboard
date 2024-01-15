@@ -1,6 +1,7 @@
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase'
 
+
 export const filterAndSortData = (info, submission, selectedSemester, checkboxes, sortColumn, sortOrder, searchQuery) => {
     const filteredData = info.filter((classes) => {
       const { name, ECTS, semester, category } = classes;
@@ -89,7 +90,7 @@ export const filterAndSortDataNew = (data, sortColumn, sortOrder, searchQuery) =
 
       return (
         (!certtype || certtype.toLowerCase().includes(normalizedQuery)) &&
-        (!reqdate || String(reqdate).toLowerCase().includes(normalizedQuery)) &&
+        (!reqdate || formatDate(reqdate).toLowerCase().includes(normalizedQuery)) &&
         (!number || number.toString().includes(normalizedQuery)) &&
         (!status || status.toLowerCase().includes(normalizedQuery)) &&
         (!download || download.toLowerCase().includes(normalizedQuery))
@@ -105,7 +106,10 @@ export const filterAndSortDataNew = (data, sortColumn, sortOrder, searchQuery) =
     const columnA = a[sortColumn];
     const columnB = b[sortColumn];
 
-    if (typeof columnA === 'string' && typeof columnB === 'string') {
+    if (sortColumn === 'reqdate') {
+      // If sorting by reqdate, compare the timestamps directly
+      return sortOrder === 'asc' ? columnA.seconds - columnB.seconds : columnB.seconds - columnA.seconds;
+    } else if (typeof columnA === 'string' && typeof columnB === 'string') {
       return sortOrder === 'asc' ? columnA.localeCompare(columnB) : columnB.localeCompare(columnA);
     } else {
       // Add additional checks if the columns are not strings
@@ -113,6 +117,7 @@ export const filterAndSortDataNew = (data, sortColumn, sortOrder, searchQuery) =
     }
   });
 };
+
 
 export const findStudentById = async () => {
   try {
@@ -134,3 +139,12 @@ export const findStudentById = async () => {
     return null;
   }
 };
+
+export const formatDate = (timestamp) => {
+  const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+}
