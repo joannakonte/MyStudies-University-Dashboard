@@ -5,10 +5,11 @@ import styles from './DataTable.module.css';
 import { HiOutlineEye, HiArrowsUpDown } from 'react-icons/hi2';
 import PopUp from './PopUp';
 import SearchBar from './SearchBar';
-import {filterAndSortData} from './DataTableUtils';
-import items from "../../data/dataTableHeaderClasses.json"
+import { filterAndSortData } from './DataTableUtils';
+import items from '../../data/dataTableHeaderClasses.json';
+import MarkedClassesCounter from './MarkedClasses/MarkedClassesCounter'; 
 
-const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submission, collectionName }) => {
+const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submission, collectionName, showmarkedclasses }) => {
   const [info, setInfo] = useState([]);
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedClass, setSelectedClass] = useState(null);
@@ -17,8 +18,14 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
   const [searchQuery, setSearchQuery] = useState('');
 
   const filteredAndSortedData = filterAndSortData(
-    info, submission, selectedSemester, checkboxes,
-    sortColumn, sortOrder, searchQuery);
+    info,
+    submission,
+    selectedSemester,
+    checkboxes,
+    sortColumn,
+    sortOrder,
+    searchQuery
+  );
 
   useEffect(() => {
     fetchData();
@@ -47,19 +54,18 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
         ...prevCheckboxes,
         [id]: isChecked,
       };
-  
+
       console.log('Updated Checkboxes:', updatedCheckboxes);
-  
+
       const localStorageKey = submission ? 'markedClasses' : 'objectGreeting';
-  
+
       const myObjectString = JSON.stringify(updatedCheckboxes);
       localStorage.setItem(localStorageKey, myObjectString);
-  
+
       return updatedCheckboxes;
     });
   };
-  
-  
+
   const openPopup = (collectionName) => {
     setSelectedClass(collectionName);
   };
@@ -73,8 +79,11 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
 
+
+
   return (
     <div className={`${styles['table-container']} `} >
+      {showmarkedclasses && <MarkedClassesCounter markedClassesCount={Object.values(checkboxes).filter((isChecked) => isChecked).length} />}
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} />
       <table className={styles.table}>
         <thead>

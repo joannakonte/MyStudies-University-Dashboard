@@ -28,15 +28,20 @@ function NewClassesApplication3() {
     try {
       console.log('Marked Classes to Submit:', markedClasses);
   
+      const selectedClasses = Object.keys(markedClasses).filter(className => markedClasses[className]);
+  
+      if (selectedClasses.length > 8) {
+        window.alert('Μπορείτε να δηλώσετε έως 8 μαθήματα.');
+        return;
+      }
+  
       const studentId = '2a5iiuGDHgvDPwBkVoAk';
   
       const applicationsCollection = collection(db, 'applications');
   
-      const selectedClasses = Object.keys(markedClasses).filter(className => markedClasses[className]);
-  
       const applicationData = {
         studentId,
-        submit: !isTemporary, 
+        submit: !isTemporary,
         date: serverTimestamp(),
         allclasses: selectedClasses.map(className => ({
           class_id: className,
@@ -61,7 +66,7 @@ function NewClassesApplication3() {
       console.error('Error saving application:', error);
     }
   };
-
+  
   const location = useLocation();
 
   return(
@@ -87,6 +92,7 @@ function NewClassesApplication3() {
             submission={true}
             markedClasses={markedClasses}
             collectionName={'classes'}
+            showmarkedclasses={true}
           />
           <button href="/home/history-applications" className={style['save']} onClick={() => handleSubmission(true)}>
             Προσωρινή Αποθήκευση

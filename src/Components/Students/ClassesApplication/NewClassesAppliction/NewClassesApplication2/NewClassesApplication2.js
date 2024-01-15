@@ -35,7 +35,7 @@ function NewClassesApplication2() {
           <ProcessBar stages={stages} currentStage={1} />
           <SemesterDropDown onSelectSemester={setSelectedSemester} />
           {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
-          <TableComponent showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle}  collectionName={'classes'} />
+          <TableComponent showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle}  collectionName={'classes'}   showmarkedclasses={true} />
           <a href="/home/history-applications/new-application1/new-application2/new-application3" className={appstyle['next-page']}>
             Επόμενο <HiChevronRight />
           </a>

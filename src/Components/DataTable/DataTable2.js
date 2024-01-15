@@ -8,8 +8,10 @@ import SearchBar from './SearchBar';
 import { filterAndSortData2, findStudentById } from './DataTableUtils';
 import item_classes from '../../data/dataTableHeaderClasses.json';
 import item_grades from '../../data/dataTableHeaderGrades.json';
+import MarkedClassesCounter from './MarkedClasses/MarkedClassesCounter'; 
 
-const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, applicationId, appStep1  }) => {
+
+const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, applicationId, appStep1, showmarkedclasses  }) => {
   const [info, setInfo] = useState([]);
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedClass, setSelectedClass] = useState(null);
@@ -103,6 +105,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
   return (
     <div className={`${styles['table-container']}  `}>
+      {showmarkedclasses && <MarkedClassesCounter markedClassesCount={Object.values(checkboxes).filter((isChecked) => isChecked).length} />}
       {/* <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} /> */}
       <table className={styles.table}>
         <thead>

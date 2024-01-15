@@ -34,7 +34,7 @@ function Classes() {
           </div>
 
           <div className={styles.tablecomp}>
-            <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} pageStyle={styles} collectionName={'classes'} />
+            <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} pageStyle={styles} collectionName={'classes'}  showmarkedclasses={false} />
           </div>
         </div>
       </div>
