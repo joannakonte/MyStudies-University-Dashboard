@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Τμήμα",
+        "collectionfield": "department"
+    },
+    {
+        "title": "Μάθημα",
+        "collectionfield": "name"
+    },
+    {
+        "title": "Κωδικός",
+        "collectionfield": "id"
+    },
+    {
+        "title": "Εξάμηνο",
+        "collectionfield": "semester"
+    },
+    {
+        "title": "Ώρες",
+        "collectionfield": "hours"
+    },
+    {
+        "title": "Λέπτομέρειες",
+        "collectionfield": "details"
+    }
+
+]
