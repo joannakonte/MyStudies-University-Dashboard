@@ -8,10 +8,6 @@
         "collectionfield": "reqdate"
     },
     {
-        "title": "Αριθμός Αντιτύπων",
-        "collectionfield": "number"
-    },
-    {
         "title": "Κατάσταση",
         "collectionfield": "status"
     },
