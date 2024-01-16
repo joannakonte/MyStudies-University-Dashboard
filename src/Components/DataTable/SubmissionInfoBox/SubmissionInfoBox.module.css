@@ -20,11 +20,11 @@
 }
 
 .submission-info-box p:first-child.true {
-  color: orange;
+  color: green;
 }
 
 .submission-info-box p:first-child.false {
-  color: green;
+  color: orange;
 }
 
 .submission-info-box p:not(:first-child) {

@@ -31,7 +31,7 @@ const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck, showSubmissionInfo
   return (
     <div className={styles['submission-info-box']}>
       {showSubmissionInfo && <p className={submissionInfo.submit ? styles.true : styles.false}>
-        {submissionInfo.submit ? 'Προσωρινά αποθηκευμένο' : 'Οριστικοποιημένο'}
+        {submissionInfo.submit ? 'Οριστικοποιημένο' : 'Προσωρινά αποθηκευμένο' }
       </p>}
       {submissionInfo.date && (
         <p>{formatDate(submissionInfo.date)}</p>
