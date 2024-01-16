@@ -3,8 +3,6 @@ import { db } from '../../firebase';
 import { collection, getDocs, query, orderBy, where } from 'firebase/firestore';
 import styles from './DataTable.module.css';
 import { HiArrowDownTray, HiArrowsUpDown } from 'react-icons/hi2';
-import PopUp from './PopUp';
-import SearchBar from './SearchBar';
 import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
 import items from "../../data/dataTableHeaderCert.json";
 

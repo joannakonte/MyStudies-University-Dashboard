@@ -6,7 +6,6 @@ import { useLocation } from 'react-router-dom';
 import { db } from '../../../firebase';
 import { collectionGroup, getDocs } from 'firebase/firestore';
 import TableComponent2 from '../../DataTable/DataTable2';
-import defaultstyle from '../../DataTable/DefaultTable.module.css';
 
 function Grades(){
   const [applications, setApplications] = useState([]);

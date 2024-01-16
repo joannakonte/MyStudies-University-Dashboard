@@ -3,7 +3,6 @@ import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import SemesterTable from './SemesterTable';
 import TableComponent from '../../DataTable/DataTable';
-import defaultstyle from '../../DataTable/DefaultTable.module.css';
 import { useLocation } from 'react-router-dom';
 import styles from './Classes.module.css';
 
