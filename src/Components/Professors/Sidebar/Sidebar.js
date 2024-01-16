@@ -38,28 +38,6 @@ const Sidebar = ({ currentPath  }) => {
             </div>
         </div>
 
-        <div className={style.buttons}>
-            <div className={style.button}>
-
-                <Link to="/home">
-                    <button >
-                        <HiHome /> Αρχική
-                    </button>
-                </Link>
-
-                <Link to="/home/professor-faq">
-                    <button className={currentPath === '/home/professor-faq' ? style.selectedButton : ''}>
-                        <HiQuestionMarkCircle /> Συχνές Ερωτήσεις
-                    </button>
-                </Link>
-                
-                <Link to="/home">
-                    <button >
-                        <VscSignOut /> Αποσύνδεση
-                    </button>
-                </Link>
-            </div>
-        </div>
     </div>
     );
 };

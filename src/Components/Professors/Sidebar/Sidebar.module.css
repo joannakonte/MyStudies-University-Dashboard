@@ -2,10 +2,9 @@
     display: grid;
     grid-template-areas:
         'department'
-        'menu'
-        'buttons';
+        'menu';
     grid-template-columns: 100%;
-    grid-template-rows: 25% 60% 50%;
+    grid-template-rows: 50% 50%;
 }
   
 .department {
@@ -38,18 +37,6 @@
     height: 100%;
 }
   
-.buttons {
-    grid-area: buttons;
-    display: flex;
-
-    flex-direction: column;
-    justify-content: end;
-    align-items: end;
-    /* border: 2px solid green; */
-    /* background-color: green; */
-    /* background-color: rgba(0, 255, 55, 0.3); */
-    /* height: 100%; */
-}
 
 /* ================ | Department Title |================ */
 .title {
@@ -96,52 +83,3 @@
     margin-left: 10px; 
     font-size: 120%;
 }
-
-
-/* ================ | Buttons |================ */
-.button {
-    padding: 5%;
-}
-  
-.button button {
-    /* display: block; */
-    width: 100%;
-    text-align: left;
-    margin-bottom: 10px;
-    border: 1px solid #000000;
-    padding: 4px;
-    border-radius: 5px;
-    background-color: transparent;
-    cursor: pointer;
-    color: #000000;
-    font-family: 'Manrope';
-    font-weight: bold;
-    font-size: 100%;
-}
-  
-.button button:hover {
-    border: 1px solid #FFFFFF;
-    color: white;
-} 
-
-.button button svg {
-    font-size: 100%; 
-    margin-right: 10px; 
-    margin-left: 10px; 
-}
-
-.button button.selectedButton {
-    background-color: rgba(255, 255, 255, 0.5);
-    color: #000000; 
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 4px;
-    border: 1px solid #000000;
-}
-
-.button button.selectedButton:hover {
-    background-color: #ffffff; 
-    color: #2F80C1; 
-    border: 1px solid #fff;
-  }
-  

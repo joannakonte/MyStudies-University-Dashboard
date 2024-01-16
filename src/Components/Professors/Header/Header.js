@@ -9,6 +9,8 @@ import { faBars, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FaSearch, FaRegWindowRestore  } from "react-icons/fa";
 import { HiBookOpen, HiDocumentText, HiAcademicCap, HiQuestionMarkCircle, HiHome } from 'react-icons/hi'; 
 import { VscSignOut } from "react-icons/vsc";
+import { Link } from 'react-router-dom';
+
 
 
 // Function to match paths with dynamic segments
@@ -103,6 +105,8 @@ function Header() {
                 </div>
             </div>  
 
+            
+
             {/* Profile */}
             <div className={style.item3}>
                 <div className={style.profile}>
@@ -117,6 +121,7 @@ function Header() {
                         </button>
                         {dropdownOpen && (
                             <div className={`${style['dropdown-content']} ${dropdownOpen ? style.show : ''}`}>
+                                <a className={style.profile} href="/home/professor-faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> Συχνές Ερωτήσεις</a>
                                 <a className={style.profile} href="/home/profile"><HiOutlineUserCircle className={style.dropdownIcons} /> Προφίλ</a>
                                 <a className={style.logout} href="/"><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
                                 <a className={style['home-page']} href="/home"><HiHome className={style.dropdownIcons} /> Αρχική</a>

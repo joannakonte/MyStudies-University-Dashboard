@@ -116,6 +116,7 @@ function Header() {
                         </button>
                         {dropdownOpen && (
                             <div className={`${style['dropdown-content']} ${dropdownOpen ? style.show : ''}`}>
+                                <a className={style.profile} href="/home/faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> Συχνές Ερωτήσεις</a>
                                 <a className={style.profile} href="/home/profile"><HiOutlineUserCircle className={style.dropdownIcons} /> Προφίλ</a>
                                 <a className={style.logout} href="/"><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
                                 <a className={style['home-page']} href="/home"><HiHome className={style.dropdownIcons} /> Αρχική</a>
