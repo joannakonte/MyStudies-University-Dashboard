@@ -112,7 +112,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
   return (
     <div className={`${styles['table-container']}`}>
-      {showSubmissionInfo && submissionInfo && <SubmissionInfoBox submissionInfo={submissionInfo} classIdsToCheck={classIdsToCheck}/>}
+      {submissionInfo && <SubmissionInfoBox submissionInfo={submissionInfo} classIdsToCheck={classIdsToCheck} showSubmissionInfo={showSubmissionInfo}/>}
       {showmarkedclasses && <MarkedClassesCounter markedClassesCount={Object.values(checkboxes).filter((isChecked) => isChecked).length} />}
       {/* <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} /> */}
       <table className={styles.table}>

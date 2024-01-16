@@ -12,6 +12,7 @@
   margin: 0;
   padding: 1%;
   font-size: larger;
+  color: black;
 }
 
 .submission-info-box p:first-child {

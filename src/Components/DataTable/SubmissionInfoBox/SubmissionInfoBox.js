@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 import styles from './SubmissionInfoBox.module.css';
 import { HiMiniPencil } from 'react-icons/hi2';
 
-const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck }) => {
+const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck, showSubmissionInfo }) => {
   const formatDate = (date) => {
-    
     const currentMonthIndex = date.getMonth();
-    const season = (currentMonthIndex >= 9  || currentMonthIndex < 2 )? 'Χειμερινό' : 'Εαρινό';
-    const year = (currentMonthIndex < 2) ? date.getFullYear() - 1 : date.getFullYear()
-    
-    return `${date.getDate()}/${currentMonthIndex + 1}/${date.getFullYear()}  |  ${season} ${year}`;
+    const season = (currentMonthIndex >= 9 || currentMonthIndex < 2) ? 'Χειμερινό' : 'Εαρινό';
+    const year = (currentMonthIndex < 2) ? date.getFullYear() - 1 : date.getFullYear();
+
+    return !showSubmissionInfo ? `${season} ${year}` : `Ημερομηνία: ${date.getDate()}/${currentMonthIndex + 1}/${date.getFullYear()} | ${season} ${year}`;
   };
 
   const handleEditClick = () => {
@@ -31,13 +30,13 @@ const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck }) => {
 
   return (
     <div className={styles['submission-info-box']}>
-      <p className={submissionInfo.submit ? styles.true : styles.false}>
+      {showSubmissionInfo && <p className={submissionInfo.submit ? styles.true : styles.false}>
         {submissionInfo.submit ? 'Προσωρινά αποθηκευμένο' : 'Οριστικοποιημένο'}
-      </p>
+      </p>}
       {submissionInfo.date && (
-        <p>Ημερομηνία: {formatDate(submissionInfo.date)}</p>
+        <p>{formatDate(submissionInfo.date)}</p>
       )}
-      {!submissionInfo.submit && (
+      {showSubmissionInfo && !submissionInfo.submit && (
         <Link to="/home/history-applications/new-application1/new-application2" className={styles['pencil-icon-link']} onClick={handleEditClick}>
           <HiMiniPencil className={styles['pencil-icon']} /> Επεξεργασία
         </Link>
