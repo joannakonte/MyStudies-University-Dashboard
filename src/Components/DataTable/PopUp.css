@@ -1,5 +1,5 @@
 .pop {
-    width: 500px;
+    width: 600px;
     height: 300px;
     padding: 20px;
     padding-top: 0; /* Remove padding at the top */
@@ -77,4 +77,24 @@
     background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+}
+
+/* ======== | Professor popup tab | ======== */
+
+.professorInfoContainer{
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+}
+
+.professorInfoContainer h2{
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+}
+
+.professorInfoContainer h3{
+    font-size: 18px;
+    font-weight: normal;
+    color: black;
 }

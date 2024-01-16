@@ -1,15 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
 import './PopUp.css'; 
+import { db } from '../../firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 const PopUp = ({ isOpen, onClose, selectedClass }) => {
      // Keep track of the active tab
-     const [activeTab, setActiveTab] = useState('details');
+    const [activeTab, setActiveTab] = useState('details');
 
      // Handle tab change
-     const handleTabChange = (tab) => {
+    const handleTabChange = (tab) => {
          setActiveTab(tab);
      };
+
+    const [professorData, setProfessorData] = useState(null);
+
+    useEffect(() => {
+        if (activeTab === 'professor') {
+            fetchProfessorData();
+        }
+    }, [activeTab, selectedClass]);
+
+    const fetchProfessorData = async () => {
+        if (!selectedClass) return;
+
+        const q = query(collection(db, 'students'), where('classes', 'array-contains', selectedClass.id));
+        const querySnapshot = await getDocs(q);
+        
+        // Assuming there's only one professor per class
+        const professor = querySnapshot.docs.map(doc => doc.data())[0];
+        setProfessorData(professor);
+    };
+
     return (
         <Popup open={isOpen} onClose={onClose} closeOnDocumentClick>
             <div className="pop">
@@ -33,9 +55,14 @@ const PopUp = ({ isOpen, onClose, selectedClass }) => {
                             )}
 
                             {activeTab === 'professor' && (
-                                <div>
-                                    <h2>Διδάσκων Καθηγητής</h2>
-                                    <p>{selectedClass.professor}</p>
+                                <div className="professorInfoContainer">
+                                    <h2>Διδάσκων Καθηγητής:</h2>
+                                    {professorData ? (
+                                        <div>
+                                            <h3>{professorData.firstname} {professorData.lastname}</h3>
+                                            {/* Display other professor details */}
+                                        </div>
+                                    ) : <p></p>}
                                 </div>
                             )}
                             {activeTab === 'books' && (
