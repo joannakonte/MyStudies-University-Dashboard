@@ -1,6 +1,6 @@
 .pop {
-    width: 600px;
-    height: 300px;
+    width: 700px;
+    height: 340px;
     padding: 20px;
     padding-top: 0; /* Remove padding at the top */
     border-radius: 8px;
@@ -22,25 +22,6 @@
     width: calc(100% + 40px); 
     margin-left: -20px; 
     box-sizing: border-box;
-}
-
-.header * {
-    display: inline;
-    margin-bottom: 10px;
-    font-size: 100%;
-}
-
-.pop > .header li :hover{
-    color: #FFFFFF;
-}
-  
-.pop > .header li {
-    margin: 7px;
-}
-
-.pop > .header li a {
-    color: black;
-    text-decoration: none;
 }
 
 
@@ -79,22 +60,95 @@
     align-items: center;
 }
 
-/* ======== | Professor popup tab | ======== */
+/* ======== | Popup buttons | ======== */
 
-.professorInfoContainer{
-    display: flex; 
-    align-items: center; 
-    gap: 10px; 
+.navbar {
+    display: flex;
+    justify-content: center; /* Horizontally space out the buttons evenly */
+    align-items: center; /* Vertically align items in the center */
 }
 
-.professorInfoContainer h2{
+.tabButton{
     font-size: 18px;
+    font-weight: 700;
+    border: 0px solid;
+    cursor: pointer;
+    background: none;
+    margin: 0 10px;
+}
+
+.activeTabButton {
+    color: white;
+}
+
+/* ======== | Professor popup tab | ======== */
+
+.professorInfoContainer .headerContainer{
+    display: flex; 
+    align-items: center; 
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.professorInfoContainer .headerContainer h2{
+    font-size: 16px;
     font-weight: 700;
     color: black;
 }
 
-.professorInfoContainer h3{
-    font-size: 18px;
+.professorInfoContainer .headerContainer h3{
+    font-size: 16px;
     font-weight: normal;
     color: black;
+}
+
+/* ======== | Tables | ======== */
+
+.table {
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 1.8%;
+}
+
+.table .table-row td:first-child{
+    background-color: rgba(13, 139, 217, 0.10);
+}
+
+
+.table-cell {
+    padding: 12px;
+    border: 1px solid #B9B9B9;
+    text-align: left;
+    font-size: 90%;
+}
+
+.right-corner-cell{
+    border-radius: 5px 0px 0px 0px;
+    background-color: rgba(13, 139, 217, 0.10);
+    padding: 12px;
+    border: 1px solid #B9B9B9;
+    text-align: left;
+    font-size: 90%;
+}
+
+.left-corner-cell{
+    border-radius: 0px 0px 0px 5px;
+    background-color: rgba(13, 139, 217, 0.10);
+    padding: 12px;
+    border: 1px solid #B9B9B9;
+    text-align: left;
+    font-size: 90%;
+}
+
+/* ======== | Book Table | ======== */
+
+.table-header th{
+    border: 1px solid #B9B9B9;
+    background-color: rgb(13, 139, 217, 0.10);
+}
+
+.tableRow td{
+    background-color: white;
+    border: 1px solid #B9B9B9;
 }
