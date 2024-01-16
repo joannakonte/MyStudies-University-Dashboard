@@ -4,6 +4,7 @@ import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
+import { HiChevronRight } from "react-icons/hi2";
 
 function NewGrades1() {
   const stages = ['Επιλογή Μαθήματος', 'Καταχώρηση Βαθμολογίας ', 'Υποβολή Βαθμολογίας'];
@@ -14,11 +15,29 @@ function NewGrades1() {
   const className = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
   const period = "ΧΕΙΜ 2024";
 
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedDepartment, setSelectedDepartment] = useState('');
+  const [selectedCourse, setSelectedCourse] = useState('');
+  const [selectedScale, setSelectedScale] = useState('');
 
-  const handleSelectChange = (event) => {
-    setSelectedOption(event.target.value);
+  const handleDepartmentChange = (event) => {
+    setSelectedDepartment(event.target.value);
   };
+
+  const handleCourseChange = (event) => {
+    setSelectedCourse(event.target.value);
+  };
+
+  const handleScaleChange = (event) => {
+    setSelectedScale(event.target.value);
+  };
+
+  const handleShowOptionsClick = () => {
+    // Use the selected options in your logic to show or process them
+    console.log('Selected Department:', selectedDepartment);
+    console.log('Selected Course:', selectedCourse);
+    console.log('Selected Scale:', selectedScale);
+  };
+
 
   return(
     <div className={styles.wrapper}>
@@ -38,18 +57,67 @@ function NewGrades1() {
           </div>
 
           <div className={styles.container}>
-            <label htmlFor="options">Επιλογή Τμήματος:</label>
-            <select
-              id="options"
-              name="options"
-              value={selectedOption}
-              onChange={handleSelectChange}
-              className={styles.selectBox}
-            >
-              <option value="">Επιλογή Τμήματος...</option>
-              <option value="option1">Τμήμα Πληροφορικής και Τηλεπικοινωνιών</option>
-            </select>
+            <div className={styles.inputGroup}>
+              <label htmlFor="department" className={styles.fromlabel}>
+                Επιλογή Τμήματος:
+              </label>
+              <select
+                id="department"
+                name="department"
+                value={selectedDepartment}
+                onChange={handleDepartmentChange}
+                className={styles.selectBox}
+              >
+                <option value="">Επιλογή Τμήματος...</option>
+                <option value="option1">Τμήμα Πληροφορικής και Τηλεπικοινωνιών</option>
+              </select>
+            </div>
 
+            <div className={styles.inputGroup}>
+              <label htmlFor="course" className={styles.fromlabel}>
+                Επιλογή Μαθήματος:
+              </label>
+              <select
+                id="course"
+                name="course"
+                value={selectedCourse}
+                onChange={handleCourseChange}
+                className={styles.selectBox}
+              >
+                <option value="">Επιλογή Μαθήματος...</option>
+                <option value="option1">Λογική Σχεδίαση</option>
+                <option value="option2">Αντικειμενοστραφής Προγραμματισμός</option>
+              </select>
+            </div>
+
+            <div className={styles.inputGroup}>
+              <label htmlFor="scale" className={styles.fromlabel}>
+                Επιλογή Κλίμακας:
+              </label>
+              <select
+                id="scale"
+                name="scale"
+                value={selectedScale}
+                onChange={handleScaleChange}
+                className={styles.selectBox}
+              >
+                <option value="">Επιλογή Κλίμακας:...</option>
+                <option value="option1">1 - 10</option>
+                <option value="option2">1 - 20</option>
+                <option value="option3">1 - 100</option>
+              </select>
+
+
+              <button className={styles.showOptionsButton} onClick={handleShowOptionsClick}>
+                Εμφάνιση Επιλογών
+              </button>
+            </div>
+          </div>
+
+          <div className={styles['next']}>
+            <a href="/home/professor-grades/new-grade1/new-grade2" className={styles['next-page']}>
+              Επόμενο <HiChevronRight  /> 
+            </a>
           </div>
 
         </div>

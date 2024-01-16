@@ -43,7 +43,7 @@
   padding-top: 5%;
   padding-left: 2%;
   padding-right: 5%;
-  padding-bottom: 2%;
+  /* margin-bottom: 5%; */
   /* grid-column: 2 / 4;
   grid-row: 2 / 4; */
   /* border: 2px solid green; */
@@ -83,6 +83,7 @@
   margin-top: 15px;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 5%;
 }
 
 

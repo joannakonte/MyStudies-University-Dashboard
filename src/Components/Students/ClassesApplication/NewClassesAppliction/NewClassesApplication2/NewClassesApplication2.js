@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 import SemesterDropDown from '../SemesterDropDown';
 import TableComponent from '../../../../DataTable/DataTable';
 import appstyle from '../NewClassesApplication.module.css';
-import { HiChevronRight, HiChevronLeft, HiDocumentPlus } from 'react-icons/hi2';
+import { HiChevronRight, HiChevronLeft } from 'react-icons/hi2';
 import ProcessBar from '../ProcessBar/ProcessBar'
 
 function NewClassesApplication2() {
@@ -46,7 +46,6 @@ function NewClassesApplication2() {
             <a href="/home/history-applications/new-application1/new-application2/new-application3" className={styles['next-page']}>
               Επόμενο <HiChevronRight  />
             </a>
-
           </div>
 
         </div>

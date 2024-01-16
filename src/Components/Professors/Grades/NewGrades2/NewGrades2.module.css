@@ -42,7 +42,7 @@
     grid-area: main;
     padding-top: 8%;
     padding-left: 2%;
-    padding-right: 2%;
+    padding-right: 5%;
     padding-bottom: 2%;
     /* grid-column: 2 / 4;
     grid-row: 2 / 4; */
@@ -50,3 +50,51 @@
     /* background-color: green; */
     /* background-color: rgba(0, 255, 55, 0.3); */
 }
+
+/* ================ | infoBox |================ */
+
+.infoBox {
+    background-color: rgba(0, 78, 127, 0.10);
+    padding: 10px;
+    border: 1px solid #004e7f;
+    border-radius: 5px;
+    margin: 10px 0;
+    width: 101%;
+}
+
+
+
+/* ================ | Previous |================ */
+
+.next-page, .previous-page {
+    padding: 0.7%;
+    background-color: white;
+    color: black;
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 105%;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .next-page {
+    width: 10%;
+  }
+  
+  .previous-page {
+    width: 15%;
+  }
+  
+  .button-container {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 5%;
+  }
+  
+  
+  .next-page > svg,
+  .previous-page > svg {
+    margin-right: 5px;
+  }

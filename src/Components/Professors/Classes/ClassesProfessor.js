@@ -23,7 +23,9 @@ function ClassesProfessor() {
         </div>
 
         <div className={styles.main}>
-        <DataTableProfessorClasses collectionName={'classes'}/>
+          <div className={styles.container}>
+            <DataTableProfessorClasses collectionName={'classes'}/>
+          </div>
         </div>
     </div>
   );

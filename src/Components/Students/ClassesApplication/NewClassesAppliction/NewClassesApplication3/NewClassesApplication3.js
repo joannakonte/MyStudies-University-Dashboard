@@ -9,7 +9,7 @@ import { collection, updateDoc, doc, addDoc, serverTimestamp   } from 'firebase/
 import TableComponent from '../../../../DataTable/DataTable';
 import appstyle from '../NewClassesApplication.module.css';
 import style from './NewClassesApplication3.module.css';
-import { HiCheck, HiChevronLeft, HiDocumentPlus } from 'react-icons/hi2';
+import { HiCheck, HiChevronLeft } from 'react-icons/hi2';
 import ProcessBar from '../ProcessBar/ProcessBar'
 
 function NewClassesApplication3() {
@@ -94,14 +94,14 @@ function NewClassesApplication3() {
             />
           </div>
 
-          <div className={styles['button-container']}>
-            <div className={styles['previous']}>
+          <div className={style['button-container']}>
+            <div className={style['previous']}>
               <a href="/home/history-applications/new-application1/new-application2" className={style['previous-page']}>
                 <HiChevronLeft /> Προηγούμενο
               </a>
             </div>
 
-            <div className={styles['buttons2']}>
+            <div className={style['buttons2']}>
               <button href="/home/history-applications" className={style['save']} onClick={() => handleSubmission(true)}>
                 Προσωρινή Αποθήκευση
               </button>

@@ -43,7 +43,7 @@
   padding-top: 8%;
   padding-left: 2%;
   padding-right: 5%;
-  padding-bottom: 2%;
+  /* margin-bottom: 5%; */
   /* grid-column: 2 / 4;
   grid-row: 2 / 4; */
   /* border: 2px solid green; */
@@ -86,15 +86,14 @@
   font-weight: bold;
   width: 20%;
   text-decoration:none;
+  margin-right: 10px;
 }
 
 .buttons2 {
-  margin-top: 15px;
+  margin-top: -40px;
   justify-content: flex-end;
   display: flex;
 }
-
-
 
 .previous-page {
   padding: 0.7%;
@@ -113,4 +112,8 @@
   margin-top: 15px;
   justify-content: flex-start;
   display: flex;
+  
+}
+.button-container {
+  padding-bottom: 5%;
 }
