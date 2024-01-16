@@ -33,7 +33,7 @@ function Home() {
   return (
     <div>
       {/* Header  */}
-      <Navbar />
+      <Navbar  className={styles.navbar}/>
 
       {/* Slider */}
       <div className={styles.Header} id="home">
@@ -44,7 +44,7 @@ function Home() {
           </a> */}
 
           
-          <a href="#" className={styles['login-btn']} onClick={openLogin}>
+          <a href="/home/login" className={styles['login-btn']} onClick={openLogin}>
             Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']}/> 
           </a>
           {isLoginOpen && <Login onClose={closeLogin} />}
