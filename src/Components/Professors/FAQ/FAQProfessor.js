@@ -8,8 +8,7 @@ import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import faqData from '../../../data/faqs.json'
 
 function FAQProfessor() {
-  const [userType, setUserType] = useState("professors");
-  const faqsToShow = faqData[userType];
+  const faqsToShow = faqData["professors"]; 
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Όλες');
   const categories = ['Όλες', 'Μαθήματα', 'Βαθμολόγιο', "Προσωπικά Στοιχεία"];
