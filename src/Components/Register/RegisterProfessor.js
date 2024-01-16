@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from './RegisterStudent.module.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../firebase'
@@ -27,6 +27,25 @@ function RegisterProfessor() {
     const [registrationdate, setRegistrationDate] = useState(""); 
     const [officeNumber, setOfficeNumber] = useState(""); 
     const [rank, setRank] = useState("rank"); 
+    const [currentClass, setCurrentClass] = useState('');
+    const [classes, setClasses] = useState([]);
+    const handleCurrentClassChange = (e) => {
+        setCurrentClass(e.target.value);
+    };
+
+    // Add class to the list
+    const addClass = () => {
+        if (currentClass.trim()) {
+            setClasses([...classes, currentClass]);
+            setCurrentClass(''); // Clear the input field after adding
+        }
+    };
+
+    const removeClass = (indexToRemove) => {
+        setClasses(classes.filter((_, index) => index !== indexToRemove));
+        console.log("Class removed at index:", indexToRemove);
+    };
+    
     const [password, setPassword] = useState({ 
         value: "", 
         isTouched: false, 
@@ -37,17 +56,17 @@ function RegisterProfessor() {
     });  
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordVerification, setShowPasswordVerification] = useState(false);
-
+    
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
-
+    
     const togglePasswordVerificationVisibility = () => {
         setShowPasswordVerification(!showPasswordVerification);
     };
-
+    
     const isFormValid = () => { 
-        if (!firstname || !lastname || !fathername || !mothername) {
+        if (!firstname || !lastname || !fathername || !mothername || !username) {
             return "Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία.";
         }
         else if(password.value.length < 8){
@@ -55,9 +74,9 @@ function RegisterProfessor() {
         }
         else if(password.value !== passwordVerification.value){
             return "Οι κωδικοί πρόσβασης δεν ταιριάζουν.";
-            }
+        }
         return ""; // No error
-    };
+    }; 
     
     async function handleRegister(e){
         e.preventDefault();
@@ -86,11 +105,12 @@ function RegisterProfessor() {
             rank: rank,
             division: division,
             office: officeNumber,
+            classes: classes
         };
 
 
         try{
-            console.log('Attempting register student:', firstname);
+            console.log('Attempting register professor:', firstname);
             if (!db) {
                 console.error('Firestore database instance is not available.');
                 return;
@@ -298,9 +318,8 @@ function RegisterProfessor() {
                             <div className={styles.labelText}>Τμήμα:</div>
                             <input 
                                 name="department" 
-                                value="Τμήμα Πληροφορικής και Τηλεποικοινωνιών"
+                                defaultValue="Τμήμα Πληροφορικής και Τηλεποικοινωνιών"
                                 className={styles.departmentField} 
-                                readonly
                             />
                         </label>
 
@@ -347,6 +366,34 @@ function RegisterProfessor() {
                                 className={styles.inputField} 
                             />
                         </label>
+
+                        <label>
+                            <div className={styles.labelText}>Κωδικός Μαθήματος:</div>
+                            <input
+                                type="text"
+                                value={currentClass}
+                                onChange={handleCurrentClassChange}
+                                placeholder="Κωδικός Μαθήματος"
+                                className={styles.inputField} 
+                            />
+                            <button type="button" onClick={addClass} className={styles.addClass}>Προσθήκη Μαθήματος</button>
+                        </label>
+
+                        {/* List of added classes */}
+                        {classes.length > 0 && (
+                            <div className={styles.listClass}> 
+                                <ul>
+                                    {classes.map((classItem, index) => (
+                                        <li key={index}>
+                                            {classItem}
+                                            <button type="button" onClick={() => removeClass(index)} className={styles.removeButton}>
+                                                <FontAwesomeIcon icon={faTimes} />
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
 
                         <label>
                             <div className={styles.labelText}>Όνομα Χρήστη: <sup>*</sup></div>
