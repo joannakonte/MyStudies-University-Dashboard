@@ -13,7 +13,7 @@ import { collectionGroup, getDocs, orderBy, query, limit, where } from 'firebase
 function NewClassesApplication1() {
   const [selectedSemester, setSelectedSemester] = useState(1);
   const [mostRecentApplicationId, setMostRecentApplicationId] = useState(null);
-  const stages = ['Επιλογή Εξαμήνου', 'Επιλογή Μαθημάτων', 'Υποβολή Δήλωσης'];
+  const stages = ['Προτεινόμενα Μαθήματα', 'Επιλογή Μαθημάτων', 'Υποβολή Δήλωσης'];
 
   const location = useLocation();
 

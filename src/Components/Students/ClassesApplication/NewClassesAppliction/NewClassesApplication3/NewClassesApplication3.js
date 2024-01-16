@@ -15,7 +15,7 @@ import ProcessBar from '../ProcessBar/ProcessBar'
 function NewClassesApplication3() {
   const [selectedSemester] = useState(1);
   const [markedClasses, setMarkedClasses] = useState([]);
-  const stages = ['Επιλογή Εξαμήνου', 'Επιλογή Μαθημάτων', 'Υποβολή Δήλωσης'];
+  const stages = ['Προτεινόμενα Μαθήματα', 'Επιλογή Μαθημάτων', 'Υποβολή Δήλωσης'];
 
   const { state } = useLocation();
 
