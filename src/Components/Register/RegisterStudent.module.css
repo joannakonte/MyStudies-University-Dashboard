@@ -160,3 +160,46 @@ sup {
     cursor: pointer;
 }
 
+/* =========== | Add Class Button Professor | =========== */
+.addClass{
+    margin-top: 1%;
+    padding: 4px 8px 4px 8px;
+    font-size: 14px;
+    border: 1px solid black; 
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* =========== | List of classes Professor | =========== */
+
+/* Styles for the list container */
+.listClass ul {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+}
+
+/* Styles for each list item */
+.listClass li {
+    background-color: #f2f2f2; /* Light grey background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px;
+    padding: 8px 12px; /* Spacing inside each item */
+    margin-bottom: 8px; /* Space between items */
+    display: flex; /* Aligns content of list item */
+    justify-content: space-between; /* Space out content */
+    align-items: center; /* Vertically align content */
+}
+
+/* Styles for the remove button */
+.listClass .removeButton {
+    background: none;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+

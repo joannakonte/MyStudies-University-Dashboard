@@ -290,9 +290,8 @@ function RegisterStudent() {
                             <div className={styles.labelText}>Τμήμα:</div>
                             <input 
                                 name="department" 
-                                value="Τμήμα Πληροφορικής και Τηλεποικοινωνιών"
-                                className={styles.departmentField} 
-                                readonly
+                                defaultValue="Τμήμα Πληροφορικής και Τηλεποικοινωνιών"
+                                className={styles.departmentField}
                             />
                         </label>
 
