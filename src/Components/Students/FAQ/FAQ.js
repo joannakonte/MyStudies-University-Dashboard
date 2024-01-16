@@ -5,48 +5,14 @@ import Sidebar from '../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import faqData from '../../../data/faqs.json'
 
 function FAQ() {
+  const [userType, setUserType] = useState("students");
+  const faqsToShow = faqData[userType];
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Όλες');
   const categories = ['Όλες', 'Δηλώσεις', 'Πιστοποιητικά', 'Βαθμολογία', "Προσωπικά Στοιχεία"];
-
-  const faqData = [
-    {
-      question: 'Πώς μπορώ να επεξεργαστώ τα προσωπικά μου στοιχεία;',
-      answer: [ 
-            'Πηγαίνετε στη σελίδα "Προφίλ".',
-            'Στο χώρο που αναγράφεται "Προσωπικά Στοιχεία" επιλέξετε την επιλογή επεξεργασία.',
-        ],
-      category: 'Προσωπικά Στοιχεία'
-    },
-    {
-      question: 'Πώς μπορώ να δηλώσω μάθημα;',
-      answer: [ 
-            'Πηγαίνετε στη σελίδα "Δηλώσεις".',
-            'Επιλέξτε "Νέα Δήλωση".',
-            'Ακολουθείστε τα βήματα που εμφανίζονται στην οθόνη.',
-            'Επιλέξτε "Προσωρινή Αποθήκευση" ή "Οριστική Υποβολή".'
-        ],
-      category: 'Δηλώσεις'
-    },
-    {
-      question: 'Πώς μπορώ να δω τα πιστοποιητικά που έχω ζητήσει;',
-      answer: [ 
-        'Πηγαίνετε στη σελίδα "Πιστοποιητικά".',
-        'Εκεί εμφανίζονται τα πιστοποιητικά που εκκρεμούν, εγκρίθηκαν ή απορίφθηκαν.'
-      ],
-      category: 'Πιστοποιητικά'
-    },
-    {
-      question: 'Πώς μπορώ να δω τις βαθμολογίες μου;',
-      answer: [ 
-        'Πηγαίνετε στη σελίδα "Βαθμολογίες".',
-        'Εκεί εμφανίζονται οι βαθμολογίες ανα εξεταστική περίοδο.'
-      ],
-      category: 'Βαθμολογία'
-    }
-  ];
 
   const toggle = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -83,7 +49,7 @@ function FAQ() {
         </div>
 
         <div>
-            {faqData
+            {faqsToShow
               .filter(faq => selectedCategory === 'Όλες' || faq.category === selectedCategory)
               .map((faq, index) => (
                 <div key={index} className={styles.faqItem}>

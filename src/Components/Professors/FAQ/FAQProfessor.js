@@ -5,48 +5,15 @@ import Sidebar from '../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faMinus, faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import faqData from '../../../data/faqs.json'
 
 function FAQProfessor() {
+  const [userType, setUserType] = useState("professors");
+  const faqsToShow = faqData[userType];
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState('Όλες');
   const categories = ['Όλες', 'Μαθήματα', 'Βαθμολόγιο', "Προσωπικά Στοιχεία"];
 
-  const faqData = [
-    {
-      question: 'Πώς μπορώ να επεξεργαστώ τα προσωπικά μου στοιχεία;',
-      answer: [ 
-            'Πηγαίνετε στη σελίδα "Προφίλ".',
-            'Στο χώρο που αναγράφεται "Προσωπικά Στοιχεία" επιλέξετε την επιλογή επεξεργασία.',
-        ],
-      category: 'Προσωπικά Στοιχεία'
-    },
-    {
-      question: 'Πώς μπορώ να δω πληροφορίες για τα μαθήματα που διδάσκω;',
-      answer: [ 
-            'Πηγαίνετε στη σελίδα "Μαθήματα".',
-            'Εκεί εμφανίζονται τα μαθήματα για τα οποία είστε υπεύθυνοι.',
-        ],
-      category: 'Μαθήματα'
-    },
-    {
-      question: 'Πώς μπορώ να δω τις βαθμολογίες που έχω υποβάλει;',
-      answer: [ 
-        'Πηγαίνετε στη σελίδα "Βαθμολόγιο".',
-        'Εκεί εμφανίζονται οι βαθμολογίες.'
-      ],
-      category: 'Βαθμολόγιο'
-    },
-    {
-      question: 'Πώς μπορώ να υποβάλω νέες βαθμολογίες;',
-      answer: [ 
-        'Πηγαίνετε στη σελίδα "Βαθμολόγιο".',
-        'Επιλέξτε "Νέο Βαθμολόγιο".',
-        'Ακολουθείστε τα βήματα που εμφανίζονται στην οθόνη.',
-        'Επιλέξτε "Προσωρινή Αποθήκευση" ή "Οριστική Υποβολή".'
-      ],
-      category: 'Βαθμολόγιο'
-    }
-  ];
 
   const toggle = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -80,7 +47,7 @@ function FAQProfessor() {
           </div>
 
           <div>
-            {faqData
+            {faqsToShow
               .filter(faq => selectedCategory === 'Όλες' || faq.category === selectedCategory)
               .map((faq, index) => (
                 <div key={index} className={styles.faqItem}>
