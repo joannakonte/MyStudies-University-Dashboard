@@ -130,4 +130,12 @@ table {
 .certif {
     /* margin-left: 50%; */
 }
+
+
+.download-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
  

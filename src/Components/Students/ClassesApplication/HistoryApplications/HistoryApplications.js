@@ -65,6 +65,11 @@ function HistoryApplications() {
             applicationId={application.id}
           />
         ))}
+
+        <div className={style['space_down']}>
+          
+        </div>
+
       </div>
     </div>
   );

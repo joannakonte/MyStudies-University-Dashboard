@@ -63,7 +63,7 @@ function Certificates(){
             </div>
 
             <div className={styles.main}>
-                <TableComponent3 collectionName={'certificates'}/>
+              <TableComponent3 collectionName={'certificates'}/>
             </div>
 
             <CertificatePopUp

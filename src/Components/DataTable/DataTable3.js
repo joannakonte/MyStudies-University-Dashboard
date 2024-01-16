@@ -8,6 +8,28 @@ import SearchBar from './SearchBar';
 import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
 import items from "../../data/dataTableHeaderCert.json";
 
+import { useRef } from 'react';
+import html2pdf from 'html2pdf.js'; 
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import fileDownload from 'js-file-download';
+
+const handleDownload = () => {
+  console.log('handleDownload called');
+
+  const pdfElement = document.getElementById('pdf-content');
+  const pdfOptions = { filename: 'document.pdf' };
+
+  if (pdfElement) {
+    html2canvas(pdfElement).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF();
+      pdf.addImage(imgData, 'PNG', 10, 10);
+      pdf.save(pdfOptions.filename);
+    });
+  }
+};
+
 const TableComponent3 = ({ collectionName }) => {
   const [info, setInfo] = useState([]);
   const [sortColumn, setSortColumn] = useState(null);
@@ -25,25 +47,25 @@ const TableComponent3 = ({ collectionName }) => {
       sortColumn,
       sortOrder,
       searchQuery
-    );
-    setFilteredAndSortedData(updatedFilteredData);
-  }, [info, sortColumn, sortOrder, searchQuery]);
+      );
+      setFilteredAndSortedData(updatedFilteredData);
+    }, [info, sortColumn, sortOrder, searchQuery]);
 
   const fetchData = async () => {
     try {
       // Retrieve studentId from the imported function
       const studentId = await findStudentById();
-
+      
       // Use studentId to filter the certificates
       const certificatesCollection = collection(db, collectionName);
       // const querySnapshot = await getDocs(certificatesCollection);
       // const certificatesData = querySnapshot.docs
       //   .map((doc) => doc.data())
       //   .filter((certificate) => certificate.studentId === studentId);
-        const q = query(certificatesCollection, orderBy('reqdate', 'desc'), where('studentId', '==', studentId));
-        const querySnapshot = await getDocs(q);
+      const q = query(certificatesCollection, orderBy('reqdate', 'desc'), where('studentId', '==', studentId));
+      const querySnapshot = await getDocs(q);
         const certificatesData = querySnapshot.docs.map((doc) => doc.data());
-    
+        
       setInfo(certificatesData);
       console.log('Data:', certificatesData);
     } catch (error) {
@@ -58,11 +80,13 @@ const TableComponent3 = ({ collectionName }) => {
       return String(fieldValue);
     }
   };
-
+  
   const toggleSortOrder = (column) => {
     setSortColumn(column);
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
+  
+  
 
   return (
     <div className={`${styles['table-container']} ${styles['certif']}`}>
@@ -83,7 +107,14 @@ const TableComponent3 = ({ collectionName }) => {
                 <td key={fieldIndex} className={`${styles['table-cell']} ${styles[field.collectionfield]}`}>
                   {field.collectionfield === 'download' ? (
                     rowData.status === 'Εγκρίθηκε' ? (
-                      <HiArrowDownTray  /> 
+                      // <HiArrowDownTray onClick={handleDownload}/> 
+                      <button
+                        className={`${styles['download-button']} ${rowData.status === 'Εγκρίθηκε' ? styles.active : ''}`}
+                        onClick={() => { console.log('Button clicked'); handleDownload(); }}
+                        disabled={rowData.status !== 'Εγκρίθηκε'}
+                      >
+                        <HiArrowDownTray />
+                      </button>
                     ) : (
                       '' 
                     )
