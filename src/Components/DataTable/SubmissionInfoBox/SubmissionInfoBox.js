@@ -5,13 +5,12 @@ import { HiMiniPencil } from 'react-icons/hi2';
 
 const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck }) => {
   const formatDate = (date) => {
-    return date.toLocaleDateString('en-GB');
-  };
-
-  const isDateInLast3Months = (date) => {
-    const threeMonthsAgo = new Date();
-    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-    return date >= threeMonthsAgo;
+    
+    const currentMonthIndex = date.getMonth();
+    const season = (currentMonthIndex >= 9  || currentMonthIndex < 2 )? 'Χειμερινό' : 'Εαρινό';
+    const year = (currentMonthIndex < 2) ? date.getFullYear() - 1 : date.getFullYear()
+    
+    return `${date.getDate()}/${currentMonthIndex + 1}/${date.getFullYear()}  |  ${season} ${year}`;
   };
 
   const handleEditClick = () => {
@@ -33,12 +32,12 @@ const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck }) => {
   return (
     <div className={styles['submission-info-box']}>
       <p className={submissionInfo.submit ? styles.true : styles.false}>
-        Οριστικοποιήθηκε: {submissionInfo.submit ? 'ΝΑΙ' : 'ΟΧΙ'}
+        {submissionInfo.submit ? 'Προσωρινά αποθηκευμένο' : 'Οριστικοποιημένο'}
       </p>
       {submissionInfo.date && (
         <p>Ημερομηνία: {formatDate(submissionInfo.date)}</p>
       )}
-      {!submissionInfo.submit && isDateInLast3Months(submissionInfo.date) && (
+      {!submissionInfo.submit && (
         <Link to="/home/history-applications/new-application1/new-application2" className={styles['pencil-icon-link']} onClick={handleEditClick}>
           <HiMiniPencil className={styles['pencil-icon']} /> Επεξεργασία
         </Link>
