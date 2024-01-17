@@ -38,7 +38,8 @@ function Navbar() {
     }
   }, []);
 
-  const [user, setUser] = useState({ firstname: '', lastname: '', sdi: '' });
+  const [user, setUser] = useState({ firstname: '', lastname: '', sdi: '', type: '' });
+  const userType = localStorage.getItem('userType');
 
   useEffect(() => {
       // Retrieve data from local storage
@@ -48,10 +49,10 @@ function Navbar() {
       const storedUserData = JSON.parse(storedUserDataJSON);
 
       // Extract firstname, lastname, and other properties if needed
-      const { firstname, lastname, sdi } = storedUserData || {};
+      const { firstname, lastname, sdi, type } = storedUserData || {};
 
       // Set the user data to the state
-      setUser({ firstname, lastname, sdi });
+      setUser({ firstname, lastname, sdi, type });
   }, []);
 
 
@@ -124,9 +125,17 @@ function Navbar() {
                     <a className={styles.dropdown_option} onClick={handleLogout}>
                       Αποσύνδεση
                     </a>
-                    <a href='/home/classes' className={styles['dropdown-option']}>
-                      Dashboard
-                    </a>
+                    {user.type === 'student' && (
+                      <a href='/home/classes' className={styles['dropdown-option']}>
+                        Dashboard
+                      </a>
+                    )}
+
+                    {user.type === 'professor' && (
+                      <a href='/home/professor-classes' className={styles['dropdown-option']}>
+                        Dashboard
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>

@@ -51,7 +51,7 @@ function Home() {
         <div className={styles.container}>
           <div className={styles.box} id="students">
             <img src={student_icon} alt="Student" className={styles['box-image']} />
-            <h2>Φοιτητές</h2>
+            <h2>Φοιτητές-τριες</h2>
             <p className={styles['box-text']}>Όλοι οι φοιτητές μέσω της Ηλεκτρονικής Γραμματεία έχουν τη δυνατότητα 
             να περιηγηθούν στο Πρόγραμμα Σπουδών του Τμήματός τους, να κάνουν ηλεκτρονικά τη Δήλωση Μαθημάτων τους 
             για το κάθε εξάμηνο, να δουν αναλυτικά τη Βαθμολογία τους, καθώς και να αιτηθούν Πιστοποιητικά.</p>

@@ -3,6 +3,7 @@ import styles from './ProfileProfessor.module.css';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
+import { HiOutlineRefresh } from 'react-icons/hi';
 
 function ProfileProfessor() {
   
@@ -85,7 +86,7 @@ function ProfileProfessor() {
                         <td>{userData.address}</td>
                       </tr>
                       <tr>
-                        <td className={styles.morebold}>Τήλέφωνο Επικοινωνίας:</td>
+                        <td className={styles.morebold}>Τηλέφωνο Επικοινωνίας:</td>
                         <td>{userData.phone}</td>
                       </tr>
                     </tbody>
@@ -104,28 +105,38 @@ function ProfileProfessor() {
                         <td>{userData.department}</td>
                       </tr>
                       <tr>
+                        <td className={styles.morebold}>Όνομα Χρήστη:</td>
+                        <td>{userData.sdi}</td>
+                      </tr>
+                      <tr>
                         <td className={styles.morebold}>Ηλεκτρονικό Ταχυδρομείο:</td>
                         <td>{userData.email}</td>
                       </tr>
                       <tr>
-                        <td className={styles.morebold}>Αριθμός Μητρώου:</td>
-                        <td>{userData.AM}</td>
+                        <td className={styles.morebold}>Ιδιότητα:</td>
+                        <td>{userData.position}</td>
                       </tr>
                       <tr>
-                        <td className={styles.morebold}>Ημερομηνία Εγγραφής:</td>
-                        <td>{userData.registrationdate}</td>
+                        <td className={styles.morebold}>Βαθμίδα:</td>
+                        <td>{userData.rank}</td>
                       </tr>
                       <tr>
-                        <td className={styles.morebold}>ECTS:</td>
-                        <td>{userData.ects}</td>
+                        <td className={styles.morebold}>Τομέας:</td>
+                        <td>{userData.division}</td>
+                      </tr>
+                      <tr>
+                        <td className={styles.morebold}>Αριθμός Γραφείου:</td>
+                        <td>{userData.office}</td>
                       </tr>
                     </tbody>
                   </table>
 
                 </div>
 
-                <div className={styles.grades}>
-                  <h2 className={styles.table_title}>Υποβληθείσες βαθμολογίες</h2>
+                <div className={styles.update_data}>
+                  <button className={styles.dropbtn}>
+                    Επεξεργασία Στοιχείων <HiOutlineRefresh />
+                  </button>
                 </div>
               </div>
 

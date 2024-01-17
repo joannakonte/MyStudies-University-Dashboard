@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import LoadingBar from './LoadingBar/LoadingBar';
 import { useLocation } from 'react-router-dom';
+import { HiOutlineRefresh } from 'react-icons/hi';
 
 function ProfileStudent() {
   
@@ -47,6 +48,12 @@ function ProfileStudent() {
         </div>
 
         <div className={styles.main}>
+          <div className={styles.update_data}>
+            <button className={styles.dropbtn}>
+              Επεξεργασία Στοιχείων <HiOutlineRefresh />
+            </button>
+          </div>
+
           {userData && (
             <div className={styles.info}>
               <div className={styles.columns}>
