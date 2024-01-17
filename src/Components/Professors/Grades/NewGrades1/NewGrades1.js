@@ -51,9 +51,16 @@ function NewGrades1() {
         console.error("Error fetching professors' classes: ", error);
       }
     };
-  
     fetchProfessorsClasses();
   }, []);  
+
+  useEffect(() => {
+    // Save the selected class to local storage whenever it changes
+    if (selectedClass) {
+      localStorage.setItem('selectedClass', selectedClass);
+    }
+  }, [selectedClass]);
+  
 
   return(
     <div className={styles.wrapper}>
