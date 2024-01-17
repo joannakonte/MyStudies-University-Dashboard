@@ -1,0 +1,27 @@
+[
+    {
+        "title": "Μάθημα",
+        "collectionfield": "className"
+    },
+    {
+        "title": "Εξεταστική",
+        "collectionfield": "exam"
+    },
+    {
+        "title": "Εξάμηνο",
+        "collectionfield": "semester"
+    },
+    {
+        "title": "Ημερομηνία Δημιουργίας",
+        "collectionfield": "createdate"
+    },
+    {
+        "title": "Ημερομηνία Υποβολής",
+        "collectionfield": "subdate"
+    },
+    {
+        "title": "Ενέργειες",
+        "collectionfield": "submit"
+    }
+
+]

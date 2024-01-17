@@ -101,6 +101,7 @@ export const filterAndSortDataNew = (data, sortColumn, sortOrder, searchQuery) =
       return false;
     }
   });
+  
 
   return filteredData.sort((a, b) => {
     const columnA = a[sortColumn];
@@ -117,6 +118,44 @@ export const filterAndSortDataNew = (data, sortColumn, sortOrder, searchQuery) =
     }
   });
 };
+
+export const filterAndSortDataProfessor = (data, sortColumn, sortOrder, searchQuery) => {
+  const filteredData = data.filter((item) => {
+    try {
+      const { className, exam, semester, createdate, subdate, submit } = item;
+      const normalizedQuery = searchQuery.toLowerCase();
+
+      console.log('Problematic item:', item);
+      return (
+        (!className || className.toLowerCase().includes(normalizedQuery)) &&
+        (!exam || exam.toLowerCase().includes(normalizedQuery)) &&
+        (!semester || semester.toString().includes(normalizedQuery)) &&
+        (!createdate || formatDate(createdate).toLowerCase().includes(normalizedQuery)) &&
+        (!subdate || formatDate(subdate).toLowerCase().includes(normalizedQuery)) &&
+        (!submit || submit.toLowerCase().includes(normalizedQuery))
+      );
+    } catch (error) {
+      console.error('Error in filterAndSortDataNew:', error);
+      return false;
+    }
+  });
+
+  return filteredData.sort((a, b) => {
+    const columnA = a[sortColumn];
+    const columnB = b[sortColumn];
+
+    if (sortColumn === 'createdate' || sortColumn === 'subdate') {
+      // If sorting by createdate or subdate, compare the timestamps directly
+      return sortOrder === 'asc' ? columnA.seconds - columnB.seconds : columnB.seconds - columnA.seconds;
+    } else if (typeof columnA === 'string' && typeof columnB === 'string') {
+      return sortOrder === 'asc' ? columnA.localeCompare(columnB) : columnB.localeCompare(columnA);
+    } else {
+      // Add additional checks if the columns are not strings
+      return sortOrder === 'asc' ? columnA - columnB : columnB - columnA;
+    }
+  });
+};
+
 
 
 export const findStudentById = async () => {

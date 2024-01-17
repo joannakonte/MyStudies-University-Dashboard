@@ -40,7 +40,7 @@
   
 .main {
     grid-area: main;
-    /* padding-top: 1%; */
+    padding-top: 10%;
     padding-left: 2%;
     padding-right: 2%;
     /* grid-column: 2 / 4;

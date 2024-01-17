@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import { HiPlus } from 'react-icons/hi';
 import { useLocation, useNavigate } from 'react-router-dom'; 
+import DataTableProfessorGrades from '../../DataTable/DataTableProfessorGrades';
 
 function GradesProfessor() {
   const navigate = useNavigate();  // Updated hook
@@ -30,6 +31,7 @@ function GradesProfessor() {
             <HiPlus style={{ marginRight: '5px' }} />
             Νέο Βαθμολόγιο
           </button>
+          <DataTableProfessorGrades collectionName={'classesforgrade'}/>
         </div>
     </div>
   );

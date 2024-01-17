@@ -6,7 +6,7 @@ import { HiMiniPencil } from 'react-icons/hi2';
 const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck, showSubmissionInfo }) => {
   const formatDate = (date) => {
     const currentMonthIndex = date.getMonth();
-    const season = (currentMonthIndex >= 9 || currentMonthIndex < 2) ? 'Χειμερινό' : 'Εαρινό';
+    const season = (currentMonthIndex >= 9 || currentMonthIndex < 2) ? 'Χειμερινό Εξάμηνο' : 'Εαρινό Εξάμηνο';
     const year = (currentMonthIndex < 2) ? date.getFullYear() - 1 : date.getFullYear();
 
     return !showSubmissionInfo ? `${season} ${year}` : `Ημερομηνία: ${date.getDate()}/${currentMonthIndex + 1}/${date.getFullYear()} | ${season} ${year}`;
