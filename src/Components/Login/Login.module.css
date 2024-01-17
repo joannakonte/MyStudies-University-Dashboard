@@ -55,6 +55,10 @@ input {
     box-sizing: border-box;
     border-radius: 40px;
 }
+
+input:focus {
+    outline: none;
+}
   
 /* Login button */
 .loginButton {
@@ -89,6 +93,11 @@ input {
     margin-left: 8px;
 }
 
-  
-
+/* =========== | Password Eye | =========== */
+.eyeIcon {
+    position: absolute;
+    right: 39%;
+    transform: translateY(-160%); 
+    cursor: pointer;
+}
   

@@ -1,0 +1,23 @@
+[
+    {
+        "title": "ΑΜ",
+        "collectionfield": "AM"
+    },
+    {
+        "title": "Ονοματεπώνυμο",
+        "collectionfield": "firstname"
+    },
+    {
+        "title": "Εξάμηνο",
+        "collectionfield": "semester"
+    },
+    {
+        "title": "Τμήμα Φοιτητή",
+        "collectionfield": "department"
+    },
+    {
+        "title": "Βαθμολογία",
+        "collectionfield": "grade"
+    }
+
+]

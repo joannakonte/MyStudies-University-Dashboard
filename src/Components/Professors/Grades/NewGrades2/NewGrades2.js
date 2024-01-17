@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './NewGrades2.module.css'; 
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import { HiChevronRight, HiChevronLeft } from 'react-icons/hi2';
+import GradesTable from './GradesTable2'
 
 function NewGrades2() {
   const stages = ['Επιλογή Μαθήματος', 'Καταχώρηση Βαθμολογίας ', 'Υποβολή Βαθμολογίας'];
@@ -14,6 +15,28 @@ function NewGrades2() {
   const period = "ΧΕΙΜ 2024";
   
   const location = useLocation();
+
+  const [professorID, setProfessorID] = useState('');
+  const [selectedClass, setSelectedClass] = useState('');
+
+  useEffect(() => {
+    // Fetching professor's ID and selected class from local storage
+    const currentProfessorSDI = localStorage.getItem('sdi');
+    const storedSelectedClass = localStorage.getItem('selectedClass');
+
+    if (currentProfessorSDI) {
+      setProfessorID(currentProfessorSDI);
+    } else {
+      console.error("No professor is currently logged in.");
+    }
+
+    if (storedSelectedClass) {
+      setSelectedClass(storedSelectedClass);
+      console.log(selectedClass);
+    } else {
+      console.error("No class is currently selected.");
+    }
+  }, []);  
 
   return(
     <div className={styles.wrapper}>
@@ -34,7 +57,7 @@ function NewGrades2() {
 
 
 
-
+        <GradesTable professorID={professorID} classId={selectedClass}/>
 
           <div className={styles['button-container']}>
             <a href="/home/professor-grades/new-grade1/new-grade2" className={styles['previous-page']}>
