@@ -66,14 +66,28 @@ h1, h2 {
 }
 
 /* ================ | Πρόγραμμα Σπούδων |================ */
-/* .table1 {  
-    padding-top: -500px;
+/* =========== | Main Grid | =========== */
+.grid {
+    display: grid;
+    grid-template-areas:
+        'semtable tablecomp';
+    grid-template-columns: 10% 90%;
+    position: static;
+    margin-top: 2%;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 100px;
+    margin-bottom: 100px;
 }
-
-.table2 {  
-    padding-top: -500px;
-    padding-bottom: 500px;
-} */
+  
+.semtable {
+    grid-area: semtable;
+}
+  
+.tablecomp {
+    grid-area: tablecomp;
+    margin-top: -5%;
+}
 
 /* ================ | Επικοινωνία |================ */
 
@@ -145,7 +159,7 @@ h1, h2 {
 
 .box-text {
     color: black;
-    font-size: 22px;
+    font-size: 16px;
 }
 
 .box-image {

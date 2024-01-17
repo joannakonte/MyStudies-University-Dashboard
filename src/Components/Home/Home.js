@@ -39,22 +39,6 @@ function Home() {
       <div className={styles.Header} id="home">
         <div className={styles['text-and-button']} >
           <p>Επισκέψου τη γραμματεία του τμηματος σου<br />από οπουδήποτε και οποιαδήποτε στιγμή!</p>
-          {/* <a href="/login" className={styles['login-btn']}>
-            Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']}/> 
-          </a> */}
-
-          
-          <a href="/home/login" className={styles['login-btn']} onClick={openLogin}>
-            Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']}/> 
-          </a>
-          {isLoginOpen && <Login onClose={closeLogin} />}
-          
-
-          {/* <div>
-            <button onClick={openLogin}>Open Login</button>
-
-            {isLoginOpen && <Login onClose={closeLogin} />}
-          </div> */}
 
         </div>
           <img src={book} alt="books"/>
@@ -68,49 +52,50 @@ function Home() {
           <div className={styles.box} id="students">
             <img src={student_icon} alt="Student" className={styles['box-image']} />
             <h2>Φοιτητές</h2>
-            <p className={styles['box-text']}>text</p>
+            <p className={styles['box-text']}>Όλοι οι φοιτητές μέσω της Ηλεκτρονικής Γραμματεία έχουν τη δυνατότητα 
+            να περιηγηθούν στο Πρόγραμμα Σπουδών του Τμήματός τους, να κάνουν ηλεκτρονικά τη Δήλωση Μαθημάτων τους 
+            για το κάθε εξάμηνο, να δουν αναλυτικά τη Βαθμολογία τους, καθώς και να αιτηθούν Πιστοποιητικά.</p>
           </div>
 
           <div className={styles.box} id="instructors">
           <img src={professors_icon} alt="Professors" className={styles['box-image']} />
             <h2>Διδάσκοντες</h2>
-            <p className={styles['box-text']}>text</p>
+            <p className={styles['box-text']}>Οι εγγεγραμμένοι Διδάσκοντες, μέσω της Ηλεκτρονικής Γραμματείας 
+            έχουν τη δυνατότητα να δουν τα Μαθήματα που διδάσκουν ανά εξάμηνο, καθώς και να προσθέσουν Βαθμολογία 
+            για αυτά, σε όλους τους Φοιτητές.</p>
           </div>
 
           <div className={styles.box} id="secretary">
             <img src={secretariat_icon} alt="Secretary" className={styles['box-image']} />
             <h2>Γραμματεία</h2>
-            <p className={styles['box-text']}>text</p>
+            <p className={styles['box-text']}>Τα μέλη τα Γραμματείας μπορούν να ανοίξουν τις Δηλώσεις των Μαθημάτων, 
+            να εγκρίνουν ή να απορρίψουν τις αιτήσεις Πιστοποιητικών των Φοιτητών, και να επεξεργαστούν τα στοιχεία όλων 
+            των εγγεγραμμένων Φοιτητών και Καθηγητών</p>
           </div>
         </div>
       </div>
 
 
-      {/* Τμήμα */}
-      <div className={styles['section-department']} id="department">
-        <h1>Τμήμα</h1>
 
-        {/* Πρόγραμμα Σπούδων */}
-        <div>
-          <h2 id="studyProgram">Πρόγραμμα Σπούδων</h2>
-          {/* <SemesterTable onSelectSemester={setSelectedSemester} className={styles.table1} />
-          <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} className={styles.table2}/> */}
+      {/* Πρόγραμμα Σπούδων */}
+      <div>
+        <h1>Πρόγραμμα Σπούδων</h1>
+
+        <div className={styles.grid}>
+          <div className={styles.semtable}>
+            <SemesterTable onSelectSemester={setSelectedSemester} />
+          </div>
+
+          <div className={styles.tablecomp}>
+            <TableComponent showOptionColumn={false} selectedSemester={selectedSemester} pageStyle={styles} collectionName={'classes'}  showmarkedclasses={false} />
+          </div>
         </div>
+      </div>
 
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+    <div className={styles['section-department']} id="department">
 
         {/* Επικοινωνία */}
-        <h2 id="contact">Επικοινωνία</h2>
+        <h1>Επικοινωνία</h1>
 
         <div className={styles.container}>
           <div className={styles['box-contact']}>

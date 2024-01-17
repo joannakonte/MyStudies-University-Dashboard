@@ -73,6 +73,92 @@
   margin-left: 8px;
 }
 
+
+
+
+.dropdown_profile2 {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+  background-color: var(--home-color);
+  border-radius: 5px;
+}
+
+.profile2-options {
+  display: flex;
+  align-items: center;
+}
+
+.separator {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.dropdown2-option {
+  cursor: pointer;
+  text-decoration: none; /* Remove underline */
+  color: #000000; /* Set your desired text color */
+  transition: color 0.3s ease; /* Add a smooth color transition on hover */
+}
+
+.dropdown2-option:hover {
+  color: #ffffff; /* Set your desired color on hover */
+}
+
+
+
+
+
+
+.dropdown_profile {
+  background-color: var(--home-color);
+  border-radius: 5px;
+}
+
+.dropdown_option {
+  cursor: pointer;
+}
+
+.dropdown-toggle {
+  background-color: rgba(110, 185, 232, 0);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.circle {
+  background-color: rgb(255, 255, 255);
+  width: 30px;       
+  height: 30px;      
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px; 
+  font-size: 16px;    
+  font-weight: 600; 
+}
+
+.button-text {
+  display: flex;
+  flex-direction: column; 
+  margin-right: 20px;      
+}
+
+.button-text span{
+  font-size: 120%;
+}
+
+.button-text .id{
+  color: rgba(0, 0, 0, 0.50);
+}
+
 /* ================= | Dropdowns |================== */
 /* Dropdown Button */
 .dropbtn {

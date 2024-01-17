@@ -47,9 +47,9 @@ const Login = ({ onClose }) => {
 
           // Redirect based on user type
           if (user_type === 'professor') {
-            window.location.href = './professor-profile'; 
+            window.location.href = './home/professor-profile'; 
           } else {
-            window.location.href = './classes'; // Student route
+            window.location.href = './home/classes'; // Student route
           }
 
           console.log('Found User:', docSnapshot.data());
