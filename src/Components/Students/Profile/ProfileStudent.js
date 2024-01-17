@@ -22,6 +22,18 @@ function ProfileStudent() {
     setUserData(storedUserData);
   }, []);
 
+
+  const calculateEctsPercentage = () => {
+    // Assuming that userData.ects is the number of ECTS completed
+    const ectsCompleted = userData.ects || 0;
+    const totalEcts = 240;
+
+    // Calculate the percentage
+    const percentage = (ectsCompleted / totalEcts) * 100;
+
+    return percentage.toFixed(2); // Round to 2 decimal places
+  };
+
   const loadingPercentage = 50;
 
   return(
@@ -135,9 +147,9 @@ function ProfileStudent() {
                   <h2 className={styles.table_title}>Για πτυχίο...</h2>
                   <p className={styles.ects}>{userData.ects} / 240 ECTS</p>
                   <LoadingBar
-                      bgcolor="var(--student-color)"
-                      progress="30"
-                      height={30}
+                    bgcolor="var(--student-color)"
+                    progress={calculateEctsPercentage()}
+                    height={30}
                   />
                 </div>
               </div>
