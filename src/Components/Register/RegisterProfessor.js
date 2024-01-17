@@ -46,14 +46,9 @@ function RegisterProfessor() {
         console.log("Class removed at index:", indexToRemove);
     };
     
-    const [password, setPassword] = useState({ 
-        value: "", 
-        isTouched: false, 
-    }); 
-    const [passwordVerification, setPasswordVerification] = useState({
-        value: "", 
-        isTouched: false,
-    });  
+    const [password, setPassword] = useState("");
+    const [passwordVerification, setPasswordVerification] = useState(""); 
+
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordVerification, setShowPasswordVerification] = useState(false);
     
@@ -69,10 +64,10 @@ function RegisterProfessor() {
         if (!firstname || !lastname || !fathername || !mothername || !username) {
             return "Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία.";
         }
-        else if(password.value.length < 8){
+        else if(password.length < 8){
             return "Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.";
         }
-        else if(password.value !== passwordVerification.value){
+        else if(password !== passwordVerification){
             return "Οι κωδικοί πρόσβασης δεν ταιριάζουν.";
         }
         return ""; // No error
@@ -186,9 +181,9 @@ function RegisterProfessor() {
                                 </label> 
                                 <div className={styles.selectWrapper}>
                                     <select value={maritalstatus} className={styles['dropdown-select']} onChange={(e) => setMaritalStatus(e.target.value)}> 
-                                        <option value="role">Οικογενειακή Κατάσταση</option> 
-                                        <option value="individual">Άγαμος-η</option> 
-                                        <option value="business">Παντρεμένος-η</option> 
+                                        <option value="Οικογενειακή Κατάσταση">Οικογενειακή Κατάσταση</option> 
+                                        <option value="Άγαμος-η">Άγαμος-η</option> 
+                                        <option value="Παντρεμένος-η">Παντρεμένος-η</option> 
                                     </select>
                                     <FontAwesomeIcon icon={faAngleDown} className={styles['select-arrow']}/>
                                 </div>
@@ -474,10 +469,7 @@ function RegisterProfessor() {
                         value={password.value}
                         type={showPassword ? 'text' : 'password'}
                         onChange={(e) => {
-                            setPassword({ ...password, value: e.target.value });
-                        }}
-                        onBlur={() => {
-                            setPassword({ ...password, isTouched: true });
+                            setPassword(e.target.value);
                         }}
                         placeholder="Κωδικός"
                     />
@@ -494,12 +486,9 @@ function RegisterProfessor() {
                         className={styles.inputField}
                         value={passwordVerification.value} 
                         type={showPasswordVerification ? 'text' : 'password'}
-                        onChange={(e) => { 
-                            setPasswordVerification({ ...passwordVerification, value: e.target.value }); 
-                        }} 
-                        onBlur={() => { 
-                            setPassword({ ...passwordVerification, isTouched: true }); 
-                        }} 
+                        onChange={(e) => {
+                            setPasswordVerification(e.target.value);
+                        }}
                         placeholder="Επαλήθευση Κωδικού" 
                     /> 
                     <div className={styles.eyeIcon} onClick={togglePasswordVerificationVisibility}>

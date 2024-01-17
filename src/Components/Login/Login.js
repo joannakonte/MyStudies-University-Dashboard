@@ -28,20 +28,24 @@ const Login = ({ onClose }) => {
         const docSnapshot = querySnapshot.docs[0];
 
         if (docSnapshot.data().password === password) {
-          const user_role = docSnapshot.data().role;
+          const user_type = docSnapshot.data().type;
           const user_sdi = docSnapshot.data().sdi;
 
-          localStorage.setItem('role', user_role);
+          localStorage.setItem('type', user_type);
           localStorage.setItem('sdi', user_sdi);
 
-          window.location.href = './classes';
-          console.log('Found User:', docSnapshot.data());
-
-          // Convert data to JSON string
+          // Convert data to JSON string and store it
           const userDataJSON = JSON.stringify(docSnapshot.data());
-
-          // Store the JSON string in local storage
           localStorage.setItem('userData', userDataJSON);
+
+          // Redirect based on user type
+          if (user_type === 'professor') {
+            window.location.href = './professor-profile'; 
+          } else {
+            window.location.href = './classes'; // Student route
+          }
+
+          console.log('Found User:', docSnapshot.data());
         } else {
           console.log('Incorrect password!');
         }
@@ -51,7 +55,8 @@ const Login = ({ onClose }) => {
     } catch (error) {
       console.error('Login error:', error.message);
     }
-  }
+}
+
   const placeholderStyle = {
     fontStyle: 'italic',
     color: '#888',
