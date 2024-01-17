@@ -100,7 +100,7 @@ function ProfileStudent() {
                         <td>{userData.address}</td>
                       </tr>
                       <tr>
-                        <td className={styles.morebold}>Τήλέφωνο Επικοινωνίας:</td>
+                        <td className={styles.morebold}>Τηλέφωνο Επικοινωνίας:</td>
                         <td>{userData.phone}</td>
                       </tr>
                     </tbody>

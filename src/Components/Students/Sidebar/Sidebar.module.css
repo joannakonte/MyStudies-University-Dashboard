@@ -61,7 +61,7 @@
     text-decoration: none;
     display: flex;
     align-items: center;
-    font-size: 100%;
+    font-size: 95%;
     font-weight: bold;
 }
 
@@ -77,14 +77,14 @@
 }
 
 .sidenav a.selected svg {
-    margin-right: 10px; 
-    margin-left: 10px; 
-    font-size: 120%;
+    margin-right: 5px; 
+    margin-left: 5px; 
+    font-size: 100%;
 }
 
 .sidenav a svg {
-    margin-right: 10px; 
-    margin-left: 10px; 
+    margin-right: 5px; 
+    margin-left: 5px; 
     font-size: 120%;
 }
 

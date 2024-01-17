@@ -33,7 +33,7 @@ const Sidebar = ({ currentPath  }) => {
                         to="/home/history-applications"
                         className={currentPath.startsWith('/home/history-applications') ? style.selected : ''}
                     >
-                    <HiDocumentText /> Δηλώσεις
+                    <HiDocumentText /> Δηλώσεις Μαθημάτων
                 </Link>
                 <a
                     href="/home/grades"

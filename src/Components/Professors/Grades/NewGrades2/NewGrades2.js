@@ -60,7 +60,7 @@ function NewGrades2() {
         <GradesTable professorID={professorID} classId={selectedClass}/>
 
           <div className={styles['button-container']}>
-            <a href="/home/professor-grades/new-grade1/new-grade2" className={styles['previous-page']}>
+            <a href="/home/professor-grades/new-grade1" className={styles['previous-page']}>
               <HiChevronLeft /> Προηγούμενο
             </a>
             

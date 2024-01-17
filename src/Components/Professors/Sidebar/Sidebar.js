@@ -1,8 +1,6 @@
 import React from 'react';
 import style from './Sidebar.module.css';
-import { HiHome, HiQuestionMarkCircle, HiOutlineUserCircle, HiBookOpen, HiDocumentText, HiAcademicCap  } from 'react-icons/hi'; 
-import { VscSignOut } from "react-icons/vsc";
-import { FaSearch, FaRegWindowRestore  } from "react-icons/fa";
+import { HiOutlineUserCircle, HiBookOpen, HiAcademicCap  } from 'react-icons/hi'; 
 import { Link } from 'react-router-dom';
 
 const Sidebar = ({ currentPath  }) => {

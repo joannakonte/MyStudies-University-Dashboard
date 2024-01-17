@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import style from './Header.module.css'; 
 import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import items from "../../../data/allPages.json";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { HiOutlineUserCircle } from 'react-icons/hi2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faArrowRight } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FaSearch, FaRegWindowRestore  } from "react-icons/fa";
 import { HiBookOpen, HiDocumentText, HiAcademicCap, HiQuestionMarkCircle, HiHome } from 'react-icons/hi'; 
 import { VscSignOut } from "react-icons/vsc";
@@ -78,9 +78,13 @@ function Header() {
         setDropdownOpen(!dropdownOpen);
     };
 
-    // console.log("First Name:", user.firstname);
-    // console.log("Last Name:", user.lastname);
-    // console.log("SDI:", user.sdi);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        // Clear local storage and redirect to the login page
+        localStorage.clear();
+        navigate('/');
+    };
 
     return(
         <div className={style.grid_container}>
@@ -118,7 +122,7 @@ function Header() {
                             <div className={`${style['dropdown-content']} ${dropdownOpen ? style.show : ''}`}>
                                 <a className={style.profile} href="/home/faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> Συχνές Ερωτήσεις</a>
                                 <a className={style.profile} href="/home/profile"><HiOutlineUserCircle className={style.dropdownIcons} /> Προφίλ</a>
-                                <a className={style.logout} href="/"><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
+                                <a className={style.logout} onClick={handleLogout}><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
                                 <a className={style['home-page']} href="/home"><HiHome className={style.dropdownIcons} /> Αρχική</a>
                             </div>
                         )}
