@@ -47,12 +47,6 @@ const Sidebar = ({ currentPath  }) => {
                     >
                     <FaRegWindowRestore  /> Πιστοποιητικά
                 </a>
-                <a
-                    href="/home/visit-history"
-                    className={currentPath  === '/home/visit-history' ? style.selected : ''}
-                    >
-                    <FaSearch /> Ιστορικό 
-                </a>
             </div>
         </div>
     </div>

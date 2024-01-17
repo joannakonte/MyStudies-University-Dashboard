@@ -12,8 +12,8 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import fileDownload from 'js-file-download';
 
-const handleDownload = () => {
-  console.log('handleDownload called');
+const handleDownload = (certificationType) => {
+  console.log('handleDownload called with type:', certificationType);
 
   const pdfElement = document.getElementById('pdf-content');
   const pdfOptions = { filename: 'document.pdf' };
@@ -22,11 +22,19 @@ const handleDownload = () => {
     html2canvas(pdfElement).then((canvas) => {
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF();
-      pdf.addImage(imgData, 'PNG', 10, 10);
+      
+      // Add the certification type to the PDF
+      pdf.text(`Certification Type: ${certificationType}`, 10, 10);
+
+      // Add the image data
+      pdf.addImage(imgData, 'PNG', 10, 30);
+
+      // Save the PDF
       pdf.save(pdfOptions.filename);
     });
   }
 };
+
 
 const TableComponent3 = ({ collectionName }) => {
   const [info, setInfo] = useState([]);
@@ -62,7 +70,7 @@ const TableComponent3 = ({ collectionName }) => {
       //   .filter((certificate) => certificate.studentId === studentId);
       const q = query(certificatesCollection, orderBy('reqdate', 'desc'), where('studentId', '==', studentId));
       const querySnapshot = await getDocs(q);
-        const certificatesData = querySnapshot.docs.map((doc) => doc.data());
+      const certificatesData = querySnapshot.docs.map((doc) => doc.data());
         
       setInfo(certificatesData);
       console.log('Data:', certificatesData);
@@ -106,13 +114,15 @@ const TableComponent3 = ({ collectionName }) => {
                   {field.collectionfield === 'download' ? (
                     rowData.status === 'Εγκρίθηκε' ? (
                       // <HiArrowDownTray onClick={handleDownload}/> 
-                      <button
-                        className={`${styles['download-button']} ${rowData.status === 'Εγκρίθηκε' ? styles.active : ''}`}
-                        onClick={() => { console.log('Button clicked'); handleDownload(); }}
-                        disabled={rowData.status !== 'Εγκρίθηκε'}
-                      >
-                        <HiArrowDownTray />
-                      </button>
+                      <div id="pdf-content">
+                        <button
+                          className={`${styles['download-button']} ${rowData.status === 'Εγκρίθηκε' ? styles.active : ''}`}
+                          onClick={() => { console.log('Button clicked'); handleDownload(rowData['Είδος Πιστοποιητικού']); }}
+                          disabled={rowData.status !== 'Εγκρίθηκε'}
+                        >
+                          <HiArrowDownTray />
+                        </button>
+                      </div>
                     ) : (
                       '' 
                     )

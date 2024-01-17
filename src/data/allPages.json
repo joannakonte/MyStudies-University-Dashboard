@@ -52,11 +52,6 @@
         "path": "/home/certificates"
     },
     {
-        "title": "Ιστορικό",
-        "icon": "FaSearch",
-        "path": "/home/visit-history"
-    },
-    {
         "title": "Συχνές Ερωτήσεις",
         "icon": "HiQuestionMarkCircle",
         "path": "/home/faq"

@@ -13,7 +13,6 @@ import NewClassesApplication2 from './Components/Students/ClassesApplication/New
 import NewClassesApplication3 from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication3/NewClassesApplication3';
 import Grades from './Components/Students/Grades/Grades';
 import Certificates from './Components/Students/Certificates/Certificates';
-import VisitHistory from './Components/Students/VisitHistory/VisitHistory';
 import FAQ from './Components/Students/FAQ/FAQ';
 
 import ProfileProfessor from './Components/Professors/Profile/ProfileProfessor';
@@ -45,7 +44,6 @@ function App() {
           <Route path="/home/history-applications/new-application1/new-application2/new-application3" element={<NewClassesApplication3 />}/>
           <Route path="/home/grades" element={<Grades />}/>
           <Route path="/home/certificates" element={<Certificates />}/>
-          <Route path="/home/visit-history" element={<VisitHistory/>}/>
           <Route path="/home/faq" element={<FAQ/>}/>
 
           {/* Paths for Professors */}
