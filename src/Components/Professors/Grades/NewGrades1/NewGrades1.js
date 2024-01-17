@@ -20,22 +20,6 @@ function NewGrades1() {
   const period = "ΧΕΙΜ 2024";
 
   const [selectedDepartment, setSelectedDepartment] = useState('');
-  const [selectedCourse, setSelectedCourse] = useState('');
-
-  const handleDepartmentChange = (event) => {
-    setSelectedDepartment(event.target.value);
-  };
-
-  const handleCourseChange = (event) => {
-    setSelectedCourse(event.target.value);
-  };
-
-  const handleShowOptionsClick = () => {
-    // Use the selected options in your logic to show or process them
-    console.log('Selected Department:', selectedDepartment);
-    console.log('Selected Course:', selectedCourse);
-  };
-
   const [professorsClasses, setProfessorsClasses] = useState([]);
   const [selectedClass, setSelectedClass] = useState('');
 
@@ -58,7 +42,7 @@ function NewGrades1() {
           const professorData = docSnapshot.data();
   
           if (professorData && professorData.classes) {
-            setProfessorsClasses(professorData.classes); // Assuming 'classes' is an array of class names
+            setProfessorsClasses(professorData.classes); 
           }
         } else {
           console.error("No professor found with the given sdi:", currentProfessorSDI);
@@ -70,11 +54,6 @@ function NewGrades1() {
   
     fetchProfessorsClasses();
   }, []);  
-
-  const handleClassChange = (event) => {
-    setSelectedClass(event.target.value);
-  };
-
 
   return(
     <div className={styles.wrapper}>
@@ -103,7 +82,7 @@ function NewGrades1() {
                   id="department"
                   name="department"
                   value={selectedDepartment}
-                  onChange={handleDepartmentChange}
+                  onChange={(e) => setSelectedDepartment(e.target.value)}
                   className={styles['dropdown-select']}
                 >
                   <option value="">Επιλογή Τμήματος...</option>
@@ -121,8 +100,8 @@ function NewGrades1() {
                 <select
                   id="class"
                   name="class"
-                  value={selectedCourse}
-                  onChange={handleCourseChange}
+                  value={selectedClass}
+                  onChange={(e) => setSelectedClass(e.target.value)}
                   className={styles['dropdown-select']}
                 >
                   <option value="">Επιλογή Μαθήματος...</option>

@@ -1,21 +1,38 @@
+/* ================ | Select |================ */
 .semesterDropdownContainer {
   position: relative;
   width: 10%;
   /* left: 25%; */
   /* top: 41%; */
   z-index: 1;
-  margin-bottom: -13%;
+  margin-bottom: -12%;
   margin-top: 15%;
 }
 
-.semesterDropdown {
-  padding: 8%;
-  border: 1px solid #ddd;
+.dropdown-select {
+  padding: 8px 12px;
+  border: 1px solid black;
   border-radius: 5px;
-  font-size: 105%;
-  width: 120%;
+  font-size: 100%;
+  width: 100%;
+  cursor: pointer;
+  appearance: none; 
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 
+.dropdown-select:focus {
+  outline: none;
+}
+.select-arrow {
+  position: absolute;
+  right: 10%; /* Adjust as needed */
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); 
+  pointer-events: none; 
+}
+
+/* ================================ */
 .next-page {
   position: relative;
   bottom: 5%;

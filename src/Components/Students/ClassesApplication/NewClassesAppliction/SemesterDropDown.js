@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './NewClassesApplication.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 const SemesterTable = ({ onSelectSemester }) => {
   const [selectedSemester, setSelectedSemester] = useState(1);
@@ -24,7 +26,7 @@ const SemesterTable = ({ onSelectSemester }) => {
         id="semester"
         value={selectedSemester}
         onChange={handleSemesterChange}
-        className={styles.semesterDropdown}
+        className={styles['dropdown-select']}
       >
         {allowedSemesters.map((semesterNumber) => (
           <option key={semesterNumber} value={semesterNumber}>
@@ -32,6 +34,7 @@ const SemesterTable = ({ onSelectSemester }) => {
           </option>
         ))}
       </select>
+      <FontAwesomeIcon icon={faAngleDown} className={styles['select-arrow']}/>
     </div>
   );
 };
