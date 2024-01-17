@@ -7,6 +7,7 @@ import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 const Login = ({ onClose }) => {
+  const [error, setError] = useState('');
   const [sdi, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -18,6 +19,7 @@ const Login = ({ onClose }) => {
 
   async function handleLogin(e) {
     e.preventDefault();
+    setError('');
 
     try {
       console.log('Attempting login with sdi:', sdi);
@@ -52,9 +54,11 @@ const Login = ({ onClose }) => {
 
           console.log('Found User:', docSnapshot.data());
         } else {
+          setError('Λάθος κωδικός πρόσβασης!');
           console.log('Incorrect password!');
         }
       } else {
+        setError('Δεν βρέθηκε χρήστης με αυτό το Όνομα Χρήστη.');
         console.log('No such document with the given sdi:', sdi);
       }
     } catch (error) {
@@ -112,9 +116,8 @@ const Login = ({ onClose }) => {
             <div className={styles.eyeIcon} onClick={togglePasswordVisibility}>
                 {showPassword ? <HiEye /> : <HiEyeOff />}
             </div>
-
-
           </div>
+          {error && <div className={styles.errorMessage}>{error}</div>} {/* Display error message */}
           {/* Login button */}
           <div className={styles.formGroup}>
             <button type="button" onClick={handleLogin} className={styles.loginButton}>
