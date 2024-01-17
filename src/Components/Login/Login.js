@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import styles from './Login.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 const Login = ({ onClose }) => {
   const [sdi, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+};
 
   const myStudiesLogo = '/mystudies-logo.png';
 
@@ -97,13 +102,18 @@ const Login = ({ onClose }) => {
             <label>
               Κώδικός
               <input
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Εισάγετε τον Κώδικό σας"
                 style={placeholderStyle}
               />
             </label>
+            <div className={styles.eyeIcon} onClick={togglePasswordVisibility}>
+                {showPassword ? <HiEye /> : <HiEyeOff />}
+            </div>
+
+
           </div>
           {/* Login button */}
           <div className={styles.formGroup}>
