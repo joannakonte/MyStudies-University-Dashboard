@@ -8,6 +8,7 @@ import { collectionGroup, getDocs } from 'firebase/firestore';
 import TableComponent2 from '../../../DataTable/DataTable2';
 import appstyle from '../NewClassesAppliction/NewClassesApplication.module.css';
 import { HiMiniPlus } from 'react-icons/hi2';
+import { findStudentById } from './../../../DataTable/DataTableUtils';
 
 function HistoryApplications() {
   const [applications, setApplications] = useState([]);
@@ -17,10 +18,11 @@ function HistoryApplications() {
       try {
         const applicationsCollection = collectionGroup(db, 'applications');
         const applicationsSnapshot = await getDocs(applicationsCollection);
+        const studentId = await findStudentById();
 
         const applicationsData = applicationsSnapshot.docs
           .map(doc => ({ id: doc.id, ...doc.data() }))
-          .filter(application => application.studentId === '2a5iiuGDHgvDPwBkVoAk');
+          .filter(application => application.studentId === studentId);
 
         console.log('Matching Application Documents:', applicationsData);
         setApplications(applicationsData);
@@ -53,18 +55,25 @@ function HistoryApplications() {
           </a>
         </div>
 
-        {applications.map(application => (
-          <TableComponent2
-            key={application.id}
-            showOptionColumn={false}
-            pageStyle={appstyle}
-            showAllData={true}
-            collectionName={'applcations'}
-            grade={false}
-            showSubmissionInfo = {true}
-            applicationId={application.id}
-          />
-        ))}
+        {applications.length === 0 ? (
+          <div className={style['no-applications']}>
+            Δεν έχεις πραγματοποιήσει καμία δήλωση μέχρι στιγμής
+          </div>
+        ) : (
+          applications.map(application => (
+            <TableComponent2
+              key={application.id}
+              showOptionColumn={false}
+              pageStyle={appstyle}
+              showAllData={true}
+              collectionName={'applcations'}
+              grade={false}
+              showSubmissionInfo={true}
+              applicationId={application.id}
+            />
+          ))
+        )}
+
 
         <div className={style['space_down']}>
           
