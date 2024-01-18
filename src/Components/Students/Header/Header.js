@@ -109,7 +109,7 @@ function Header() {
 
             {/* Profile */}
             <div className={style.item3}>
-                <div className={style.profile}>
+                <div className={style.profile_container}>
                     <div className={style.dropdown}>
                         <button onClick={toggleDropdown} className={style['dropdown-toggle']}>
                             <div className={style.circle}>{firstLetterFirst}{firstLetterLast}</div>
