@@ -9,50 +9,60 @@ import { HiChevronRight } from "react-icons/hi2";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { db } from '../../../../firebase';
-import { collection, query, where, getDocs } from 'firebase/firestore';
+import { collection, query, where, getDocs, serverTimestamp } from 'firebase/firestore';
 
 function NewGrades1() {
   const stages = ['Επιλογή Μαθήματος', 'Καταχώρηση Βαθμολογίας ', 'Υποβολή Βαθμολογίας'];
-  
   const location = useLocation();
-
   const department = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
-  const period = "ΧΕΙΜ 2024";
-
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [professorsClasses, setProfessorsClasses] = useState([]);
   const [selectedClass, setSelectedClass] = useState('');
+  const firebaseTimestamp = serverTimestamp();
+
+  // Current date for display purposes
+  const currentDate = new Date();
+  const formatDate = (date) => {
+    const currentMonthIndex = date.getMonth();
+    const season = (currentMonthIndex >= 9 || currentMonthIndex < 2) ? 'Χειμερινό Εξάμηνο' : 'Εαρινό Εξάμηνο';
+    const year = (currentMonthIndex < 2) ? date.getFullYear() - 1 : date.getFullYear();
+
+    return `${season} ${year}`;
+  };
 
   useEffect(() => {
     const fetchProfessorsClasses = async () => {
-      try {
-        // Retrieve the currently logged-in professor's identifier
-        const currentProfessorSDI = localStorage.getItem('sdi');
+      // Check for the previously selected class in localStorage
+      const storedSelectedClass = localStorage.getItem('selectedClass');
   
-        if (!currentProfessorSDI) {
-          console.error("No professor is currently logged in.");
-          return;
-        }
+      // Retrieve the currently logged-in professor's identifier
+      const currentProfessorSDI = localStorage.getItem('sdi');
+      if (!currentProfessorSDI) {
+        console.error("No professor is currently logged in.");
+        return;
+      }
   
-        const q = query(collection(db, "students"), where("sdi", "==", currentProfessorSDI), where("type", "==", "professor"));
-        const querySnapshot = await getDocs(q);
+      const q = query(collection(db, "students"), where("sdi", "==", currentProfessorSDI), where("type", "==", "professor"));
+      const querySnapshot = await getDocs(q);
   
-        if (!querySnapshot.empty) {
-          const docSnapshot = querySnapshot.docs[0];
-          const professorData = docSnapshot.data();
+      if (!querySnapshot.empty) {
+        const docSnapshot = querySnapshot.docs[0];
+        const professorData = docSnapshot.data();
   
-          if (professorData && professorData.classes) {
-            setProfessorsClasses(professorData.classes); 
+        if (professorData && professorData.classes) {
+          setProfessorsClasses(professorData.classes); 
+          // Check if the storedSelectedClass is among the fetched classes
+          if (professorData.classes.includes(storedSelectedClass)) {
+            setSelectedClass(storedSelectedClass);
           }
-        } else {
-          console.error("No professor found with the given sdi:", currentProfessorSDI);
         }
-      } catch (error) {
-        console.error("Error fetching professors' classes: ", error);
+      } else {
+        console.error("No professor found with the given sdi:", currentProfessorSDI);
       }
     };
+  
     fetchProfessorsClasses();
-  }, []);  
+  }, []); 
   
   useEffect(() => {
     // Save the selected class to local storage whenever it changes
@@ -76,7 +86,7 @@ function NewGrades1() {
           <ProcessBar stages={stages} currentStage={0} />
 
           <div className={styles.infoBox}>
-            {department} - {period}
+            {department} - {formatDate(currentDate)}
           </div>
 
           <div className={styles.container}>
@@ -93,7 +103,7 @@ function NewGrades1() {
                   className={styles['dropdown-select']}
                 >
                   <option value="">Επιλογή Τμήματος...</option>
-                  <option value="option1">Τμήμα Πληροφορικής και Τηλεπικοινωνιών</option>
+                  <option value="Τμήμα Πληροφορικής και Τηλεπικοινωνιών">Τμήμα Πληροφορικής και Τηλεπικοινωνιών</option>
                 </select>
                 <FontAwesomeIcon icon={faAngleDown} className={styles['select-arrow']}/>
               </div>

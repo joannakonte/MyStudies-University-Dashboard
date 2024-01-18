@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import headers from '../../../../data/dataTableHeaderGradesStep2.json'
-import styles from './NewGrades2.module.css'; 
+import styles from './NewGrades3.module.css'; 
 import { db } from '../../../../firebase';
 import { collection, query, where, getDocs, serverTimestamp } from 'firebase/firestore';
 
@@ -84,15 +84,7 @@ const GradesTable = ({professorId, classId}) => {
                     <td className={styles['table-cell']}>{`${grade.firstname} ${grade.lastname}`}</td> 
                     <td className={styles['table-cell']}>{formatDate(currentDate)}</td> 
                     <td className={styles['table-cell']}>Τμήμα {`${grade.department}`}</td> 
-                    <td className={styles['table-cell']}>
-                    <input 
-                        className={styles.inputField}
-                        type="number" 
-                        max="10"
-                        value={grade.studentGrade} 
-                        onChange={(e) => handleGradeChange(grade.studentAM, e.target.value)}
-                    />
-                    </td>
+                    <td className={styles['table-cell']}>{grade.studentGrade}</td>
                 </tr>
             ))}
                 

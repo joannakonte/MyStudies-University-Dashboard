@@ -51,6 +51,34 @@
     /* background-color: rgba(0, 255, 55, 0.3); */
 }
 
+/* ================ | Table |================ */
+
+table {
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 1.8%;
+  }
+  
+  .table-header {
+    background-color: rgba(0, 78, 127, 0.10);
+  }
+  
+  
+  .table-cell {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 90%;
+  }
+  
+  .inputField{
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid #D9D9D9; 
+    border-radius: 5px; 
+    width: 100%;
+  }
 
 /* ================ | infoBox |================ */
 
@@ -127,3 +155,6 @@
 .button-container {
     padding-bottom: 5%;
 }
+
+/* =========== | PopUp | =========== */
+

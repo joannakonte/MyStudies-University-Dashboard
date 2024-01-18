@@ -7,19 +7,27 @@ import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import { HiChevronRight, HiChevronLeft } from 'react-icons/hi2';
 import GradesTable from './GradesTable2'
-import { where, getDocs, query, collection } from 'firebase/firestore';
-import { db } from '../../../../firebase'; // Import your Firestore instance
+import { where, getDocs, query, collection, serverTimestamp } from 'firebase/firestore';
+import { db } from '../../../../firebase'; 
 
 function NewGrades2() {
   const stages = ['Επιλογή Μαθήματος', 'Καταχώρηση Βαθμολογίας ', 'Υποβολή Βαθμολογίας'];
   const department = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
-  const period = "ΧΕΙΜ 2024";
   const [className, setClassName] = useState("");
-  
   const location = useLocation();
-
   const [professorID, setProfessorID] = useState('');
   const [selectedClass, setSelectedClass] = useState('');
+  const firebaseTimestamp = serverTimestamp();
+
+  // Current date for display purposes
+  const currentDate = new Date();
+  const formatDate = (date) => {
+    const currentMonthIndex = date.getMonth();
+    const season = (currentMonthIndex >= 9 || currentMonthIndex < 2) ? 'Χειμερινό Εξάμηνο' : 'Εαρινό Εξάμηνο';
+    const year = (currentMonthIndex < 2) ? date.getFullYear() - 1 : date.getFullYear();
+
+    return `${season} ${year}`;
+  };
 
   useEffect(() => {
     // Fetching professor's ID and selected class from local storage
@@ -72,10 +80,10 @@ function NewGrades2() {
         </div>
 
         <div className={styles.main}>
-          <ProcessBar stages={stages} currentStage={0} />
+          <ProcessBar stages={stages} currentStage={1} />
 
           <div className={styles.infoBox}>
-            {department} - {className} - {period}
+            {department} - {className} - {formatDate(currentDate)}
           </div>
 
          <GradesTable professorID={professorID} classId={selectedClass}/>

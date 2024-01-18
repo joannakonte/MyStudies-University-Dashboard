@@ -14,7 +14,10 @@ function GradesProfessor() {
     // Navigate to the desired link or route
     navigate('/home/professor-grades/new-grade1'); 
   };
-  
+
+  // Remove 'gradesData' from local storage
+  localStorage.removeItem('gradesData');
+
 
   return(
     <div className={styles.wrapper}>
