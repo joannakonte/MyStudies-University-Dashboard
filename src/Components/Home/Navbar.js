@@ -132,14 +132,14 @@ function Navbar() {
                       Αποσύνδεση
                     </a>
                     {user.type === 'student' && (
-                      <Link to='/home/classes' className={styles['dropdown-option']}>
-                        Dashboard
+                      <Link to='/home/profile' className={styles['dropdown-option']}>
+                        Προφίλ
                       </Link>
                     )}
 
                     {user.type === 'professor' && (
-                      <Link to='/home/professor-classes' className={styles['dropdown-option']}>
-                        Dashboard
+                      <Link to='/home/professor-profile' className={styles['dropdown-option']}>
+                        Προφίλ
                       </Link>
                     )}
                   </div>
