@@ -39,7 +39,7 @@ function NewClassesApplication3() {
   
       const applicationsCollection = collection(db, 'applications');
 
-      const currentMonthIndex = serverTimestamp().getMonth();
+      const currentMonthIndex = new Date().getMonth();
       const season = (currentMonthIndex >= 9 || currentMonthIndex < 2) ? 'χειμερινό' : 'εαρινό';
   
       const applicationData = {

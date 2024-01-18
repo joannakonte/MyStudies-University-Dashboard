@@ -4,7 +4,7 @@ import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import { db } from '../../../../firebase';
-import { collectionGroup, getDocs } from 'firebase/firestore';
+import { collectionGroup, getDocs, query, orderBy} from 'firebase/firestore';
 import TableComponent2 from '../../../DataTable/DataTable2';
 import appstyle from '../NewClassesAppliction/NewClassesApplication.module.css';
 import { HiMiniPlus } from 'react-icons/hi2';
@@ -17,7 +17,8 @@ function HistoryApplications() {
     const fetchData = async () => {
       try {
         const applicationsCollection = collectionGroup(db, 'applications');
-        const applicationsSnapshot = await getDocs(applicationsCollection);
+        const q = query(applicationsCollection, orderBy('date', 'desc'));
+        const applicationsSnapshot = await getDocs(q);
         const studentId = await findStudentById();
 
         const applicationsData = applicationsSnapshot.docs
