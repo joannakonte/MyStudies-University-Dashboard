@@ -38,6 +38,9 @@ function NewClassesApplication3() {
       const studentId = '2a5iiuGDHgvDPwBkVoAk';
   
       const applicationsCollection = collection(db, 'applications');
+
+      const currentMonthIndex = serverTimestamp().getMonth();
+      const season = (currentMonthIndex >= 9 || currentMonthIndex < 2) ? 'χειμερινό' : 'εαρινό';
   
       const applicationData = {
         studentId,
@@ -45,7 +48,8 @@ function NewClassesApplication3() {
         date: serverTimestamp(),
         allclasses: selectedClasses.map(className => ({
           class_id: className,
-          grade: '-'
+          grade: '-',
+          exam: season
         })),
       };
   
