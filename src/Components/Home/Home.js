@@ -78,7 +78,7 @@ function Home() {
 
 
       {/* Πρόγραμμα Σπούδων */}
-      <div>
+      <div id="studyProgram">
         <h1>Πρόγραμμα Σπούδων</h1>
 
         <div className={styles.grid}>
@@ -95,7 +95,7 @@ function Home() {
     <div className={styles['section-department']} id="department">
 
         {/* Επικοινωνία */}
-        <h1>Επικοινωνία</h1>
+        <h1 id="contact">Επικοινωνία</h1>
 
         <div className={styles.container}>
           <div className={styles['box-contact']}>
