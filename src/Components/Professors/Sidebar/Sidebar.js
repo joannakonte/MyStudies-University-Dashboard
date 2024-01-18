@@ -15,18 +15,18 @@ const Sidebar = ({ currentPath  }) => {
 
         <div className={style.menu}>
             <div id="mySidenav" className={style.sidenav}>
-                <a
-                    href="/home/professor-profile"
+                <Link
+                    to="/home/professor-profile"
                     className={currentPath  === '/home/professor-profile' ? style.selected : ''}
                     >
                     <HiOutlineUserCircle /> Προφίλ
-                </a>
-                <a
-                    href="/home/professor-classes"
+                </Link>
+                <Link
+                    to="/home/professor-classes"
                     className={currentPath  === '/home/professor-classes' ? style.selected : ''}
                     >
                     <HiBookOpen /> Μαθήματα
-                </a>
+                </Link>
                 <Link
                     to="/home/professor-grades"
                     className={currentPath.startsWith('/home/professor-grades') ? style.selected : ''}

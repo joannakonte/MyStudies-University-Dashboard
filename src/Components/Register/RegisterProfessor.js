@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './RegisterStudent.module.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -8,6 +9,7 @@ import { db } from '../../firebase'
 import { findStudentById } from '../DataTable/DataTableUtils';
 
 function RegisterProfessor() {    
+    const navigate = useNavigate();
     const [firstname, setFirstName] = useState(""); 
     const [fathername, setFatherName] = useState(""); 
     const [birthday, setBirthday] = useState(""); 
@@ -115,7 +117,7 @@ function RegisterProfessor() {
             const res_user = await addDoc(col_ref, docUser); 
 
             // Redirect to login route
-            window.location.href = '/home/login'
+            navigate('/home/login');
 
         } catch (error) {
             console.error('Registration error:', error.message);
@@ -466,7 +468,7 @@ function RegisterProfessor() {
                     </label>
                     <input
                         className={styles.inputField}
-                        value={password.value}
+                        value={password}
                         type={showPassword ? 'text' : 'password'}
                         onChange={(e) => {
                             setPassword(e.target.value);
@@ -484,7 +486,7 @@ function RegisterProfessor() {
                     </label> 
                     <input 
                         className={styles.inputField}
-                        value={passwordVerification.value} 
+                        value={passwordVerification} 
                         type={showPasswordVerification ? 'text' : 'password'}
                         onChange={(e) => {
                             setPasswordVerification(e.target.value);

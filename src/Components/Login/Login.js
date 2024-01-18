@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +14,8 @@ const Login = ({ onClose }) => {
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-};
+  };
+  const navigate = useNavigate();
 
   const myStudiesLogo = '/mystudies-logo.png';
 
@@ -47,9 +49,9 @@ const Login = ({ onClose }) => {
 
           // Redirect based on user type
           if (user_type === 'professor') {
-            window.location.href = './home/professor-profile'; 
+            navigate('/home/professor-profile'); 
           } else {
-            window.location.href = './home/classes'; // Student route
+            navigate('/home/classes'); // Student route
           }
 
           console.log('Found User:', docSnapshot.data());

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './RegisterStudent.module.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +8,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../../firebase'
 
 function RegisterStudent() {
+    const navigate = useNavigate();
     const [firstname, setFirstName] = useState(""); 
     const [fathername, setFatherName] = useState(""); 
     const [birthday, setBirthday] = useState(""); 
@@ -23,14 +25,8 @@ function RegisterStudent() {
     const [AM, setAM] = useState(""); 
     const sdiValue = "sdi" + AM.slice(-7);
     const [registrationdate, setRegistrationDate] = useState(""); 
-    const [password, setPassword] = useState({ 
-        value: "", 
-        isTouched: false, 
-    }); 
-    const [passwordVerification, setPasswordVerification] = useState({
-        value: "", 
-        isTouched: false,
-    });    
+    const [password, setPassword] = useState("");
+    const [passwordVerification, setPasswordVerification] = useState("");    
     const [showPassword, setShowPassword] = useState(false);
     const [showPasswordVerification, setShowPasswordVerification] = useState(false);
 
@@ -46,10 +42,10 @@ function RegisterStudent() {
         if (!firstname || !lastname || !fathername || !mothername || !AM) {
             return "Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία.";
         }
-        else if(password.value.length < 8){
+        else if(password.length < 8){
             return "Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.";
         }
-        else if(password.value !== passwordVerification.value){
+        else if(password !== passwordVerification){
             return "Οι κωδικοί πρόσβασης δεν ταιριάζουν.";
         }
         return ""; // No error
@@ -92,7 +88,7 @@ function RegisterStudent() {
             const res_user = await addDoc(col_ref, docUser); 
 
             // Redirect to login route
-            window.location.href = '/home/login'
+            navigate('/home/login');
 
         } catch (error) {
             console.error('Registration error:', error.message);
@@ -356,13 +352,10 @@ function RegisterStudent() {
                         </label>
                         <input
                             className={styles.inputField}
-                            value={password.value}
+                            value={password}
                             type={showPassword ? 'text' : 'password'}
                             onChange={(e) => {
-                                setPassword({ ...password, value: e.target.value });
-                            }}
-                            onBlur={() => {
-                                setPassword({ ...password, isTouched: true });
+                                setPassword(e.target.value);
                             }}
                             placeholder="Κωδικός"
                         />
@@ -377,14 +370,11 @@ function RegisterStudent() {
                         </label> 
                         <input 
                             className={styles.inputField}
-                            value={passwordVerification.value} 
+                            value={passwordVerification} 
                             type={showPasswordVerification ? 'text' : 'password'}
-                            onChange={(e) => { 
-                                setPasswordVerification({ ...passwordVerification, value: e.target.value }); 
-                            }} 
-                            onBlur={() => { 
-                                setPassword({ ...passwordVerification, isTouched: true }); 
-                            }} 
+                            onChange={(e) => {
+                                setPasswordVerification(e.target.value);
+                            }}
                             placeholder="Επαλήθευση Κωδικού" 
                         /> 
                         <div className={styles.eyeIcon} onClick={togglePasswordVerificationVisibility}>
