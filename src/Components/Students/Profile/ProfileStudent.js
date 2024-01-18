@@ -35,8 +35,6 @@ function ProfileStudent() {
     return percentage.toFixed(2); // Round to 2 decimal places
   };
 
-  const loadingPercentage = 50;
-
   return(
     <div className={styles.wrapper}>
         <div className={styles.header}>
@@ -48,16 +46,18 @@ function ProfileStudent() {
         </div>
 
         <div className={styles.main}>
-          <div className={styles.update_data}>
-            <button className={styles.dropbtn}>
-              Επεξεργασία Στοιχείων <HiOutlineRefresh />
-            </button>
-          </div>
+          <div className={styles.buttonContainer}>
+            <div className={styles.update_data}>
+              <button className={styles.dropbtn}>
+                Επεξεργασία Στοιχείων <HiOutlineRefresh />
+              </button>
+            </div>
 
-          <div className={styles.update_data}>
-            <button className={styles.dropbtn}>
-              Αλλαγή Κωδικού <HiOutlineRefresh />
-            </button>
+            <div className={styles.update_data}>
+              <button className={styles.dropbtn}>
+                Αλλαγή Κωδικού <HiOutlineRefresh />
+              </button>
+            </div>
           </div>
 
           {userData && (

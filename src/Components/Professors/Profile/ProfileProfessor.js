@@ -138,6 +138,12 @@ function ProfileProfessor() {
                     Επεξεργασία Στοιχείων <HiOutlineRefresh />
                   </button>
                 </div>
+
+                <div className={styles.update_data}>
+                  <button className={styles.dropbtn}>
+                    Αλλαγή Κωδικού <HiOutlineRefresh />
+                  </button>
+                </div>
               </div>
 
             </div>            

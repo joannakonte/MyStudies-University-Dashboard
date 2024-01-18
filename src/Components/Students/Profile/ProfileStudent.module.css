@@ -51,6 +51,7 @@
     /* background-color: rgba(0, 255, 55, 0.3); */
 }
 
+
 /* ================ | For degree |================ */
 .degree {
     background-color: rgba(151, 191, 224, 0.25);
@@ -141,20 +142,23 @@ td {
 }
 
 .dropbtn {
-    /* right: 5%; */
-    padding: 0.7%;
-    background-color:rgba(13, 139, 217, 0.1);
+    padding: 10px 15px; 
+    background-color: rgba(13, 139, 217, 0.1);
     color: black;
-    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(0, 0, 0, 0.5);
     border-radius: 5px;
     cursor: pointer;
-    font-size: 100%;
+    font-size: 100%; 
     font-weight: bold;
-    width: 20%;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 .dropbtn:hover {
-    background-color:rgba(13, 139, 217, 0.6);
-    border: 0.5px solid rgba(13, 139, 217, 0.6);
+    background-color: rgba(13, 139, 217, 0.6);
+    border: 1px solid rgba(13, 139, 217, 0.6);
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 10px;
 }
