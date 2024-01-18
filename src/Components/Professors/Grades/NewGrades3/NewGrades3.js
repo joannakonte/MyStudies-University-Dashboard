@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './NewGrades3.module.css'; 
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
@@ -38,9 +39,9 @@ function NewGrades3() {
 
           <div className={styles['button-container']}>
             <div className={styles['previous']}>
-              <a href="/home/professor-grades/new-grade1/new-grade2" className={styles['previous-page']}>
+              <Link to="/home/professor-grades/new-grade1/new-grade2" className={styles['previous-page']}>
                 <HiChevronLeft /> Προηγούμενο
-              </a>
+              </Link>
             </div>
 
             <div className={styles['buttons2']}>

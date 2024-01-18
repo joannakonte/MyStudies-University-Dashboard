@@ -7,13 +7,14 @@ import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import { HiChevronRight, HiChevronLeft } from 'react-icons/hi2';
 import GradesTable from './GradesTable2'
+import { where, getDocs, query, collection } from 'firebase/firestore';
+import { db } from '../../../../firebase'; // Import your Firestore instance
 
 function NewGrades2() {
   const stages = ['Επιλογή Μαθήματος', 'Καταχώρηση Βαθμολογίας ', 'Υποβολή Βαθμολογίας'];
-
   const department = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
-  const className = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
   const period = "ΧΕΙΜ 2024";
+  const [className, setClassName] = useState("");
   
   const location = useLocation();
 
@@ -25,6 +26,8 @@ function NewGrades2() {
     const currentProfessorSDI = localStorage.getItem('sdi');
     const storedSelectedClass = localStorage.getItem('selectedClass');
 
+    console.log(`Stored Selected Class: ${storedSelectedClass}`);
+
     if (currentProfessorSDI) {
       setProfessorID(currentProfessorSDI);
     } else {
@@ -33,10 +36,29 @@ function NewGrades2() {
 
     if (storedSelectedClass) {
       setSelectedClass(storedSelectedClass);
-      console.log(selectedClass.id);
     } else {
       console.error("No class is currently selected.");
     }
+
+    // Fetch the class name based on selectedClass
+    const fetchClassName = async () => {
+      if (storedSelectedClass) {
+        // Adjust the field name 'classId' if it's different in your Firestore collection
+        const classesQuery = query(collection(db, "classes"), where("id", "==", storedSelectedClass));
+        try {
+          const querySnapshot = await getDocs(classesQuery);
+          if (!querySnapshot.empty) {
+            const classData = querySnapshot.docs[0].data();
+            setClassName(classData.name); 
+          } else {
+            console.log("No such class found for ID:", storedSelectedClass);
+          }
+        } catch (error) {
+          console.error("Error fetching class name: ", error);
+        }
+      }
+    };
+    fetchClassName();
   }, []);  
 
   return(
@@ -56,9 +78,7 @@ function NewGrades2() {
             {department} - {className} - {period}
           </div>
 
-
-
-        <GradesTable professorID={professorID} classId={selectedClass}/>
+         <GradesTable professorID={professorID} classId={selectedClass}/>
 
           <div className={styles['button-container']}>
             <Link to="/home/professor-grades/new-grade1" className={styles['previous-page']}>
