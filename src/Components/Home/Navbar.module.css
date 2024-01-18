@@ -18,6 +18,34 @@
 }
 
 /* ================ | Navbar |================ */
+.link {
+  text-decoration: none; 
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
+.menu_item {
+  background-color: white;
+  color: var(--home-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  
+
+  /* Transition for a smooth hover effect */
+  /* transition: background-color 0.3s ease; */
+}
+
+.link:hover .menu_item {
+  background-color: var(--home-color);
+  color: white;
+}
+
+
+
+
 
 .logo-and-nav {
   display: flex;

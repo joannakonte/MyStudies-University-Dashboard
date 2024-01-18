@@ -80,31 +80,38 @@ function Navbar() {
           </li>
         </ul>
 
-        <div className={styles['nav-links']}>
-          <a href="/home#home" className={styles['nav-item']}>Αρχική</a>
-          {/* First Dropdown */}
-          <div className={styles.dropdown}>
-            <button className={styles.dropbtn}>
-              Υπηρεσίες <FontAwesomeIcon icon={faChevronDown} />
-            </button>
-            <div className={styles['dropdown-content']}>
-              <a href="/home#students">Φοιτητές</a>
-              <a href="/home#instructors">Διδάσκοντες</a>
-              <a href="/home#secretary">Γραμματεία</a>
-            </div>
-          </div>
-          {/* Second Dropdown */}
-          <div className={styles.dropdown}>
-            <button className={styles.dropbtn}>
-              Τμήμα <FontAwesomeIcon icon={faChevronDown} />
-            </button>
-            <div className={styles['dropdown-content']}>
-              <a href="/home#studyProgram">Πρόγραμμα Σπούδων</a>
-              <a href="/home#contact">Επικοινωνία</a>
-            </div>
-          </div>
+          <div className={styles['nav-links']}>
 
-          <a href="/home#otherServices" className={styles['nav-item']}>Άλλες Υπηρεσίες ΕΚΠΑ</a>
+          <a href="/home#home" className={styles.link}>
+            <button className={styles.menu_item}>
+              Αρχική
+            </button>
+          </a>
+
+          <a href="/home#services" className={styles.link}>
+            <button className={styles.menu_item}>
+              Υπηρεσίες
+            </button>
+          </a>
+
+          <a href="/home#studyProgram" className={styles.link}>
+            <button className={styles.menu_item}>
+              Πρόγραμμα Σπούδων
+            </button>
+          </a>
+
+          <a href="/home#contact" className={styles.link}>
+            <button className={styles.menu_item}>
+              Επικοινωνία
+            </button>
+          </a>
+
+          <a href="/home#otherServices" className={styles.link}>
+            <button className={styles.menu_item}>
+              Υπηρεσίες ΕΚΠΑ
+            </button>
+          </a>
+
 
 
           <div>

@@ -3,6 +3,7 @@ import styles from './ProfileStudent.module.css';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import LoadingBar from './LoadingBar/LoadingBar';
+import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { HiOutlineRefresh } from 'react-icons/hi';
 
@@ -48,15 +49,19 @@ function ProfileStudent() {
         <div className={styles.main}>
           <div className={styles.buttonContainer}>
             <div className={styles.update_data}>
-              <button className={styles.dropbtn}>
-                Επεξεργασία Στοιχείων <HiOutlineRefresh />
-              </button>
+              <Link to="/home/profile/update-data" className={styles.link}>
+                <button className={styles.dropbtn}>
+                  Επεξεργασία Στοιχείων <HiOutlineRefresh />
+                </button>
+              </Link>
             </div>
 
             <div className={styles.update_data}>
-              <button className={styles.dropbtn}>
-                Αλλαγή Κωδικού <HiOutlineRefresh />
-              </button>
+              <Link to="/home/profile/update-password" className={styles.link}>
+                <button className={styles.dropbtn}>
+                  Αλλαγή Κωδικού <HiOutlineRefresh />
+                </button>
+              </Link>
             </div>
           </div>
 

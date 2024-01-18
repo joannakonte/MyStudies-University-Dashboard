@@ -9,17 +9,17 @@
     {
         "title": "Προφίλ",
         "icon": "HiOutlineUserCircle",
+        "path": "/home/profile"
+    },
+    {
+        "title": "Επεξεργασία Στοιχείων",
+        "icon": "HiOutlineUserCircle",
         "path": "/home/profile/update-data"
     },
     {
-        "title": "Προφίλ",
+        "title": "Αλλαγή Κωδικού",
         "icon": "HiOutlineUserCircle",
         "path": "/home/profile/update-password"
-    },
-    {
-        "title": "Προφίλ",
-        "icon": "HiOutlineUserCircle",
-        "path": "/home/profile"
     },
     {
         "title": "Μαθήματα",
@@ -74,12 +74,12 @@
         "path": "/home/professor-profile"
     },
     {
-        "title": "Προφίλ",
+        "title": "Επεξεργασία Στοιχείων",
         "icon": "HiOutlineUserCircle",
         "path": "/home/professor-profile/update-data"
     },
     {
-        "title": "Προφίλ",
+        "title": "Αλλαγή Κωδικού",
         "icon": "HiOutlineUserCircle",
         "path": "/home/professor-profile/update-password"
     },
