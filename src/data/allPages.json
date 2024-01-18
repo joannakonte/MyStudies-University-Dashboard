@@ -9,6 +9,16 @@
     {
         "title": "Προφίλ",
         "icon": "HiOutlineUserCircle",
+        "path": "/home/profile/update-data"
+    },
+    {
+        "title": "Προφίλ",
+        "icon": "HiOutlineUserCircle",
+        "path": "/home/profile/update-password"
+    },
+    {
+        "title": "Προφίλ",
+        "icon": "HiOutlineUserCircle",
         "path": "/home/profile"
     },
     {
@@ -62,6 +72,16 @@
         "title": "Προφίλ",
         "icon": "HiOutlineUserCircle",
         "path": "/home/professor-profile"
+    },
+    {
+        "title": "Προφίλ",
+        "icon": "HiOutlineUserCircle",
+        "path": "/home/professor-profile/update-data"
+    },
+    {
+        "title": "Προφίλ",
+        "icon": "HiOutlineUserCircle",
+        "path": "/home/professor-profile/update-password"
     },
     {
         "title": "Μαθήματα",

@@ -6,6 +6,8 @@ import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 
 import ProfileStudent from './Components/Students/Profile/ProfileStudent';
+import UpdateData from './Components/Students/Profile/UpdateData/UpdateData';
+import UpdatePassword from './Components/Students/Profile/UpdatePassword/UpdatePassword';
 import Classes from './Components/Students/Classes/Classes';
 import HistoryApplications from './Components/Students/ClassesApplication/HistoryApplications/HistoryApplications';
 import NewClassesApplication1 from './Components/Students/ClassesApplication/NewClassesAppliction/NewClassesApplication1/NewClassesApplication1';
@@ -16,6 +18,8 @@ import Certificates from './Components/Students/Certificates/Certificates';
 import FAQ from './Components/Students/FAQ/FAQ';
 
 import ProfileProfessor from './Components/Professors/Profile/ProfileProfessor';
+import UpdateDataProfessor from './Components/Professors/Profile/UpdateDataProfessor/UpdateDataProfessor';
+import UpdatePasswordProfessor from './Components/Professors/Profile/UpdatePasswordProfessor/UpdatePasswordProfessor';
 import ClassesProfessor from './Components/Professors/Classes/ClassesProfessor';
 import GradesProfessor from './Components/Professors/Grades/GradesProfessor';
 import FAQProfessor from './Components/Professors/FAQ/FAQProfessor';
@@ -37,6 +41,8 @@ function App() {
 
           {/* Paths for Students */}
           <Route path="/home/profile" element={<ProfileStudent />}/>
+          <Route path="/home/profile/update-data" element={<UpdateData />}/>
+          <Route path="/home/profile/update-password" element={<UpdatePassword />}/>
           <Route path="/home/classes" element={<Classes />}/>
           <Route path="/home/history-applications" element={<HistoryApplications />}/>
           <Route path="/home/history-applications/new-application1" element={<NewClassesApplication1 />}/>
@@ -48,6 +54,8 @@ function App() {
 
           {/* Paths for Professors */}
           <Route path="/home/professor-profile" element={<ProfileProfessor />}/>
+          <Route path="/home/professor-profile/update-data" element={<UpdateDataProfessor />}/>
+          <Route path="/home/professor-profile/update-password" element={<UpdatePasswordProfessor />}/>
           <Route path="/home/professor-classes" element={<ClassesProfessor />}/>
           <Route path="/home/professor-grades" element={<GradesProfessor />}/>
           <Route path="/home/professor-grades/new-grade1" element={<NewGrades1 />}/>
