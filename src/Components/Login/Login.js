@@ -56,7 +56,7 @@ const Login = ({ onClose }) => {
 
           console.log('Found User:', docSnapshot.data());
         } else {
-          setError('Λάθος κωδικός πρόσβασης!');
+          setError('Λάθος κωδικός πρόσβασης ή Όνομα Χρήστη!');
           console.log('Incorrect password!');
         }
       } else {

@@ -45,7 +45,7 @@ function Home() {
       </div>
 
       {/* Υπηρεσίες */}
-      <div className={styles.section}  id="services">
+      <div className={styles.section} id="services">
         <h1>Υπηρεσίες</h1>
 
         <div className={styles.container}>

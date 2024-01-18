@@ -35,10 +35,7 @@ function Navbar() {
 
   useEffect(() => {
     const storedUserDataJSON = localStorage.getItem('userData');
-    const isLoggedIn = !!storedUserDataJSON; // Convert to boolean
-    // if (!isLoggedIn) {
-    //   openLogin(); // If empty or user is not logged in, open the login
-    // }
+    
     const storedUserData = JSON.parse(storedUserDataJSON);
 
     // Extract firstname, lastname, and other properties if needed
@@ -84,16 +81,16 @@ function Navbar() {
         </ul>
 
         <div className={styles['nav-links']}>
-          <a href="#home" className={styles['nav-item']}>Αρχική</a>
+          <a href="/home#home" className={styles['nav-item']}>Αρχική</a>
           {/* First Dropdown */}
           <div className={styles.dropdown}>
             <button className={styles.dropbtn}>
               Υπηρεσίες <FontAwesomeIcon icon={faChevronDown} />
             </button>
             <div className={styles['dropdown-content']}>
-              <a href="#students">Φοιτητές</a>
-              <a href="#instructors">Διδάσκοντες</a>
-              <a href="#secretary">Γραμματεία</a>
+              <a href="/home#students">Φοιτητές</a>
+              <a href="/home#instructors">Διδάσκοντες</a>
+              <a href="/home#secretary">Γραμματεία</a>
             </div>
           </div>
           {/* Second Dropdown */}
@@ -102,12 +99,12 @@ function Navbar() {
               Τμήμα <FontAwesomeIcon icon={faChevronDown} />
             </button>
             <div className={styles['dropdown-content']}>
-              <a href="#studyProgram">Πρόγραμμα Σπούδων</a>
-              <a href="#contact">Επικοινωνία</a>
+              <a href="/home#studyProgram">Πρόγραμμα Σπούδων</a>
+              <a href="/home#contact">Επικοινωνία</a>
             </div>
           </div>
 
-          <a href="#otherServices" className={styles['nav-item']}>Άλλες Υπηρεσίες ΕΚΠΑ</a>
+          <a href="/home#otherServices" className={styles['nav-item']}>Άλλες Υπηρεσίες ΕΚΠΑ</a>
 
 
           <div>
