@@ -6,8 +6,9 @@ import { faTimes, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
+import { Link } from 'react-router-dom';
 
-const Login = ({ onClose }) => {
+function Login() {
   const [error, setError] = useState('');
   const [sdi, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +17,7 @@ const Login = ({ onClose }) => {
     setShowPassword(!showPassword);
   };
   const navigate = useNavigate();
+
 
   const myStudiesLogo = '/mystudies-logo.png';
 
@@ -77,12 +79,17 @@ const Login = ({ onClose }) => {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
+        {/* <Navbar /> */}
+
         {/* Header */}
         <div className={styles.header}>
           <h2>Σύνδεση</h2>
-          <button onClick={onClose} className={styles.closeButton}>
-            <FontAwesomeIcon icon={faTimes} />
-          </button>
+
+          <Link to='/home' className={styles['dropdown-option']}>
+            <button className={styles.closeButton}>
+              <FontAwesomeIcon icon={faTimes} />
+            </button>
+          </Link>
         </div>
 
         {/* Logo */}

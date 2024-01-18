@@ -128,9 +128,6 @@ function Navbar() {
                   </button>
 
                   <div className={styles['dropdown-content']}>
-                    <a className={styles.dropdown_option} onClick={handleLogout}>
-                      Αποσύνδεση
-                    </a>
                     {user.type === 'student' && (
                       <Link to='/home/profile' className={styles['dropdown-option']}>
                         Προφίλ
@@ -142,6 +139,9 @@ function Navbar() {
                         Προφίλ
                       </Link>
                     )}
+                    <a className={styles.dropdown_option} onClick={handleLogout}>
+                      Αποσύνδεση
+                    </a>
                   </div>
                 </div>
               </div>
@@ -149,7 +149,7 @@ function Navbar() {
               <div className={styles.dropdown_profile2}>
                 {isLoginOpen && <Login onClose={closeLogin} />}
                 <div className={styles['profile2-options']}>
-                  <a className={styles['dropdown2-option']} onClick={openLogin}>
+                  <a href="/home/login" className={styles['dropdown2-option']} >
                     Σύνδεση
                   </a>
                   <span className={styles['separator']}> | </span>
