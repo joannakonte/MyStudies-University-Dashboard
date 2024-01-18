@@ -17,7 +17,6 @@ function NewGrades1() {
   const location = useLocation();
 
   const department = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
-  const className = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
   const period = "ΧΕΙΜ 2024";
 
   const [selectedDepartment, setSelectedDepartment] = useState('');
@@ -54,7 +53,7 @@ function NewGrades1() {
     };
     fetchProfessorsClasses();
   }, []);  
-
+  
   useEffect(() => {
     // Save the selected class to local storage whenever it changes
     if (selectedClass) {
@@ -77,7 +76,7 @@ function NewGrades1() {
           <ProcessBar stages={stages} currentStage={0} />
 
           <div className={styles.infoBox}>
-            {department} - {className} - {period}
+            {department} - {period}
           </div>
 
           <div className={styles.container}>
