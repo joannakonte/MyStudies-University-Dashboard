@@ -32,12 +32,13 @@
   
 .ekpa-logo {
     max-width: 220px;
+    margin-top: 20px;
 }
   
 .my-studies-logo {
     max-width: 220px;
-    margin-top: -20px; 
-    margin-left: -17px; 
+    /* margin-top: -20px;  */
+    /* margin-left: -17px;  */
 }
 
 .copy {
