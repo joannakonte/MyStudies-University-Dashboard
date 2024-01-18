@@ -31,29 +31,30 @@ function Navbar() {
     setIsLoginOpen(false);
   };
 
-  useEffect(() => {
-    // Check if local storage is empty
-    const storedUserDataJSON = localStorage.getItem('userData');
-    if (!storedUserDataJSON) {
-      openLogin(); // If empty, open the login
-    }
-  }, []);
-
   const [user, setUser] = useState({ firstname: '', lastname: '', sdi: '', type: '' });
-  const userType = localStorage.getItem('userType');
 
   useEffect(() => {
-      // Retrieve data from local storage
-      const storedUserDataJSON = localStorage.getItem('userData');
+    const storedUserDataJSON = localStorage.getItem('userData');
+    const isLoggedIn = !!storedUserDataJSON; // Convert to boolean
+    // if (!isLoggedIn) {
+    //   openLogin(); // If empty or user is not logged in, open the login
+    // }
+    const storedUserData = JSON.parse(storedUserDataJSON);
 
-      // Parse the JSON string to get the original object
-      const storedUserData = JSON.parse(storedUserDataJSON);
+    // Extract firstname, lastname, and other properties if needed
+    const { firstname, lastname, sdi, type } = storedUserData || {};
 
-      // Extract firstname, lastname, and other properties if needed
-      const { firstname, lastname, sdi, type } = storedUserData || {};
+    // Set the user data to the state
+    setUser({ firstname, lastname, sdi, type });
 
-      // Set the user data to the state
-      setUser({ firstname, lastname, sdi, type });
+    // Cleanup function to close the login popup when the component is unmounted
+    return () => {
+      setIsLoginOpen(false);
+    };
+
+    // Retrieve data from local storage
+
+    // Parse the JSON string to get the original object
   }, []);
 
 
