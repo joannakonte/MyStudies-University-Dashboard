@@ -102,13 +102,13 @@
 
 .circle {
     background-color: rgb(255, 255, 255);
-    width: 30px;       
-    height: 30px;      
+    width: 35px;       
+    height: 35px;      
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px; 
+    margin-right: 15px; 
     font-size: 16px;    
     font-weight: 600; 
 }
@@ -121,6 +121,11 @@
 
 .button-text span{
     font-size: 130%;
+}
+
+.menu-icon {
+    font-size: 130%;
+
 }
 
 .button-text .id{

@@ -54,6 +54,12 @@ function ProfileStudent() {
             </button>
           </div>
 
+          <div className={styles.update_data}>
+            <button className={styles.dropbtn}>
+              Αλλαγή Κωδικού <HiOutlineRefresh />
+            </button>
+          </div>
+
           {userData && (
             <div className={styles.info}>
               <div className={styles.columns}>
