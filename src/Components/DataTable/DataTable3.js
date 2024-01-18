@@ -6,28 +6,20 @@ import { HiArrowDownTray, HiArrowsUpDown } from 'react-icons/hi2';
 import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
 import items from "../../data/dataTableHeaderCert.json";
 
-import { useRef } from 'react';
-import html2pdf from 'html2pdf.js'; 
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import fileDownload from 'js-file-download';
 
-const handleDownload = (certificationType) => {
-  console.log('handleDownload called with type:', certificationType);
+const handleDownload = () => {
 
   const pdfElement = document.getElementById('pdf-content');
   const pdfOptions = { filename: 'document.pdf' };
 
   if (pdfElement) {
     html2canvas(pdfElement).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF();
       
       // Add the certification type to the PDF
-      pdf.text(`Certification Type: ${certificationType}`, 10, 10);
-
-      // Add the image data
-      pdf.addImage(imgData, 'PNG', 10, 30);
+      pdf.text(`Certificate`, 10, 10);
 
       // Save the PDF
       pdf.save(pdfOptions.filename);
@@ -117,7 +109,7 @@ const TableComponent3 = ({ collectionName }) => {
                       <div id="pdf-content">
                         <button
                           className={`${styles['download-button']} ${rowData.status === 'Εγκρίθηκε' ? styles.active : ''}`}
-                          onClick={() => { console.log('Button clicked'); handleDownload(rowData['Είδος Πιστοποιητικού']); }}
+                          onClick={() => { console.log('Button clicked'); handleDownload(); }}
                           disabled={rowData.status !== 'Εγκρίθηκε'}
                         >
                           <HiArrowDownTray />
