@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Navbar.module.css'; // Import the CSS module
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
@@ -147,9 +148,9 @@ function Navbar() {
                     Σύνδεση
                   </a>
                   <span className={styles['separator']}> | </span>
-                  <a href='/home/register' className={styles['dropdown2-option']}>
+                  <Link to='/home/register' className={styles['dropdown2-option']}>
                     Εγγραφή
-                  </a>
+                  </Link>
                 </div>
               </div>
             )}

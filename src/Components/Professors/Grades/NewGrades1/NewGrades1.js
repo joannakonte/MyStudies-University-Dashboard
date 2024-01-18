@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './NewGrades1.module.css'; 
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
@@ -124,11 +125,10 @@ function NewGrades1() {
           </div>
 
           <div className={styles['next']}>
-            <a href="/home/professor-grades/new-grade1/new-grade2" className={styles['next-page']}>
-              Επόμενο <HiChevronRight  /> 
-            </a>
+            <Link to="/home/professor-grades/new-grade1/new-grade2" className={styles['next-page']}>
+                Επόμενο <HiChevronRight />
+            </Link>
           </div>
-
         </div>
     </div>
   );

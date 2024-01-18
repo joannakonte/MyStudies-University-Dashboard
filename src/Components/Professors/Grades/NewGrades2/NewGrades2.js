@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import styles from './NewGrades2.module.css'; 
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
@@ -32,7 +33,7 @@ function NewGrades2() {
 
     if (storedSelectedClass) {
       setSelectedClass(storedSelectedClass);
-      console.log(selectedClass);
+      console.log(selectedClass.id);
     } else {
       console.error("No class is currently selected.");
     }
@@ -60,13 +61,13 @@ function NewGrades2() {
         <GradesTable professorID={professorID} classId={selectedClass}/>
 
           <div className={styles['button-container']}>
-            <a href="/home/professor-grades/new-grade1" className={styles['previous-page']}>
+            <Link to="/home/professor-grades/new-grade1" className={styles['previous-page']}>
               <HiChevronLeft /> Προηγούμενο
-            </a>
+            </Link>
             
-            <a href="/home/professor-grades/new-grade1/new-grade2/new-grade3" className={styles['next-page']}>
+            <Link to="/home/professor-grades/new-grade1/new-grade2/new-grade3" className={styles['next-page']}>
               Επόμενο <HiChevronRight  />
-            </a>
+            </Link>
           </div>
         </div>
     </div>
