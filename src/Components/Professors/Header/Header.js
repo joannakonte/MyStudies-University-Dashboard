@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import style from './Header.module.css'; 
 import Breadcrumb from '../../Breadcrumb/Breadcrumb';
 import items from "../../../data/allPages.json";
@@ -123,10 +124,10 @@ function Header() {
                         </button>
                         {dropdownOpen && (
                             <div className={`${style['dropdown-content']} ${dropdownOpen ? style.show : ''}`}>
-                                <a className={style.profile} href="/home/professor-faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> Συχνές Ερωτήσεις</a>
-                                <a className={style.profile} href="/home/profile"><HiOutlineUserCircle className={style.dropdownIcons} /> Προφίλ</a>
+                                <Link className={style.profile} to="/home/professor-faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> Συχνές Ερωτήσεις</Link>
+                                <Link className={style.profile} to="/home/profile"><HiOutlineUserCircle className={style.dropdownIcons} /> Προφίλ</Link>
                                 <a className={style.logout} onClick={handleLogout}><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
-                                <a className={style['home-page']} href="/home"><HiHome className={style.dropdownIcons} /> Αρχική</a>
+                                <Link className={style['home-page']} to="/home"><HiHome className={style.dropdownIcons} /> Αρχική</Link>
                             </div>
                         )}
                     </div>

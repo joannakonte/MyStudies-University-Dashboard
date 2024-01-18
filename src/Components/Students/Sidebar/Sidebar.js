@@ -17,36 +17,36 @@ const Sidebar = ({ currentPath  }) => {
 
         <div className={style.menu}>
             <div id="mySidenav" className={style.sidenav}>
-                <a
-                    href="/home/profile"
+                <Link
+                    to="/home/profile"
                     className={currentPath  === '/home/profile' ? style.selected : ''}
                     >
                     <HiOutlineUserCircle /> Προφίλ
-                </a>
-                <a
-                    href="/home/classes"
+                </Link>
+                <Link
+                    to="/home/classes"
                     className={currentPath  === '/home/classes' ? style.selected : ''}
                     >
                     <HiBookOpen /> Μαθήματα
-                </a>
+                </Link>
                     <Link
                         to="/home/history-applications"
                         className={currentPath.startsWith('/home/history-applications') ? style.selected : ''}
                     >
                     <HiDocumentText /> Δηλώσεις Μαθημάτων
                 </Link>
-                <a
-                    href="/home/grades"
+                <Link
+                    to="/home/grades"
                     className={currentPath  === '/home/grades' ? style.selected : ''}
                     >
                     <HiAcademicCap /> Βαθμολογίες
-                </a>
-                <a
-                    href="/home/certificates"
+                </Link>
+                <Link
+                    to="/home/certificates"
                     className={currentPath  === '/home/certificates' ? style.selected : ''}
                     >
                     <FaRegWindowRestore  /> Πιστοποιητικά
-                </a>
+                </Link>
             </div>
         </div>
     </div>

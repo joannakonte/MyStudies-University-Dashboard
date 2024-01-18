@@ -127,15 +127,15 @@ function Navbar() {
                       Αποσύνδεση
                     </a>
                     {user.type === 'student' && (
-                      <a href='/home/classes' className={styles['dropdown-option']}>
+                      <Link to='/home/classes' className={styles['dropdown-option']}>
                         Dashboard
-                      </a>
+                      </Link>
                     )}
 
                     {user.type === 'professor' && (
-                      <a href='/home/professor-classes' className={styles['dropdown-option']}>
+                      <Link to='/home/professor-classes' className={styles['dropdown-option']}>
                         Dashboard
-                      </a>
+                      </Link>
                     )}
                   </div>
                 </div>
