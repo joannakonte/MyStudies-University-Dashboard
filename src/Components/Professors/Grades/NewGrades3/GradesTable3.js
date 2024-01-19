@@ -18,6 +18,11 @@ const GradesTable = ({professorId, classId}) => {
     };
 
     const fetchGradesAndStudents = async () => {
+        if (!classId) {
+            console.error("classId is undefined, unable to fetch grades");
+            return;
+        }
+
         setGradesData([]); // Clear the existing data
         const gradesQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
         const gradesSnapshot = await getDocs(gradesQuery);

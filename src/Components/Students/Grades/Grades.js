@@ -61,7 +61,7 @@ function Grades(){
         <div className={styles.main}>
           {applications.length === 0 ? (
           <div className={styles['no-applications']}>
-            Δε βρέθηκε δήλωση προς βαθμολόγηση
+            Δε βρέθηκε δήλωση προς βαθμολόγηση.
           </div>
         ) : (
           applications.map(application => (

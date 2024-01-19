@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Popup from 'reactjs-popup';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './NewGrades3.module.css'; 
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
@@ -72,44 +72,55 @@ function NewGrades3() {
   const saveGrades = async () => {
     try {
         const gradesData = JSON.parse(localStorage.getItem('gradesData')) || [];
-
+  
         // Fetch the document ID of the class grades document
         const gradesQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", selectedClass));
         const gradesSnapshot = await getDocs(gradesQuery);
-
+  
         if (!gradesSnapshot.empty) {
             // Assuming there is only one document per class
             const gradeDocId = gradesSnapshot.docs[0].id;
-
+  
             // Prepare the updated grades array
             const updatedGradesArray = gradesData.map(({ studentAM, studentGrade }) => ({ AM: studentAM, grade: studentGrade }));
-
+  
             // Get a reference to the document
             const gradeDocRef = doc(db, "studentclassidgrade", gradeDocId);
-
+  
             // Update the document
             await updateDoc(gradeDocRef, {
                 grades: updatedGradesArray
             });
-
+  
             console.log("Grades updated successfully");
-            setIsSubmissionSuccessful(true); // Set submission status to successful
+  
+            // Clear local storage and set submission status to successful
+            localStorage.removeItem('gradesData');
+            localStorage.removeItem('selectedClass');
+            setIsSubmissionSuccessful(true);
         } else {
             console.log("No document found for the classId");
         }
     } catch (error) {
         console.error("Error updating grades: ", error);
     }
-  };
+  };  
 
-  const Popup = () => (
-    <div className={styles.popupOverlay}>
-      <div className={styles.successPopup}>
-        <div className={styles.header}></div>
-        <h3>Οι βαθμολογίες υποβλήθηκαν επιτυχώς!</h3>
-        <button className={styles.closeButton} onClick={() => setIsSubmissionSuccessful(false)}> &times;</button>
+  const navigate = useNavigate();
+
+    const handleClosePopup = () => {
+        setIsSubmissionSuccessful(false);
+        navigate('/home/professor-grades');
+    };
+
+    const Popup = () => (
+      <div className={styles.popupOverlay}>
+          <div className={styles.successPopup}>
+              <button className={styles.closeButton} onClick={handleClosePopup}> &times;</button>
+              <div className={styles.popupHeader}></div>
+              <h3>Οι βαθμολογίες υποβλήθηκαν επιτυχώς!</h3>
+          </div>
       </div>
-    </div>
   );  
 
   return(

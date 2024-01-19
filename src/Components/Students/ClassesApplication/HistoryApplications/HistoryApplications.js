@@ -58,7 +58,7 @@ function HistoryApplications() {
 
         {applications.length === 0 ? (
           <div className={style['no-applications']}>
-            Δεν έχεις πραγματοποιήσει καμία δήλωση μέχρι στιγμής
+            Δεν έχεις πραγματοποιήσει καμία δήλωση μέχρι στιγμής.
           </div>
         ) : (
           applications.map(application => (
