@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './RegisterStudent.module.css'; 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -498,9 +498,9 @@ function RegisterProfessor() {
                     </div> 
                 </div>
                 <div className={styles.buttonContainer}>
-                    <button className={styles.cancelButton}>
+                    <Link to="/" className={styles.cancelButton}>
                         Ακύρωση
-                    </button>
+                    </Link>
                     <button
                         type="submit"
                         onClick={(e) => {

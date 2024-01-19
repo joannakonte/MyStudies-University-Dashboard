@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import styles from './UpdateData.module.css'; 
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
-import { useLocation } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
@@ -358,9 +357,9 @@ function UpdateData() {
 
                     
                     <div className={styles.buttonContainer}>
-                        <button className={styles.cancelButton}>
+                        <Link to="/home/profile" className={styles.cancelButton}>
                             Ακύρωση
-                        </button>
+                        </Link>
                         <button
                             type="submit"
                             onClick={(e) => {
@@ -374,7 +373,7 @@ function UpdateData() {
                             }}
                             className={styles.registerButton}
                         >
-                            Εγγραφή
+                            Αποθήκευση
                         </button>
                     </div>
                 </div>
