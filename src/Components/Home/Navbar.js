@@ -149,9 +149,9 @@ function Navbar() {
               <div className={styles.dropdown_profile2}>
                 {isLoginOpen && <Login onClose={closeLogin} />}
                 <div className={styles['profile2-options']}>
-                  <a href="/home/login" className={styles['dropdown2-option']} >
+                  <Link to="/home/login" className={styles['dropdown2-option']} >
                     Σύνδεση
-                  </a>
+                  </Link>
                   <span className={styles['separator']}> | </span>
                   <Link to='/home/register' className={styles['dropdown2-option']}>
                     Εγγραφή
@@ -160,9 +160,6 @@ function Navbar() {
               </div>
             )}
           </div>
-
-
-
 
         </div>
       </div>

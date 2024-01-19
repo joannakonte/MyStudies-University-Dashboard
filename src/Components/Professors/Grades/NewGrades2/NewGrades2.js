@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import Popup from 'reactjs-popup';
 import styles from './NewGrades2.module.css'; 
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
-import { HiChevronRight, HiChevronLeft } from 'react-icons/hi2';
+import { HiChevronRight, HiChevronLeft, HiExclamationTriangle } from 'react-icons/hi2';
 import GradesTable from './GradesTable2'
 import { where, getDocs, query, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../../firebase'; 
@@ -27,6 +28,27 @@ function NewGrades2() {
     const year = (currentMonthIndex < 2) ? date.getFullYear() - 1 : date.getFullYear();
 
     return `${season} ${year}`;
+  };
+
+  const [isAllGraded, setIsAllGraded] = useState(true); 
+  const navigate = useNavigate();
+
+  // Function to check if all students are graded
+  const checkAllGraded = () => {
+    const gradesData = JSON.parse(localStorage.getItem('gradesData')) || [];
+    const ungraded = gradesData.some(grade => parseInt(grade.studentGrade) === 0);
+
+
+    if (ungraded) {
+      setIsAllGraded(false);
+    } else {
+      navigate('/home/professor-grades/new-grade1/new-grade2/new-grade3');
+    }
+  };
+
+  // Close the popup and reset state
+  const handleClosePopup = () => {
+    setIsAllGraded(true);
   };
 
   useEffect(() => {
@@ -88,16 +110,28 @@ function NewGrades2() {
 
          <GradesTable professorID={professorID} classId={selectedClass}/>
 
-          <div className={styles['button-container']}>
+         <div className={styles['button-container']}>
             <Link to="/home/professor-grades/new-grade1" className={styles['previous-page']}>
               <HiChevronLeft /> Προηγούμενο
             </Link>
             
-            <Link to="/home/professor-grades/new-grade1/new-grade2/new-grade3" className={styles['next-page']}>
+            <button onClick={checkAllGraded} className={styles['next-page']}>
               Επόμενο <HiChevronRight  />
-            </Link>
+            </button>
           </div>
         </div>
+        {!isAllGraded && (
+          <Popup open={true} onClose={handleClosePopup}>
+            <div className={styles.popupOverlay}>
+              <div className={styles.alertPopup}>
+                <button className={styles.closeButton} onClick={handleClosePopup}> &times;</button>
+                <div className={styles.popupHeader}></div>
+                <HiExclamationTriangle  size={50} color="orange" />
+                <h3>Δεν έχετε καταχωρήσει βαθμό σε όλους τους φοιτητές!</h3>
+              </div>
+            </div>
+          </Popup>
+        )}
     </div>
   );
 }
