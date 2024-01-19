@@ -51,6 +51,34 @@
     /* background-color: rgba(0, 255, 55, 0.3); */
 }
 
+/* ================ | Table |================ */
+
+table {
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 1.8%;
+  }
+  
+  .table-header {
+    background-color: rgba(0, 78, 127, 0.10);
+  }
+  
+  
+  .table-cell {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+    font-size: 90%;
+  }
+  
+  .inputField{
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid #D9D9D9; 
+    border-radius: 5px; 
+    width: 100%;
+  }
 
 /* ================ | infoBox |================ */
 
@@ -126,4 +154,67 @@
 
 .button-container {
     padding-bottom: 5%;
+}
+
+/* =========== | PopUp | =========== */
+.closeButton {
+    position: absolute;
+    top: 3%;
+    right: 1%;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: white; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 30px;
+    cursor: pointer;
+    color: #004E7F;
+    transition: background-color 0.3s ease;
+    border: 0px solid;
+    z-index: 10;
+}
+
+.closeButton:hover {
+    background-color: red; 
+    color: white;
+}
+
+.popupHeader{
+    background-color: #004E7F;
+    width: 100%; 
+    margin: 0;
+    padding: 20px; 
+    border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
+    width: calc(100% + 40px); 
+    margin-left: -20px; 
+    box-sizing: border-box;
+}
+
+.successPopup{
+    width: 500px;
+    height: 100px;
+    padding: 20px;
+    padding-top: 0; /* Remove padding at the top */
+    border-radius: 8px;
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Ensure it's below the popup but above other content */
 }

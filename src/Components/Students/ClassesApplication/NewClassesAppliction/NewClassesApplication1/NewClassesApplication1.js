@@ -20,10 +20,19 @@ function NewClassesApplication1() {
   useEffect(() => {
     const fetchMostRecentApplication = async () => {
       try {
+        const currentMonthIndex = new Date().getMonth();
+        const exam = (currentMonthIndex >= 9 || currentMonthIndex < 2) ? 'χειμερινό' : 'εαρινό';
+
+        const sixMonthsAgo = new Date();
+        sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+
+
         const applicationsCollection = collectionGroup(db, 'applications');
         const q = query(
           applicationsCollection,
           where('submit', '==', true),
+          where('exam', '==', exam),
+          where('date', '<=', sixMonthsAgo),
           orderBy('date', 'desc'),
           limit(1)
         );

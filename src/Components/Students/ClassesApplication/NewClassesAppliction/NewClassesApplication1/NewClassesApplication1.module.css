@@ -80,3 +80,15 @@
 .TableComponent2Grid {
     margin-top: 6%;
 }
+
+.noApplication {
+    /* display: flex; */
+    /* align-items: center; */
+    justify-content: center;
+    font-size: 10%;
+    color: black !important;
+  }
+  
+  .wrapper .main .noApplication {
+    color: black !important;
+  }
