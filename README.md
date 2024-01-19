@@ -10,21 +10,21 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Accounts to login
 
-### Students:
+## Students:
 #### Account 1
-**Username:** sdi2000093
+**Username:** sdi2000093</br>
 **Password:** 123456
 
 #### Account 2
-**Username:** sdi2000227
+**Username:** sdi2000227</br>
 **Password:** helloworld
 
 
 ### Professors:
 #### Account 1
-**Username:** mariar
+**Username:** mariar</br>
 **Password:** 123456
 
 #### Account 2
-**Username:** achliopitas
+**Username:** achliopitas</br>
 **Password:** diakrita
