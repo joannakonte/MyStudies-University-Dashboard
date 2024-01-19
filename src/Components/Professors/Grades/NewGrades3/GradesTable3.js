@@ -74,27 +74,32 @@ const GradesTable = ({professorId, classId}) => {
     };
       
     return (
-        <table>
-            <thead>
-                <tr className={styles['table-header']}>
-                    {headers.map((header, index) => (
-                        <th className={styles['table-cell']} key={index}>{header.title} </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-            {gradesData.map((grade, index) => (
-                <tr key={index}>
-                    <td className={styles['table-cell']}>{grade.studentAM}</td>
-                    <td className={styles['table-cell']}>{`${grade.firstname} ${grade.lastname}`}</td> 
-                    <td className={styles['table-cell']}>{formatDate(currentDate)}</td> 
-                    <td className={styles['table-cell']}>Τμήμα {`${grade.department}`}</td> 
-                    <td className={styles['table-cell']}>{grade.studentGrade}</td>
-                </tr>
-            ))}
-                
-            </tbody>
-        </table>
+        <div className={styles.gradesContainer}>
+            <div className={styles.studentCountContainer}>
+                <h3 className={styles.studentCount}>Σύνολο Μαθητών: {gradesData.length}</h3>
+            </div>
+            <table>
+                <thead>
+                    <tr className={styles['table-header']}>
+                        {headers.map((header, index) => (
+                            <th className={styles['table-cell']} key={index}>{header.title} </th>
+                        ))}
+                    </tr>
+                </thead>
+                <tbody>
+                {gradesData.map((grade, index) => (
+                    <tr key={index}>
+                        <td className={styles['table-cell']}>{grade.studentAM}</td>
+                        <td className={styles['table-cell']}>{`${grade.firstname} ${grade.lastname}`}</td> 
+                        <td className={styles['table-cell']}>{formatDate(currentDate)}</td> 
+                        <td className={styles['table-cell']}>Τμήμα {`${grade.department}`}</td> 
+                        <td className={styles['table-cell']}>{grade.studentGrade}</td>
+                    </tr>
+                ))}
+                    
+                </tbody>
+            </table>
+        </div>
     );
 };
 

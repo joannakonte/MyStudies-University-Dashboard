@@ -124,10 +124,10 @@ function Header() {
                         </button>
                         {dropdownOpen && (
                             <div className={`${style['dropdown-content']} ${dropdownOpen ? style.show : ''}`}>
-                                <Link className={style.profile} to="/home/professor-faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> Συχνές Ερωτήσεις</Link>
                                 <Link className={style.profile} to="/home/profile"><HiOutlineUserCircle className={style.dropdownIcons} /> Προφίλ</Link>
-                                <a className={style.logout} onClick={handleLogout}><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
                                 <Link className={style['home-page']} to="/home"><HiHome className={style.dropdownIcons} /> Αρχική</Link>
+                                <Link className={style.profile} to="/home/professor-faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> Συχνές Ερωτήσεις</Link>
+                                <a className={style.logout} onClick={handleLogout}><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
                             </div>
                         )}
                     </div>
