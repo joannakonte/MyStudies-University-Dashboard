@@ -18,7 +18,8 @@ const PopUp = ({ isOpen, onClose, selectedClass }) => {
     const fetchProfessorData = useCallback(async () => {
         if (!selectedClass) return;
 
-        const q = query(collection(db, 'students'), where('classes', 'array-contains', selectedClass.id));
+        const q = query(collection(db, 'students'), where('classes', 'array-contains', selectedClass.id),
+        where('type', '==', 'professor'));
         const querySnapshot = await getDocs(q);
         
         const professor = querySnapshot.docs.map(doc => doc.data())[0];
