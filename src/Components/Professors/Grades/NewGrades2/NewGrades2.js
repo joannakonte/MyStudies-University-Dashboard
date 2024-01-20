@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import headers from '../../../../data/dataTableHeaderGradesStep2.json'
 import Popup from 'reactjs-popup';
 import styles from './NewGrades2.module.css'; 
 import Header from '../../Header/Header';
@@ -7,11 +8,11 @@ import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import { HiChevronRight, HiChevronLeft, HiExclamationTriangle } from 'react-icons/hi2';
-import GradesTable from './GradesTable2'
-import { where, getDocs, query, collection, serverTimestamp } from 'firebase/firestore';
+import { addDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../../firebase'; 
 
 function NewGrades2() {
+  const [gradesData, setGradesData] = useState([]);
   const stages = ['Επιλογή Μαθήματος', 'Καταχώρηση Βαθμολογίας ', 'Υποβολή Βαθμολογίας'];
   const department = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
   const [className, setClassName] = useState("");
@@ -29,6 +30,68 @@ function NewGrades2() {
 
     return `${season} ${year}`;
   };
+
+    // Fetch the class name based on selectedClass
+    const fetchClassName = async () => {
+      if (selectedClass) {
+          const classesQuery = query(collection(db, "classes"), where("id", "==", selectedClass));
+          try {
+              const querySnapshot = await getDocs(classesQuery);
+              if (!querySnapshot.empty) {
+                  const classData = querySnapshot.docs[0].data();
+                  setClassName(classData.name); 
+              } else {
+                  console.log("No such class found for ID:", selectedClass);
+              }
+          } catch (error) {
+              console.error("Error fetching class name: ", error);
+          }
+      }
+    };
+
+  // ============== | Create new document in database | ============== //
+  // const createGradesDocument = async (classId) => {
+  //   if (!classId) {
+  //     console.error("classId is undefined, cannot create grades document");
+  //     return;
+  //   }
+
+  //   try {
+  //     // Check if a document for this class already exists
+  //     const existingDocQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
+  //     const existingDocSnapshot = await getDocs(existingDocQuery);
+
+  //     if (!existingDocSnapshot.empty) {
+  //       console.log("Grades document for this class already exists");
+  //       return; // Exit if document already exists
+  //     }
+
+  //     // Query to find students for the class
+  //     const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
+  //     const studentsSnapshot = await getDocs(studentsQuery);
+
+  //     // Initialize grades object
+  //     let grades = {};
+  //     studentsSnapshot.docs.forEach(doc => {
+  //       const studentInfo = doc.data();
+  //       grades[studentInfo.AM] = 0; // Default grade
+  //     });
+
+  //     // Create new document in studentclassidgrade collection
+  //     const newGradesDoc = {
+  //       classId: classId,
+  //       grades: grades
+  //     };
+
+  //     await addDoc(collection(db, "studentclassidgrade"), newGradesDoc);
+  //     console.log("New grades document created successfully");
+  //   } catch (error) {
+  //     console.error("Error creating grades document: ", error);
+  //   }
+  // }
+
+
+  // ================= | Check if all students have been graded | ================= //
 
   const [isAllGraded, setIsAllGraded] = useState(true); 
   const navigate = useNavigate();
@@ -49,47 +112,8 @@ function NewGrades2() {
   // Close the popup and reset state
   const handleClosePopup = () => {
     setIsAllGraded(true);
-  };
+  };   
 
-  useEffect(() => {
-    // Fetching professor's ID and selected class from local storage
-    const currentProfessorSDI = localStorage.getItem('sdi');
-    const storedSelectedClass = localStorage.getItem('selectedClass');
-
-    console.log(`Stored Selected Class: ${storedSelectedClass}`);
-
-    if (currentProfessorSDI) {
-      setProfessorID(currentProfessorSDI);
-    } else {
-      console.error("No professor is currently logged in.");
-    }
-
-    if (storedSelectedClass) {
-      setSelectedClass(storedSelectedClass);
-    } else {
-      console.error("No class is currently selected.");
-    }
-
-    // Fetch the class name based on selectedClass
-    const fetchClassName = async () => {
-      if (storedSelectedClass) {
-        // Adjust the field name 'classId' if it's different in your Firestore collection
-        const classesQuery = query(collection(db, "classes"), where("id", "==", storedSelectedClass));
-        try {
-          const querySnapshot = await getDocs(classesQuery);
-          if (!querySnapshot.empty) {
-            const classData = querySnapshot.docs[0].data();
-            setClassName(classData.name); 
-          } else {
-            console.log("No such class found for ID:", storedSelectedClass);
-          }
-        } catch (error) {
-          console.error("Error fetching class name: ", error);
-        }
-      }
-    };
-    fetchClassName();
-  }, []);  
 
   return(
     <div className={styles.wrapper}>
@@ -108,7 +132,33 @@ function NewGrades2() {
             {department} - {className} - {formatDate(currentDate)}
           </div>
 
-         <GradesTable professorID={professorID} classId={selectedClass}/>
+          <table>
+            <thead>
+                <tr className={styles['table-header']}>
+                    {headers.map((header, index) => (
+                        <th className={styles['table-cell']} key={index}>{header.title} </th>
+                    ))}
+                </tr>
+            </thead>
+            <tbody>
+                {/* {gradesData.map((student, index) => (
+                    <tr key={index}>
+                        <td className={styles['table-cell']}>{student.AM}</td>
+                        <td className={styles['table-cell']}>{`${student.firstname} ${student.lastname}`}</td> 
+                        <td className={styles['table-cell']}>{formatDate(currentDate)}</td> 
+                        <td className={styles['table-cell']}>{student.department}</td> 
+                        <td className={styles['table-cell']}>
+                        <input 
+                            className={styles.inputField}
+                            type="number" 
+                            max="10"
+                            min="0"
+                        />
+                        </td>
+                    </tr>
+                ))} */}
+            </tbody>
+        </table>
 
          <div className={styles['button-container']}>
             <Link to="/home/professor-grades/new-grade1" className={styles['previous-page']}>

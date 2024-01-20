@@ -91,25 +91,6 @@ function NewGrades1() {
 
           <div className={styles.container}>
             <div className={styles.inputGroup}>
-              <label htmlFor="department" className={styles.formLabel}>
-                Επιλογή Τμήματος:
-              </label>
-              <div className={styles.selectWrapper}>
-                <select
-                  id="department"
-                  name="department"
-                  value={selectedDepartment}
-                  onChange={(e) => setSelectedDepartment(e.target.value)}
-                  className={styles['dropdown-select']}
-                >
-                  <option value="">Επιλογή Τμήματος...</option>
-                  <option value="Τμήμα Πληροφορικής και Τηλεπικοινωνιών">Τμήμα Πληροφορικής και Τηλεπικοινωνιών</option>
-                </select>
-                <FontAwesomeIcon icon={faAngleDown} className={styles['select-arrow']}/>
-              </div>
-            </div>
-
-            <div className={styles.inputGroup}>
               <label htmlFor="course" className={styles.formLabel}>
                 Επιλογή Μαθήματος:
               </label>
