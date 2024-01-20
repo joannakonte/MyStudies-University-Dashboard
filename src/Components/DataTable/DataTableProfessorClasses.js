@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import styles from './DataTable.module.css';
-import { HiArrowDownTray, HiArrowsUpDown, HiOutlineEye } from 'react-icons/hi2';
+import { HiArrowsUpDown, HiOutlineEye } from 'react-icons/hi2';
 import PopUp from './PopUp';
 import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
 import items from "../../data/dataTableHeaderProfessorClasses.json";

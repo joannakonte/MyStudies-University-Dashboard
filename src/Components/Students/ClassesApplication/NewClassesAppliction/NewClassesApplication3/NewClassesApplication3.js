@@ -3,9 +3,9 @@ import styles from './NewClassesApplication3.module.css';
 import Header from '../../../Header/Header';
 import Sidebar from '../../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
-
+import { findStudentById } from './../../../../DataTable/DataTableUtils';
 import { db } from '../../../../../firebase';
-import { collection, updateDoc, doc, addDoc, serverTimestamp   } from 'firebase/firestore';
+import { collection, updateDoc, doc, addDoc, serverTimestamp, deleteDoc   } from 'firebase/firestore';
 import TableComponent from '../../../../DataTable/DataTable';
 import appstyle from '../NewClassesApplication.module.css';
 import style from './NewClassesApplication3.module.css';
@@ -34,8 +34,16 @@ function NewClassesApplication3() {
         window.alert('Μπορείτε να δηλώσετε έως 8 μαθήματα.');
         return;
       }
-  
-      const studentId = '2a5iiuGDHgvDPwBkVoAk';
+      const storedApplicationForDelete = localStorage.getItem('applicationfordelete');
+      
+      if (storedApplicationForDelete) {
+        const applicationDocRefToDelete = doc(db, 'applications', storedApplicationForDelete);
+        await deleteDoc(applicationDocRefToDelete);
+
+        localStorage.removeItem('applicationfordelete');
+      }
+
+      const studentId = await findStudentById();
   
       const applicationsCollection = collection(db, 'applications');
 

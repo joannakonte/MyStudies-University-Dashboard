@@ -3,8 +3,6 @@ import { db } from '../../firebase';
 import { doc, getDoc, collectionGroup, getDocs } from 'firebase/firestore';
 import styles from './DataTable.module.css';
 import { HiArrowsUpDown } from 'react-icons/hi2';
-import PopUp from './PopUp';
-import SearchBar from './SearchBar';
 import { filterAndSortData2, findStudentById } from './DataTableUtils';
 import item_classes from '../../data/dataTableHeaderClasses.json';
 import item_grades from '../../data/dataTableHeaderGrades.json';
@@ -112,7 +110,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
   return (
     <div className={`${styles['table-container']}`}>
-      {!showmarkedclasses && submissionInfo && <SubmissionInfoBox submissionInfo={submissionInfo} classIdsToCheck={classIdsToCheck} showSubmissionInfo={showSubmissionInfo} />}
+      {!showmarkedclasses && submissionInfo && <SubmissionInfoBox submissionInfo={submissionInfo} classIdsToCheck={classIdsToCheck} showSubmissionInfo={showSubmissionInfo} applicationId={applicationId} />}
       {showmarkedclasses && <MarkedClassesCounter markedClassesCount={Object.values(checkboxes).filter((isChecked) => isChecked).length} />}
       {/* <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} /> */}
       <table className={styles.table}>

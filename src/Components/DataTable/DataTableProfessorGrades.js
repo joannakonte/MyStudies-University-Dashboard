@@ -4,7 +4,7 @@ import { collection, getDocs, query, where } from 'firebase/firestore';
 import styles from './DataTable.module.css';
 import { HiMiniPencil, HiArrowDownTray,HiArrowsUpDown, HiOutlineEye } from 'react-icons/hi2';
 import PopUp from './PopUp';
-import { filterAndSortDataProfessor, filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
+import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
 import items from "../../data/dataTablegradesProfessorHeader.json";
 
 const TableComponentProfessorClasses = ({ collectionName }) => {

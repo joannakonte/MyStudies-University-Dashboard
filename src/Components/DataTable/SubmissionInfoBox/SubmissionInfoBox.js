@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styles from './SubmissionInfoBox.module.css';
 import { HiMiniPencil } from 'react-icons/hi2';
 
-const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck, showSubmissionInfo }) => {
+const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck, showSubmissionInfo, applicationId }) => {
   const formatDate = (date) => {
     const currentMonthIndex = date.getMonth();
     const season = (currentMonthIndex >= 9 || currentMonthIndex < 2) ? 'Χειμερινό Εξάμηνο' : 'Εαρινό Εξάμηνο';
@@ -21,6 +21,10 @@ const SubmissionInfoBox = ({ submissionInfo, classIdsToCheck, showSubmissionInfo
     });
 
     localStorage.setItem('objectGreeting', JSON.stringify(storedObjectGreeting));
+    localStorage.setItem('applicationfordelete', applicationId);
+    const storedapplicationfordelete = localStorage.getItem('applicationfordelete');
+    console.log('Stored applicationfordelete:', storedapplicationfordelete);
+
   };
 
   useEffect(() => {
