@@ -59,7 +59,7 @@ function RegisterStudent() {
             type: "student",
             firstname: firstname,
             lastname: lastname,
-            department: "Τμήμα Πληροφορικής και Τηλεποικοινωνιών",
+            department: "Πληροφορικής και Τηλεποικοινωνιών",
             AM: AM,
             fathername: fathername,
             mothername: mothername,
@@ -286,7 +286,7 @@ function RegisterStudent() {
                             <div className={styles.labelText}>Τμήμα:</div>
                             <input 
                                 name="department" 
-                                defaultValue="Τμήμα Πληροφορικής και Τηλεποικοινωνιών"
+                                defaultValue="Πληροφορικής και Τηλεποικοινωνιών"
                                 className={styles.departmentField}
                             />
                         </label>

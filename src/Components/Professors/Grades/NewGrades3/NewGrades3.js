@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import Popup from 'reactjs-popup';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './NewGrades3.module.css'; 
 import Header from '../../Header/Header';
+import headers from '../../../../data/dataTableHeaderGradesStep2.json'
 import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import { HiCheck, HiChevronLeft } from 'react-icons/hi2';
-import GradesTable from './GradesTable3'
-import { doc, where, getDocs, query, collection, serverTimestamp, updateDoc } from 'firebase/firestore';
+import { doc, where, getDocs, query, collection, updateDoc } from 'firebase/firestore';
 import { db } from '../../../../firebase'; 
 
 function NewGrades3() {
@@ -16,10 +15,9 @@ function NewGrades3() {
   const department = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
   const [className, setClassName] = useState("");
   const location = useLocation();
-  const [professorID, setProfessorID] = useState('');
   const [selectedClass, setSelectedClass] = useState('');
-  const firebaseTimestamp = serverTimestamp();
   const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
+  const [studentsData, setStudentsData] = useState([]); // State to store students data
   const currentDate = new Date();   
   const formatDate = (date) => {
     const currentMonthIndex = date.getMonth();
@@ -29,82 +27,72 @@ function NewGrades3() {
     return `${season} ${year}`;
   };
 
+  
   useEffect(() => {
-    // Fetching professor's ID and selected class from local storage
-    const currentProfessorSDI = localStorage.getItem('sdi');
     const storedSelectedClass = localStorage.getItem('selectedClass');
-
-    console.log(`Stored Selected Class: ${storedSelectedClass}`);
-
-    if (currentProfessorSDI) {
-      setProfessorID(currentProfessorSDI);
-    } else {
-      console.error("No professor is currently logged in.");
+    const savedGradesData = JSON.parse(localStorage.getItem('gradesData'));
+    if (savedGradesData) {
+      setStudentsData(savedGradesData);
     }
-
     if (storedSelectedClass) {
       setSelectedClass(storedSelectedClass);
-    } else {
-      console.error("No class is currently selected.");
+      fetchClassName(storedSelectedClass);  // Fetch the class name
     }
+  }, []);
 
-    // Fetch the class name based on selectedClass
-    const fetchClassName = async () => {
-      if (storedSelectedClass) {
-        // Adjust the field name 'classId' if it's different in your Firestore collection
-        const classesQuery = query(collection(db, "classes"), where("id", "==", storedSelectedClass));
-        try {
-          const querySnapshot = await getDocs(classesQuery);
-          if (!querySnapshot.empty) {
-            const classData = querySnapshot.docs[0].data();
-            setClassName(classData.name); 
-          } else {
-            console.log("No such class found for ID:", storedSelectedClass);
-          }
-        } catch (error) {
-          console.error("Error fetching class name: ", error);
-        }
-      }
-    };
-    fetchClassName();
-  }, []); 
-
-  const saveGrades = async () => {
-    try {
-        const gradesData = JSON.parse(localStorage.getItem('gradesData')) || [];
-  
-        // Fetch the document ID of the class grades document
-        const gradesQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", selectedClass));
-        const gradesSnapshot = await getDocs(gradesQuery);
-  
-        if (!gradesSnapshot.empty) {
-            // Assuming there is only one document per class
-            const gradeDocId = gradesSnapshot.docs[0].id;
-  
-            // Prepare the updated grades array
-            const updatedGradesArray = gradesData.map(({ studentAM, studentGrade }) => ({ AM: studentAM, grade: studentGrade }));
-  
-            // Get a reference to the document
-            const gradeDocRef = doc(db, "studentclassidgrade", gradeDocId);
-  
-            // Update the document
-            await updateDoc(gradeDocRef, {
-                grades: updatedGradesArray
-            });
-  
-            console.log("Grades updated successfully");
-  
-            // Clear local storage and set submission status to successful
-            localStorage.removeItem('gradesData');
-            localStorage.removeItem('selectedClass');
-            setIsSubmissionSuccessful(true);
+  // Fetch the class name based on selectedClass
+  const fetchClassName = async (classId) => {
+    if (classId) {
+      const classesQuery = query(collection(db, "classes"), where("id", "==", classId));
+      try {
+        const querySnapshot = await getDocs(classesQuery);
+        if (!querySnapshot.empty) {
+          const classData = querySnapshot.docs[0].data();
+          setClassName(classData.name);
         } else {
-            console.log("No document found for the classId");
+          console.log("No such class found for ID:", classId);
         }
-    } catch (error) {
-        console.error("Error updating grades: ", error);
+      } catch (error) {
+        console.error("Error fetching class name: ", error);
+      }
     }
-  };  
+  };
+
+  // Save grades to database
+  const saveGrades = async () => {
+    if (!selectedClass) {
+      console.error("No class selected");
+      return;
+    }
+  
+    try {
+      // Query to find the document for this class
+      const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", selectedClass));
+      const querySnapshot = await getDocs(docQuery);
+  
+      if (!querySnapshot.empty) {
+        const docRef = querySnapshot.docs[0].ref;  // Reference to the document
+  
+        // Prepare updated grades
+        let updatedGrades = {};
+        studentsData.forEach(student => {
+          updatedGrades[student.AM] = student.grade;
+        });
+  
+        // Update the document
+        await updateDoc(docRef, {
+          grades: updatedGrades
+        });
+  
+        setIsSubmissionSuccessful(true);
+        console.log("Grades updated successfully");
+      } else {
+        console.error("No document found for the selected class");
+      }
+    } catch (error) {
+      console.error("Error saving grades: ", error);
+    }
+  };
 
   const navigate = useNavigate();
 
@@ -140,7 +128,27 @@ function NewGrades3() {
             {department} - {className} - {formatDate(currentDate)}
           </div>
 
-          <GradesTable/>
+          <table>
+            <thead>
+                <tr className={styles['table-header']}>
+                    {headers.map((header, index) => (
+                        <th className={styles['table-cell']} key={index}>{header.title} </th>
+                    ))}
+                </tr>
+            </thead>
+            <tbody>
+              {studentsData.map((student, index) => (
+                <tr key={index}>
+                  <td className={styles['table-cell']}>{student.AM}</td>
+                  <td className={styles['table-cell']}>{`${student.firstname} ${student.lastname}`}</td>
+                  <td className={styles['table-cell']}>{formatDate(currentDate)}</td>
+                  <td className={styles['table-cell']}>{student.department}</td>
+                  <td className={styles['table-cell']}>{student.grade}</td> 
+                </tr>
+              ))}
+            </tbody>
+          </table>  
+
 
           <div className={styles['button-container']}>
             <div className={styles['previous']}>
@@ -156,7 +164,8 @@ function NewGrades3() {
 
               <button className={styles['submit']} onClick={saveGrades}>
                 <HiCheck /> Οριστική υποβολή
-            </button>
+              </button>
+
             </div>
           </div>
           {isSubmissionSuccessful && <Popup/>}

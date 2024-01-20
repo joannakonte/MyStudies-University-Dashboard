@@ -8,7 +8,7 @@ import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import { HiChevronRight, HiChevronLeft, HiExclamationTriangle } from 'react-icons/hi2';
-import { addDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp } from 'firebase/firestore';
+import { addDoc, doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../../../../firebase'; 
 
 function NewGrades2() {
@@ -18,7 +18,6 @@ function NewGrades2() {
   const location = useLocation();
   const [selectedClass, setSelectedClass] = useState('');
   const [studentsData, setStudentsData] = useState([]); // State to store students data
-  const firebaseTimestamp = serverTimestamp();
 
   // Current date for display purposes
   const currentDate = new Date();
@@ -141,15 +140,16 @@ function NewGrades2() {
 
   // Function to check if all students are graded
   const checkAllGraded = () => {
-    const ungraded = studentsData.some(student => student.grade === 0);
-
+    const ungraded = studentsData.some(student => student.grade === null);
+  
     if (ungraded) {
       setIsAllGraded(false); // Will show the popup
     } else {
       setIsAllGraded(true);
+      localStorage.setItem('gradesData', JSON.stringify(studentsData));
       navigate('/home/professor-grades/new-grade1/new-grade2/new-grade3');
     }
-  };
+  };  
 
   // Close the popup and reset state
   const handleClosePopup = () => {
