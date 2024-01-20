@@ -140,7 +140,7 @@ function NewGrades2() {
 
   // Function to check if all students are graded
   const checkAllGraded = () => {
-    const ungraded = studentsData.some(student => student.grade === null);
+    const ungraded = studentsData.some(student => student.grade === 0);
   
     if (ungraded) {
       setIsAllGraded(false); // Will show the popup
