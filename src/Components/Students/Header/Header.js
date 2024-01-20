@@ -108,28 +108,7 @@ function Header() {
             </div>  
 
             {/* Profile */}
-            <div className={style.item3}>
-                {/* <div className={style.profile_container}>
-                    <div className={style.dropdown}>
-                        <button onClick={toggleDropdown} className={style['dropdown-toggle']}>
-                            <div className={style.circle}>{firstLetterFirst}{firstLetterLast}</div>
-                            <div className={style['button-text']}>
-                                <span>{user.firstname} {user.lastname}</span>
-                                <span className={style.id}>{user.sdi}</span>
-                            </div>
-                            <FontAwesomeIcon icon={faBars} className={style['menu-icon']} />
-                        </button>
-                        {dropdownOpen && (
-                            <div className={`${style['dropdown-content']} ${dropdownOpen ? style.show : ''}`}>
-                                <Link className={style['home-page']} to="/home"><HiHome className={style.dropdownIcons} /> Αρχική</Link>
-                                <Link className={style.profile} to="/home/profile"><HiOutlineUserCircle className={style.dropdownIcons} /> Προφίλ</Link>
-                                <Link className={style.profile} to="/home/faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> Συχνές Ερωτήσεις</Link>
-                                <a className={style.logout} onClick={handleLogout}><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
-                            </div>
-                        )}
-                    </div>
-                </div> */}
-                
+            <div className={style.item3}>                
                 <div className={style.dropdown_profile}>
                     <div className={style.dropdown}>
                         <button className={style['dropdown-toggle']}>
@@ -141,7 +120,7 @@ function Header() {
                                 <span>{user.firstname} {user.lastname}</span>
                                 <span className={style.id}>{user.sdi}</span>
                             </div>
-                            
+
                             <FontAwesomeIcon icon={faBars} className={style['menu-icon']} />
                         </button>
 
