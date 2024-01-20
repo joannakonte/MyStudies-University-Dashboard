@@ -109,7 +109,7 @@ function Header() {
 
             {/* Profile */}
             <div className={style.item3}>
-                <div className={style.profile_container}>
+                {/* <div className={style.profile_container}>
                     <div className={style.dropdown}>
                         <button onClick={toggleDropdown} className={style['dropdown-toggle']}>
                             <div className={style.circle}>{firstLetterFirst}{firstLetterLast}</div>
@@ -127,6 +127,40 @@ function Header() {
                                 <a className={style.logout} onClick={handleLogout}><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
                             </div>
                         )}
+                    </div>
+                </div> */}
+                
+                <div className={style.dropdown_profile}>
+                    <div className={style.dropdown}>
+                        <button className={style['dropdown-toggle']}>
+                            <div className={style.circle}>
+                                {firstLetterFirst}{firstLetterLast}
+                            </div>
+
+                            <div className={style['button-text']}>
+                                <span>{user.firstname} {user.lastname}</span>
+                                <span className={style.id}>{user.sdi}</span>
+                            </div>
+                            
+                            <FontAwesomeIcon icon={faBars} className={style['menu-icon']} />
+                        </button>
+
+                        <div className={style['dropdown-content']}>
+                            <Link className={style['dropdown-option']} to="/home"><HiHome className={style.dropdownIcons} /> 
+                                Αρχική
+                            </Link>
+
+                            <Link to='/home/profile' className={style['dropdown-option']}><HiOutlineUserCircle className={style.dropdownIcons} />
+                                Προφίλ
+                            </Link>
+
+                            <Link className={style['dropdown-option']} to="/home/faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> 
+                                Συχνές Ερωτήσεις
+                            </Link>
+
+                            <a className={style['dropdown-option']} onClick={handleLogout}><VscSignOut className={style.dropdownIcons} /> Αποσύνδεση</a>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
