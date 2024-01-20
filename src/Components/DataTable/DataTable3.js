@@ -5,26 +5,40 @@ import styles from './DataTable.module.css';
 import { HiArrowDownTray, HiArrowsUpDown } from 'react-icons/hi2';
 import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
 import items from "../../data/dataTableHeaderCert.json";
+import CertificatePDF from '../../images/Certificate.pdf';
 
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
-const handleDownload = () => {
+// const handleDownload = () => {
 
-  const pdfElement = document.getElementById('pdf-content');
-  const pdfOptions = { filename: 'document.pdf' };
+//   const pdfElement = document.getElementById('pdf-content');
+//   const pdfOptions = { filename: 'document.pdf' };
 
-  if (pdfElement) {
-    html2canvas(pdfElement).then((canvas) => {
-      const pdf = new jsPDF();
+//   if (pdfElement) {
+//     html2canvas(pdfElement).then((canvas) => {
+//       const pdf = new jsPDF();
       
-      // Add the certification type to the PDF
-      pdf.text(`Certificate`, 10, 10);
+//       // Add the certification type to the PDF
+//       pdf.text(`Certificate`, 10, 10);
 
-      // Save the PDF
-      pdf.save(pdfOptions.filename);
-    });
-  }
+//       // Save the PDF
+//       pdf.save(pdfOptions.filename);
+//     });
+//   }
+// };
+
+const handleDownload = () => {
+  // Create a link element
+  const link = document.createElement('a');
+
+  // Set the attributes for the link
+  link.href = CertificatePDF;
+  link.target = '_blank';
+  link.download = 'Certificate.pdf';
+
+  // Trigger a click on the link
+  link.click();
 };
 
 
