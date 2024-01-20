@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './NewClassesApplication2.module.css'; 
 import Header from '../../../Header/Header';
 import Sidebar from '../../../Sidebar/Sidebar';
-import { useLocation } from 'react-router-dom';
-
+import { Link, useLocation } from 'react-router-dom';
 import SemesterDropDown from '../SemesterDropDown';
 import TableComponent from '../../../../DataTable/DataTable';
 import appstyle from '../NewClassesApplication.module.css';
@@ -39,13 +38,13 @@ function NewClassesApplication2() {
           <TableComponent showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle}  collectionName={'classes'}   showmarkedclasses={true} />
           
           <div className={styles['button-container']}>
-            <a href="/home/history-applications/new-application1" className={styles['previous-page']}>
+            <Link to="/home/history-applications/new-application1" className={styles['previous-page']}>
               <HiChevronLeft /> Προηγούμενο
-            </a>
+            </Link>
             
-            <a href="/home/history-applications/new-application1/new-application2/new-application3" className={styles['next-page']}>
+            <Link to="/home/history-applications/new-application1/new-application2/new-application3" className={styles['next-page']}>
               Επόμενο <HiChevronRight  />
-            </a>
+            </Link>
           </div>
 
         </div>

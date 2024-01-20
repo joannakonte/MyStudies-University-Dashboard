@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './NewClassesApplication3.module.css'; 
 import Header from '../../../Header/Header';
 import Sidebar from '../../../Sidebar/Sidebar';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { findStudentById } from './../../../../DataTable/DataTableUtils';
 import { db } from '../../../../../firebase';
 import { collection, updateDoc, doc, addDoc, serverTimestamp, deleteDoc   } from 'firebase/firestore';
@@ -108,9 +108,9 @@ function NewClassesApplication3() {
 
           <div className={style['button-container']}>
             <div className={style['previous']}>
-              <a href="/home/history-applications/new-application1/new-application2" className={style['previous-page']}>
+              <Link to="/home/history-applications/new-application1/new-application2" className={style['previous-page']}>
                 <HiChevronLeft /> Προηγούμενο
-              </a>
+              </Link>
             </div>
 
             <div className={style['buttons2']}>

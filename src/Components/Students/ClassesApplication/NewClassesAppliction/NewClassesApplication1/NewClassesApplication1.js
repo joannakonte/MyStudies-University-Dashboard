@@ -6,7 +6,7 @@ import TableComponent2 from '../../../../DataTable/DataTable2';
 import appstyle from '../NewClassesApplication.module.css';
 import { HiChevronRight } from "react-icons/hi2";
 import ProcessBar from '../ProcessBar/ProcessBar';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { db } from '../../../../../firebase';
 import { collectionGroup, getDocs, orderBy, query, limit, where } from 'firebase/firestore';
 
@@ -80,9 +80,9 @@ function NewClassesApplication1() {
         </div>
 
         <div className={styles['next']}>
-          <a href="/home/history-applications/new-application1/new-application2" className={styles['next-page']}>
+          <Link to="/home/history-applications/new-application1/new-application2" className={styles['next-page']}>
             Επόμενο <HiChevronRight  /> 
-          </a>
+          </Link>
         </div>
         
       </div>
