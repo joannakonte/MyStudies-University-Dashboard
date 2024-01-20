@@ -77,11 +77,11 @@ function NewClassesApplication3() {
       if (isTemporary) {
         setPopupMessage('Η δήλωση σας αποθηκεύτηκε προσωρινά');
         setShowPopup(true);
-        window.location.href = '/home/history-applications';
+        // window.location.href = '/home/history-applications';
       } else {
         setPopupMessage('Η δήλωση σας οριστικοποιήθηκε επιτυχώς!');
         setShowPopup(true);
-        window.location.href = '/home/history-applications';
+        // window.location.href = '/home/history-applications';
       }
     } catch (error) {
       setPopupMessage('Δημιουργήθηκε κάποιο πρόβλημα κατα την δημιουργία της αίτησής σας. Παρακαλώ προσπαθήστε ξανά σε λίγο ');
@@ -92,6 +92,7 @@ function NewClassesApplication3() {
 
   const handleClosePopup = () => {
     setShowPopup(false);
+    window.location.href = '/home/history-applications';
   };
 
   const location = useLocation();
