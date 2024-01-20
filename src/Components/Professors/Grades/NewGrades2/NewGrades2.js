@@ -12,13 +12,12 @@ import { addDoc, doc, getDoc, collection, query, where, getDocs, serverTimestamp
 import { db } from '../../../../firebase'; 
 
 function NewGrades2() {
-  const [gradesData, setGradesData] = useState([]);
   const stages = ['Επιλογή Μαθήματος', 'Καταχώρηση Βαθμολογίας ', 'Υποβολή Βαθμολογίας'];
   const department = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
   const [className, setClassName] = useState("");
   const location = useLocation();
-  const [professorID, setProfessorID] = useState('');
   const [selectedClass, setSelectedClass] = useState('');
+  const [studentsData, setStudentsData] = useState([]); // State to store students data
   const firebaseTimestamp = serverTimestamp();
 
   // Current date for display purposes
@@ -30,65 +29,97 @@ function NewGrades2() {
 
     return `${season} ${year}`;
   };
+  useEffect(() => {
+    // Retrieve the selectedClass from localStorage
+    const storedSelectedClass = localStorage.getItem('selectedClass');
+    if (storedSelectedClass) {
+      setSelectedClass(storedSelectedClass);
+      fetchClassNameAndCreateGradesDoc(storedSelectedClass); // Fetch class info from Firestore
+    }
+  }, []);
 
-    // Fetch the class name based on selectedClass
-    const fetchClassName = async () => {
-      if (selectedClass) {
-          const classesQuery = query(collection(db, "classes"), where("id", "==", selectedClass));
-          try {
-              const querySnapshot = await getDocs(classesQuery);
-              if (!querySnapshot.empty) {
-                  const classData = querySnapshot.docs[0].data();
-                  setClassName(classData.name); 
-              } else {
-                  console.log("No such class found for ID:", selectedClass);
-              }
-          } catch (error) {
-              console.error("Error fetching class name: ", error);
-          }
+  // Fetch the class name and create grades document
+  const fetchClassNameAndCreateGradesDoc = async (classId) => {
+    await fetchClassName(classId);
+    const students = await createGradesDocument(classId);
+    setStudentsData(students); // Set the students data
+  };
+
+  // Fetch the class name based on selectedClass
+  const fetchClassName = async (classId) => {
+    if (classId) {
+      const classesQuery = query(collection(db, "classes"), where("id", "==", classId));
+      try {
+        const querySnapshot = await getDocs(classesQuery);
+        if (!querySnapshot.empty) {
+          const classData = querySnapshot.docs[0].data();
+          setClassName(classData.name);
+        } else {
+          console.log("No such class found for ID:", classId);
+        }
+      } catch (error) {
+        console.error("Error fetching class name: ", error);
       }
-    };
+    }
+  };
 
   // ============== | Create new document in database | ============== //
-  // const createGradesDocument = async (classId) => {
-  //   if (!classId) {
-  //     console.error("classId is undefined, cannot create grades document");
-  //     return;
-  //   }
+  const createGradesDocument = async (classId) => {
+    if (!classId) {
+      console.error("classId is undefined, cannot create grades document");
+      return;
+    }
 
-  //   try {
-  //     // Check if a document for this class already exists
-  //     const existingDocQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
-  //     const existingDocSnapshot = await getDocs(existingDocQuery);
+    try {
+      // Check if a document for this class already exists
+      const existingDocQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
+      const existingDocSnapshot = await getDocs(existingDocQuery);
 
-  //     if (!existingDocSnapshot.empty) {
-  //       console.log("Grades document for this class already exists");
-  //       return; // Exit if document already exists
-  //     }
+      if (!existingDocSnapshot.empty) {
+        console.log("Grades document for this class already exists");
+        // return; // Exit if document already exists
+      }
 
-  //     // Query to find students for the class
-  //     const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
-  //     const studentsSnapshot = await getDocs(studentsQuery);
+      // Query to find students for the class
+      const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
+      const studentsSnapshot = await getDocs(studentsQuery);
 
-  //     // Initialize grades object
-  //     let grades = {};
-  //     studentsSnapshot.docs.forEach(doc => {
-  //       const studentInfo = doc.data();
-  //       grades[studentInfo.AM] = 0; // Default grade
-  //     });
+      // Initialize grades object
+      let grades = {};
+      studentsSnapshot.docs.forEach(doc => {
+        const studentInfo = doc.data();
+        grades[studentInfo.AM] = 0; // Default grade
+      });
 
-  //     // Create new document in studentclassidgrade collection
-  //     const newGradesDoc = {
-  //       classId: classId,
-  //       grades: grades
-  //     };
+      // Create new document in studentclassidgrade collection
+      const newGradesDoc = {
+        classId: classId,
+        grades: grades
+      };
 
-  //     await addDoc(collection(db, "studentclassidgrade"), newGradesDoc);
-  //     console.log("New grades document created successfully");
-  //   } catch (error) {
-  //     console.error("Error creating grades document: ", error);
-  //   }
-  // }
+      await addDoc(collection(db, "studentclassidgrade"), newGradesDoc);
+      console.log("New grades document created successfully");
+    } catch (error) {
+      console.error("Error creating grades document: ", error);
+    }
+
+    // Fetch students for the class
+    const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
+    const studentsSnapshot = await getDocs(studentsQuery);
+    console.log("Students snapshot:", studentsSnapshot.docs.map(doc => doc.data())); // Debugging line
+
+
+    // Create an array to store students data
+    let students = [];
+    if (!studentsSnapshot.empty) {
+      studentsSnapshot.docs.forEach(doc => {
+        const studentInfo = doc.data();
+        students.push({ ...studentInfo, grade: 0 }); // Include default grade
+      });
+    }
+
+    return students; // Return the students array
+  }
 
 
   // ================= | Check if all students have been graded | ================= //
@@ -96,15 +127,26 @@ function NewGrades2() {
   const [isAllGraded, setIsAllGraded] = useState(true); 
   const navigate = useNavigate();
 
+  // Function to handle grade input changes
+  const handleGradeChange = (e, studentAM) => {
+    const gradeValue = e.target.value === "" ? null : parseInt(e.target.value);
+    const updatedStudentsData = studentsData.map(student => {
+      if (student.AM === studentAM) {
+        return { ...student, grade: gradeValue };
+      }
+      return student;
+    });
+    setStudentsData(updatedStudentsData);
+  };
+
   // Function to check if all students are graded
   const checkAllGraded = () => {
-    const gradesData = JSON.parse(localStorage.getItem('gradesData')) || [];
-    const ungraded = gradesData.some(grade => parseInt(grade.studentGrade) === 0);
-
+    const ungraded = studentsData.some(student => student.grade === 0);
 
     if (ungraded) {
-      setIsAllGraded(false);
+      setIsAllGraded(false); // Will show the popup
     } else {
+      setIsAllGraded(true);
       navigate('/home/professor-grades/new-grade1/new-grade2/new-grade3');
     }
   };
@@ -141,22 +183,24 @@ function NewGrades2() {
                 </tr>
             </thead>
             <tbody>
-                {/* {gradesData.map((student, index) => (
-                    <tr key={index}>
-                        <td className={styles['table-cell']}>{student.AM}</td>
-                        <td className={styles['table-cell']}>{`${student.firstname} ${student.lastname}`}</td> 
-                        <td className={styles['table-cell']}>{formatDate(currentDate)}</td> 
-                        <td className={styles['table-cell']}>{student.department}</td> 
-                        <td className={styles['table-cell']}>
-                        <input 
-                            className={styles.inputField}
-                            type="number" 
-                            max="10"
-                            min="0"
-                        />
-                        </td>
-                    </tr>
-                ))} */}
+              {studentsData && studentsData.map((student, index) => (
+                <tr key={index}>
+                  <td className={styles['table-cell']}>{student.AM}</td>
+                  <td className={styles['table-cell']}>{`${student.firstname} ${student.lastname}`}</td>
+                  <td className={styles['table-cell']}>{formatDate(currentDate)}</td>
+                  <td className={styles['table-cell']}>{student.department}</td>
+                  <td className={styles['table-cell']}>
+                    <input
+                      className={styles.inputField}
+                      type="number"
+                      value={student.grade}
+                      onChange={(e) => handleGradeChange(e, student.AM)}
+                      max="10"
+                      min="0"
+                    />
+                  </td>
+                </tr>
+              ))}
             </tbody>
         </table>
 

@@ -93,9 +93,9 @@ function Header() {
 
             {/* Logo My-Studies & EKPA */}
             <div className={style.item1}>
-                <a href="/">
+                <Link to="/">
                     <img src={myStudiesLogo} alt="MyStudies Logo" className={style['my-studies-logo']} />
-                </a>
+                </Link>
                 <a href="https://www.uoa.gr" target="_blank" rel="noopener noreferrer">
                     <img src={ekpaLogo} alt="EKPA Logo" className={style['ekpa-logo']} />
                 </a>
@@ -136,7 +136,7 @@ function Header() {
                                 Προφίλ
                             </Link>
 
-                            <Link className={style['dropdown-option']} to="/home/professor-faq"><HiQuestionMarkCircle className={style.dropdownIcons} /> 
+                            <Link to="/home/professor-faq" className={style['dropdown-option']}><HiQuestionMarkCircle className={style.dropdownIcons} /> 
                                 Συχνές Ερωτήσεις
                             </Link>
 
