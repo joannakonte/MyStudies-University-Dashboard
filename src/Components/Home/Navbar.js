@@ -129,17 +129,17 @@ function Navbar() {
 
                   <div className={styles['dropdown-content']}>
                     {user.type === 'student' && (
-                      <Link to='/home/profile' className={styles['dropdown-option']}>
+                      <Link to='/home/profile' className={styles['dropdown-option']}><HiOutlineUserCircle className={styles.dropdownIcons} />
                         Προφίλ
                       </Link>
                     )}
 
                     {user.type === 'professor' && (
-                      <Link to='/home/professor-profile' className={styles['dropdown-option']}>
+                      <Link to='/home/professor-profile' className={styles['dropdown-option']}><HiOutlineUserCircle className={styles.dropdownIcons} />
                         Προφίλ
                       </Link>
                     )}
-                    <a className={styles.dropdown_option} onClick={handleLogout}>
+                    <a className={styles.dropdown_option} onClick={handleLogout}><VscSignOut className={styles.dropdownIcons} />
                       Αποσύνδεση
                     </a>
                   </div>

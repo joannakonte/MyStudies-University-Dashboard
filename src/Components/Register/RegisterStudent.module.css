@@ -54,7 +54,7 @@ sup {
 
 .labelText {
     font-weight: bold;
-    margin-bottom: 5px; /* Adds space between label text and the input */
+    margin-bottom: 5px;
 }
 
 .dateField{

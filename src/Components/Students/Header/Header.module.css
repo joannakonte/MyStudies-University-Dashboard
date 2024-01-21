@@ -147,7 +147,7 @@
     background-color: white;
     color: var(--student-color);
     padding: 8px 16px;
-    font-size: 18px;
+    font-size: 100%;
     margin: 0 4px;
     border: none;
     cursor: pointer;
@@ -164,7 +164,7 @@
     display: none;
     position: absolute;
     background-color: #EAEAEA;
-    width: 100%; 
+    width: 120%; 
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 5px;
@@ -203,9 +203,9 @@
 }
 
 .dropdownIcons {
-    font-size: 120%;
+    font-size: 100%;
     margin-left: 10px;
-    padding-right: 10px;
+    padding-right: 5px;
 }
 
 

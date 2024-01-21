@@ -251,3 +251,9 @@
 .dropbtn:hover .fa-chevron-down {
   color: white;
 }
+
+.dropdownIcons {
+  font-size: 120%;
+  margin-left: 10px;
+  padding-right: 5px;
+}
