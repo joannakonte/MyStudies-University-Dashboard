@@ -7,9 +7,17 @@ import { HiEye, HiEyeOff } from 'react-icons/hi';
 import { Link, useNavigate } from 'react-router-dom';
 import { db } from '../../../../firebase';
 import { collection, query, where, getDocs, updateDoc } from 'firebase/firestore';
+import Popup from './Popup';
 
 function UpdatePassword() {
+  const [showPopup, setShowPopup] = useState(false);
+
   const navigate = useNavigate();
+
+  const closePopup = () => {
+    setShowPopup(false);
+    navigate('/home/profile'); // Redirect to /home/profile
+  };
 
   const location = useLocation();
 
@@ -62,10 +70,10 @@ function UpdatePassword() {
         console.log('Document path:', userDocRef.path);
   
         // Proceed with the update
-        const newPassword = 'newPassword'; // Replace with the actual new password
         await updateDoc(userDocRef, { password: password });
   
         console.log('Password update successful.');
+        setShowPopup(true);
       } else {
         console.error(`Document with sdi ${sdi} does not exist.`);
       }
@@ -159,6 +167,9 @@ function UpdatePassword() {
             >
                 Αλλαγή Κωδικού
             </button>
+            {showPopup && (
+              <Popup message="Ο κωδικός σας ενημερώθηκε επιτυχώς" onClose={closePopup} />
+            )}
           </div>
                     
         </form>
