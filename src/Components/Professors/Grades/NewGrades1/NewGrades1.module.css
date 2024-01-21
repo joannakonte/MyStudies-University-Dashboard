@@ -197,6 +197,7 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .popupHeader{
@@ -224,6 +225,19 @@
     text-align: center;
 }
 
+.finalSubmissionPopup{
+    width: 500px;
+    height: 180px;
+    padding: 20px;
+    padding-top: 0; /* Remove padding at the top */
+    border-radius: 8px;
+    position: absolute;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
 .popupOverlay {
     position: fixed;
     top: 0;

@@ -34,7 +34,7 @@ function GradesProfessor() {
             <HiPlus style={{ marginRight: '5px' }} />
             Νέο Βαθμολόγιο
           </button>
-          <DataTableProfessorGrades collectionName={'classesforgrade'}/>
+          <DataTableProfessorGrades collectionName={'studentclassidgrade'}/>
         </div>
     </div>
   );

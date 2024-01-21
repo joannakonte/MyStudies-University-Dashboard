@@ -8,7 +8,7 @@ import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import { HiChevronRight, HiChevronLeft, HiExclamationTriangle } from 'react-icons/hi2';
-import { addDoc, doc, getDoc, collection, query, where, getDocs } from 'firebase/firestore';
+import { addDoc, collection, query, where, getDocs, serverTimestamp} from 'firebase/firestore';
 import { db } from '../../../../firebase'; 
 
 function NewGrades2() {
@@ -29,84 +29,128 @@ function NewGrades2() {
     return `${season} ${year}`;
   };
 
-  useEffect(() => {
-    // Retrieve the selectedClass and gradesData from localStorage
-    const storedSelectedClass = localStorage.getItem('selectedClass');
-    const storedGradesData = localStorage.getItem('gradesData');
-
-    if (storedGradesData) {
-      // Parse the grades data from localStorage and set it to studentsData state
-      console.log("getting grades from local storage")
-      const parsedGradesData = JSON.parse(storedGradesData);
-      setStudentsData(parsedGradesData);
-    } else if (storedSelectedClass) {
-      // If no grades data in localStorage, fetch class name and create grades document
-      setSelectedClass(storedSelectedClass);
-      fetchClassNameAndCreateGradesDoc(storedSelectedClass); 
+  const checkDocumentExistenceAndEditMode = async (classId) => {
+    const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
+    const querySnapshot = await getDocs(docQuery);
+    if (!querySnapshot.empty) {
+      const document = querySnapshot.docs[0].data();
+      return { exists: true, editMode: document.editMode, finalSubmission: document.finalSubmission };
     }
-  }, []);
-
-  // Fetch the class name and create grades document
-  const fetchClassNameAndCreateGradesDoc = async (classId) => {
-    await fetchClassName(classId);
-    const students = await createGradesDocument(classId);
-    setStudentsData(students); // Set the students data
+    return { exists: false };
   };
 
-  // Fetch the class name based on selectedClass
-  const fetchClassName = async (classId) => {
+  useEffect(() => {
+    const init = async () => {
+      const storedSelectedClass = localStorage.getItem('selectedClass');
+      setSelectedClass(storedSelectedClass);
+      console.log(storedSelectedClass);
+  
+      if (storedSelectedClass) {
+        const classDetails = await fetchClassDetails(storedSelectedClass);
+
+        const { exists, editMode, finalSubmission } = await checkDocumentExistenceAndEditMode(storedSelectedClass);
+  
+        if (exists && !finalSubmission) {
+          console.log("Document exists.");
+          if (editMode) {
+            console.log("edit mode true");
+            // Document exists and is in edit mode
+            const storedGradesData = localStorage.getItem('gradesData');
+            if (storedGradesData) {
+              const parsedGradesData = JSON.parse(storedGradesData);
+              setStudentsData(parsedGradesData);
+            }
+          } 
+          else {
+            // Document exists but is not finalized
+            await fetchGradesData(storedSelectedClass);
+          }
+        } else if (!exists) {
+          // Document does not exist
+          fetchClassNameAndCreateGradesDoc(storedSelectedClass, classDetails);
+        }
+      }
+    };
+  
+    init();
+  }, []);
+  
+  // Fetch grades data for edit mode
+  const fetchGradesData = async (classId) => {
+    const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
+    try {
+      const querySnapshot = await getDocs(docQuery);
+      if (!querySnapshot.empty) {
+        const gradesData = querySnapshot.docs[0].data().grades;
+
+        // Query to find students for the class
+        const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
+        const studentsSnapshot = await getDocs(studentsQuery);
+
+        // Create an array to store students data with default grades
+        let students = [];
+        if (!studentsSnapshot.empty) {
+          studentsSnapshot.docs.forEach(doc => {
+            const studentInfo = doc.data();
+            students.push({ ...studentInfo, grade: gradesData[studentInfo.AM] || 0 }); 
+          });
+        }
+
+        setStudentsData(students);
+      }
+    } catch (error) {
+      console.error("Error fetching grades data: ", error);
+    }
+  };  
+
+  // Fetch the class name and create grades document
+  const fetchClassNameAndCreateGradesDoc = async (classId, classDetails) => {
+    if (!classDetails) {
+      console.error("Class details are missing");
+      return;
+    }
+  
+    const students = await createGradesDocument(classId, classDetails);
+    setStudentsData(students); // Set the students data
+  };  
+
+  // Fetch the class details based on selectedClass
+  const fetchClassDetails = async (classId) => {
     if (classId) {
       const classesQuery = query(collection(db, "classes"), where("id", "==", classId));
       try {
         const querySnapshot = await getDocs(classesQuery);
         if (!querySnapshot.empty) {
           const classData = querySnapshot.docs[0].data();
-          setClassName(classData.name);
+          const details = {
+            semester: classData.semester,
+            className: classData.name,
+            professorId: classData.professorId
+          };
+          console.log("Fetched class details:", details);
+          return details;
         } else {
           console.log("No such class found for ID:", classId);
+          return null;
         }
       } catch (error) {
         console.error("Error fetching class name: ", error);
+        return null;
       }
     }
   };
 
   // ============== | Create new document in database | ============== //
-  const createGradesDocument = async (classId) => {
-    if (!classId) {
-      console.error("classId is undefined, cannot create grades document");
+  const createGradesDocument = async (classId, classDetails) => {
+    if (!classId || !classDetails) {
+      console.error("Class ID or class details are missing");
       return;
     }
 
     try {
-      // Check if a document for this class already exists
-      const existingDocQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
-      const existingDocSnapshot = await getDocs(existingDocQuery);
-
       // Query to find students for the class
       const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
       const studentsSnapshot = await getDocs(studentsQuery);
-
-      if (!existingDocSnapshot.empty) {
-        console.log("Grades document for this class already exists");
-
-        // Keep for edit mode
-        // // Assuming there's only one document per class
-        // const gradesData = existingDocSnapshot.docs[0].data().grades;
-
-        // // Create an array to store students data with grades
-        // let studentsWithGrades = [];
-        // if (!studentsSnapshot.empty) {
-        //   studentsSnapshot.docs.forEach(doc => {
-        //     const studentInfo = doc.data();
-        //     // Retrieve student grade or default to 0
-        //     const studentGrade = gradesData[studentInfo.AM] || 0;
-        //     studentsWithGrades.push({ ...studentInfo, grade: studentGrade });
-        //   });
-        // }
-        // return studentsWithGrades;
-        return;
-      }
 
       // If the document does not exist
 
@@ -120,7 +164,15 @@ function NewGrades2() {
       // Create new document in studentclassidgrade collection
       const newGradesDoc = {
         classId: classId,
-        grades: grades
+        grades: grades,
+        editMode: true,
+        finalSubmission: false,
+        createdate: serverTimestamp(),
+        subdate: "-",
+        exam: formatDate(currentDate),
+        semester: classDetails.semester,
+        className: classDetails.className,
+        professorId: classDetails.professorId
       };
 
       await addDoc(collection(db, "studentclassidgrade"), newGradesDoc);

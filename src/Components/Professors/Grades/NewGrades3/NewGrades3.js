@@ -7,7 +7,7 @@ import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import { HiCheck, HiChevronLeft } from 'react-icons/hi2';
-import { doc, where, getDocs, query, collection, updateDoc } from 'firebase/firestore';
+import { doc, where, getDocs, query, collection, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../../firebase'; 
 
 function NewGrades3() {
@@ -17,6 +17,7 @@ function NewGrades3() {
   const location = useLocation();
   const [selectedClass, setSelectedClass] = useState('');
   const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
+  const [isTemporarySaveSuccessful, setIsTemporarySaveSuccessful] = useState(false);
   const [studentsData, setStudentsData] = useState([]); // State to store students data
   const currentDate = new Date();   
   const formatDate = (date) => {
@@ -40,7 +41,7 @@ function NewGrades3() {
     }
   }, []);
 
-  // Fetch the class name based on selectedClass
+  // Fetch the class details based on selectedClass
   const fetchClassName = async (classId) => {
     if (classId) {
       const classesQuery = query(collection(db, "classes"), where("id", "==", classId));
@@ -81,7 +82,11 @@ function NewGrades3() {
   
         // Update the document
         await updateDoc(docRef, {
-          grades: updatedGrades
+          grades: updatedGrades,
+          editMode: false,
+          finalSubmission: true,
+          createdate: serverTimestamp(),
+          subdate: serverTimestamp()
         });
   
         setIsSubmissionSuccessful(true);
@@ -98,21 +103,80 @@ function NewGrades3() {
     }
   };
 
+  // Save grades to database in tempory mode
+
+  const handleTemporarySave = async () => {
+    if (!selectedClass) {
+      console.error("No class selected");
+      return;
+    }
+  
+    try {
+      const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", selectedClass));
+      const querySnapshot = await getDocs(docQuery);
+  
+      if (!querySnapshot.empty) {
+        const docRef = querySnapshot.docs[0].ref;  // Reference to the document
+
+        // Prepare updated grades
+        let updatedGrades = {};
+        studentsData.forEach(student => {
+          updatedGrades[student.AM] = student.grade;
+        });
+  
+        // Update the document
+        await updateDoc(docRef, {
+          grades: updatedGrades,
+          editMode: true,
+          finalSubmission: false,
+          createdate: serverTimestamp()
+        });
+        
+        setIsTemporarySaveSuccessful(true);
+        console.log("Document updated for temporary save");
+
+        // Clear local storage after temporary save
+        localStorage.removeItem('selectedClass');
+        localStorage.removeItem('gradesData');
+      } else {
+        console.error("No document found for the selected class");
+      }
+    } catch (error) {
+      console.error("Error in temporary save: ", error);
+    }
+  };
+  
+
   const navigate = useNavigate();
 
-    const handleClosePopup = () => {
-        setIsSubmissionSuccessful(false);
-        navigate('/home/professor-grades');
-    };
+  const handleClosePopup = () => {
+      setIsSubmissionSuccessful(false);
+      navigate('/home/professor-grades');
+  };
 
-    const Popup = () => (
-      <div className={styles.popupOverlay}>
-          <div className={styles.successPopup}>
-              <button className={styles.closeButton} onClick={handleClosePopup}> &times;</button>
-              <div className={styles.popupHeader}></div>
-              <h3>Οι βαθμολογίες υποβλήθηκαν επιτυχώς!</h3>
-          </div>
+  const handleTemporaryClosePopup = () => {
+    setIsTemporarySaveSuccessful(false);
+    navigate('/home/professor-grades');
+  }
+
+  const Popup = () => (
+    <div className={styles.popupOverlay}>
+        <div className={styles.successPopup}>
+            <button className={styles.closeButton} onClick={handleClosePopup}> &times;</button>
+            <div className={styles.popupHeader}></div>
+            <h3>Οι βαθμολογίες υποβλήθηκαν επιτυχώς!</h3>
+        </div>å
+    </div>
+  );  
+
+  const TemporarySavePopup = () => (
+    <div className={styles.popupOverlay}>
+      <div className={styles.successPopup}>
+        <button className={styles.closeButton} onClick={handleTemporaryClosePopup}> &times;</button>
+        <div className={styles.popupHeader}></div>
+        <h3>Η προσωρινή αποθήκευση ολοκληρώθηκε επιτυχώς!</h3>
       </div>
+    </div>
   );  
 
   return(
@@ -161,8 +225,8 @@ function NewGrades3() {
               </Link>
             </div>
 
-            <div className={styles['buttons2']}>
-              <button href="/home/professor-grades" className={styles['save']} >
+            <div className={styles['temporarySave']}>
+              <button href="/home/professor-grades" className={styles['save']} onClick={handleTemporarySave}>
                 Προσωρινή Αποθήκευση
               </button>
 
@@ -172,6 +236,7 @@ function NewGrades3() {
 
             </div>
           </div>
+          {isTemporarySaveSuccessful && <TemporarySavePopup />}
           {isSubmissionSuccessful && <Popup/>}
         </div>
     </div>

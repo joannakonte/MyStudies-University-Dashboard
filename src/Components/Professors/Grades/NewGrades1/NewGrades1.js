@@ -18,6 +18,7 @@ function NewGrades1() {
   const [professorsClasses, setProfessorsClasses] = useState([]);
   const [selectedClass, setSelectedClass] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [popupType, setPopupType] = useState(null);
   const navigate = useNavigate();
 
   // Current date for display purposes
@@ -65,25 +66,39 @@ function NewGrades1() {
     fetchProfessorsClasses();
   }, []); 
 
-  const checkDocumentExistence = async (classId) => {
+  const checkDocumentExistenceAndEditMode = async (classId) => {
     const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
     const querySnapshot = await getDocs(docQuery);
-    return !querySnapshot.empty; // returns true if document exists
-  };  
+    if (!querySnapshot.empty) {
+      const document = querySnapshot.docs[0].data();
+      return { exists: true, editMode: document.editMode, finalSubmission: document.finalSubmission };
+    }
+    return { exists: false };
+  };
 
   const handleNextButtonClick = async () => {
     if (selectedClass) {
-      const exists = await checkDocumentExistence(selectedClass);
+      const { exists, editMode, finalSubmission } = await checkDocumentExistenceAndEditMode(selectedClass);
       if (exists) {
-        setShowPopup(true);
+        if (!editMode && finalSubmission) {
+          setPopupType('finalSubmission');
+          setShowPopup(true);
+        } else if (!editMode && !finalSubmission) {
+          setPopupType('editMode');
+          setShowPopup(true);
+        } else if (editMode){
+          setShowPopup(false);
+          localStorage.setItem('selectedClass', selectedClass);
+          navigate('/home/professor-grades/new-grade1/new-grade2');
+        }
       } else {
+        // Redirect to the next page if the document does not exist or editMode is true
         setShowPopup(false);
         localStorage.setItem('selectedClass', selectedClass);
-        // Redirect to the next page if the document does not exist
         navigate('/home/professor-grades/new-grade1/new-grade2');
       }
     }
-  };
+  }; 
 
   const DocumentExistsPopup = ({ onClose }) => (
     <div className={styles.popupOverlay}>
@@ -94,11 +109,41 @@ function NewGrades1() {
         Θέλετε να το επεξεργαστείτε;</h3>
         <div className={styles.buttonWrapper}>
           <Link to="/home/professor-grades" className={styles.cancelButton}>Ακύρωση</Link>
-          <button className={styles.continueButton} onClick={onClose}>Συνέχεια</button>
+          <Link to="/home/professor-grades/new-grade1/new-grade2" className={styles.continueButton} onClick={onClose}>Συνέχεια</Link>
         </div>
       </div>
     </div>
   );
+
+  const FinalSubmissionPopup = ({ onClose }) => (
+    <div className={styles.popupOverlay}>
+      <div className={styles.finalSubmissionPopup}>
+        <button className={styles.closeButton} onClick={onClose}> &times;</button>
+        <div className={styles.popupHeader}></div>
+        <h3>Το βαθμολόγιο για αυτό το μάθημα έχει οριστικοποιηθεί. <br />
+        Δεν μπορείτε να το επεξεργαστείτε.</h3>
+        <div className={styles.buttonWrapper}>
+          <Link to="/home/professor-grades" className={styles.cancelButton}>Εντάξει</Link>
+        </div>
+      </div>
+    </div>
+  );
+
+  const renderPopup = () => {
+    if (popupType === 'editMode') {
+      return (
+        // Existing DocumentExistsPopup for edit mode
+        <DocumentExistsPopup onClose={() => setShowPopup(false)} />
+      );
+    } else if (popupType === 'finalSubmission') {
+      return (
+        // New popup for final submission mode
+        <FinalSubmissionPopup onClose={() => setShowPopup(false)} />
+      );
+    }
+    return null;
+  };
+  
 
   return(
     <div className={styles.wrapper}>
@@ -148,7 +193,7 @@ function NewGrades1() {
             </button>
           </div>
         </div>
-        {showPopup && <DocumentExistsPopup onClose={() => setShowPopup(false)} />}
+        {showPopup && renderPopup()}
     </div>
   );
 }

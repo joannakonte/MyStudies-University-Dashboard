@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import styles from './DataTable.module.css';
 import { HiMiniPencil, HiArrowDownTray,HiArrowsUpDown, HiOutlineEye } from 'react-icons/hi2';
@@ -14,6 +15,7 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [selectedClass, setSelectedClass] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchData();
@@ -31,7 +33,7 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
 
   const fetchData = async () => {
     try {
-      const professorId = await findStudentById();;
+      const professorId = await findStudentById();
       const classesCollection = collection(db, collectionName);
       const q = query(classesCollection, where('professorId', '==', professorId));
       const querySnapshot = await getDocs(q);
@@ -41,8 +43,8 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
         return data;
       });
 
-      console.log('classesData:', classesData); 
       setInfo(classesData);
+      console.log('classesData:', classesData); 
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -71,6 +73,10 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
     setSelectedClass(null);
   };
 
+  const handlePencilClick = () => {
+    navigate('/home/professor-grades/new-grade1/new-grade2');
+  };  
+
   return (
     <div className={`${styles['table-container']} ${styles['certif']}`}>
       <table className={styles.table}>
@@ -85,14 +91,14 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
         </thead>
         <tbody>
         {filteredAndSortedData.map((rowData, index) => (
-        <tr key={index} style={{ color: rowData.submit === false ? 'orange' : 'inherit' }}>
+        <tr key={index} style={{ color: rowData.finalSubmission === false ? 'orange' : 'inherit' }}>
             {items.map((field, fieldIndex) => (
             <td key={fieldIndex} className={`${styles['table-cell']} ${styles[field.collectionfield]}`} style={{ position: 'relative' }}>
-                {field.collectionfield === 'submit' ? (
-                rowData.submit === false ? (
+                {field.collectionfield === 'finalSubmission' ? (
+                rowData.finalSubmission === false ? (
                     // If submit is false, render HiMiniPencil icon
                     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <HiMiniPencil style={{ fontSize: '24px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', cursor:'pointer' }} />
+                    <HiMiniPencil onClick={handlePencilClick} style={{ fontSize: '24px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', cursor:'pointer' }} />
                     </div>
                 ) : (
                     // If submit is true, render HiArrowsUpDown and HiOutlineEye icons
