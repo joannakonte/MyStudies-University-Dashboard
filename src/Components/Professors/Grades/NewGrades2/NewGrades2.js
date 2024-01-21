@@ -76,7 +76,7 @@ function NewGrades2() {
 
       if (!existingDocSnapshot.empty) {
         console.log("Grades document for this class already exists");
-        // return; // Exit if document already exists
+        return; // Exit if document already exists
       }
 
       // Query to find students for the class
@@ -128,28 +128,27 @@ function NewGrades2() {
 
   // Function to handle grade input changes
   const handleGradeChange = (e, studentAM) => {
-    const gradeValue = e.target.value === "" ? null : parseInt(e.target.value);
+    // Parse the grade, fallback to empty string if NaN
+    const gradeValue = e.target.value === "" ? "" : parseInt(e.target.value);
     const updatedStudentsData = studentsData.map(student => {
       if (student.AM === studentAM) {
-        return { ...student, grade: gradeValue };
+        return { ...student, grade: isNaN(gradeValue) ? "" : gradeValue };
       }
       return student;
     });
     setStudentsData(updatedStudentsData);
-  };
+  };  
 
   // Function to check if all students are graded
   const checkAllGraded = () => {
-    const ungraded = studentsData.some(student => student.grade === 0);
-  
-    if (ungraded) {
-      setIsAllGraded(false); // Will show the popup
-    } else {
-      setIsAllGraded(true);
+    const ungraded = studentsData.some(student => student.grade === "" || student.grade === 0);
+    
+    setIsAllGraded(!ungraded);
+    if (!ungraded) {
       localStorage.setItem('gradesData', JSON.stringify(studentsData));
       navigate('/home/professor-grades/new-grade1/new-grade2/new-grade3');
     }
-  };  
+  };   
 
   // Close the popup and reset state
   const handleClosePopup = () => {
