@@ -86,6 +86,10 @@ function NewGrades3() {
   
         setIsSubmissionSuccessful(true);
         console.log("Grades updated successfully");
+
+        // Clear local storage after successful submission
+        localStorage.removeItem('selectedClass');
+        localStorage.removeItem('gradesData');
       } else {
         console.error("No document found for the selected class");
       }
