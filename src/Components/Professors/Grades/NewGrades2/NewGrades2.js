@@ -28,12 +28,21 @@ function NewGrades2() {
 
     return `${season} ${year}`;
   };
+
   useEffect(() => {
-    // Retrieve the selectedClass from localStorage
+    // Retrieve the selectedClass and gradesData from localStorage
     const storedSelectedClass = localStorage.getItem('selectedClass');
-    if (storedSelectedClass) {
+    const storedGradesData = localStorage.getItem('gradesData');
+
+    if (storedGradesData) {
+      // Parse the grades data from localStorage and set it to studentsData state
+      console.log("getting grades from local storage")
+      const parsedGradesData = JSON.parse(storedGradesData);
+      setStudentsData(parsedGradesData);
+    } else if (storedSelectedClass) {
+      // If no grades data in localStorage, fetch class name and create grades document
       setSelectedClass(storedSelectedClass);
-      fetchClassNameAndCreateGradesDoc(storedSelectedClass); // Fetch class info from Firestore
+      fetchClassNameAndCreateGradesDoc(storedSelectedClass); 
     }
   }, []);
 
@@ -74,14 +83,32 @@ function NewGrades2() {
       const existingDocQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
       const existingDocSnapshot = await getDocs(existingDocQuery);
 
-      if (!existingDocSnapshot.empty) {
-        console.log("Grades document for this class already exists");
-        // return; // Exit if document already exists
-      }
-
       // Query to find students for the class
       const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
       const studentsSnapshot = await getDocs(studentsQuery);
+
+      if (!existingDocSnapshot.empty) {
+        console.log("Grades document for this class already exists");
+
+        // Keep for edit mode
+        // // Assuming there's only one document per class
+        // const gradesData = existingDocSnapshot.docs[0].data().grades;
+
+        // // Create an array to store students data with grades
+        // let studentsWithGrades = [];
+        // if (!studentsSnapshot.empty) {
+        //   studentsSnapshot.docs.forEach(doc => {
+        //     const studentInfo = doc.data();
+        //     // Retrieve student grade or default to 0
+        //     const studentGrade = gradesData[studentInfo.AM] || 0;
+        //     studentsWithGrades.push({ ...studentInfo, grade: studentGrade });
+        //   });
+        // }
+        // return studentsWithGrades;
+        return;
+      }
+
+      // If the document does not exist
 
       // Initialize grades object
       let grades = {};
@@ -98,26 +125,20 @@ function NewGrades2() {
 
       await addDoc(collection(db, "studentclassidgrade"), newGradesDoc);
       console.log("New grades document created successfully");
+
+      // Create an array to store students data with default grades
+      let students = [];
+      if (!studentsSnapshot.empty) {
+        studentsSnapshot.docs.forEach(doc => {
+          const studentInfo = doc.data();
+          students.push({ ...studentInfo, grade: 0 }); // Include default grade
+        });
+      }
+  
+      return students;
     } catch (error) {
       console.error("Error creating grades document: ", error);
     }
-
-    // Fetch students for the class
-    const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
-    const studentsSnapshot = await getDocs(studentsQuery);
-    console.log("Students snapshot:", studentsSnapshot.docs.map(doc => doc.data())); // Debugging line
-
-
-    // Create an array to store students data
-    let students = [];
-    if (!studentsSnapshot.empty) {
-      studentsSnapshot.docs.forEach(doc => {
-        const studentInfo = doc.data();
-        students.push({ ...studentInfo, grade: 0 }); // Include default grade
-      });
-    }
-
-    return students; // Return the students array
   }
 
 
@@ -128,28 +149,27 @@ function NewGrades2() {
 
   // Function to handle grade input changes
   const handleGradeChange = (e, studentAM) => {
-    const gradeValue = e.target.value === "" ? null : parseInt(e.target.value);
+    // Parse the grade, fallback to empty string if NaN
+    const gradeValue = e.target.value === "" ? "" : parseInt(e.target.value);
     const updatedStudentsData = studentsData.map(student => {
       if (student.AM === studentAM) {
-        return { ...student, grade: gradeValue };
+        return { ...student, grade: isNaN(gradeValue) ? "" : gradeValue };
       }
       return student;
     });
     setStudentsData(updatedStudentsData);
-  };
+  };  
 
   // Function to check if all students are graded
   const checkAllGraded = () => {
-    const ungraded = studentsData.some(student => student.grade === 0);
-  
-    if (ungraded) {
-      setIsAllGraded(false); // Will show the popup
-    } else {
-      setIsAllGraded(true);
+    const ungraded = studentsData.some(student => student.grade === "" || student.grade === 0);
+    
+    setIsAllGraded(!ungraded);
+    if (!ungraded) {
       localStorage.setItem('gradesData', JSON.stringify(studentsData));
       navigate('/home/professor-grades/new-grade1/new-grade2/new-grade3');
     }
-  };  
+  };   
 
   // Close the popup and reset state
   const handleClosePopup = () => {
