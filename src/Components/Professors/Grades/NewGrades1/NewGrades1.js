@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './NewGrades1.module.css'; 
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
@@ -15,10 +15,10 @@ function NewGrades1() {
   const stages = ['Επιλογή Μαθήματος', 'Καταχώρηση Βαθμολογίας ', 'Υποβολή Βαθμολογίας'];
   const location = useLocation();
   const department = "Τμήμα Πληροφορικής και Τηλεπικοινωνιών";
-  const [selectedDepartment, setSelectedDepartment] = useState('');
   const [professorsClasses, setProfessorsClasses] = useState([]);
   const [selectedClass, setSelectedClass] = useState('');
-  const firebaseTimestamp = serverTimestamp();
+  const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
 
   // Current date for display purposes
   const currentDate = new Date();
@@ -30,6 +30,7 @@ function NewGrades1() {
     return `${season} ${year}`;
   };
 
+  // Fetching the professor's classes 
   useEffect(() => {
     const fetchProfessorsClasses = async () => {
       // Check for the previously selected class in localStorage
@@ -63,14 +64,41 @@ function NewGrades1() {
   
     fetchProfessorsClasses();
   }, []); 
-  
-  useEffect(() => {
-    // Save the selected class to local storage whenever it changes
+
+  const checkDocumentExistence = async (classId) => {
+    const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
+    const querySnapshot = await getDocs(docQuery);
+    return !querySnapshot.empty; // returns true if document exists
+  };  
+
+  const handleNextButtonClick = async () => {
     if (selectedClass) {
-      localStorage.setItem('selectedClass', selectedClass);
+      const exists = await checkDocumentExistence(selectedClass);
+      if (exists) {
+        setShowPopup(true);
+      } else {
+        setShowPopup(false);
+        localStorage.setItem('selectedClass', selectedClass);
+        // Redirect to the next page if the document does not exist
+        navigate('/home/professor-grades/new-grade1/new-grade2');
+      }
     }
-  }, [selectedClass]);
-  
+  };
+
+  const DocumentExistsPopup = ({ onClose }) => (
+    <div className={styles.popupOverlay}>
+      <div className={styles.popup}>
+        <button className={styles.closeButton} onClick={onClose}> &times;</button>
+        <div className={styles.popupHeader}></div>
+        <h3>Υπάρχει ήδη βαθμολόγιο για αυτό το μάθημα. <br />
+        Θέλετε να το επεξεργαστείτε;</h3>
+        <div className={styles.buttonWrapper}>
+          <Link to="/home/professor-grades" className={styles.cancelButton}>Ακύρωση</Link>
+          <button className={styles.continueButton} onClick={onClose}>Συνέχεια</button>
+        </div>
+      </div>
+    </div>
+  );
 
   return(
     <div className={styles.wrapper}>
@@ -115,11 +143,12 @@ function NewGrades1() {
           </div>
 
           <div className={styles['next']}>
-            <Link to="/home/professor-grades/new-grade1/new-grade2" className={styles['next-page']}>
+            <button onClick={handleNextButtonClick} className={styles['next-page']}>
                 Επόμενο <HiChevronRight />
-            </Link>
+            </button>
           </div>
         </div>
+        {showPopup && <DocumentExistsPopup onClose={() => setShowPopup(false)} />}
     </div>
   );
 }
