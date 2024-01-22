@@ -9,7 +9,7 @@ import { HiChevronRight } from "react-icons/hi2";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { db } from '../../../../firebase';
-import { collection, query, where, getDocs, serverTimestamp } from 'firebase/firestore';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 function NewGrades1() {
   const stages = ['Επιλογή Μαθήματος', 'Καταχώρηση Βαθμολογίας ', 'Υποβολή Βαθμολογίας'];
@@ -80,19 +80,24 @@ function NewGrades1() {
     if (selectedClass) {
       const { exists, editMode, finalSubmission } = await checkDocumentExistenceAndEditMode(selectedClass);
       if (exists) {
+        console.log("document exists grade 1");
         if (!editMode && finalSubmission) {
+          console.log("cannot edit")
           setPopupType('finalSubmission');
           setShowPopup(true);
-        } else if (!editMode && !finalSubmission) {
+        } else if (editMode && !finalSubmission) {
+          console.log("edit")
           setPopupType('editMode');
           setShowPopup(true);
         } else if (editMode){
+          console.log("hello");
           setShowPopup(false);
           localStorage.setItem('selectedClass', selectedClass);
           navigate('/home/professor-grades/new-grade1/new-grade2');
         }
       } else {
         // Redirect to the next page if the document does not exist or editMode is true
+        console.log("no document exists.")
         setShowPopup(false);
         localStorage.setItem('selectedClass', selectedClass);
         navigate('/home/professor-grades/new-grade1/new-grade2');
