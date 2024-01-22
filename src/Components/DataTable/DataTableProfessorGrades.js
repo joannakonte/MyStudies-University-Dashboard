@@ -72,7 +72,22 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
       navigate('/home/professor-grades/new-grade1/new-grade2');
     } else {
       console.error('No class selected or classId is missing in selectedClass');
-      // You may want to provide user feedback or handle this case accordingly
+    }
+  };
+
+  const handleEyeClick = (selectedClass) => {
+    setSelectedClass(selectedClass);
+
+    if (selectedClass && selectedClass.classId) {
+      const classId = selectedClass.classId;
+      console.log('classId', classId);
+
+      localStorage.setItem('selectedClass', classId);
+
+      navigate('/home/professor-grades/see-all-grades');
+    } else {
+      console.error('No class selected or classId is missing in selectedClass');
+
     }
   };
 
@@ -121,7 +136,11 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
                     ) : (
                       <>
                         <HiArrowDownTray style={{ fontSize: '24px', cursor: 'pointer', left: '25%', paddingRight: '15%' }} />
-                        <HiOutlineEye style={{ fontSize: '24px', cursor: 'pointer' }} />
+                        {/* Use handleEyeClick for the eye icon */}
+                        <HiOutlineEye
+                          onClick={() => handleEyeClick(rowData)}
+                          style={{ fontSize: '24px', cursor: 'pointer' }}
+                        />
                       </>
                     )
                   ) : field.collectionfield === 'submission' ? (
@@ -137,7 +156,6 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
           ))}
         </tbody>
       </table>
-      <PopUp isOpen={!!selectedClass} onClose={() => setSelectedClass(null)} selectedClass={selectedClass} />
     </div>
   );
 };
