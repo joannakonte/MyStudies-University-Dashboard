@@ -3,10 +3,10 @@ import { db } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import styles from './DataTable.module.css';
-import { HiMiniPencil, HiArrowDownTray,HiArrowsUpDown, HiOutlineEye } from 'react-icons/hi2';
+import { HiMiniPencil, HiArrowDownTray, HiArrowsUpDown, HiOutlineEye } from 'react-icons/hi2';
 import PopUp from './PopUp';
 import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
-import items from "../../data/dataTablegradesProfessorHeader.json";
+import items from '../../data/dataTablegradesProfessorHeader.json';
 
 const TableComponentProfessorClasses = ({ collectionName }) => {
   const [info, setInfo] = useState([]);
@@ -15,6 +15,7 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredAndSortedData, setFilteredAndSortedData] = useState([]);
   const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedRow, setSelectedRow] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,12 +23,7 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
   }, [collectionName]);
 
   useEffect(() => {
-    const updatedFilteredData = filterAndSortDataNew(
-      info,
-      sortColumn,
-      sortOrder,
-      searchQuery
-    );
+    const updatedFilteredData = filterAndSortDataNew(info, sortColumn, sortOrder, searchQuery);
     setFilteredAndSortedData(updatedFilteredData);
   }, [info, sortColumn, sortOrder, searchQuery]);
 
@@ -44,12 +40,11 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
       });
 
       setInfo(classesData);
-      console.log('classesData:', classesData); 
+      console.log('classesData:', classesData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
-
 
   const formatDateCell = (fieldName, fieldValue) => {
     if (fieldName === 'subdate' || fieldName === 'createdate') {
@@ -59,31 +54,27 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
     }
   };
 
-
   const toggleSortOrder = (column) => {
     setSortColumn(column);
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
 
-  const openPopup = (selectedClass) => {
+  const handlePencilClick = (index, selectedClass) => {
+    setSelectedRow(index);
     setSelectedClass(selectedClass);
-  };
 
-  const closePopup = () => {
-    setSelectedClass(null);
-  };
+    if (selectedClass && selectedClass.classId) {
+      const classId = selectedClass.classId;
+      console.log('classId', classId);
 
-  const handlePencilClick = () => {
-    const classId = selectedClass.classId;
-
-    if (classId) {
       localStorage.setItem('selectedClass', classId);
 
       navigate('/home/professor-grades/new-grade1/new-grade2');
     } else {
-      console.error('appId is missing in selectedClass');
+      console.error('No class selected or classId is missing in selectedClass');
+      // You may want to provide user feedback or handle this case accordingly
     }
-  };  
+  };
 
   return (
     <div className={`${styles['table-container']} ${styles['certif']}`}>
@@ -98,40 +89,55 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
           </tr>
         </thead>
         <tbody>
-        {filteredAndSortedData.map((rowData, index) => (
-        <tr key={index} style={{ color: rowData.finalSubmission === false ? 'orange' : 'inherit' }}>
-            {items.map((field, fieldIndex) => (
-            <td key={fieldIndex} className={`${styles['table-cell']} ${styles[field.collectionfield]}`} style={{ position: 'relative' }}>
-                {field.collectionfield === 'finalSubmission' ? (
-                rowData.finalSubmission === false ? (
-                    // If submit is false, render HiMiniPencil icon
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <HiMiniPencil onClick={handlePencilClick} style={{ fontSize: '24px', position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', cursor:'pointer' }} />
-                    </div>
-                ) : (
-                    // If submit is true, render HiArrowsUpDown and HiOutlineEye icons
-                    <>
-                    <HiArrowDownTray style={{ fontSize: '24px', cursor:'pointer', left: '25%', paddingRight:'15%' }} />
-                    <HiOutlineEye style={{ fontSize: '24px', cursor:'pointer'}} />
-                    </>
-                )
-                ) : (
-                field.collectionfield === 'submission' ? 'himinipecin' : (
-                    field.collectionfield === 'details' ? (
-                    <HiOutlineEye />
+          {filteredAndSortedData.map((rowData, index) => (
+            <tr
+              key={index}
+              style={{
+                color: rowData.finalSubmission === false ? 'orange' : 'inherit',
+                backgroundColor: index === selectedRow ? 'lightblue' : 'transparent',
+              }}
+            >
+              {items.map((field, fieldIndex) => (
+                <td
+                  key={fieldIndex}
+                  className={`${styles['table-cell']} ${styles[field.collectionfield]}`}
+                  style={{ position: 'relative' }}
+                >
+                  {field.collectionfield === 'finalSubmission' ? (
+                    rowData.finalSubmission === false ? (
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                        <HiMiniPencil
+                          onClick={() => handlePencilClick(index, rowData)}
+                          style={{
+                            fontSize: '24px',
+                            position: 'absolute',
+                            top: '50%',
+                            left: '50%',
+                            transform: 'translate(-50%, -50%)',
+                            cursor: 'pointer',
+                          }}
+                        />
+                      </div>
                     ) : (
-                    formatDateCell(field.collectionfield, rowData[field.collectionfield])
+                      <>
+                        <HiArrowDownTray style={{ fontSize: '24px', cursor: 'pointer', left: '25%', paddingRight: '15%' }} />
+                        <HiOutlineEye style={{ fontSize: '24px', cursor: 'pointer' }} />
+                      </>
                     )
-                )
-                )}
-            </td>
-            ))}
-        </tr>
-        ))}
-
+                  ) : field.collectionfield === 'submission' ? (
+                    'himinipecin'
+                  ) : field.collectionfield === 'details' ? (
+                    <HiOutlineEye />
+                  ) : (
+                    formatDateCell(field.collectionfield, rowData[field.collectionfield])
+                  )}
+                </td>
+              ))}
+            </tr>
+          ))}
         </tbody>
       </table>
-      <PopUp isOpen={!!selectedClass} onClose={closePopup} selectedClass={selectedClass} />
+      <PopUp isOpen={!!selectedClass} onClose={() => setSelectedClass(null)} selectedClass={selectedClass} />
     </div>
   );
 };
