@@ -36,12 +36,12 @@ function UpdatePassword() {
 
   const isFormValid = () => { 
     if(password.length < 8){
-        return "Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.";
+      return "Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.";
     }
     else if(password !== passwordVerification){
-        return "Οι κωδικοί πρόσβασης δεν ταιριάζουν.";
+      return "Οι κωδικοί πρόσβασης δεν ταιριάζουν.";
     }
-    return ""; // No error
+    return ""; 
   };
 
 

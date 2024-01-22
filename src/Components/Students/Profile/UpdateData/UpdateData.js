@@ -1,105 +1,154 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './UpdateData.module.css'; 
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import { HiEye, HiEyeOff } from 'react-icons/hi';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, updateDoc } from 'firebase/firestore';
 import { db } from '../../../../firebase';
+import Popup from './Popup';
 
 function UpdateData() {
-
-    const location = useLocation();
-
     const navigate = useNavigate();
 
-    const [firstname, setFirstName] = useState(""); 
-    const [fathername, setFatherName] = useState(""); 
-    const [birthday, setBirthday] = useState(""); 
+    const [showPopup, setShowPopup] = useState(false);
+
+    const location = useLocation();
+    const sdi = localStorage.getItem('sdi');
+    console.log('Current sdi:', sdi);
+
+    const [userData, setUserData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    const closePopup = () => {
+        setShowPopup(false);
+        navigate('/home/profile'); // Redirect to /home/profile
+    };
+
+    useEffect(() => {
+        // Fetch user data when the component mounts
+        const fetchData = async () => {
+            try {
+                const user = await getUserBySDI(sdi);
+                setUserData(user);
+    
+                // Initialize state variables with user data or default values
+                setMaritalStatus(user ? user.maritalstatus : '');  // Use an empty string or a default value
+                setGender(user ? user.gender : '');
+                setBirthplace(user ? user.birthplace : '');
+                setAT(user ? user.AT : '');
+                setAMKA(user ? user.AMKA : '');
+                setAddress(user ? user.address : '');
+                setPhone(user ? user.phone : '');
+                setEmail(user ? user.email : '');
+    
+                console.log('User data:', user);
+            } catch (error) {
+                console.error('Error fetching user:', error.message);
+            } finally {
+                // Set loading to false once the data is fetched (whether successful or not)
+                setLoading(false);
+            }
+        };
+    
+        fetchData();
+    }, [sdi]);
+
+    // Function to fetch user by SDI
+    async function getUserBySDI(sdi) {
+        try {
+        if (!sdi) {
+            console.error('SDI not found in local storage.');
+            return null;
+        }
+    
+        const colRef = collection(db, 'students');
+        const q = query(colRef, where('sdi', '==', sdi));
+        const querySnapshot = await getDocs(q);
+    
+        if (!querySnapshot.empty) {
+            const userData = querySnapshot.docs[0].data(); // Access data directly
+    
+            // Log or inspect the retrieved data
+            console.log('Retrieved user data:', userData);
+    
+            return userData;
+        } else {
+            console.error(`Document with sdi ${sdi} does not exist.`);
+            return null;
+        }
+        } catch (error) {
+        console.error('Error fetching user:', error.message);
+        return null;
+        }
+    }
+
+
     const [maritalstatus, setMaritalStatus] = useState("maritalstatus"); 
-    const [AT, setAT] = useState(""); 
-    const [lastname, setLastName] = useState("");
-    const [mothername, setMotherName] = useState(""); 
     const [birthplace, setBirthplace] = useState(""); 
+    const [AT, setAT] = useState(""); 
     const [gender, setGender] = useState("gender");
     const [AMKA, setAMKA] = useState("");    
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState(""); 
-    const [AM, setAM] = useState(""); 
-    const sdiValue = "sdi" + AM.slice(-7);
-    const [registrationdate, setRegistrationDate] = useState(""); 
-    const [password, setPassword] = useState("");
-    const [passwordVerification, setPasswordVerification] = useState("");    
-    const [showPassword, setShowPassword] = useState(false);
-    const [showPasswordVerification, setShowPasswordVerification] = useState(false);
 
-    const togglePasswordVisibility = () => {
-        setShowPassword(!showPassword);
-    };
-
-    const togglePasswordVerificationVisibility = () => {
-        setShowPasswordVerification(!showPasswordVerification);
-    };
-
-    const isFormValid = () => { 
-        if (!firstname || !lastname || !fathername || !mothername || !AM) {
-            return "Παρακαλώ συμπληρώστε τα υποχρεωτικά πεδία.";
-        }
-        else if(password.length < 8){
-            return "Ο κωδικός πρόσβασης πρέπει να έχει τουλάχιστον 8 χαρακτήρες.";
-        }
-        else if(password !== passwordVerification){
-            return "Οι κωδικοί πρόσβασης δεν ταιριάζουν.";
-        }
-        return ""; // No error
-    };
-
-    async function handleRegister(e) {
+    async function handleUpdate(e) {
         e.preventDefault();
-
-        // This object represents the user's form that it will be saved in our database.
+    
+        // This object represents the user's form data that will be saved in our database.
         const docUser = {
-            type: "student",
-            firstname: firstname,
-            lastname: lastname,
-            department: "Τμήμα Πληροφορικής και Τηλεποικοινωνιών",
-            AM: AM,
-            fathername: fathername,
-            mothername: mothername,
-            birthday: birthday,
             maritalstatus: maritalstatus,
-            gender: gender,
             birthplace: birthplace,
             AT: AT,
-            sdi: sdiValue,
+            gender: gender,
             AMKA: AMKA,
             address: address,
             phone: phone,
-            registrationdate: registrationdate,
             email: email,
-            password: password
         };
-
-        try{
-            console.log('Attempting register student:', firstname);
+    
+        try {
+            console.log('Attempting data update on student:', sdi);
+            if (!sdi) {
+                console.error('SDI not found in local storage.');
+                return;
+            }
+    
             if (!db) {
                 console.error('Firestore database instance is not available.');
                 return;
             }
-
-            const col_ref = collection(db, "students");
-            const res_user = await addDoc(col_ref, docUser); 
-
-            // Redirect to login route
-            navigate('/home/login');
-
+    
+            // Create a query to find the document with the matching "sdi"
+            const colRef = collection(db, 'students');
+            const q = query(colRef, where('sdi', '==', sdi));
+    
+            // Execute the query
+            const querySnapshot = await getDocs(q);
+    
+            if (!querySnapshot.empty) {
+                // There should be only one document in the result
+                const userDocRef = querySnapshot.docs[0].ref;
+                console.log('Document path:', userDocRef.path);
+    
+                // Proceed with the update
+                await updateDoc(userDocRef, docUser);
+    
+                console.log('Update data successful.');
+                setShowPopup(true);
+            } else {
+                console.error(`Document with sdi ${sdi} does not exist.`);
+            }
         } catch (error) {
-            console.error('Registration error:', error.message);
+            console.error('Update error:', error.message);
         }
     }
+
+    
+
+
 
   return (
     <div className={styles.wrapper}>
@@ -121,71 +170,65 @@ function UpdateData() {
                         <div className={styles.columns}>
                             {/* Column 1 */}
                             <div className={styles.column1}>  
-                                <label>
-                                    <div className={styles.labelText}>Όνομα: <sup>*</sup></div>
-                                    <input 
-                                        value={firstname} 
-                                        onChange={(e) => { 
-                                            setFirstName(e.target.value); 
-                                        }}
-                                        type="text" 
-                                        name="firstname" 
-                                        placeholder="Όνομα" 
-                                        className={styles.inputField}
-                                    />
-                                </label>
-
-                                <label>
-                                    <div className={styles.labelText}>Όνομα Πατέρα: <sup>*</sup></div>
-                                    <input 
-                                        value={fathername} 
-                                        onChange={(e) => { 
-                                            setFatherName(e.target.value); 
-                                        }}
-                                        type="text" 
-                                        name="fathername" 
-                                        placeholder="Όνομα Πατέρα" 
-                                        className={styles.inputField} 
-                                    />
-                                </label>
-
-                                <label>
-                                    <div className={styles.labelText}>Ημερομηνία Γέννησης: <sup>*</sup></div>
-                                    <input 
-                                        value={birthday} 
-                                        onChange={(e) => { 
-                                            setBirthday(e.target.value); 
-                                        }}
-                                        type="date" 
-                                        name="birthday" 
-                                        className={styles.dateField} 
-                                    />
-                                </label>
 
                                 <div className={styles.maritalStatus}>
-                                    <label> 
+                                    <label>
                                         <div className={styles.labelText}>Οικογενειακή Κατάσταση:</div>
-                                    </label> 
+                                    </label>
                                     <div className={styles.selectWrapper}>
-                                        <select value={maritalstatus} className={styles['dropdown-select']} onChange={(e) => setMaritalStatus(e.target.value)}> 
-                                            <option value="role">Οικογενειακή Κατάσταση</option> 
-                                            <option value="individual">Άγαμος-η</option> 
-                                            <option value="business">Παντρεμένος-η</option> 
+                                        <select
+                                            value={maritalstatus}
+                                            className={styles['dropdown-select']}
+                                            onChange={(e) => setMaritalStatus(e.target.value)}
+                                        >
+                                            <option value="" disabled>Οικογενειακή Κατάσταση</option>
+                                            <option value="Άγαμος-η">Άγαμος-η</option>
+                                            <option value="Παντρεμένος-η">Παντρεμένος-η</option>
                                         </select>
-                                        <FontAwesomeIcon icon={faAngleDown} className={styles['select-arrow']}/>
+                                        <FontAwesomeIcon icon={faAngleDown} className={styles['select-arrow']} />
                                     </div>
                                 </div>
 
                                 <label>
                                     <div className={styles.labelText}>Αριθμός Ταυτότητας:</div>
-                                    <input 
-                                        value={AT} 
-                                        onChange={(e) => { 
-                                            setAT(e.target.value); 
+                                    <input
+                                        value={AT}  
+                                        onChange={(e) => {
+                                            setAT(e.target.value);
                                         }}
-                                        type="text" 
-                                        name="AT" 
-                                        placeholder="Αριθμός Ταυτότητας" 
+                                        type="text"
+                                        name="AT"
+                                        placeholder="Αριθμός Ταυτότητας"
+                                        className={styles.inputField}
+                                    />
+                                </label>
+
+                                <label>
+                                    <div className={styles.labelText}>ΑΜΚΑ:</div>
+                                    <input 
+                                        value={AMKA}
+                                        onChange={(e) => {
+                                            console.log('Current value:', e.target.value);
+                                            setAMKA(e.target.value);
+                                        }}
+                                        type="text"
+                                        name="AMKA"
+                                        placeholder="ΑΜΚΑ"
+                                        className={styles.inputField}
+                                    />
+                                </label>
+
+                                <label>
+                                    <div className={styles.labelText}>Τήλέφωνο Επικοινωνίας:</div>
+                                    <input 
+                                        value={phone}
+                                        onChange={(e) => {
+                                            console.log('Current value:', e.target.value);
+                                            setPhone(e.target.value);
+                                        }}
+                                        type="text"
+                                        name="phone"
+                                        placeholder="Τήλέφωνο Επικοινωνίας"
                                         className={styles.inputField}
                                     />
                                 </label>
@@ -193,44 +236,18 @@ function UpdateData() {
 
                             {/* Column 2 */}
                             <div className={styles.column2}>
-                                <label>
-                                    <div className={styles.labelText}>Επώνυμο: <sup>*</sup></div>
-                                    <input 
-                                        value={lastname} 
-                                        onChange={(e) => { 
-                                            setLastName(e.target.value); 
-                                        }}
-                                        type="text" 
-                                        name="lastname" 
-                                        placeholder="Επώνυμο"
-                                        className={styles.inputField} 
-                                    />
-                                </label>
-
-                                <label>
-                                    <div className={styles.labelText}>Όνομα Μητέρας: <sup>*</sup></div>
-                                    <input 
-                                        value={mothername} 
-                                        onChange={(e) => { 
-                                            setMotherName(e.target.value); 
-                                        }}
-                                        type="text" 
-                                        name="mothername" 
-                                        placeholder="Όνομα Μητέρας" 
-                                        className={styles.inputField} 
-                                    />
-                                </label>
 
                                 <label>                           
                                     <div className={styles.labelText}>Πόλη - Τόπος Γέννησης:</div>
-                                    <input 
-                                        value={birthplace} 
-                                        onChange={(e) => { 
-                                            setBirthplace(e.target.value); 
+                                    <input
+                                        value={birthplace}
+                                        onChange={(e) => {
+                                            console.log('Current value:', e.target.value);
+                                            setBirthplace(e.target.value);
                                         }}
-                                        type="text" 
-                                        name="birthplace" 
-                                        placeholder="Πόλη - Τόπος Γέννησης" 
+                                        type="text"
+                                        name="birthplace"
+                                        placeholder="Πόλη - Τόπος Γέννησης"
                                         className={styles.inputField}
                                     />
                                 </label>
@@ -240,56 +257,37 @@ function UpdateData() {
                                         <div className={styles.labelText}>Φύλο:</div>
                                     </label> 
                                     <div className={styles.selectWrapper}>
-                                        <select value={gender} className={styles['dropdown-select']} onChange={(e) => setGender(e.target.value)}> 
-                                            <option value="Φύλο">Φύλο</option> 
-                                            <option value="Θηλύ">Θηλύ</option> 
-                                            <option value="Άρρεν">Άρρεν</option> 
-                                            <option value="Άλλο">Άλλο</option> 
+                                        <select
+                                            value={gender}
+                                            className={styles['dropdown-select']}
+                                            onChange={(e) => setGender(e.target.value)}
+                                        >
+                                            <option value="" disabled>Φύλο</option>
+                                            <option value="Θηλύ">Θηλύ</option>
+                                            <option value="Άρρεν">Άρρεν</option>
+                                            <option value="Άλλο">Άλλο</option>
                                         </select>
                                         <FontAwesomeIcon icon={faAngleDown} className={styles['select-arrow']}/>
                                     </div>
                                 </div>
-                                <label>
-                                    <div className={styles.labelText}>ΑΜΚΑ:</div>
+
+                                <label>          
+                                    <div className={styles.labelText}>Διεύθυνση (Οδός, Νούμερο, Πόλη):</div>
                                     <input 
-                                        value={AMKA} 
+                                        value={address}  
                                         onChange={(e) => { 
-                                            setAMKA(e.target.value); 
+                                            setAddress(e.target.value); 
                                         }}
                                         type="text" 
-                                        name="AMKA" 
-                                        placeholder="ΑΜΚΑ" 
+                                        name="address" 
+                                        placeholder="Διεύθυνση" 
                                         className={styles.inputField}
                                     />
                                 </label>
+                                
                             </div>
                         </div>
-                        <label>          
-                            <div className={styles.labelText}>Διεύθυνση (Οδός, Νούμερο, Πόλη):</div>
-                            <input 
-                                value={address} 
-                                onChange={(e) => { 
-                                    setAddress(e.target.value); 
-                                }}
-                                type="text" 
-                                name="address" 
-                                placeholder="Διεύθυνση" 
-                                className={styles.inputField}
-                            />
-                        </label>
-                        <label>
-                            <div className={styles.labelText}>Τήλέφωνο Επικοινωνίας:</div>
-                            <input 
-                                value={phone} 
-                                onChange={(e) => { 
-                                    setPhone(e.target.value); 
-                                }}
-                                type="text" 
-                                name="phone" 
-                                placeholder="Τήλέφωνο Επικοινωνίας" 
-                                className={styles.inputPhoneNumber}
-                            />
-                        </label>
+                        
                     </div>
 
                     {/* Στοιχεία Φοιτητή */}
@@ -298,18 +296,9 @@ function UpdateData() {
                         <hr className={styles.titleSeparator} />
 
                         <label>
-                            <div className={styles.labelText}>Τμήμα:</div>
-                            <input 
-                                name="department" 
-                                defaultValue="Τμήμα Πληροφορικής και Τηλεποικοινωνιών"
-                                className={styles.departmentField}
-                            />
-                        </label>
-
-                        <label>
                             <div className={styles.labelText}>Ηλεκτρονικό Ταχυδρομείο:</div>
                             <input 
-                                value={email} 
+                                value={email}  
                                 onChange={(e) => { 
                                     setEmail(e.target.value); 
                                 }}
@@ -322,36 +311,7 @@ function UpdateData() {
 
                         <div className={styles.columns}>
                             {/* Column 1 */}
-                            <div className={styles.column1}>
-                                <label>
-                                    <div className={styles.labelText}>Αριθμός Μητρώου <sup>*</sup></div>
-                                    <input 
-                                        value={AM} 
-                                        onChange={(e) => { 
-                                            setAM(e.target.value); 
-                                        }}
-                                        type="text" 
-                                        name="AM" 
-                                        placeholder="Αριθμός Μητρώου" 
-                                        className={styles.inputField}
-                                    />
-                                </label>
-                            </div>
 
-                            <div className={styles.column2}>  
-                                <label>
-                                    <div className={styles.labelText}>Ημερομηνία Εγγραφής</div>
-                                    <input 
-                                        value={registrationdate} 
-                                        onChange={(e) => { 
-                                            setRegistrationDate(e.target.value); 
-                                        }}
-                                        type="date" 
-                                        name="registrationdate" 
-                                        className={styles.dateField}
-                                    />
-                                </label>
-                            </div>
                         </div>
                     </div>
 
@@ -364,17 +324,15 @@ function UpdateData() {
                             type="submit"
                             onClick={(e) => {
                                 e.preventDefault();
-                                const validationResult = isFormValid();
-                                if (validationResult) {
-                                    alert(validationResult);
-                                } else {
-                                    handleRegister(e);
-                                }
+                                handleUpdate(e);
                             }}
                             className={styles.registerButton}
                         >
                             Αποθήκευση
                         </button>
+                        {showPopup && (
+                        <Popup message="Τα δεδομένα σας ενημερώθηκαν επιτυχώς" onClose={closePopup} />
+                        )}
                     </div>
                 </div>
             </form>

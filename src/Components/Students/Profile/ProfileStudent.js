@@ -6,25 +6,64 @@ import LoadingBar from './LoadingBar/LoadingBar';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { HiOutlineRefresh } from 'react-icons/hi';
+import { db } from '../../../firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 function ProfileStudent() {
   
   const location = useLocation();
-  
+  const sdi = localStorage.getItem('sdi');
+  console.log('Current sdi:', sdi);
+
   const [userData, setUserData] = useState(null);
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    // Retrieve data from local storage
-    const storedUserDataJSON = localStorage.getItem('userData');
-    
-    // Parse the JSON string to get the original object
-    const storedUserData = JSON.parse(storedUserDataJSON);
-    
-    // Set the data to the state
-    setUserData(storedUserData);
-  }, []);
+    // Fetch user data when the component mounts
+    const fetchData = async () => {
+      try {
+        const user = await getUserBySDI(sdi);
+        setUserData(user);
+      } catch (error) {
+        console.error('Error fetching user:', error.message);
+      } finally {
+        // Set loading to false once the data is fetched (whether successful or not)
+        setLoading(false);
+      }
+    };
 
+    fetchData();
+  }, [sdi]);
 
+  // Function to fetch user by SDI
+  async function getUserBySDI(sdi) {
+    try {
+      if (!sdi) {
+        console.error('SDI not found in local storage.');
+        return null;
+      }
+  
+      const colRef = collection(db, 'students');
+      const q = query(colRef, where('sdi', '==', sdi));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data(); // Access data directly
+  
+        // Log or inspect the retrieved data
+        console.log('Retrieved user data:', userData);
+  
+        return userData;
+      } else {
+        console.error(`Document with sdi ${sdi} does not exist.`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error.message);
+      return null;
+    }
+  }
+  
   const calculateEctsPercentage = () => {
     // Assuming that userData.ects is the number of ECTS completed
     const ectsCompleted = userData.ects || 0;
@@ -47,6 +86,17 @@ function ProfileStudent() {
         </div>
 
         <div className={styles.main}>
+          {loading ? (
+            <p>Loading user data...</p>
+          ) : userData ? (
+            <div className={styles.info}>
+              {/* ... Your existing user information rendering ... */}
+            </div>
+          ) : (
+            <p>Error fetching user data</p>
+          )}
+
+
           <div className={styles.buttonContainer}>
             <div className={styles.update_data}>
               <Link to="/home/profile/update-data" className={styles.link}>
@@ -75,7 +125,7 @@ function ProfileStudent() {
                     <tbody>
                       <tr>
                         <td className={styles.morebold}>Όνομα:</td>
-                        <td>{userData.firstname}</td>
+                        <td>{userData.first}</td>
                       </tr>
                       <tr>
                         <td className={styles.morebold}>Επώνυμο:</td>

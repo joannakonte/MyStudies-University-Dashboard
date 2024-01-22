@@ -55,8 +55,8 @@ function App() {
 
           {/* Paths for Professors */}
           <Route path="/home/professor-profile" element={<ProfileProfessor />}/>
-          <Route path="/home/professor-profile/update-data" element={<UpdateDataProfessor />}/>
-          <Route path="/home/professor-profile/update-password" element={<UpdatePasswordProfessor />}/>
+          {/* <Route path="/home/professor-profile/update-data" element={<UpdateDataProfessor />}/> */}
+          {/* <Route path="/home/professor-profile/update-password" element={<UpdatePasswordProfessor />}/> */}
           <Route path="/home/professor-classes" element={<ClassesProfessor />}/>
           <Route path="/home/professor-grades" element={<GradesProfessor />}/>
           <Route path="/home/professor-grades/new-grade1" element={<NewGrades1 />}/>
