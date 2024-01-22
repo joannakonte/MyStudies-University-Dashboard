@@ -26,6 +26,7 @@ import FAQProfessor from './Components/Professors/FAQ/FAQProfessor';
 import NewGrades1 from './Components/Professors/Grades/NewGrades1/NewGrades1';
 import NewGrades2 from './Components/Professors/Grades/NewGrades2/NewGrades2';
 import NewGrades3 from './Components/Professors/Grades/NewGrades3/NewGrades3';
+import ViewGrades from './Components/Professors/Grades/ViewGrades';
 
 import './App.css';
 
@@ -61,6 +62,7 @@ function App() {
           <Route path="/home/professor-grades/new-grade1" element={<NewGrades1 />}/>
           <Route path="/home/professor-grades/new-grade1/new-grade2" element={<NewGrades2 />}/>
           <Route path="/home/professor-grades/new-grade1/new-grade2/new-grade3" element={<NewGrades3 />}/>
+          <Route path="/home/professor-grades/view-grades" element={<ViewGrades />}/>
           <Route path="/home/professor-faq" element={<FAQProfessor />}/>
 
 

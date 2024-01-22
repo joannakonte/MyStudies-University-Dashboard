@@ -84,7 +84,7 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
 
       localStorage.setItem('selectedClass', classId);
 
-      navigate('/home/professor-grades/see-all-grades');
+      navigate('/home/professor-grades/view-grades');
     } else {
       console.error('No class selected or classId is missing in selectedClass');
 

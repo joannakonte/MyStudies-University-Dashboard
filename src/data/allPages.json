@@ -109,6 +109,11 @@
         "path": "/home/professor-grades/new-grade1/new-grade2/new-grade3"
     },
     {
+        "title": "Προεσκόπιση Βαθμολογίου",
+        "icon": "HiAcademicCap",
+        "path": "/home/professor-grades/view-grades"
+    },
+    {
         "title": "Συχνές Ερωτήσεις",
         "icon": "HiQuestionMarkCircle",
         "path": "/home/professor-faq"
