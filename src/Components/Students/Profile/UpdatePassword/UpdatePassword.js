@@ -104,7 +104,7 @@ function UpdatePassword() {
               <div className={styles.Pass}>
                 <label>
                     <div className={styles.labelText}>
-                    Κωδικός <sup>*</sup>
+                    Νέος Κωδικός <sup>*</sup>
                     </div>
                 </label>
                 <input
@@ -114,7 +114,7 @@ function UpdatePassword() {
                     onChange={(e) => {
                         setPassword(e.target.value);
                     }}
-                    placeholder="Κωδικός"
+                    placeholder="Νέος Κωδικός "
                 />
                 <div className={styles.eyeIcon} onClick={togglePasswordVisibility}>
                     {showPassword ? <HiEye /> : <HiEyeOff />}
@@ -124,7 +124,7 @@ function UpdatePassword() {
               <div className={styles.ConfPass}>
                 <label> 
                     <div className={styles.labelText}>
-                        Επαλήθευση Κωδικού <sup>*</sup> 
+                        Επαλήθευση Νέου Κωδικού <sup>*</sup> 
                     </div>
                 </label> 
                 <input 
@@ -134,7 +134,7 @@ function UpdatePassword() {
                     onChange={(e) => {
                         setPasswordVerification(e.target.value);
                     }}
-                    placeholder="Επαλήθευση Κωδικού" 
+                    placeholder="Επαλήθευση Νέου Κωδικού" 
                 /> 
                 <div className={styles.eyeIcon} onClick={togglePasswordVerificationVisibility}>
                     {showPasswordVerification ? <HiEye /> : <HiEyeOff />}
