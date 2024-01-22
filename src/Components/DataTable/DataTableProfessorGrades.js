@@ -74,7 +74,15 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
   };
 
   const handlePencilClick = () => {
-    navigate('/home/professor-grades/new-grade1/new-grade2');
+    const classId = selectedClass.classId;
+
+    if (classId) {
+      localStorage.setItem('selectedClass', classId);
+
+      navigate('/home/professor-grades/new-grade1/new-grade2');
+    } else {
+      console.error('appId is missing in selectedClass');
+    }
   };  
 
   return (
