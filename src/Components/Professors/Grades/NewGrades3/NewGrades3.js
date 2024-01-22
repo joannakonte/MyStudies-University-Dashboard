@@ -196,28 +196,32 @@ function NewGrades3() {
           <div className={styles.infoBox}>
             {department} - {className} - {formatDate(currentDate)}
           </div>
-
-          <table>
-            <thead>
-                <tr className={styles['table-header']}>
-                    {headers.map((header, index) => (
-                        <th className={styles['table-cell']} key={index}>{header.title} </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-              {studentsData.map((student, index) => (
-                <tr key={index}>
-                  <td className={styles['table-cell']}>{student.AM}</td>
-                  <td className={styles['table-cell']}>{`${student.firstname} ${student.lastname}`}</td>
-                  <td className={styles['table-cell']}>{formatDate(currentDate)}</td>
-                  <td className={styles['table-cell']}>{student.department}</td>
-                  <td className={styles['table-cell']}>{student.grade}</td> 
-                </tr>
-              ))}
-            </tbody>
-          </table>  
-
+          
+          <div className={styles.gradesContainer}>
+            <div className={styles.studentCountContainer}>
+                <h3 className={styles.studentCount}>Σύνολο Μαθητών: {studentsData.length}</h3>
+            </div>
+            <table>
+              <thead>
+                  <tr className={styles['table-header']}>
+                      {headers.map((header, index) => (
+                          <th className={styles['table-cell']} key={index}>{header.title} </th>
+                      ))}
+                  </tr>
+              </thead>
+              <tbody>
+                {studentsData.map((student, index) => (
+                  <tr key={index}>
+                    <td className={styles['table-cell']}>{student.AM}</td>
+                    <td className={styles['table-cell']}>{`${student.firstname} ${student.lastname}`}</td>
+                    <td className={styles['table-cell']}>{formatDate(currentDate)}</td>
+                    <td className={styles['table-cell']}>{student.department}</td>
+                    <td className={styles['table-cell']}>{student.grade}</td> 
+                  </tr>
+                ))}
+              </tbody>
+            </table>  
+          </div>
 
           <div className={styles['button-container']}>
             <div className={styles['previous']}>

@@ -250,35 +250,40 @@ function NewGrades2() {
             {department} - {className} - {formatDate(date)}
           </div>
 
-          <table>
-            <thead>
-                <tr className={styles['table-header']}>
-                    {headers.map((header, index) => (
-                        <th className={styles['table-cell']} key={index}>{header.title} </th>
-                    ))}
-                </tr>
-            </thead>
-            <tbody>
-              {studentsData && studentsData.map((student, index) => (
-                <tr key={index}>
-                  <td className={styles['table-cell']}>{student.AM}</td>
-                  <td className={styles['table-cell']}>{`${student.firstname} ${student.lastname}`}</td>
-                  <td className={styles['table-cell']}>{formatDate(date)}</td>
-                  <td className={styles['table-cell']}>{student.department}</td>
-                  <td className={styles['table-cell']}>
-                    <input
-                      className={styles.inputField}
-                      type="number"
-                      value={student.grade}
-                      onChange={(e) => handleGradeChange(e, student.AM)}
-                      max="10"
-                      min="0"
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-        </table>
+          <div className={styles.gradesContainer}>
+            <div className={styles.studentCountContainer}>
+                <h3 className={styles.studentCount}>Σύνολο Μαθητών: {studentsData.length}</h3>
+            </div>
+            <table>
+              <thead>
+                  <tr className={styles['table-header']}>
+                      {headers.map((header, index) => (
+                          <th className={styles['table-cell']} key={index}>{header.title} </th>
+                      ))}
+                  </tr>
+              </thead>
+              <tbody>
+                {studentsData && studentsData.map((student, index) => (
+                  <tr key={index}>
+                    <td className={styles['table-cell']}>{student.AM}</td>
+                    <td className={styles['table-cell']}>{`${student.firstname} ${student.lastname}`}</td>
+                    <td className={styles['table-cell']}>{formatDate(date)}</td>
+                    <td className={styles['table-cell']}>{student.department}</td>
+                    <td className={styles['table-cell']}>
+                      <input
+                        className={styles.inputField}
+                        type="number"
+                        value={student.grade}
+                        onChange={(e) => handleGradeChange(e, student.AM)}
+                        max="10"
+                        min="0"
+                      />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+          </table>
+        </div>
 
          <div className={styles['button-container']}>
             <Link to="/home/professor-grades/new-grade1" className={styles['previous-page']}>
