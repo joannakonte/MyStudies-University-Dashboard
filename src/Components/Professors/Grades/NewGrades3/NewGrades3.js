@@ -7,7 +7,7 @@ import Sidebar from '../../Sidebar/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ProcessBar from '../ProcessBar/ProcessBar';
 import { HiCheck, HiChevronLeft } from 'react-icons/hi2';
-import { doc, where, getDocs, query, collection, updateDoc, serverTimestamp } from 'firebase/firestore';
+import { where, getDocs, query, collection, updateDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../../../firebase'; 
 
 function NewGrades3() {
@@ -129,7 +129,8 @@ function NewGrades3() {
           grades: updatedGrades,
           editMode: true,
           finalSubmission: false,
-          createdate: serverTimestamp()
+          createdate: serverTimestamp(),
+          subdate: "-"
         });
         
         setIsTemporarySaveSuccessful(true);
