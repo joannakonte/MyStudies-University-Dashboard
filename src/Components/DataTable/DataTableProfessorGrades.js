@@ -7,6 +7,12 @@ import { HiMiniPencil, HiArrowDownTray, HiArrowsUpDown, HiOutlineEye } from 'rea
 import PopUp from './PopUp';
 import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
 import items from '../../data/dataTablegradesProfessorHeader.json';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
+import * as XLSX from 'xlsx';
+import { IoMdDocument } from 'react-icons/io';
+
 
 const TableComponentProfessorClasses = ({ collectionName }) => {
   const [info, setInfo] = useState([]);
@@ -91,6 +97,95 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
     }
   };
 
+  const [studentsData, setStudentsData] = useState([]); 
+
+  // Fetch grades data for edit mode
+  const fetchGradesData = async (classId) => {
+    const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
+    try {
+      const querySnapshot = await getDocs(docQuery);
+      if (!querySnapshot.empty) {
+        const gradesData = querySnapshot.docs[0].data().grades;
+
+        // Query to find students for the class
+        const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
+        const studentsSnapshot = await getDocs(studentsQuery);
+
+        // Create an array to store students data with default grades
+        let students = [];
+        if (!studentsSnapshot.empty) {
+          studentsSnapshot.docs.forEach(doc => {
+            const studentInfo = doc.data();
+            students.push({ ...studentInfo, grade: gradesData[studentInfo.AM] || 0 }); 
+          });
+        }
+
+        console.log("students:", students);
+
+        setStudentsData(students);
+      }
+    } catch (error) {
+      console.error("Error fetching grades data: ", error);
+    }
+  };
+
+  const handleDownload = async (selectedClass, format) => {
+    console.error('selectedClass.className: ', selectedClass.className);
+
+    // Fetch grades data for the selected class
+    const classId = selectedClass.classId;
+    const docQuery = query(collection(db, 'studentclassidgrade'), where('classId', '==', classId));
+
+    try {
+      const querySnapshot = await getDocs(docQuery);
+
+      if (!querySnapshot.empty) {
+        const gradesData = querySnapshot.docs[0].data().grades;
+
+        // Query to find students for the class
+        const studentsQuery = query(
+          collection(db, 'students'),
+          where('type', '==', 'student'),
+          where('classes', 'array-contains', classId)
+        );
+
+        const studentsSnapshot = await getDocs(studentsQuery);
+
+        // Create an array to store students' data with grades
+        let students = [];
+        if (!studentsSnapshot.empty) {
+          studentsSnapshot.docs.forEach((doc) => {
+            const studentInfo = doc.data();
+            const grade = gradesData[studentInfo.AM] || 0;
+            students.push({ ...studentInfo, grade });
+          });
+        }
+
+        // Generate content based on students' data
+        if (format === 'pdf') {
+          // Generate PDF content
+          const pdf = new jsPDF();
+          const tableData = students.map((student) => [`${student.AM}`, `${student.grade}`]);
+          pdf.autoTable({
+            head: [['AM', 'Grade']], // Table header
+            body: tableData, // Table rows
+            startY: 20, // Y position from the top
+          });
+          pdf.save(`${selectedClass.className}.pdf`);
+        } else if (format === 'excel') {
+          // Generate Excel content
+          const ws = XLSX.utils.aoa_to_sheet([['AM', 'Grade'], ...students.map((student) => [`${student.AM}`, `${student.grade}`])]);
+          const wb = XLSX.utils.book_new();
+          XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+          XLSX.writeFile(wb, `${selectedClass.className}.xlsx`);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching or processing data: ', error);
+    }
+  };
+
+
   return (
     <div className={`${styles['table-container']} ${styles['certif']}`}>
       <table className={styles.table}>
@@ -135,7 +230,17 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
                       </div>
                     ) : (
                       <>
-                        <HiArrowDownTray style={{ fontSize: '24px', cursor: 'pointer', left: '25%', paddingRight: '15%' }} />
+                        <button className={styles.download_button} onClick={() => handleDownload(rowData, 'pdf')}>
+                          <IoMdDocument /> Download PDF
+                        </button>
+                        <button className={styles.download_button} onClick={() => handleDownload(rowData, 'excel')}>
+                          <IoMdDocument /> Download Excel
+                        </button>
+
+                        {/* <HiArrowDownTray
+                          style={{ fontSize: '24px', cursor: 'pointer', left: '25%', paddingRight: '15%' }}
+                          onClick={() => handleDownload(rowData)}
+                        /> */}
                         {/* Use handleEyeClick for the eye icon */}
                         <HiOutlineEye
                           onClick={() => handleEyeClick(rowData)}

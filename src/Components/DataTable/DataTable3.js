@@ -7,26 +7,9 @@ import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUt
 import items from "../../data/dataTableHeaderCert.json";
 import CertificatePDF from '../../images/Certificate.pdf';
 
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+// import html2canvas from 'html2canvas';
+// import jsPDF from 'jspdf';
 
-// const handleDownload = () => {
-
-//   const pdfElement = document.getElementById('pdf-content');
-//   const pdfOptions = { filename: 'document.pdf' };
-
-//   if (pdfElement) {
-//     html2canvas(pdfElement).then((canvas) => {
-//       const pdf = new jsPDF();
-      
-//       // Add the certification type to the PDF
-//       pdf.text(`Certificate`, 10, 10);
-
-//       // Save the PDF
-//       pdf.save(pdfOptions.filename);
-//     });
-//   }
-// };
 
 const handleDownload = () => {
   // Create a link element

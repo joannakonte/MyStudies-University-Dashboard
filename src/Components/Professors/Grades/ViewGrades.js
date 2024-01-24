@@ -50,33 +50,35 @@ function ViewGrades() {
     }
   };
 
-      // Fetch grades data for edit mode
-      const fetchGradesData = async (classId) => {
-        const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
-        try {
-          const querySnapshot = await getDocs(docQuery);
-          if (!querySnapshot.empty) {
-            const gradesData = querySnapshot.docs[0].data().grades;
-  
-            // Query to find students for the class
-            const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
-            const studentsSnapshot = await getDocs(studentsQuery);
-  
-            // Create an array to store students data with default grades
-            let students = [];
-            if (!studentsSnapshot.empty) {
-              studentsSnapshot.docs.forEach(doc => {
-                const studentInfo = doc.data();
-                students.push({ ...studentInfo, grade: gradesData[studentInfo.AM] || 0 }); 
-              });
-            }
-  
-            setStudentsData(students);
-          }
-        } catch (error) {
-          console.error("Error fetching grades data: ", error);
+  // Fetch grades data for edit mode
+  const fetchGradesData = async (classId) => {
+    const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
+    try {
+      const querySnapshot = await getDocs(docQuery);
+      if (!querySnapshot.empty) {
+        const gradesData = querySnapshot.docs[0].data().grades;
+
+        // Query to find students for the class
+        const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
+        const studentsSnapshot = await getDocs(studentsQuery);
+
+        // Create an array to store students data with default grades
+        let students = [];
+        if (!studentsSnapshot.empty) {
+          studentsSnapshot.docs.forEach(doc => {
+            const studentInfo = doc.data();
+            students.push({ ...studentInfo, grade: gradesData[studentInfo.AM] || 0 }); 
+          });
         }
-      };
+
+        console.log("students:", students);
+
+        setStudentsData(students);
+      }
+    } catch (error) {
+      console.error("Error fetching grades data: ", error);
+    }
+  };
   
 
   return(
