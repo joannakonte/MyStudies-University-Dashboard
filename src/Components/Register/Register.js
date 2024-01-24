@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import RegisterStudent from './RegisterStudent';
 import RegisterProfessor from './RegisterProfessor'; 
 import styles from './Register.module.css'; 
-import Navbar from '../Home/Navbar';
+import Navbar from '../Home/NavbarRegister';
 import Footer from '../Home/Footer';
 
 

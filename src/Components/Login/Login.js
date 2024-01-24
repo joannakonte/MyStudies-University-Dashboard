@@ -128,6 +128,11 @@ function Login() {
           </div>
           {error && <div className={styles.errorMessage}>{error}</div>} {/* Display error message */}
           {/* Login button */}
+          <div className={styles.login}>
+            Δεν έχεις λογαριασμό; 
+            <Link to="/home/register" className={styles.login_link}> Δημιούργησε έναν τώρα.</Link>
+          </div>
+
           <div className={styles.formGroup}>
             <button type="button" onClick={handleLogin} className={styles.loginButton}>
               Σύνδεση <FontAwesomeIcon icon={faSignInAlt} className={styles['fa-sign-in-alt']} />

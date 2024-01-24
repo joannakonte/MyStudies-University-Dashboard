@@ -89,31 +89,6 @@ function Navbar() {
             </button>
           </a>
 
-          <a href="/home#services" className={styles.link}>
-            <button className={styles.menu_item}>
-              Υπηρεσίες
-            </button>
-          </a>
-
-          <a href="/home#studyProgram" className={styles.link}>
-            <button className={styles.menu_item}>
-              Πρόγραμμα Σπούδων
-            </button>
-          </a>
-
-          <a href="/home#contact" className={styles.link}>
-            <button className={styles.menu_item}>
-              Επικοινωνία
-            </button>
-          </a>
-
-          <a href="/home#otherServices" className={styles.link}>
-            <button className={styles.menu_item}>
-              Υπηρεσίες ΕΚΠΑ
-            </button>
-          </a>
-
-
 
           <div>
             {localStorage.getItem('userData') ? (

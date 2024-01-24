@@ -76,7 +76,7 @@ input:focus {
     align-items: left;
     justify-content: flex-start;
     margin-left: 275px;
-    margin-top: 50px;
+    margin-top: 15px;
 }
 
 .loginButton:visited {
@@ -99,5 +99,18 @@ input:focus {
     right: 39%;
     transform: translateY(-160%); 
     cursor: pointer;
+}
+
+.login {
+    margin-top: 20px;
+}
+
+.login_link {
+    color: var(--home-color);
+}
+
+.login_link:hover {
+    color: black;
+    font-weight: 500;
 }
   

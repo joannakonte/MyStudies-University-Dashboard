@@ -36,44 +36,49 @@ function Home() {
       <Navbar  className={styles.navbar}/>
 
       {/* Slider */}
-      <div className={styles.Header} id="home">
-        <div className={styles['text-and-button']} >
-          <p>Επισκέψου τη γραμματεία του τμηματος σου<br />από οπουδήποτε και οποιαδήποτε στιγμή!</p>
+      <section id="home">
+        <div className={styles.Header} >
+          <div className={styles['text-and-button']} >
+            <p>Επισκέψου τη γραμματεία του τμηματος σου<br />από οπουδήποτε και οποιαδήποτε στιγμή!</p>
 
+          </div>
+            <img src={book} alt="books"/>
         </div>
-          <img src={book} alt="books"/>
-      </div>
+      </section>
 
       {/* Υπηρεσίες */}
-      <div className={styles.section} id="services">
-        <h1>Υπηρεσίες</h1>
+      <section id="services">
 
-        <div className={styles.container}>
-          <div className={styles.box} id="students">
-            <img src={student_icon} alt="Student" className={styles['box-image']} />
-            <h2>Φοιτητές-τριες</h2>
-            <p className={styles['box-text']}>Όλοι οι φοιτητές μέσω της Ηλεκτρονικής Γραμματεία έχουν τη δυνατότητα 
-            να περιηγηθούν στο Πρόγραμμα Σπουδών του Τμήματός τους, να κάνουν ηλεκτρονικά τη Δήλωση Μαθημάτων τους 
-            για το κάθε εξάμηνο, να δουν αναλυτικά τη Βαθμολογία τους, καθώς και να αιτηθούν Πιστοποιητικά.</p>
-          </div>
+        <div className={styles.section} >
+          <h1>Υπηρεσίες</h1>
 
-          <div className={styles.box} id="instructors">
-          <img src={professors_icon} alt="Professors" className={styles['box-image']} />
-            <h2>Διδάσκοντες</h2>
-            <p className={styles['box-text']}>Οι εγγεγραμμένοι Διδάσκοντες, μέσω της Ηλεκτρονικής Γραμματείας 
-            έχουν τη δυνατότητα να δουν τα Μαθήματα που διδάσκουν ανά εξάμηνο, καθώς και να προσθέσουν Βαθμολογία 
-            για αυτά, σε όλους τους Φοιτητές.</p>
-          </div>
+          <div className={styles.container}>
+            <div className={styles.box} id="students">
+              <img src={student_icon} alt="Student" className={styles['box-image']} />
+              <h2>Φοιτητές-τριες</h2>
+              <p className={styles['box-text']}>Όλοι οι φοιτητές μέσω της Ηλεκτρονικής Γραμματεία έχουν τη δυνατότητα 
+              να περιηγηθούν στο Πρόγραμμα Σπουδών του Τμήματός τους, να κάνουν ηλεκτρονικά τη Δήλωση Μαθημάτων τους 
+              για το κάθε εξάμηνο, να δουν αναλυτικά τη Βαθμολογία τους, καθώς και να αιτηθούν Πιστοποιητικά.</p>
+            </div>
 
-          <div className={styles.box} id="secretary">
-            <img src={secretariat_icon} alt="Secretary" className={styles['box-image']} />
-            <h2>Γραμματεία</h2>
-            <p className={styles['box-text']}>Τα μέλη τα Γραμματείας μπορούν να ανοίξουν τις Δηλώσεις των Μαθημάτων, 
-            να εγκρίνουν ή να απορρίψουν τις αιτήσεις Πιστοποιητικών των Φοιτητών, και να επεξεργαστούν τα στοιχεία όλων 
-            των εγγεγραμμένων Φοιτητών και Καθηγητών</p>
+            <div className={styles.box} id="instructors">
+            <img src={professors_icon} alt="Professors" className={styles['box-image']} />
+              <h2>Διδάσκοντες</h2>
+              <p className={styles['box-text']}>Οι εγγεγραμμένοι Διδάσκοντες, μέσω της Ηλεκτρονικής Γραμματείας 
+              έχουν τη δυνατότητα να δουν τα Μαθήματα που διδάσκουν ανά εξάμηνο, καθώς και να προσθέσουν Βαθμολογία 
+              για αυτά, σε όλους τους Φοιτητές.</p>
+            </div>
+
+            <div className={styles.box} id="secretary">
+              <img src={secretariat_icon} alt="Secretary" className={styles['box-image']} />
+              <h2>Γραμματεία</h2>
+              <p className={styles['box-text']}>Τα μέλη τα Γραμματείας μπορούν να ανοίξουν τις Δηλώσεις των Μαθημάτων, 
+              να εγκρίνουν ή να απορρίψουν τις αιτήσεις Πιστοποιητικών των Φοιτητών, και να επεξεργαστούν τα στοιχεία όλων 
+              των εγγεγραμμένων Φοιτητών και Καθηγητών</p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
 
 
