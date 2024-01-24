@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import styles from './Home.module.css';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import ScrollToTopButton from './ScrollToTopButton';
 import Login from '../Login/Login';
 import SemesterTable from '../Students/Classes/SemesterTable';
 import TableComponent from '../DataTable/DataTable';
@@ -14,7 +16,6 @@ import ekpa_logo from "../../images/ekpa_logo.jpg"
 import eclass_logo from "../../images/eclass_logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignInAlt, faPhone, faEnvelope, faClock, faLocationDot, faGlobe } from '@fortawesome/free-solid-svg-icons';
-import styles from './Home.module.css';
 
 function Home() {
   const [selectedSemester, setSelectedSemester] = useState(1); 
@@ -31,7 +32,11 @@ function Home() {
   };
 
   return (
+
+
     <div>
+      <ScrollToTopButton />
+
       {/* Header  */}
       <Navbar  className={styles.navbar}/>
 
@@ -39,7 +44,11 @@ function Home() {
       <section id="home">
         <div className={styles.Header} >
           <div className={styles['text-and-button']} >
-            <p>Επισκέψου τη γραμματεία του τμηματος σου<br />από οπουδήποτε και οποιαδήποτε στιγμή!</p>
+          <p>
+            Επισκέψου τη γραμματεία του τμηματος σου από
+            <br />
+            <strong>οπουδήποτε&nbsp;και&nbsp;οποιαδήποτε στιγμή!</strong>
+          </p>
 
           </div>
             <img src={book} alt="books"/>

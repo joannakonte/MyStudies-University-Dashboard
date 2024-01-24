@@ -1,0 +1,16 @@
+.scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--home-color); 
+    color: #fff; 
+    padding: 10px;
+    border-radius: 20%;
+    cursor: pointer;
+    display: none;
+    font-size: 150%;
+}
+  
+.visible {
+    display: block;
+}
