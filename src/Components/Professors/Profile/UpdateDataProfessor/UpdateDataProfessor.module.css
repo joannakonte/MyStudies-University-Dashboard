@@ -1,0 +1,238 @@
+.wrapper {
+    display: grid;
+    grid-template-areas:
+        'header header'
+        'sidebar main';
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 15% 85% ;
+    position: static;
+}
+  
+.header {
+    grid-area: header;
+    background-color: white;
+    position: fixed;
+    z-index: 2;
+}
+  
+.sidebar {
+    grid-area: sidebar;
+    background-color: rgba(0, 78, 127, 0.50);
+    position: fixed;
+    height: 100%;
+    width: 15%;
+    top: 16%;
+    z-index: 1;
+}
+  
+.main {
+    grid-area: main;
+    padding-top: 3%;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    min-height: 500px;
+    overflow-y: auto;
+}
+
+/* =========== | Register Form | =========== */
+
+.formContainer{
+    padding-bottom: 30px; 
+}
+
+.formContainer .title{
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.formContainer .titleSeparator{
+    margin-top: 0;
+    margin-bottom: 20px; 
+}
+
+.personalDetailsContainer, .studentDetailsContainer, .passwordContainer {
+    background-color: #F8F8F8;
+    border-radius: 5px; 
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.title {
+    padding-top: 10px;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Creates two columns */
+    gap: 20px; 
+}
+
+
+.column1 label, .column2 label {
+    width: 100%;
+    display: block;   
+    margin-bottom: 10px; 
+}
+
+/* =========== | Input fields | =========== */
+
+input::placeholder {
+    font-size: 14px;
+}
+
+sup {
+    color: red;
+    top: -2px;
+    font-size: 95%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+.labelText {
+    font-weight: bold;
+    margin-bottom: 5px; /* Adds space between label text and the input */
+}
+
+.dateField{
+    border: 1px solid black; 
+    border-radius: 5px; 
+    width: 100%;
+    font-size: 16px;
+}
+
+.inputField, .departmentField{
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid black; 
+    border-radius: 5px; 
+    width: 100%;
+}
+
+.inputField:focus, .inputPhoneNumber:focus, .departmentField:focus{
+    outline: none;
+}
+
+/* =========== | Select fields | =========== */
+.selectWrapper {
+    position: relative;
+}
+
+.dropdown-select{
+    width: 100%; 
+    padding: 8px 12px;
+    border: 1px solid black; 
+    border-radius: 5px; 
+    background-color: white;
+    color: black; 
+    font-size: 16px; 
+    appearance: none; 
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.dropdown-select option {
+    color: #333; 
+    background-color: white; 
+    padding: 5px; 
+}
+
+.dropdown-select:focus {
+    outline: none;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 10px; /* Adjust as needed */
+    top: 50%; /* Center vertically */
+    transform: translateY(-60%); 
+    pointer-events: none; 
+}
+
+/* =========== | Password | =========== */
+.eyeIcon {
+    position: absolute;
+    right: 27%;
+    transform: translateY(-140%); 
+    cursor: pointer;
+}
+
+
+/* =========== | Register Form Buttons | =========== */
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end; /* Aligns buttons to the right */
+    gap: 10px;                 /* Adds space between buttons */
+    padding: 10px 0;           /* Optional: Adds some vertical padding */
+}
+
+.cancelButton{
+    color: black;
+    text-decoration: none;
+    padding: 5px 10px 5px 10px;
+    font-size: 16px;
+    border: 1px solid black; 
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.registerButton{
+    font-size: 16px;
+    padding: 5px 10px 5px 10px;
+    background-color: #48C195;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/* =========== | Add Class Button Professor | =========== */
+.addClass{
+    margin-top: 1%;
+    padding: 4px 8px 4px 8px;
+    font-size: 14px;
+    border: 1px solid black; 
+    border-radius: 5px;
+    text-align: center;
+    background-color: white;
+    cursor: pointer;
+}
+
+/* =========== | List of classes Professor | =========== */
+
+/* Styles for the list container */
+.listClass ul {
+    list-style: none; 
+    padding: 0;
+    margin: 0;
+}
+
+/* Styles for each list item */
+.listClass li {
+    background-color: #f2f2f2; /* Light grey background */
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px;
+    padding: 8px 12px; /* Spacing inside each item */
+    margin-bottom: 8px; /* Space between items */
+    display: flex; /* Aligns content of list item */
+    justify-content: space-between; /* Space out content */
+    align-items: center; /* Vertically align content */
+}
+
+/* Styles for the remove button */
+.listClass .removeButton {
+    background: none;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+}

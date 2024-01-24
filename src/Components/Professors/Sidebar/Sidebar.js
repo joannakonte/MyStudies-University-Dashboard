@@ -17,7 +17,7 @@ const Sidebar = ({ currentPath  }) => {
             <div id="mySidenav" className={style.sidenav}>
                 <Link
                     to="/home/professor-profile"
-                    className={currentPath  === '/home/professor-profile' ? style.selected : ''}
+                    className={currentPath.startsWith('/home/professor-profile') ? style.selected : ''}s
                     >
                     <HiOutlineUserCircle /> Προφίλ
                 </Link>

@@ -2,25 +2,66 @@ import React, { useEffect, useState } from 'react';
 import styles from './ProfileProfessor.module.css'; 
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import { useLocation } from 'react-router-dom';
 import { HiOutlineRefresh } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { db } from '../../../firebase';
+import { collection, query, where, getDocs } from 'firebase/firestore';
 
 function ProfileProfessor() {
   
   const location = useLocation();
+  const sdi = localStorage.getItem('sdi');
+  console.log('Current sdi:', sdi);
 
   const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Retrieve data from local storage
-    const storedUserDataJSON = localStorage.getItem('userData');
+    // Fetch user data when the component mounts
+    const fetchData = async () => {
+      try {
+        const user = await getUserBySDI(sdi);
+        setUserData(user);
+      } catch (error) {
+        console.error('Error fetching user:', error.message);
+      } finally {
+        // Set loading to false once the data is fetched (whether successful or not)
+        setLoading(false);
+      }
+    };
 
-    // Parse the JSON string to get the original object
-    const storedUserData = JSON.parse(storedUserDataJSON);
+    fetchData();
+  }, [sdi]);
 
-    // Set the data to the state
-    setUserData(storedUserData);
-  }, []);
+  // Function to fetch user by SDI
+  async function getUserBySDI(sdi) {
+    try {
+      if (!sdi) {
+        console.error('SDI not found in local storage.');
+        return null;
+      }
+  
+      const colRef = collection(db, 'students');
+      const q = query(colRef, where('sdi', '==', sdi));
+      const querySnapshot = await getDocs(q);
+  
+      if (!querySnapshot.empty) {
+        const userData = querySnapshot.docs[0].data(); // Access data directly
+  
+        // Log or inspect the retrieved data
+        console.log('Retrieved user data:', userData);
+  
+        return userData;
+      } else {
+        console.error(`Document with sdi ${sdi} does not exist.`);
+        return null;
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error.message);
+      return null;
+    }
+  }
 
   return(
     <div className={styles.wrapper}>
@@ -134,15 +175,19 @@ function ProfileProfessor() {
                 </div>
 
                 <div className={styles.update_data}>
-                  <button className={styles.dropbtn}>
-                    Επεξεργασία Στοιχείων <HiOutlineRefresh />
-                  </button>
+                  <Link to="/home/professor-profile/update-data" >
+                      <button className={styles.dropbtn}>
+                        Επεξεργασία Στοιχείων <HiOutlineRefresh />
+                      </button>
+                  </Link>
                 </div>
 
                 <div className={styles.update_data}>
-                  <button className={styles.dropbtn}>
-                    Αλλαγή Κωδικού <HiOutlineRefresh />
-                  </button>
+                  <Link to="/home/professor-profile/update-password" >
+                      <button className={styles.dropbtn}>
+                        Αλλαγή Κωδικού <HiOutlineRefresh />
+                      </button>
+                  </Link>
                 </div>
               </div>
 

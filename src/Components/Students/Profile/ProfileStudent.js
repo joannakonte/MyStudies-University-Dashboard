@@ -86,16 +86,6 @@ function ProfileStudent() {
         </div>
 
         <div className={styles.main}>
-          {loading ? (
-            <p>Loading user data...</p>
-          ) : userData ? (
-            <div className={styles.info}>
-              {/* ... Your existing user information rendering ... */}
-            </div>
-          ) : (
-            <p>Error fetching user data</p>
-          )}
-
 
           <div className={styles.buttonContainer}>
             <div className={styles.update_data}>
