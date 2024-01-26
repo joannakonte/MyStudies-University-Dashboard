@@ -9,8 +9,9 @@ function Popup({ message, onClose }) {
   return (
     <div className={styles.popupOverlay}>
       <div className={styles.customPopup}>
+        <div className={styles.header}></div>
         <button className={styles.closeButton} onClick={handleClose}>&times;</button>
-        <p>{message}</p>
+        <h3>{message}</h3>
       </div>
     </div>
   );

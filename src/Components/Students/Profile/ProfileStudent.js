@@ -65,7 +65,7 @@ function ProfileStudent() {
   }
   
   const calculateEctsPercentage = () => {
-    // Assuming that userData.ects is the number of ECTS completed
+
     const ectsCompleted = userData.ects || 0;
     const totalEcts = 240;
 
@@ -203,7 +203,9 @@ function ProfileStudent() {
 
                 <div className={styles.degree}>
                   <h2 className={styles.table_title}>Για πτυχίο...</h2>
-                  <p className={styles.ects}>{userData.ects} / 240 ECTS</p>
+                  <p className={styles.ects}>
+                    {userData.ects !== undefined  ? userData.ects : '0'} / 240 ECTS
+                  </p>
                   <LoadingBar
                     bgcolor="var(--student-color)"
                     progress={calculateEctsPercentage()}

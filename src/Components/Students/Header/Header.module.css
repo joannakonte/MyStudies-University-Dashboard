@@ -5,7 +5,7 @@
       'logos breadcrumb profile'
       'logos page_title page_title ';
     grid-template-columns: 15% 65% 20%;
-    grid-template-rows: 45% 70%;
+    grid-template-rows: 45% 55%;
     /* row-gap: 5px; */
     /* gap: 10px; */
     background-color: white;

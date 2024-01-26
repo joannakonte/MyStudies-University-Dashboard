@@ -12,6 +12,11 @@ h2{
     color: black;
 }
 
+.register{
+    font-size: 30px;
+    font-weight: 800;
+}
+
 .buttonsContainer {
     display: flex;
     justify-content: center; /* Center the buttons horizontally */

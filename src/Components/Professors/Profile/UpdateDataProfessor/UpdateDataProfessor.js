@@ -358,7 +358,7 @@ function UpdateDataProfessor() {
                             Αποθήκευση
                         </button>
                         {showPopup && (
-                        <Popup message="Τα δεδομένα σας ενημερώθηκαν επιτυχώς" onClose={closePopup} />
+                        <Popup message="Τα δεδομένα σας ενημερώθηκαν επιτυχώς." onClose={closePopup} />
                         )}
                     </div>
                 </div>

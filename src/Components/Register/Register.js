@@ -19,7 +19,7 @@ function Register() {
                 <Navbar />
             </div>
             <div className={styles.container}> 
-                <h2>Θέλω να εγγραφώ ως</h2>
+                <h2 className={styles.register}>Θέλω να εγγραφώ ως</h2>
                 <div className={styles.buttonsContainer}>
                     <button
                         className={`${styles.button} ${selectedForm === 'student' ? styles.activeButton : ''}`}

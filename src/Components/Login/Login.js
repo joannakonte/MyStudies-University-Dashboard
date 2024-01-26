@@ -53,7 +53,7 @@ function Login() {
           if (user_type === 'professor') {
             navigate('/home/professor-profile'); 
           } else {
-            navigate('/home/classes'); // Student route
+            navigate('/home/profile'); // Student route
           }
 
           console.log('Found User:', docSnapshot.data());
@@ -79,15 +79,15 @@ function Login() {
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        {/* <Navbar /> */}
 
         {/* Header */}
         <div className={styles.header}>
-          <h2>Σύνδεση</h2>
-
+          <h2 className={styles['login-h2']}>Σύνδεση Χρήστη</h2>
           <Link to='/home' className={styles['dropdown-option']}>
             <button className={styles.closeButton}>
-              <FontAwesomeIcon icon={faTimes} />
+              <span className={styles.iconContainer}>
+                <FontAwesomeIcon icon={faTimes} />
+              </span>
             </button>
           </Link>
         </div>

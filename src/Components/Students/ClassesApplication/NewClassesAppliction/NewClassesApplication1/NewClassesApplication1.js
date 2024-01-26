@@ -12,7 +12,7 @@ import { collectionGroup, getDocs, orderBy, query, limit, where } from 'firebase
 
 function NewClassesApplication1() {
   const [selectedSemester, setSelectedSemester] = useState(1);
-  const [mostRecentApplicationId, setMostRecentApplicationId] = useState(null);
+  const [mostRecentApplicationId, setMostRecentApplicationId] = useState([]);
   const stages = ['Προτεινόμενα Μαθήματα', 'Επιλογή Μαθημάτων', 'Υποβολή Δήλωσης'];
 
   const location = useLocation();
@@ -68,16 +68,21 @@ function NewClassesApplication1() {
       <div className={styles.main}>
         <ProcessBar stages={stages} currentStage={0} />
 
-        <div className={styles.TableComponent2Grid}>
-          <TableComponent2 
-          showOptionColumn={true}
-          selectedSemester={selectedSemester}
-          pageStyle={appstyle} 
-          grade={false} 
-          applicationId={mostRecentApplicationId} 
-          appStep1={true} 
-          showmarkedclasses={true} />
-        </div>
+        {mostRecentApplicationId.length === 0 ? (
+          <div className={styles.TableComponent2Grid}>
+            <TableComponent2 
+              showOptionColumn={true}
+              selectedSemester={selectedSemester}
+              pageStyle={appstyle} 
+              grade={false} 
+              applicationId={mostRecentApplicationId} 
+              appStep1={true} 
+              showmarkedclasses={true} 
+            />
+          </div>
+        ) : (
+          <div>Δεν υπάρχουν προτεινόμενα μαθήματα. Μπορείς να προχωρήσεις στο επόμενο βήμα.</div>
+        )}
 
         <div className={styles['next']}>
           <Link to="/home/history-applications/new-application1/new-application2" className={styles['next-page']}>

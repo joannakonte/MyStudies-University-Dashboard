@@ -100,7 +100,7 @@ function RegisterStudent() {
             <form>
                 <div className={styles.formContainer}>
                     <div className={styles.personalDetailsContainer}>
-                        <h2 className={styles.title}>Προσωπικά Στοιχεία</h2>
+                        <h2 className={styles.title}>Προσωπικά Στοιχεία Φοιτητή</h2>
                         <hr className={styles.titleSeparator} />
 
                         <div className={styles.columns}>

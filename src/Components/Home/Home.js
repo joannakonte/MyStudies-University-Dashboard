@@ -38,7 +38,8 @@ function Home() {
       <ScrollToTopButton />
 
       {/* Header  */}
-      <Navbar  className={styles.navbar}/>
+      {/* <Navbar  className={styles.navbar}/> */}
+      <Navbar className={`${styles.navbar}`} />
 
       {/* Slider */}
       <section id="home">
@@ -64,26 +65,26 @@ function Home() {
           <div className={styles.container}>
             <div className={styles.box} id="students">
               <img src={student_icon} alt="Student" className={styles['box-image']} />
-              <h2>Φοιτητές-τριες</h2>
-              <p className={styles['box-text']}>Όλοι οι φοιτητές μέσω της Ηλεκτρονικής Γραμματεία έχουν τη δυνατότητα 
-              να περιηγηθούν στο Πρόγραμμα Σπουδών του Τμήματός τους, να κάνουν ηλεκτρονικά τη Δήλωση Μαθημάτων τους 
-              για το κάθε εξάμηνο, να δουν αναλυτικά τη Βαθμολογία τους, καθώς και να αιτηθούν Πιστοποιητικά.</p>
+              <h2>Φοιτητές/τριες</h2>
+              <p className={styles['box-text']}>Οι φοιτητές μέσω του my-studies έχουν τη δυνατότητα 
+              να δουν το πρόγραμμα σπουδών του τμήματός τους, να κάνουν ηλεκτρονικά τη δήλωση μαθημάτων τους 
+              για το κάθε εξάμηνο, να δουν αναλυτικά τη βαθμολογία τους, καθώς να αιτηθούν και να παραλάβουν πιστοποιητικά.</p>
             </div>
 
             <div className={styles.box} id="instructors">
             <img src={professors_icon} alt="Professors" className={styles['box-image']} />
               <h2>Διδάσκοντες</h2>
-              <p className={styles['box-text']}>Οι εγγεγραμμένοι Διδάσκοντες, μέσω της Ηλεκτρονικής Γραμματείας 
-              έχουν τη δυνατότητα να δουν τα Μαθήματα που διδάσκουν ανά εξάμηνο, καθώς και να προσθέσουν Βαθμολογία 
-              για αυτά, σε όλους τους Φοιτητές.</p>
+              <p className={styles['box-text']}>Οι διδάσκοντες, μέσω του my-studies
+              έχουν τη δυνατότητα να δουν τα μαθήματα που διδάσκουν ανά εξάμηνο, καθώς και να υποβάλουν βαθμολογία 
+              για αυτά, σε όλους τους φοιτητές.</p>
             </div>
 
             <div className={styles.box} id="secretary">
               <img src={secretariat_icon} alt="Secretary" className={styles['box-image']} />
               <h2>Γραμματεία</h2>
-              <p className={styles['box-text']}>Τα μέλη τα Γραμματείας μπορούν να ανοίξουν τις Δηλώσεις των Μαθημάτων, 
-              να εγκρίνουν ή να απορρίψουν τις αιτήσεις Πιστοποιητικών των Φοιτητών, και να επεξεργαστούν τα στοιχεία όλων 
-              των εγγεγραμμένων Φοιτητών και Καθηγητών</p>
+              <p className={styles['box-text']}>Τα μέλη τα γραμματείας, μέσω του my-studies μπορούν να ανοίξουν τις δηλώσεις των μαθημάτων, 
+              να εγκρίνουν ή να απορρίψουν τις αιτήσεις πιστοποιητικών των φοιτητών, και να επεξεργαστούν τα στοιχεία όλων 
+              των εγγεγραμμένων φοιτητών και καθηγητών.</p>
             </div>
           </div>
         </div>
@@ -126,7 +127,7 @@ function Home() {
               <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '10px', fontSize: '24px' }} />
               <a href="mailto:secret@di.uoa.gr" style={{ textDecoration: 'none', color: 'inherit' }}>secret@di.uoa.gr</a>
             </h3>
-            <h3>
+            <h3 className={styles.container_h3}>
               <FontAwesomeIcon icon={faClock} style={{ marginRight: '10px', fontSize: '24px' }}/>
               Καθημερινά 11:00-13:00 <br/> Δευτέρα – Τρίτη - Τετάρτη 16:00-18:00
             </h3>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation} from 'react-router-dom';
 import styles from './NewClassesApplication3.module.css'; 
 import { collection, updateDoc, doc, addDoc, serverTimestamp, deleteDoc } from 'firebase/firestore';
 import { HiCheck, HiChevronLeft } from 'react-icons/hi2';
@@ -75,13 +75,11 @@ function NewClassesApplication3() {
       console.log('Application ' + (isTemporary ? 'temporarily ' : '') + 'saved successfully!');
 
       if (isTemporary) {
-        setPopupMessage('Η δήλωση σας αποθηκεύτηκε προσωρινά');
+        setPopupMessage('Η δήλωση σας αποθηκεύτηκε προσωρινά.');
         setShowPopup(true);
-        // window.location.href = '/home/history-applications';
       } else {
         setPopupMessage('Η δήλωση σας οριστικοποιήθηκε επιτυχώς!');
         setShowPopup(true);
-        // window.location.href = '/home/history-applications';
       }
     } catch (error) {
       setPopupMessage('Δημιουργήθηκε κάποιο πρόβλημα κατα την δημιουργία της αίτησής σας. Παρακαλώ προσπαθήστε ξανά σε λίγο ');
@@ -90,9 +88,11 @@ function NewClassesApplication3() {
     }
   };
 
+  const navigate = useNavigate();
+
   const handleClosePopup = () => {
     setShowPopup(false);
-    window.location.href = '/home/history-applications';
+    navigate('/home/history-applications');
   };
 
   const location = useLocation();

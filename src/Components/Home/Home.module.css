@@ -7,6 +7,15 @@
     height: 400px;
 }
 
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000; /* Adjust as needed */
+    background-color: #fff; /* Adjust background color as needed */
+    padding: 10px 0; /* Adjust padding as needed */
+    width: 100%; /* Ensure the navbar spans the full width of the viewport */
+  }
+
 p{
     display: flex;
     flex-direction: column;
@@ -125,6 +134,10 @@ h1, h2 {
 
 .box-contact h3:hover {
     color: var(--home-color); 
+}
+
+.container_h3 {
+    cursor: pointer;
 }
 
 .map-background {

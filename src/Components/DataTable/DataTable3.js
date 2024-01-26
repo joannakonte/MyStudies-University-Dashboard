@@ -109,7 +109,7 @@ const TableComponent3 = ({ collectionName }) => {
                           onClick={() => { console.log('Button clicked'); handleDownload(); }}
                           disabled={rowData.status !== 'Εγκρίθηκε'}
                         >
-                          <HiArrowDownTray />
+                          <HiArrowDownTray size={20}/>
                         </button>
                       </div>
                     ) : (

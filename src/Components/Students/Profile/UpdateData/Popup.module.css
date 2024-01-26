@@ -25,9 +25,22 @@
   text-align: center;
 }
 
+.header {
+  background-color: rgba(13, 139, 217, 0.7);
+  width: 100%; 
+  margin: 0;
+  padding: 20px; 
+  border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
+  font-weight: bold;
+  color: white;
+  width: calc(100% + 40px); 
+  margin-left: -20px; 
+  box-sizing: border-box;
+}
+
 .closeButton {
   position: absolute;
-  top: 3%;
+  top: 2%;
   right: 1%;
   width: 30px;
   height: 30px;
@@ -39,7 +52,7 @@
   text-align: center;
   font-size: 30px;
   cursor: pointer;
-  color: #004E7F;
+  color: rgba(13, 139, 217, 0.6); 
   transition: background-color 0.3s ease;
   border: 0px solid;
   z-index: 10;

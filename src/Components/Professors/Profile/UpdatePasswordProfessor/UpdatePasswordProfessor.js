@@ -168,7 +168,7 @@ function UpdatePasswordProfessor() {
                 Αλλαγή Κωδικού
             </button>
             {showPopup && (
-              <Popup message="Ο κωδικός σας ενημερώθηκε επιτυχώς" onClose={closePopup} />
+              <Popup message="Ο κωδικός σας ενημερώθηκε επιτυχώς." onClose={closePopup} />
             )}
           </div>
                     

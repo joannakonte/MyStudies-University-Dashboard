@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import style from './HistoryApplications.module.css';
 import Header from '../../Header/Header';
 import Sidebar from '../../Sidebar/Sidebar';
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { db } from '../../../../firebase';
 import { collectionGroup, getDocs, query, orderBy} from 'firebase/firestore';
 import TableComponent2 from '../../../DataTable/DataTable2';
@@ -50,34 +50,31 @@ function HistoryApplications() {
       </div>
 
       <div className={style.main}>
-        <div className={style['new-applic']}>
-          <a href="/home/history-applications/new-application1" className={style['new-app']}>
-            <HiMiniPlus /> Nέα Δήλωση
-          </a>
-        </div>
-
-        {applications.length === 0 ? (
-          <div className={style['no-applications']}>
-            Δεν έχεις πραγματοποιήσει καμία δήλωση μέχρι στιγμής.
+        <div className={style.main_grid}>
+          <div className={style['new-applic']}>
+            <Link to="/home/history-applications/new-application1" className={style['new-app']}>
+              <HiMiniPlus className={style['plus']}/> Nέα Δήλωση
+            </Link>
           </div>
-        ) : (
-          applications.map(application => (
-            <TableComponent2
-              key={application.id}
-              showOptionColumn={false}
-              pageStyle={appstyle}
-              showAllData={true}
-              collectionName={'applcations'}
-              grade={false}
-              showSubmissionInfo={true}
-              applicationId={application.id}
-            />
-          ))
-        )}
 
-
-        <div className={style['space_down']}>
-          
+          {applications.length === 0 ? (
+            <div className={style['no-applications']}>
+              Δεν έχεις πραγματοποιήσει καμία δήλωση μέχρι στιγμής.
+            </div>
+          ) : (
+            applications.map(application => (
+              <TableComponent2
+                key={application.id}
+                showOptionColumn={false}
+                pageStyle={appstyle}
+                showAllData={true}
+                collectionName={'applcations'}
+                grade={false}
+                showSubmissionInfo={true}
+                applicationId={application.id}
+              />
+            ))
+          )}
         </div>
 
       </div>

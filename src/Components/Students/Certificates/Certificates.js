@@ -63,16 +63,16 @@ function Certificates(){
             </div>
 
             <div className={styles.main}>
+
+              <CertificatePopUp
+                  certificateType={certificateType}
+                  setCertificateType={setCertificateType}
+                  certificateNumber={certificateNumber}
+                  setCertificateNumber={setCertificateNumber}
+                  handleCertificateSubmit={handleCertificateSubmit}
+              />
               <TableComponent3 collectionName={'certificates'}/>
             </div>
-
-            <CertificatePopUp
-                certificateType={certificateType}
-                setCertificateType={setCertificateType}
-                certificateNumber={certificateNumber}
-                setCertificateNumber={setCertificateNumber}
-                handleCertificateSubmit={handleCertificateSubmit}
-            />
 
         </div>
     );

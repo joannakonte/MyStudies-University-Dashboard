@@ -83,11 +83,11 @@ function Navbar() {
 
           <div className={styles['nav-links']}>
 
-          <a href="/home#home" className={styles.link}>
+          <Link to="/home" className={styles.link}>
             <button className={styles.menu_item}>
               Αρχική
             </button>
-          </a>
+          </Link>
 
 
           <div>

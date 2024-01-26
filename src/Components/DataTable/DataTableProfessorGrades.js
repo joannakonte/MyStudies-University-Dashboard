@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import styles from './DataTable.module.css';
 import { HiMiniPencil, HiArrowDownTray, HiArrowsUpDown, HiOutlineEye } from 'react-icons/hi2';
+import { HiOutlineArrowRight } from 'react-icons/hi';
 import PopUp from './PopUp';
 import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
 import items from '../../data/dataTablegradesProfessorHeader.json';
@@ -231,27 +232,26 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
                     ) : (
                       <>
                         <button className={styles.download_button} onClick={() => handleDownload(rowData, 'pdf')}>
-                          <IoMdDocument /> Download PDF
+                          <HiArrowDownTray />  PDF
                         </button>
                         <button className={styles.download_button} onClick={() => handleDownload(rowData, 'excel')}>
-                          <IoMdDocument /> Download Excel
+                          <HiArrowDownTray />  Excel
                         </button>
 
-                        {/* <HiArrowDownTray
-                          style={{ fontSize: '24px', cursor: 'pointer', left: '25%', paddingRight: '15%' }}
-                          onClick={() => handleDownload(rowData)}
-                        /> */}
                         {/* Use handleEyeClick for the eye icon */}
-                        <HiOutlineEye
-                          onClick={() => handleEyeClick(rowData)}
-                          style={{ fontSize: '24px', cursor: 'pointer' }}
-                        />
+                        <button className={styles.circle} onClick={() => handleEyeClick(rowData)}>
+
+                          <HiOutlineArrowRight 
+                            // onClick={() => handleEyeClick(rowData)}
+                            // style={{ fontSize: '24px', cursor: 'pointer' }}
+                          />
+                        </button>
                       </>
                     )
                   ) : field.collectionfield === 'submission' ? (
                     'himinipecin'
                   ) : field.collectionfield === 'details' ? (
-                    <HiOutlineEye />
+                    <HiOutlineArrowRight  />
                   ) : (
                     formatDateCell(field.collectionfield, rowData[field.collectionfield])
                   )}
