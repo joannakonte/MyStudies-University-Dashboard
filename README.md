@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ### Students:
 #### Account 1
 **Username:** sdi2000093</br>
-**Password:** 123456
+**Password:** 123123123
 
 #### Account 2
 **Username:** sdi2000227</br>
