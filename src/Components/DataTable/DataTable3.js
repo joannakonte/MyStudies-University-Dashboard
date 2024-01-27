@@ -7,23 +7,13 @@ import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUt
 import items from "../../data/dataTableHeaderCert.json";
 import CertificatePDF from '../../images/Certificate.pdf';
 
-// import html2canvas from 'html2canvas';
-// import jsPDF from 'jspdf';
-
-
 const handleDownload = () => {
-  // Create a link element
   const link = document.createElement('a');
-
-  // Set the attributes for the link
   link.href = CertificatePDF;
   link.target = '_blank';
   link.download = 'Certificate.pdf';
-
-  // Trigger a click on the link
   link.click();
 };
-
 
 const TableComponent3 = ({ collectionName }) => {
   const [info, setInfo] = useState([]);
@@ -42,27 +32,18 @@ const TableComponent3 = ({ collectionName }) => {
       sortColumn,
       sortOrder,
       searchQuery
-      );
-      setFilteredAndSortedData(updatedFilteredData);
-    }, [info, sortColumn, sortOrder, searchQuery]);
+    );
+    setFilteredAndSortedData(updatedFilteredData);
+  }, [info, sortColumn, sortOrder, searchQuery]);
 
   const fetchData = async () => {
     try {
-      // Retrieve studentId from the imported function
       const studentId = await findStudentById();
-      
-      // Use studentId to filter the certificates
       const certificatesCollection = collection(db, collectionName);
-      // const querySnapshot = await getDocs(certificatesCollection);
-      // const certificatesData = querySnapshot.docs
-      //   .map((doc) => doc.data())
-      //   .filter((certificate) => certificate.studentId === studentId);
       const q = query(certificatesCollection, orderBy('reqdate', 'desc'), where('studentId', '==', studentId));
       const querySnapshot = await getDocs(q);
       const certificatesData = querySnapshot.docs.map((doc) => doc.data());
-        
       setInfo(certificatesData);
-      console.log('Data:', certificatesData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -81,49 +62,50 @@ const TableComponent3 = ({ collectionName }) => {
     setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
   };
   
-  
-
   return (
     <div className={`${styles['table-container']} ${styles['certif']}`}>
-      <table className={styles.table}>
-        <thead>
-          <tr className={styles['table-header']}>
-            {items.map((field, index) => (
-              <th key={index} className={`${styles['table-cell']} `} onClick={() => toggleSortOrder(field.collectionfield)}>
-                {field.title} {<HiArrowsUpDown className={styles.icon} />}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {filteredAndSortedData.map((rowData, index) => (
-            <tr key={index} className={`${styles['table-row']}`}>
-              {items.map((field, fieldIndex) => (
-                <td key={fieldIndex} className={`${styles['table-cell']} ${styles[field.collectionfield]}`}>
-                  {field.collectionfield === 'download' ? (
-                    rowData.status === 'Εγκρίθηκε' ? (
-                      // <HiArrowDownTray onClick={handleDownload}/> 
-                      <div id="pdf-content">
-                        <button
-                          className={`${styles['download-button']} ${rowData.status === 'Εγκρίθηκε' ? styles.active : ''}`}
-                          onClick={() => { console.log('Button clicked'); handleDownload(); }}
-                          disabled={rowData.status !== 'Εγκρίθηκε'}
-                        >
-                          <HiArrowDownTray size={20}/>
-                        </button>
-                      </div>
-                    ) : (
-                      '' 
-                    )
-                  ) : (
-                    formatDateCell(field.collectionfield, rowData[field.collectionfield])
-                  )}
-                </td>
+      {filteredAndSortedData.length === 0 ? (
+        <p className={styles.noCertificates}>Δεν έχει γίνει κάποια αίτηση για πιστοποιητικό μέχρι στιγμής.</p>
+      ) : (
+        <table className={styles.table}>
+          <thead>
+            <tr className={styles['table-header']}>
+              {items.map((field, index) => (
+                <th key={index} className={`${styles['table-cell']} `} onClick={() => toggleSortOrder(field.collectionfield)}>
+                  {field.title} {<HiArrowsUpDown className={styles.icon} />}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredAndSortedData.map((rowData, index) => (
+              <tr key={index} className={`${styles['table-row']}`}>
+                {items.map((field, fieldIndex) => (
+                  <td key={fieldIndex} className={`${styles['table-cell']} ${styles[field.collectionfield]}`}>
+                    {field.collectionfield === 'download' ? (
+                      rowData.status === 'Εγκρίθηκε' ? (
+                        <div id="pdf-content">
+                          <button
+                            className={`${styles['download-button']} ${rowData.status === 'Εγκρίθηκε' ? styles.active : ''}`}
+                            onClick={() => { console.log('Button clicked'); handleDownload(); }}
+                            disabled={rowData.status !== 'Εγκρίθηκε'}
+                          >
+                            <HiArrowDownTray size={20}/>
+                          </button>
+                        </div>
+                      ) : (
+                        '' 
+                      )
+                    ) : (
+                      formatDateCell(field.collectionfield, rowData[field.collectionfield])
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
