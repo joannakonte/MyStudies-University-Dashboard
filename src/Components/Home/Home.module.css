@@ -10,10 +10,10 @@
 .navbar {
     position: sticky;
     top: 0;
-    z-index: 1000; /* Adjust as needed */
-    background-color: #fff; /* Adjust background color as needed */
-    padding: 10px 0; /* Adjust padding as needed */
-    width: 100%; /* Ensure the navbar spans the full width of the viewport */
+    z-index: 1000; 
+    background-color: #fff; 
+    padding: 10px 0; 
+    width: 100%; 
   }
 
 p{
@@ -248,6 +248,5 @@ h1, h2 {
 
 .box-2 a:hover {
     color: #e51616; 
-    /* color: var(--red);  */
 }
 

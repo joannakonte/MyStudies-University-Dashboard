@@ -6,19 +6,11 @@
       'logos page_title page_title ';
     grid-template-columns: 15% 65% 20%;
     grid-template-rows: 45% 70%;
-    /* row-gap: 5px; */
-    /* gap: 10px; */
     background-color: white;
-    /* position: fixed; */
-    /* padding-bottom: 15%; */
 }
   
 .grid_container > div {
-    /* background-color: rgba(255, 255, 255, 0.8); */
     text-align: left;
-    /* border: 1px solid #000000; */
-    /* padding: 20px 0; */
-    /* font-size: 30px; */
 }
 
 .item1 { 
@@ -65,8 +57,8 @@
 
 /* ================ | Breadcrumb |================ */
 .breadcrumb {
-    padding-top: 1.5%;
-    font-size: 130%;
+    padding-top: 1.6%;
+    font-size: 120%;
     margin-left: 2.7%;
 }
 

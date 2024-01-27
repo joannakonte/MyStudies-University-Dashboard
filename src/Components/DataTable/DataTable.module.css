@@ -115,18 +115,11 @@ table {
     margin-left: 3px; 
     cursor: pointer;
 }
-
-
-  
+ 
 
 .selected-class-details{
     margin-top: 20px;
     clear: both;
-}
-
-
-.certif {
-    /* margin-left: 50%; */
 }
 
 
@@ -140,6 +133,30 @@ table {
 
 .download_button {
     margin-right: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 120%;
+    cursor: pointer;
+}
+
+.download_button:hover{
+    color: var(--professors);
+}
+
+.circle {
+    margin-right: 10px;
+    border: none;
+    background-color: transparent;
+    font-size: 120%;
+    cursor: pointer;
+}
+
+.circle:hover{
+    color: var(--professors);
+}
+
+.icon_h2 {
+    margin-right: 5px;
 }
 
 .noCertificates {

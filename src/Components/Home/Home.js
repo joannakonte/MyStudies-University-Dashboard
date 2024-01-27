@@ -38,7 +38,6 @@ function Home() {
       <ScrollToTopButton />
 
       {/* Header  */}
-      {/* <Navbar  className={styles.navbar}/> */}
       <Navbar className={`${styles.navbar}`} />
 
       {/* Slider */}

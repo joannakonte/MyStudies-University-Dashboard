@@ -31,7 +31,7 @@
     padding-left: 2%;
     padding-right: 2%;
     padding-bottom: 2%;
-    min-height: 500px;
+    min-height: 800px;
     overflow-y: auto;
 }
 
@@ -65,7 +65,7 @@
 
 .columns {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Creates two columns */
+    grid-template-columns: 1fr 1fr; 
     gap: 20px; 
 }
 
@@ -93,7 +93,7 @@ sup {
 
 .labelText {
     font-weight: bold;
-    margin-bottom: 5px; /* Adds space between label text and the input */
+    margin-bottom: 5px; 
 }
 
 .dateField{
@@ -147,8 +147,8 @@ sup {
 
 .select-arrow {
     position: absolute;
-    right: 10px; /* Adjust as needed */
-    top: 50%; /* Center vertically */
+    right: 10px; 
+    top: 50%; 
     transform: translateY(-60%); 
     pointer-events: none; 
 }
@@ -165,9 +165,9 @@ sup {
 /* =========== | Register Form Buttons | =========== */
 .buttonContainer {
     display: flex;
-    justify-content: flex-end; /* Aligns buttons to the right */
-    gap: 10px;                 /* Adds space between buttons */
-    padding: 10px 0;           /* Optional: Adds some vertical padding */
+    justify-content: flex-end; 
+    gap: 10px;               
+    padding: 10px 0;          
 }
 
 .cancelButton{
@@ -217,14 +217,14 @@ sup {
 
 /* Styles for each list item */
 .listClass li {
-    background-color: #f2f2f2; /* Light grey background */
-    border: 1px solid #ddd; /* Light border */
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    padding: 8px 12px; /* Spacing inside each item */
-    margin-bottom: 8px; /* Space between items */
-    display: flex; /* Aligns content of list item */
-    justify-content: space-between; /* Space out content */
-    align-items: center; /* Vertically align content */
+    padding: 8px 12px; 
+    margin-bottom: 8px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
 }
 
 /* Styles for the remove button */

@@ -130,7 +130,7 @@ const PopUp = ({ isOpen, onClose, selectedClass }) => {
                                 </thead>
                                 <tbody>
                                     <tr className="tableRow">
-                                        <td className="table-cell">Data Row 1</td>
+                                        <td className="table-cell">{selectedClass.book}</td>
                                     </tr>
                                 </tbody>
                                 </table>

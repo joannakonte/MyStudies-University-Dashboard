@@ -100,10 +100,10 @@ function Header() {
                 </a>
             </div>
 
-            {/* Breadcrumb */}
+            {/* Breadcrumb  */}
             <div className={style.item2}>
                 <div className={style.breadcrumb}>
-                    <Breadcrumb />
+                    <Breadcrumb userType={"student"} />
                 </div>
             </div>  
 

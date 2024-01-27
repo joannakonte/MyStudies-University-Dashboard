@@ -49,10 +49,6 @@ function Navbar() {
     return () => {
       setIsLoginOpen(false);
     };
-
-    // Retrieve data from local storage
-
-    // Parse the JSON string to get the original object
   }, []);
 
 

@@ -1,9 +1,8 @@
 .process-bar {
   display: flex;
   align-items: center;
-  /* position: absolute; */
-  background-color: rgba(13, 139, 217, 0.1);
-  border: 0.5px solid rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 78, 127, 0.10);
+  border: 1px solid #004e7f;
   border-radius: 5px;
   padding: 15px;
   width: 100%;
@@ -29,7 +28,8 @@
 }
 
 .process-stage.active {
-  color: rgba(13, 139, 217, 0.6);
+  color: var(--professors);
+  font-weight: 800;
 }
 
 .process-stage.next {

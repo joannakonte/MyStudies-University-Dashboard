@@ -104,7 +104,7 @@ function Header() {
             {/* Breadcrumb */}
             <div className={style.item2}>
                 <div className={style.breadcrumb}>
-                    <Breadcrumb />
+                    <Breadcrumb userType={"professor"} />
                 </div>
             </div>  
 

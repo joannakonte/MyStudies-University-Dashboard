@@ -10,7 +10,6 @@
 .ekpa-logo {
   max-width: 220px; 
   margin-left: 20px;
-  /* margin-top: -20px;  */
 }
 
 .my-studies-logo{
@@ -32,10 +31,6 @@
   border-radius: 5px;
   cursor: pointer;
   font-size: 90%;
-  
-
-  /* Transition for a smooth hover effect */
-  /* transition: background-color 0.3s ease; */
 }
 
 .link:hover .menu_item {
@@ -44,21 +39,17 @@
 }
 
 
-
-
-
 .logo-and-nav {
   display: flex;
-  justify-content: space-between; /* Space between logo/nav and login button */
+  justify-content: space-between; 
   align-items: center;
-  width: 100%; /* Full width */
+  width: 100%;
 }
 
 .navbar {
   position: sticky;
   font-size: 18px;
-  /* display: flex; */
-  justify-content: center; /* Align items to the left */
+  justify-content: center; 
   align-items: center;
   padding: 8px 16px;
   background: white;
@@ -125,18 +116,14 @@
 
 .dropdown2-option {
   cursor: pointer;
-  text-decoration: none; /* Remove underline */
-  color: #000000; /* Set your desired text color */
-  transition: color 0.3s ease; /* Add a smooth color transition on hover */
+  text-decoration: none; 
+  color: #000000; 
+  transition: color 0.3s ease; 
 }
 
 .dropdown2-option:hover {
-  color: #ffffff; /* Set your desired color on hover */
+  color: #ffffff; 
 }
-
-
-
-
 
 
 .dropdown_profile {
@@ -243,7 +230,7 @@
 /* ================== | Arrow Down Icon |================== */
 .dropbtn .fa-chevron-down {
   color: var(--home-color);
-  margin-left: 2px;  /* Space between text and icon */
+  margin-left: 2px; 
   vertical-align: middle;
 }
 

@@ -9,31 +9,19 @@
   
 .department {
     grid-area: department;
-    /* border: 2px solid blue;
-    background-color: rgba(0, 0, 255, 0.3); */
-    /* background-color: blue; */
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: rgba(0, 0, 255, 0.3); */
     margin-top: 15%;
     margin-bottom: 10%;
-
-    /* height: 150%; */
 }
   
 .menu {
     display: flex;
-
     grid-area: menu;
     flex-direction: column;
     justify-content: top;
-    /* border: 2px solid #ff0000; */
-    /* background-color: red; */
-    /* background-color: rgba(255, 0, 0, 0.3); */
-  
     height: 100%;
 }
   

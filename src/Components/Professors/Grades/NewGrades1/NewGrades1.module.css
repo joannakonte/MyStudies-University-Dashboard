@@ -10,27 +10,14 @@
   
 .header {
     grid-area: header;
-    /* grid-column: 1 / 4;
-    grid-row: 1; */
-    /* border: 2px solid blue; */
-    /* background-color: rgba(0, 0, 255, 0.3); */
-    /* background-color: blue; */
     background-color: rgb(255, 255, 255);
-  
     position: fixed;
-    /* width: 100%; */
-    /* height:  15%; */
     z-index: 2;
 }
   
 .sidebar {
     grid-area: sidebar;
-    /* grid-column: 1;
-    grid-row: 2 / 4; */
-    /* border: 2px solid #ff0000; */
-    background-color: rgba(0, 78, 127, 0.50);
-    /* background-color: rgba(255, 0, 0, 0.3); */
-  
+    background-color: rgba(0, 78, 127, 0.50);  
     position: fixed;
     height: 100%;
     width: 15%;
@@ -44,11 +31,6 @@
     padding-left: 2%;
     padding-right: 5%;
     padding-bottom: 2%;
-    /* grid-column: 2 / 4;
-    grid-row: 2 / 4; */
-    /* border: 2px solid green; */
-    /* background-color: green; */
-    /* background-color: rgba(0, 255, 55, 0.3); */
 }
 
 /* ================ | infoBox |================ */
@@ -91,8 +73,8 @@
 
 .select-arrow {
     position: absolute;
-    right: 10px; /* Adjust as needed */
-    top: 50%; /* Center vertically */
+    right: 10px; 
+    top: 50%; 
     transform: translateY(-60%); 
     pointer-events: none; 
 }
@@ -145,8 +127,8 @@
 /* =========== | PopUp | =========== */
 .buttonWrapper {
     display: flex;
-    justify-content: flex-end; /* Aligns the child (submit button) to the right */
-    margin-top: auto; /* Optional, ensures it sticks to the bottom */
+    justify-content: flex-end; 
+    margin-top: auto; 
     gap: 10px;
 }
 
@@ -205,7 +187,7 @@
     width: 100%; 
     margin: 0;
     padding: 20px; 
-    border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
+    border-radius: 8px 8px 0 0; 
     width: calc(100% + 40px); 
     margin-left: -20px; 
     box-sizing: border-box;
@@ -215,7 +197,7 @@
     width: 500px;
     height: 150px;
     padding: 20px;
-    padding-top: 0; /* Remove padding at the top */
+    padding-top: 0; 
     border-radius: 8px;
     position: absolute;
     background-color: white;
@@ -229,7 +211,7 @@
     width: 500px;
     height: 180px;
     padding: 20px;
-    padding-top: 0; /* Remove padding at the top */
+    padding-top: 0; 
     border-radius: 8px;
     position: absolute;
     background-color: white;
@@ -244,9 +226,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999; /* Ensure it's below the popup but above other content */
+    z-index: 999;
 }

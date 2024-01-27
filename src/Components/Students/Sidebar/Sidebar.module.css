@@ -9,37 +9,22 @@
   
 .department {
     grid-area: department;
-    /* border: 2px solid blue;
-    background-color: rgba(0, 0, 255, 0.3); */
-    /* background-color: blue; */
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* background-color: rgba(0, 0, 255, 0.3); */
-
     height: 100%;
 }
   
 .menu {
     grid-area: menu;
-    /* border: 2px solid #ff0000; */
-    /* background-color: red; */
-    /* background-color: rgba(255, 0, 0, 0.3); */
-  
     height: 100%;
 
 }
   
 .buttons {
     grid-area: buttons;
-    /* border: 2px solid green; */
-    /* background-color: green; */
-    /* background-color: rgba(0, 255, 55, 0.3); */
-
     height: 100%;
-
 }
 
 /* ================ | Department Title |================ */
