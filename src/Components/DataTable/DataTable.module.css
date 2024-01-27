@@ -60,10 +60,6 @@ table {
     margin-left: 1px;
 }
 
-.table-cell.class {
-    /* width: 0%;  */
-}
-
 .eye {
     text-align: center;
     padding: 12px;
@@ -166,4 +162,22 @@ table {
     font-size: 120%;
     margin-top: 10%;
     color: rgba(0, 0, 0, 0.7);
+}
+
+.pencil {
+    font-size: 150%;
+    top: 50%;
+    cursor: pointer;
+}
+
+.situation{
+    font-size: 120%;
+    font-weight: 500;
+}
+
+.seperate{
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 200%;
+    font-weight: 200;
 }

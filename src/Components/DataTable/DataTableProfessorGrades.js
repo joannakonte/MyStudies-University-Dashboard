@@ -4,14 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import styles from './DataTable.module.css';
 import { HiMiniPencil, HiArrowDownTray, HiArrowsUpDown, HiArrowUturnRight } from 'react-icons/hi2';
-import { HiOutlineArrowRight } from 'react-icons/hi';
 import { filterAndSortDataNew, findStudentById, formatDate } from './DataTableUtils';
 import items from '../../data/dataTablegradesProfessorHeader.json';
-import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
-import { IoMdDocument } from 'react-icons/io';
 
 
 const TableComponentProfessorClasses = ({ collectionName }) => {
@@ -46,7 +43,6 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
       });
 
       setInfo(classesData);
-      console.log('classesData:', classesData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -54,7 +50,7 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
 
   const formatDateCell = (fieldName, fieldValue) => {
     if (fieldName === 'subdate' || fieldName === 'createdate') {
-      return fieldValue ? formatDate(fieldValue) : '';
+      return fieldValue && fieldValue !== '-' ? formatDate(fieldValue) : '-';
     } else {
       return String(fieldValue);
     }
@@ -71,10 +67,7 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
 
     if (selectedClass && selectedClass.classId) {
       const classId = selectedClass.classId;
-      console.log('classId', classId);
-
       localStorage.setItem('selectedClass', classId);
-
       navigate('/home/professor-grades/new-grade1/new-grade2');
     } else {
       console.error('No class selected or classId is missing in selectedClass');
@@ -86,20 +79,15 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
 
     if (selectedClass && selectedClass.classId) {
       const classId = selectedClass.classId;
-      console.log('classId', classId);
-
       localStorage.setItem('selectedClass', classId);
-
       navigate('/home/professor-grades/view-grades');
     } else {
       console.error('No class selected or classId is missing in selectedClass');
-
     }
   };
 
-  const [studentsData, setStudentsData] = useState([]); 
+  const [studentsData, setStudentsData] = useState([]);
 
-  // Fetch grades data for edit mode
   const fetchGradesData = async (classId) => {
     const docQuery = query(collection(db, "studentclassidgrade"), where("classId", "==", classId));
     try {
@@ -107,20 +95,16 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
       if (!querySnapshot.empty) {
         const gradesData = querySnapshot.docs[0].data().grades;
 
-        // Query to find students for the class
         const studentsQuery = query(collection(db, "students"), where("type", "==", "student"), where("classes", "array-contains", classId));
         const studentsSnapshot = await getDocs(studentsQuery);
 
-        // Create an array to store students data with default grades
         let students = [];
         if (!studentsSnapshot.empty) {
           studentsSnapshot.docs.forEach(doc => {
             const studentInfo = doc.data();
-            students.push({ ...studentInfo, grade: gradesData[studentInfo.AM] || 0 }); 
+            students.push({ ...studentInfo, grade: gradesData[studentInfo.AM] || 0 });
           });
         }
-
-        console.log("students:", students);
 
         setStudentsData(students);
       }
@@ -130,9 +114,6 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
   };
 
   const handleDownload = async (selectedClass, format) => {
-    console.error('selectedClass.className: ', selectedClass.className);
-
-    // Fetch grades data for the selected class
     const classId = selectedClass.classId;
     const docQuery = query(collection(db, 'studentclassidgrade'), where('classId', '==', classId));
 
@@ -142,7 +123,6 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
       if (!querySnapshot.empty) {
         const gradesData = querySnapshot.docs[0].data().grades;
 
-        // Query to find students for the class
         const studentsQuery = query(
           collection(db, 'students'),
           where('type', '==', 'student'),
@@ -151,7 +131,6 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
 
         const studentsSnapshot = await getDocs(studentsQuery);
 
-        // Create an array to store students' data with grades
         let students = [];
         if (!studentsSnapshot.empty) {
           studentsSnapshot.docs.forEach((doc) => {
@@ -161,19 +140,16 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
           });
         }
 
-        // Generate content based on students' data
         if (format === 'pdf') {
-          // Generate PDF content
           const pdf = new jsPDF();
           const tableData = students.map((student) => [`${student.AM}`, `${student.grade}`]);
           pdf.autoTable({
-            head: [['AM', 'Grade']], // Table header
-            body: tableData, // Table rows
-            startY: 20, // Y position from the top
+            head: [['AM', 'Grade']],
+            body: tableData,
+            startY: 20,
           });
           pdf.save(`${selectedClass.className}.pdf`);
         } else if (format === 'excel') {
-          // Generate Excel content
           const ws = XLSX.utils.aoa_to_sheet([['AM', 'Grade'], ...students.map((student) => [`${student.AM}`, `${student.grade}`])]);
           const wb = XLSX.utils.book_new();
           XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
@@ -185,78 +161,77 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
     }
   };
 
-
   return (
     <div className={`${styles['table-container']} ${styles['certif']}`}>
-      <table className={styles.table}>
-        <thead>
-          <tr className={styles['table-header']}>
-            {items.map((field, index) => (
-              <th key={index} className={`${styles['table-cell']} `} onClick={() => toggleSortOrder(field.collectionfield)}>
-                {field.title} {<HiArrowsUpDown className={styles.icon} />}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {filteredAndSortedData.map((rowData, index) => (
-            <tr
-              key={index}
-              style={{
-                color: rowData.finalSubmission === false ? 'orange' : 'inherit',
-                backgroundColor: index === selectedRow ? 'lightblue' : 'transparent',
-              }}
-            >
-              {items.map((field, fieldIndex) => (
-                <td
-                  key={fieldIndex}
-                  className={`${styles['table-cell']} ${styles[field.collectionfield]}`}
-                  style={{ position: 'relative' }}
-                >
-                  {field.collectionfield === 'finalSubmission' ? (
-                    rowData.finalSubmission === false ? (
-                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <HiMiniPencil
-                          onClick={() => handlePencilClick(index, rowData)}
-                          style={{
-                            fontSize: '24px',
-                            position: 'absolute',
-                            top: '50%',
-                            left: '50%',
-                            transform: 'translate(-50%, -50%)',
-                            cursor: 'pointer',
-                          }}
-                        />
-                      </div>
-                    ) : (
-                      <>
-                        <button className={styles.download_button} onClick={() => handleDownload(rowData, 'pdf')}>
-                          <HiArrowDownTray className={styles.icon_h2}/>  PDF
-                        </button>
-
-                        <button className={styles.download_button} onClick={() => handleDownload(rowData, 'excel')}>
-                          <HiArrowDownTray className={styles.icon_h2}/>  Excel
-                        </button>
-
-                        {/* Use handleEyeClick for the eye icon */}
-                        <button className={styles.circle} onClick={() => handleEyeClick(rowData)}>
-                          <HiArrowUturnRight className={styles.icon_h2} />
-                        </button>
-                      </>
-                    )
-                  ) : field.collectionfield === 'submission' ? (
-                    'himinipecin'
-                  ) : field.collectionfield === 'details' ? (
-                    <HiArrowUturnRight  />
-                  ) : (
-                    formatDateCell(field.collectionfield, rowData[field.collectionfield])
-                  )}
-                </td>
+      {filteredAndSortedData.length === 0 ? (
+        <p>No classes found.</p>
+      ) : (
+        <table className={styles.table}>
+          <thead>
+            <tr className={styles['table-header']}>
+              {items.map((field, index) => (
+                <th key={index} className={`${styles['table-cell']} `} onClick={() => toggleSortOrder(field.collectionfield)}>
+                  {field.title} {<HiArrowsUpDown className={styles.icon} />}
+                </th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {filteredAndSortedData.map((rowData, index) => (
+              <tr
+                key={index}
+                style={{
+                  color: rowData.finalSubmission === false ? 'orange' : 'inherit',
+                  backgroundColor: index === selectedRow ? 'lightblue' : 'transparent',
+                }}
+              >
+                {items.map((field, fieldIndex) => (
+                  <td
+                    key={fieldIndex}
+                    className={`${styles['table-cell']} ${styles[field.collectionfield]}`}
+                    style={{ position: 'relative' }}
+                  >
+                    {field.collectionfield === 'finalSubmission' ? (
+                      rowData.finalSubmission === false ? (
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                          <span className={styles.situation}>Επεξεργασία</span>
+                          <span className={styles.seperate}>|</span>
+                          <HiMiniPencil
+                            onClick={() => handlePencilClick(index, rowData)}
+                            className={styles.pencil}
+                          />
+                        </div>
+                      ) : (
+                        <>
+                          <span className={styles.situation}>Οριστικοποιήθηκε</span>
+                          <span className={styles.seperate}>|</span>
+                          <button className={styles.download_button} onClick={() => handleDownload(rowData, 'pdf')}>
+                            <HiArrowDownTray className={styles.icon_h2} /> PDF
+                          </button>
+
+                          <button className={styles.download_button} onClick={() => handleDownload(rowData, 'excel')}>
+                            <HiArrowDownTray className={styles.icon_h2} /> Excel
+                          </button>
+
+                          <button className={styles.circle} onClick={() => handleEyeClick(rowData)}>
+                            <HiArrowUturnRight className={styles.icon_h2} />
+                          </button>
+                        </>
+                      )
+                    ) : field.collectionfield === 'submission' ? (
+                      'himinipecin'
+                    ) : field.collectionfield === 'details' ? (
+                      <HiArrowUturnRight />
+                    ) : (
+                      formatDateCell(field.collectionfield, rowData[field.collectionfield])
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
