@@ -69,6 +69,8 @@ function NewClassesApplication1() {
         <ProcessBar stages={stages} currentStage={0} />
 
         {mostRecentApplicationId.length === 0 ? (
+          <div>Δεν υπάρχουν προτεινόμενα μαθήματα. Μπορείς να προχωρήσεις στο επόμενο βήμα.</div>
+        ) : (
           <div className={styles.TableComponent2Grid}>
             <TableComponent2 
               showOptionColumn={true}
@@ -80,8 +82,6 @@ function NewClassesApplication1() {
               showmarkedclasses={true} 
             />
           </div>
-        ) : (
-          <div>Δεν υπάρχουν προτεινόμενα μαθήματα. Μπορείς να προχωρήσεις στο επόμενο βήμα.</div>
         )}
 
         <div className={styles['next']}>

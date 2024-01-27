@@ -15,6 +15,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
   const [selectedClass, setSelectedClass] = useState(null);
   const [sortColumn, setSortColumn] = useState(null);
   const [sortOrder, setSortOrder] = useState('asc');
+  const [searchQuery, setSearchQuery] = useState('');
   const [submissionInfo, setSubmissionInfo] = useState(null);
   const [classIdsToCheck, setclassIdsToCheck] = useState([]);
   const items = grade ? item_grades : item_classes;
@@ -22,7 +23,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
   const filteredAndSortedData = filterAndSortData2(
     info, submission, checkboxes,
-    sortColumn, sortOrder
+    sortColumn, sortOrder, searchQuery
   );
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
 
             if (appStep1) {
               matchingDocuments = matchingDocuments.filter(item =>
-                item.grade === '-' || (parseInt(item.grade, 10) < 4)
+                item.grade == '-' || (parseInt(item.grade, 10) < 4)
               );
             }
 
@@ -111,6 +112,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
     <div className={`${styles['table-container']}`}>
       {!showmarkedclasses && submissionInfo && <SubmissionInfoBox submissionInfo={submissionInfo} classIdsToCheck={classIdsToCheck} showSubmissionInfo={showSubmissionInfo} applicationId={applicationId} />}
       {showmarkedclasses && <MarkedClassesCounter markedClassesCount={Object.values(checkboxes).filter((isChecked) => isChecked).length} />}
+      {/* <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} /> */}
       <table className={styles.table}>
         <thead>
           <tr className={styles['table-header']}>
@@ -140,7 +142,7 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
                     <div>
                       {application.allclasses.map((classInfo, classIndex) => (
                         <div key={classIndex} onClick={() => setSelectedClass(classInfo.class_id)}>
-                          {`Class ID: ${selectedClass}, Grade: ${classInfo.grade}`}
+                          {`Class ID: ${classInfo.class_id}, Grade: ${classInfo.grade}`}
                         </div>
                       ))}
                     </div>
@@ -153,9 +155,9 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
           ))}
         </tbody>
       </table>
+      {/* {selectedClass && <PopUp isOpen={!!selectedClass} onClose={() => setSelectedClass(null)} selectedClass={selectedClass} />} */}
     </div>
   );
 };
 
 export default TableComponent2;
-
