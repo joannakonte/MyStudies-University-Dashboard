@@ -34,7 +34,6 @@ function NewClassesApplication2() {
         <div className={styles.main}>
           <ProcessBar stages={stages} currentStage={1} />
           <SemesterDropDown onSelectSemester={setSelectedSemester} />
-          {/* <h1 className={appstyle['page-title']}><HiDocumentPlus className={appstyle['doc-icon']} />Νέα Δηλώση</h1> */}
           <TableComponent showOptionColumn={true} selectedSemester={selectedSemester} pageStyle={appstyle}  collectionName={'classes'}   showmarkedclasses={true} />
           
           <div className={styles['button-container']}>

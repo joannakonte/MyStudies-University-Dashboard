@@ -112,7 +112,6 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
     <div className={`${styles['table-container']}`}>
       {!showmarkedclasses && submissionInfo && <SubmissionInfoBox submissionInfo={submissionInfo} classIdsToCheck={classIdsToCheck} showSubmissionInfo={showSubmissionInfo} applicationId={applicationId} />}
       {showmarkedclasses && <MarkedClassesCounter markedClassesCount={Object.values(checkboxes).filter((isChecked) => isChecked).length} />}
-      {/* <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageStyle={pageStyle} /> */}
       <table className={styles.table}>
         <thead>
           <tr className={styles['table-header']}>
@@ -155,7 +154,6 @@ const TableComponent2 = ({ showOptionColumn, pageStyle, submission, grade, appli
           ))}
         </tbody>
       </table>
-      {/* {selectedClass && <PopUp isOpen={!!selectedClass} onClose={() => setSelectedClass(null)} selectedClass={selectedClass} />} */}
     </div>
   );
 };

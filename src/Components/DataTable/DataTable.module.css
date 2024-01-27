@@ -1,9 +1,5 @@
 .searchbar {
     position: relative;
-    
-    /* left:0% */
-    /* margin-left: 80%; */
-    
 }
 
 .searchinput {
@@ -16,8 +12,6 @@
 }
   
 .searchinput:focus {
-    /* border-color: rgba(13, 139, 217, 1); */
-    /* box-shadow: 0 0 5px rgba(13, 139, 217, 0.4); */
     outline: none;
 }
 
@@ -34,7 +28,6 @@ table {
     border-radius: 5px;
     overflow: hidden;
     margin-top: 1.8%;
-    /* position: absolute; */
 }
 
 .table-header {

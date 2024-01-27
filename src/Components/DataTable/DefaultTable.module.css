@@ -1,7 +1,5 @@
 .tablecontainer {
-    /* gia na allaksei i thesi tou pinaka allakse auto */
     margin: 5% 50% 15% 25%;
-
 }
 
 .searchbar {
@@ -15,8 +13,7 @@
     position: absolute;
     left: 3%; 
     top: 25%;
-    /* transform: translateY(-50%); */
-    }
+}
       
 .searchinput {
     padding: 4% 4% 4% 16%;

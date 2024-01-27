@@ -1,4 +1,3 @@
-// LoadingBar.js
 import React from 'react';
 import styles from './LoadingBar.module.css';
 

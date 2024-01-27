@@ -15,7 +15,7 @@ import OpenDelos_logo from "../../images/OpenDelos_logo.jpg"
 import ekpa_logo from "../../images/ekpa_logo.jpg"
 import eclass_logo from "../../images/eclass_logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignInAlt, faPhone, faEnvelope, faClock, faLocationDot, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faPhone, faEnvelope, faClock, faLocationDot, faGlobe } from '@fortawesome/free-solid-svg-icons';
 
 function Home() {
   const [selectedSemester, setSelectedSemester] = useState(1); 

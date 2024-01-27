@@ -50,7 +50,6 @@ function HistoryApplications() {
       </div>
 
       <div className={style.main}>
-        <div className={style.main_grid}>
           <div className={style['new-applic']}>
             <Link to="/home/history-applications/new-application1" className={style['new-app']}>
               <HiMiniPlus className={style['plus']}/> Nέα Δήλωση
@@ -75,8 +74,6 @@ function HistoryApplications() {
               />
             ))
           )}
-        </div>
-
       </div>
     </div>
   );

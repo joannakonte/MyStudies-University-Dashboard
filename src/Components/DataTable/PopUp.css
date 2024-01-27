@@ -64,8 +64,8 @@
 
 .navbar {
     display: flex;
-    justify-content: center; /* Horizontally space out the buttons evenly */
-    align-items: center; /* Vertically align items in the center */
+    justify-content: center;
+    align-items: center; 
 }
 
 .tabButton{

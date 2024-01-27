@@ -29,11 +29,8 @@
   grid-area: main;
   margin-left: 2%;
   margin-right: 2%;
-  padding-bottom: 20%;
-}
-
-.main_grid {
-  margin-top: 150px;
+  margin-bottom: 10%;
+  margin-top: 10%;
 }
 
 /* =========== | HistoryApplications | =========== */
@@ -43,7 +40,6 @@
 }
 
 .new-app {
-  right: 5%;
   padding: 0.7%;
   background-color:rgba(13, 139, 217, 0.1);
   color: black;
