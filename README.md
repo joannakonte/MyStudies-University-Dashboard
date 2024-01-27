@@ -1,3 +1,8 @@
+# Project by: 
+- Άννα Κοσμίδη - sdi2000093
+- Ιωάννα Κοντεμενιώτου - sdi2000227
+- Λυδία Κυριάκου - sdi2000107
+
 ## Run the project:
 
 You can run the project using:
