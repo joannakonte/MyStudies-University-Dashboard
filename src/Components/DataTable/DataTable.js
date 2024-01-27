@@ -125,14 +125,6 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
         </tbody>
       </table>
       <PopUp isOpen={!!selectedClass} onClose={closePopup} selectedClass={selectedClass} />
-      {/* {selectedClass && (
-        <div className={styles['selected-class-details']}>
-          <h3>Selected Class Details</h3>
-          <p>Name: {selectedClass.name}</p>
-          <p>ECTS: {selectedClass.ECTS}</p>
-          <p>Category: {selectedClass.category}</p>
-        </div>
-      )} */}
     </div>
   );
 };

@@ -2,7 +2,7 @@
     width: 700px;
     height: 340px;
     padding: 20px;
-    padding-top: 0; /* Remove padding at the top */
+    padding-top: 0; 
     border-radius: 8px;
     position: absolute;
     background-color: white;
@@ -16,7 +16,7 @@
     width: 100%; 
     margin: 0;
     padding: 20px; 
-    border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
+    border-radius: 8px 8px 0 0; 
     font-weight: bold;
     color: white;
     width: calc(100% + 40px); 

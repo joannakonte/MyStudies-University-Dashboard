@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './MarkedClassesCounter.module.css'; // Create a CSS file for styling
+import styles from './MarkedClassesCounter.module.css'; 
 import { HiExclamationTriangle  } from 'react-icons/hi2';
 
 const MarkedClassesCounter = ({ markedClassesCount }) => {

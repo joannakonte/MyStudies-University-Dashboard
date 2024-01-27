@@ -108,12 +108,12 @@ export const filterAndSortDataNew = (data, sortColumn, sortOrder, searchQuery) =
     const columnB = b[sortColumn];
 
     if (sortColumn === 'reqdate') {
-      // If sorting by reqdate, compare the timestamps directly
+      
       return sortOrder === 'asc' ? columnA.seconds - columnB.seconds : columnB.seconds - columnA.seconds;
     } else if (typeof columnA === 'string' && typeof columnB === 'string') {
       return sortOrder === 'asc' ? columnA.localeCompare(columnB) : columnB.localeCompare(columnA);
     } else {
-      // Add additional checks if the columns are not strings
+      
       return sortOrder === 'asc' ? columnA - columnB : columnB - columnA;
     }
   });
@@ -145,12 +145,12 @@ export const filterAndSortDataProfessor = (data, sortColumn, sortOrder, searchQu
     const columnB = b[sortColumn];
 
     if (sortColumn === 'createdate' || sortColumn === 'subdate') {
-      // If sorting by createdate or subdate, compare the timestamps directly
+      
       return sortOrder === 'asc' ? columnA.seconds - columnB.seconds : columnB.seconds - columnA.seconds;
     } else if (typeof columnA === 'string' && typeof columnB === 'string') {
       return sortOrder === 'asc' ? columnA.localeCompare(columnB) : columnB.localeCompare(columnA);
     } else {
-      // Add additional checks if the columns are not strings
+     
       return sortOrder === 'asc' ? columnA - columnB : columnB - columnA;
     }
   });
@@ -180,9 +180,9 @@ export const findStudentById = async () => {
 };
 
 export const formatDate = (timestamp) => {
-  const date = new Date(timestamp.seconds * 1000); // Convert seconds to milliseconds
+  const date = new Date(timestamp.seconds * 1000); 
   const day = date.getDate().toString().padStart(2, '0');
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
   const year = date.getFullYear();
 
   return `${day}/${month}/${year}`;

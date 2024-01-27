@@ -32,7 +32,6 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
   const fetchData = async () => {
     try {
       const professorId = await findStudentById();
-      // const professorId = 'kGHy5PrFVeILhtrDw0nR';
   
       const classesCollection = collection(db, collectionName);
       const q = query(classesCollection, where('professorId', '==', professorId));

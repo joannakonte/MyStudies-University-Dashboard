@@ -7,15 +7,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DataTableProfessorGrades from '../../DataTable/DataTableProfessorGrades';
 
 function GradesProfessor() {
-  const navigate = useNavigate();  // Updated hook
+  const navigate = useNavigate(); 
   const location = useLocation();
 
   const handleNewGradeClick = () => {
-    // Navigate to the desired link or route
     navigate('/home/professor-grades/new-grade1'); 
   };
-
-  // Remove 'gradesData' from local storage
+  
   localStorage.removeItem('gradesData');
 
 

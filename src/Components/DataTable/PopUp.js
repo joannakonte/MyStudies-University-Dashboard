@@ -5,10 +5,8 @@ import { db } from '../../firebase';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 
 const PopUp = ({ isOpen, onClose, selectedClass }) => {
-    // Keep track of the active tab
     const [activeTab, setActiveTab] = useState('details');
 
-    // Handle tab change
     const handleTabChange = (tab) => {
          setActiveTab(tab);
      };

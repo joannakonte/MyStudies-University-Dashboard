@@ -16,7 +16,6 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
   useEffect(() => {
     fetchData();
 
-    // Check local storage for saved checkboxes
     const localStorageContent = localStorage.getItem('objectGreeting');
     if (localStorageContent) {
       const parsedCheckboxes = JSON.parse(localStorageContent);
@@ -85,14 +84,12 @@ const filterAndSortData = () => {
     const normalizedQuery = searchQuery.toLowerCase();
 
     if (submission) {
-      // If submission is true, include all classes without checking semester
       return (
         name.toLowerCase().includes(normalizedQuery) ||
         ECTS.toString().includes(normalizedQuery) ||
         category.toLowerCase().includes(normalizedQuery)
       );
     } else {
-      // If submission is false, filter based on the selected semester
       const semesterMatch = selectedSemester.toString() === '' || semester.toString() === selectedSemester.toString();
       return (
         semesterMatch &&
@@ -103,11 +100,9 @@ const filterAndSortData = () => {
     }
   });
 
-  // If submission is true, filter the data to include only classes with marked checkboxes
   if (submission) {
     const markedClasses = filteredData.filter((classes) => checkboxes[classes.id]);
 
-    // Sort the marked classes based on the selected column and order
     return markedClasses.sort((a, b) => {
       const columnA = a[sortColumn];
       const columnB = b[sortColumn];
@@ -119,7 +114,6 @@ const filterAndSortData = () => {
       }
     });
   } else {
-    // If submission is false, return all classes sorted based on the selected column and order
     return filteredData.sort((a, b) => {
       const columnA = a[sortColumn];
       const columnB = b[sortColumn];
