@@ -1,5 +1,4 @@
 import styles from './DataTable.module.css';
-import {HiMagnifyingGlass } from 'react-icons/hi2';
 const SearchBar = ({ searchQuery, setSearchQuery, pageStyle }) => {
     return (
       <div className={`${styles['search-bar']} `}>

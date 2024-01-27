@@ -22,6 +22,23 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const professorId = await findStudentById();
+        const classesCollection = collection(db, collectionName);
+        const q = query(classesCollection, where('professorId', '==', professorId));
+        const querySnapshot = await getDocs(q);
+        const classesData = querySnapshot.docs.map((doc) => {
+          const data = doc.data();
+          data.department = data.department || 'Τμήμα Πληροφορικής και Τηλεπικοινωνιών';
+          return data;
+        });
+  
+        setInfo(classesData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
     fetchData();
   }, [collectionName]);
 
@@ -30,23 +47,6 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
     setFilteredAndSortedData(updatedFilteredData);
   }, [info, sortColumn, sortOrder, searchQuery]);
 
-  const fetchData = async () => {
-    try {
-      const professorId = await findStudentById();
-      const classesCollection = collection(db, collectionName);
-      const q = query(classesCollection, where('professorId', '==', professorId));
-      const querySnapshot = await getDocs(q);
-      const classesData = querySnapshot.docs.map((doc) => {
-        const data = doc.data();
-        data.department = data.department || 'Τμήμα Πληροφορικής και Τηλεπικοινωνιών';
-        return data;
-      });
-
-      setInfo(classesData);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
 
   const formatDateCell = (fieldName, fieldValue) => {
     if (fieldName === 'subdate' || fieldName === 'createdate') {
@@ -164,7 +164,7 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
   return (
     <div className={`${styles['table-container']} ${styles['certif']}`}>
       {filteredAndSortedData.length === 0 ? (
-        <p>No classes found.</p>
+        <div className={styles.noGrades}>Δεν έχουν βρεθεί βαθμολόγια.</div>
       ) : (
         <table className={styles.table}>
           <thead>

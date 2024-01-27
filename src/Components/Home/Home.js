@@ -3,7 +3,6 @@ import styles from './Home.module.css';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ScrollToTopButton from './ScrollToTopButton';
-import Login from '../Login/Login';
 import SemesterTable from '../Students/Classes/SemesterTable';
 import TableComponent from '../DataTable/DataTable';
 import book from "../../images/books.png"
@@ -19,17 +18,6 @@ import { faPhone, faEnvelope, faClock, faLocationDot, faGlobe } from '@fortaweso
 
 function Home() {
   const [selectedSemester, setSelectedSemester] = useState(1); 
-
-  // For Login Pop Up 
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
-
-  const openLogin = () => {
-    setIsLoginOpen(true);
-  };
-
-  const closeLogin = () => {
-    setIsLoginOpen(false);
-  };
 
   return (
 
@@ -156,6 +144,7 @@ function Home() {
 
           <div className={styles['map-background']}>
             <iframe
+              title="Department Location" 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50339.40851970168!2d23.67287967504338!3d37.94881151792357!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a197e10ffd248b%3A0x9e1a1dd511c44165!2zzqTOvM6uzrzOsSDOoM67zrfPgc6_z4bOv8-BzrnOus6uz4IgzrrOsc65IM6kzrfOu861z4DOuc66zr_Ouc69z4nOvc65z47OvQ!5e0!3m2!1sel!2sgr!4v1703430376620!5m2!1sel!2sgr"
               width="476px"
               height="605px"
