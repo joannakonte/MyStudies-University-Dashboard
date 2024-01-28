@@ -31,5 +31,5 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 **Password:** 123456
 
 #### Account 2
-**Username:** achliopitas</br>
+**Username:** achlioptas</br>
 **Password:** diakrita
