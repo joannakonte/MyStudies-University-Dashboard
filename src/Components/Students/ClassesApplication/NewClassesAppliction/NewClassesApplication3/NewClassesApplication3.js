@@ -23,14 +23,20 @@ function NewClassesApplication3() {
 
   const { state } = useLocation();
 
-  useEffect(() => {
+  useEffect(() => {  
     const storedClasses = state && state.markedClasses ? state.markedClasses : JSON.parse(localStorage.getItem('objectGreeting')) || [];
     setMarkedClasses(storedClasses);
   }, [state]);
 
+
+  const handleMarkedClassesChange = (updatedMarkedClasses) => {
+    setMarkedClasses(updatedMarkedClasses);
+  };
+
   const handleSubmission = async (isTemporary) => {
     try {
-      console.log('Marked Classes to Submit:', markedClasses);
+      
+      console.log('Marked Classes to Submit objectGreeting:', markedClasses);
 
       const selectedClasses = Object.keys(markedClasses).filter(className => markedClasses[className]);
 
@@ -92,9 +98,11 @@ function NewClassesApplication3() {
 
   const handleClosePopup = () => {
     setShowPopup(false);
-    navigate('/home/history-applications');
+    
+    if (!(popupMessage === 'Μπορείτε να δηλώσετε έως 8 μαθήματα.')) {
+      navigate('/home/history-applications');
+    }
   };
-
   const location = useLocation();
 
   return (
@@ -117,6 +125,7 @@ function NewClassesApplication3() {
             pageStyle={appstyle}
             submission={true}
             markedClasses={markedClasses}
+            onMarkedClassesChange={handleMarkedClassesChange}
             collectionName={'classes'}
             showmarkedclasses={true}
           />

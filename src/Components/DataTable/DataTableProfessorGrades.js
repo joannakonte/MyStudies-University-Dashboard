@@ -194,7 +194,7 @@ const TableComponentProfessorClasses = ({ collectionName }) => {
                     {field.collectionfield === 'finalSubmission' ? (
                       rowData.finalSubmission === false ? (
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                          <span className={styles.situation}>Επεξεργασία</span>
+                          <span className={styles.situation}>Υπο επεξεργασία</span>
                           <span className={styles.seperate}>|</span>
                           <HiMiniPencil
                             onClick={() => handlePencilClick(index, rowData)}

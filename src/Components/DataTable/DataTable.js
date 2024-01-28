@@ -9,7 +9,7 @@ import { filterAndSortData } from './DataTableUtils';
 import items from '../../data/dataTableHeaderClasses.json';
 import MarkedClassesCounter from './MarkedClasses/MarkedClassesCounter'; 
 
-const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submission, collectionName, showmarkedclasses }) => {
+const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submission, collectionName, showmarkedclasses, onMarkedClassesChange  }) => {
   const [info, setInfo] = useState([]);
   const [checkboxes, setCheckboxes] = useState({});
   const [selectedClass, setSelectedClass] = useState(null);
@@ -56,11 +56,15 @@ const TableComponent = ({ showOptionColumn, selectedSemester, pageStyle, submiss
       };
 
       console.log('Updated Checkboxes:', updatedCheckboxes);
-
-      const localStorageKey = submission ? 'markedClasses' : 'objectGreeting';
+      if (submission) {
+        onMarkedClassesChange(updatedCheckboxes);
+      }
+      // const localStorageKey = submission ? 'markedClasses' : 'objectGreeting';
+      const localStorageKey = 'objectGreeting';
 
       const myObjectString = JSON.stringify(updatedCheckboxes);
       localStorage.setItem(localStorageKey, myObjectString);
+      // localStorage.setItem('objectGreeting', myObjectString);
 
       return updatedCheckboxes;
     });

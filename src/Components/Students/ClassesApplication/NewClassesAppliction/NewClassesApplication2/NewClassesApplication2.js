@@ -16,7 +16,10 @@ function NewClassesApplication2() {
 
   useEffect(() => {
     const localStorageContent = localStorage.getItem('objectGreeting');
+    const datafrom2 = localStorage.getItem('objectGreeting');
+    localStorage.setItem('markedClasses', JSON.stringify(datafrom2));
     console.log('Local Storage Content:', localStorageContent);
+    console.log('Marked classes set in application2:', datafrom2);
   }, []);
 
   const location = useLocation();
