@@ -1,5 +1,7 @@
 # My-Stydies
 
+![Home](https://github.com/joannakonte/eam_project/blob/master/Videos/Home.gif)
+
 ## Project by: 
 - Anna Kosmidi - (https://github.com/annakosm)
 - Ioanna Kontemeniotis - (https://github.com/joannakonte)
@@ -55,10 +57,13 @@ After successfully opening the website, try to login with any of the registered 
 | achlioptas    | diakrita |
 
 ## Interface
-Below are some videos for you to see what the teacher and the student interface is like.
+Below are some videos for you to see what the teacher's and the student's interface are like.
 
 ### Professor
-![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor-ezgif.com-video-to-gif-converter.gif)
+![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor.gif)
+
+### Student
+![Student](https://github.com/joannakonte/eam_project/blob/master/Videos/Student.gif)
 
 
 
