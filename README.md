@@ -2,11 +2,6 @@
 
 ![Home](https://github.com/joannakonte/eam_project/blob/master/Videos/Home.gif)
 
-## Project by: 
-- Anna Kosmidi - (https://github.com/annakosm)
-- Ioanna Kontemeniotis - (https://github.com/joannakonte)
-- Lydia Kyriakou - (https://github.com/LydiaKyriakou)
-
 ## Table of Contents
 - [Description](#Description)
 - [Run](#Run)
@@ -21,17 +16,19 @@
 ## Description
 This project was developed within the course "Human-Computer Interaction" at the National and Kapodistrian University of Athens. "My-Stydies", is a university website/dashboard accessed by professors, students and the university secretariat. In "My-Stydies" each user can perform some very important actions depending on their capacity. More specifically:
 
-Students can:
-- see the detailed study program of their department, 
-- declare each semester the courses they want to attend, 
-- see their grades in each course, as well as 
-- request a certificate from the secretary's office.
+For Students:
+- **Curriculum Overview:** Access detailed information about their department's curriculum.
+- **Course Registration:** Declare courses for the upcoming semester.
+- **Grade Access:** View grades for each course.
+- **Certificate Requests:** Request official certificates from the secretary's office.
 
-Teachers can:
-- view the courses they have taken each semester and
-- submit grades to students who have registered their course to the secretary's office.
+For Teachers:
+- **Course Management:** View details of the courses assigned each semester.
+- **Grade Submission:** Submit grades directly to the secretary's office for students enrolled in courses.
 
-All users can view and edit their personal profile information.
+Common Features
+
+- **Profile Management:** All users can view and edit their personal profile information.
 
 ## Run
 You can run the project using:
@@ -64,7 +61,6 @@ Below are some videos for you to see what the teacher's and the student's interf
 
 ### Student
 ![Student](https://github.com/joannakonte/eam_project/blob/master/Videos/Student.gif)
-
 
 
 
