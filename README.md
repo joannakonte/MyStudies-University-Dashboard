@@ -3,7 +3,7 @@
 ![Home](https://github.com/joannakonte/eam_project/blob/master/Videos/Home.gif)
 
 ## Table of Contents
-- [Description](#Description)
+- [Overview](#Overview)
 - [Run](#Run)
 - [Login](#Login)
   - [Students](#Students)
@@ -14,7 +14,7 @@
 
 
 ## Overview
-This project was developed as the final project for the "Human-Computer Interaction" course at the National and Kapodistrian University of Athens. "My-Stydies", is a university website/dashboard designed for use by professors and students. The website was developed with React for its user interface and Firestore for database management. "My-Stydies" allows users to perform a variety of administrative tasks depending on their role within the university setting.
+This project was developed as the final project for the "Human-Computer Interaction" course at the National and Kapodistrian University of Athens. "My-Stydies" is a university website/dashboard designed for use by professors and students. The website was developed with React for its user interface and Firestore for database management. "My-Stydies" allows users to perform a variety of administrative tasks depending on their role within the university setting.
 
 ##  Key Features
 
@@ -39,10 +39,12 @@ You can run the project using:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-## Login
-After successfully opening the website, try to login with any of the registered users below or create a new profile through the registration form.
+## Login Instructions
+To explore "My-Stydies," you can log in using any of the provided demo accounts listed below, or create your own profile using the registration form.
 
 ### Students:
+For students, use the following credentials:
+
 | Username           | Password |
 | :----------------: | :------: |
 | sdi2000093        | 123123123 |
@@ -50,13 +52,15 @@ After successfully opening the website, try to login with any of the registered 
 
 
 ### Professors:
+For professors, use the following credentials:
+
 | Username           | Password |
 | :----------------: | :------: |
 | mariar        | 123456 |
 | achlioptas    | diakrita |
 
-## Interface
-Below are some videos for you to see what the teacher's and the student's interface are like.
+## Interface Overview
+Below, you'll find GIFs showcasing the functionality and layout of each interface.
 
 ### Professor
 ![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor.gif)
