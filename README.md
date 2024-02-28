@@ -1,4 +1,4 @@
-# Get A Room
+# My-Stydies
 
 # Project by: 
 - Άννα Κοσμίδη - sdi2000093
