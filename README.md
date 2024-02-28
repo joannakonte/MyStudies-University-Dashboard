@@ -58,7 +58,7 @@ After successfully opening the website, try to login with any of the registered 
 Below are some videos for you to see what the teacher and the student interface is like.
 
 ### Professor
-![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor.mp4)
+![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor-ezgif.com-video-to-gif-converter.gif)
 
 
 
