@@ -1,4 +1,4 @@
-# My-Stydies
+# My-Studies
 
 ![Home](https://github.com/joannakonte/eam_project/blob/master/Videos/Home.gif)
 
@@ -14,7 +14,7 @@
 
 
 ## Overview
-This project was developed as the final project for the "Human-Computer Interaction" course at the National and Kapodistrian University of Athens. "My-Stydies" is a university website/dashboard designed for use by professors and students. The website was developed with React for its user interface and Firestore for database management. "My-Stydies" allows users to perform a variety of administrative tasks depending on their role within the university setting.
+This project was developed as the final project for the "Human-Computer Interaction" course at the National and Kapodistrian University of Athens. "My-Studies" is a university website/dashboard designed for use by professors and students. The website was developed with React for its user interface and Firestore for database management. "My-Studies" allows users to perform a variety of administrative tasks depending on their role within the university setting.
 
 ##  Key Features
 
