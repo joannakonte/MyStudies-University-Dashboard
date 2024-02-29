@@ -10,8 +10,8 @@
   - [For Teachers](#For-Teachers)
   - [Common Features](#Common-Features)
 - [Login Instructions](#Login-Instructions)
-  - [Students](#Students)
-  - [Professors](#Professors)
+  - [For Students](#For-Students)
+  - [For Professors](#For-Professors)
 - [Interface Overview](#Interface-Overview)
   - [Student](#Student)
   - [Professor](#Professor)
@@ -65,13 +65,14 @@ For professors, use the following credentials:
 | achlioptas    | diakrita |
 
 ## Interface Overview
-Below you'll find GIFs showcasing the professor and student dashboards.
+Below you'll find GIFs showcasing the student and professor dashboards.
+
+### For Students
+![Student](https://github.com/joannakonte/eam_project/blob/master/Videos/Student.gif)
 
 ### For Professors
 ![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor.gif)
 
-### For Students
-![Student](https://github.com/joannakonte/eam_project/blob/master/Videos/Student.gif)
 
 
 
