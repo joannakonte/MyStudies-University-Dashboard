@@ -5,16 +5,27 @@
 ## Table of Contents
 - [Overview](#Overview)
 - [Run](#Run)
-- [Login](#Login)
+- [Key Features](#Key-Features)
+  - [Key Features](#Key-Features)
+  - [For Teachers](#For-Teachers)
+  - [Common Features](#Common-Features)
+- [Login Instructions](#Login-Instructions)
   - [Students](#Students)
   - [Professors](#Professors)
-- [Interface](#Interface)
+- [Interface Overview](#Interface-Overview)
   - [Student](#Student)
   - [Professor](#Professor)
 
 
 ## Overview
 This project was developed as the final project for the "Human-Computer Interaction" course at the National and Kapodistrian University of Athens. "My-Studies" is a university website/dashboard designed for use by professors and students. The website was developed with React for its user interface and Firestore for database management. "My-Studies" allows users to perform a variety of administrative tasks depending on their role within the university setting.
+
+## Run
+You can run the project using:
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ##  Key Features
 
@@ -31,13 +42,6 @@ This project was developed as the final project for the "Human-Computer Interact
 ### Common Features
 
 - **Profile Management:** All users can view and edit their personal profile information.
-
-## Run
-You can run the project using:
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Login Instructions
 To explore "My-Stydies," you can log in using any of the provided demo accounts listed below, or create your own profile using the registration form.
