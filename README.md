@@ -6,7 +6,7 @@
 - [Overview](#Overview)
 - [How to Run the Project](#How-to-Run-the-Project)
 - [Key Features](#Key-Features)
-  - [Key Students](#For-Students)
+  - [For Students](#For-Students)
   - [For Teachers](#For-Teachers)
   - [Common Features](#Common-Features)
 - [Login Instructions](#Login-Instructions)
