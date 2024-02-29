@@ -65,7 +65,7 @@ For professors, use the following credentials:
 | achlioptas    | diakrita |
 
 ## Interface Overview
-Below you'll find GIFs showcasing the student and professor dashboards.
+Below you'll find GIFs showcasing the professor and student dashboards.
 
 ### For Professors
 ![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor.gif)
