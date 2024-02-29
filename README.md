@@ -4,7 +4,7 @@
 
 ## Table of Contents
 - [Overview](#Overview)
-- [Run](#Run)
+- [How to Run the Project](#How-to-Run-the-Project)
 - [Key Features](#Key-Features)
   - [Key Students](#For-Students)
   - [For Teachers](#For-Teachers)
@@ -20,12 +20,13 @@
 ## Overview
 This project was developed as the final project for the "Human-Computer Interaction" course at the National and Kapodistrian University of Athens. "My-Studies" is a university website/dashboard designed for use by professors and students. The website was developed with React for its user interface and Firestore for database management. "My-Studies" allows users to perform a variety of administrative tasks depending on their role within the university setting.
 
-## Run
-You can run the project using:
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## How to Run the Project
+1. Ensure all project dependencies are up to date by running:
+   `npm update`
+2. Start the project with:
+   `npm start`
+   
+This will launch the app in development mode. Open http://localhost:3000 in your browser to see the app running.
 
 ##  Key Features
 
@@ -46,7 +47,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ## Login Instructions
 To explore "My-Stydies," you can log in using any of the provided demo accounts listed below, or create your own profile using the registration form.
 
-### Students:
+### Students
 For students, use the following credentials:
 
 | Username           | Password |
@@ -55,7 +56,7 @@ For students, use the following credentials:
 | sdi2000227        | helloworld |
 
 
-### Professors:
+### Professors
 For professors, use the following credentials:
 
 | Username           | Password |
@@ -64,12 +65,12 @@ For professors, use the following credentials:
 | achlioptas    | diakrita |
 
 ## Interface Overview
-Below, you'll find GIFs showcasing the functionality and layout of each interface.
+Below you'll find GIFs GIFs showcasing the student and professor dashboards.
 
-### Professor
+### For Professors
 ![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor.gif)
 
-### Student
+### For Students
 ![Student](https://github.com/joannakonte/eam_project/blob/master/Videos/Student.gif)
 
 
