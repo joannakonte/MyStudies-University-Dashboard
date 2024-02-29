@@ -6,7 +6,7 @@
 - [Overview](#Overview)
 - [Run](#Run)
 - [Key Features](#Key-Features)
-  - [Key Features](#Key-Features)
+  - [Key Students](#For-Students)
   - [For Teachers](#For-Teachers)
   - [Common Features](#Common-Features)
 - [Login Instructions](#Login-Instructions)
