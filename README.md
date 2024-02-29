@@ -1,6 +1,6 @@
 # My-Studies
 
-![Home](https://github.com/joannakonte/eam_project/blob/master/Videos/Home.gif)
+![Home](https://github.com/joannakonte/eam_project/blob/master/gifs/Home.gif)
 
 ## Table of Contents
 - [Overview](#Overview)
