@@ -13,8 +13,8 @@
   - [For Students](#For-Students)
   - [For Professors](#For-Professors)
 - [Interface Overview](#Interface-Overview)
-  - [Student](#Student)
-  - [Professor](#Professor)
+  - [Students](#Students)
+  - [Professors](#Professors)
 
 
 ## Overview
@@ -67,10 +67,10 @@ For professors, use the following credentials:
 ## Interface Overview
 Below you'll find GIFs showcasing the student and professor dashboards.
 
-### For Students
+### Students
 ![Student](https://github.com/joannakonte/eam_project/blob/master/Videos/Student.gif)
 
-### For Professors
+### Professors
 ![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor.gif)
 
 
