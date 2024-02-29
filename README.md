@@ -45,7 +45,7 @@ This will launch the app in development mode. Open http://localhost:3000 in your
 - **Profile Management:** All users can view and edit their personal profile information.
 
 ## Login Instructions
-To explore "My-Stydies," you can log in using any of the provided demo accounts listed below, or create your own profile using the registration form.
+To explore "My-Studies," you can log in using any of the provided demo accounts listed below, or create your own profile using the registration form.
 
 ### Students
 For students, use the following credentials:
@@ -65,7 +65,7 @@ For professors, use the following credentials:
 | achlioptas    | diakrita |
 
 ## Interface Overview
-Below you'll find GIFs GIFs showcasing the student and professor dashboards.
+Below you'll find GIFs showcasing the student and professor dashboards.
 
 ### For Professors
 ![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor.gif)
