@@ -68,10 +68,10 @@ For professors, use the following credentials:
 Below you'll find GIFs showcasing the student and professor dashboards.
 
 ### Students
-![Student](https://github.com/joannakonte/eam_project/blob/master/Videos/Student.gif)
+![Student](https://github.com/joannakonte/eam_project/blob/master/gifs/Student.gif)
 
 ### Professors
-![Professor](https://github.com/joannakonte/eam_project/blob/master/Videos/Professor.gif)
+![Professor](https://github.com/joannakonte/eam_project/blob/master/gifs/Professor.gif)
 
 
 
