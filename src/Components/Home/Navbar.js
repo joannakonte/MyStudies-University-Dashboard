@@ -66,9 +66,9 @@ function Navbar() {
       <div className={styles['logo-and-nav']}>
         <ul className={styles['logo-container']}>
           <li>
-            <a href="/">
+            <Link to="/">
               <img src={myStudiesLogo} alt="MyStudies Logo" className={styles['my-studies-logo']} />
-            </a>
+            </Link>
           </li>
           <li>
             <a href="https://www.uoa.gr" target="_blank" rel="noopener noreferrer">
